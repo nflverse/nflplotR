@@ -1,12 +1,13 @@
 Package: nflplotR
-Title: Logo Plots in 'ggplot2'
+Title: NFL Logo Plots in 'ggplot2'
 Version: 0.0.0.9000
 Authors@R: 
     person(given = "Sebastian",
            family = "Carl",
            role = c("aut", "cre"),
            email = "mrcaseb@gmail.com")
-Description: What the package does (one paragraph).
+Description: A set of functions to visualize National Football
+    League analysis in 'ggplot2'.
 License: MIT + file LICENSE
 Depends: 
     R (>= 3.2)

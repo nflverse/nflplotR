@@ -4,9 +4,10 @@
 \name{nflplotR-package}
 \alias{nflplotR}
 \alias{nflplotR-package}
-\title{nflplotR: Logo Plots in 'ggplot2'}
+\title{nflplotR: NFL Logo Plots in 'ggplot2'}
 \description{
-What the package does (one paragraph).
+A set of functions to visualize National Football
+    League analysis in 'ggplot2'.
 }
 \author{
 \strong{Maintainer}: Sebastian Carl \email{mrcaseb@gmail.com}
