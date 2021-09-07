@@ -61,9 +61,9 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \description{
-This geom is used to plot NFL team logos instead of points in a
-ggplot. It requires x, y aesthetics as well as a valid NFL team abbreviation.
-The latter can be checked with \code{\link[=valid_team_names]{valid_team_names()}}.
+This geom is used to plot NFL team and conference logos instead
+of points in a ggplot. It requires x, y aesthetics as well as a valid NFL
+team abbreviation. The latter can be checked with \code{\link[=valid_team_names]{valid_team_names()}}.
 }
 \section{Aesthetics}{
 
@@ -76,8 +76,14 @@ The latter can be checked with \code{\link[=valid_team_names]{valid_team_names()
 \item{\code{angle = 0}}{ - The angle of the image as a numerical value between 0° and 360°.}
 \item{\code{hjust = 0.5}}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
 \item{\code{vjust = 0.5}}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
-\item{\code{width = 0.1}}{ - The desired width of the image in \code{npc} (Normalised Parent Coordinates).}
-\item{\code{height = 0.1}}{ - The desired height of the image in \code{npc} (Normalised Parent Coordinates).}
+\item{\code{width = 1.0}}{ - The desired width of the image in \code{npc} (Normalised Parent Coordinates).
+The default value is set to 1.0 which is \emph{big} but it is necessary
+because all used values are computed relative to the default.
+A typical size is \code{width = 0.1} (see below examples).}
+\item{\code{height = 1.0}}{ - The desired height of the image in \code{npc} (Normalised Parent Coordinates).
+The default value is set to 1.0 which is \emph{big} but it is necessary
+because all used values are computed relative to the default.
+A typical size is \code{height = 0.2} (see below examples).}
 }
 }
 
@@ -87,6 +93,8 @@ library(nflplotR)
 library(ggplot2)
 
 team_abbr <- valid_team_names()
+# remove conference logos from this example
+team_abbr <- team_abbr[!team_abbr \%in\% c("AFC", "NFC")]
 
 df <- data.frame(
   a = rep(1:8, 4),
@@ -100,20 +108,28 @@ df$alpha <- ifelse(matches, 1, 0.2)
 
 # scatterplot of all logos
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams)) +
-  geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+  geom_nfl_logos(aes(team_abbr = teams), width = 0.1) +
+  geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
   theme_void()
 
 # apply alpha via an aesthetic from inside the dataset `df`
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams, alpha = alpha)) +
-  geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+  geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.1) +
+  geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
   theme_void()
 
 # apply alpha as constant for all logos
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams), alpha = 0.6) +
-  geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+  geom_nfl_logos(aes(team_abbr = teams), width = 0.1, alpha = 0.6) +
+  geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  theme_void()
+
+# it's also possible to plot conference logos
+conf <- data.frame(a = 1:2, b = 0, teams = c("AFC", "NFC"))
+ggplot(conf, aes(x = a, y = b)) +
+  geom_nfl_logos(aes(team_abbr = teams), width = 0.3) +
+  geom_label(aes(label = teams), nudge_y = -0.4, alpha = 0.5) +
+  coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75,.75)) +
   theme_void()
 }
 }
