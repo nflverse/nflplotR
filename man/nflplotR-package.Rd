@@ -9,6 +9,14 @@
 A set of functions to visualize National Football
     League analysis in 'ggplot2'.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/nflverse/nflplotR}
+  \item Report bugs at \url{https://github.com/nflverse/nflplotR/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Sebastian Carl \email{mrcaseb@gmail.com}
 
