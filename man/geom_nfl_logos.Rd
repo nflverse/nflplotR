@@ -79,11 +79,11 @@ team abbreviation. The latter can be checked with \code{\link[=valid_team_names]
 \item{\code{width = 1.0}}{ - The desired width of the image in \code{npc} (Normalised Parent Coordinates).
 The default value is set to 1.0 which is \emph{big} but it is necessary
 because all used values are computed relative to the default.
-A typical size is \code{width = 0.1} (see below examples).}
+A typical size is \code{width = 0.075} (see below examples).}
 \item{\code{height = 1.0}}{ - The desired height of the image in \code{npc} (Normalised Parent Coordinates).
 The default value is set to 1.0 which is \emph{big} but it is necessary
 because all used values are computed relative to the default.
-A typical size is \code{height = 0.2} (see below examples).}
+A typical size is \code{height = 0.1} (see below examples).}
 }
 }
 
@@ -108,19 +108,19 @@ df$alpha <- ifelse(matches, 1, 0.2)
 
 # scatterplot of all logos
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams), width = 0.1) +
+  geom_nfl_logos(aes(team_abbr = teams), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
   theme_void()
 
 # apply alpha via an aesthetic from inside the dataset `df`
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.1) +
+  geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
   theme_void()
 
 # apply alpha as constant for all logos
 ggplot(df, aes(x = a, y = b)) +
-  geom_nfl_logos(aes(team_abbr = teams), width = 0.1, alpha = 0.6) +
+  geom_nfl_logos(aes(team_abbr = teams), width = 0.075, alpha = 0.6) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
   theme_void()
 
