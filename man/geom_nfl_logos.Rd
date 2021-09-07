@@ -42,10 +42,9 @@ layer, as a string.}
 \item{position}{Position adjustment, either as a string, or the result of
 a call to a position adjustment function.}
 
-\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{colour = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{ggplot2::layer()}}. These are
+often aesthetics, used to set an aesthetic to a fixed value. See the below
+section "Aesthetics" for a full list of possible arguments.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -62,32 +61,32 @@ that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
 \description{
-ggplot2 Layer for Visualizing NFL Team Logos
+This geom is used to plot NFL team logos instead of points in a
+ggplot. It requires x, y aesthetics as well as a valid NFL team abbreviation.
+The latter can be checked with \code{\link[=valid_team_names]{valid_team_names()}}.
 }
+\section{Aesthetics}{
+
+\code{geom_nfl_logos()} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item{\strong{x}}{ - The x-coordinate.}
+\item{\strong{y}}{ - The y-coordinate.}
+\item{\strong{team_abbr}}{ - The team abbreviation. Must be one of \code{\link[=valid_team_names]{valid_team_names()}}.}
+\item{\code{alpha = NULL}}{ - The alpha channel as a numerical value between 0 and 1.}
+\item{\code{angle = 0}}{ - The angle of the image as a numerical value between 0° and 360°.}
+\item{\code{hjust = 0.5}}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
+\item{\code{vjust = 0.5}}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
+\item{\code{width = 0.1}}{ - The desired width of the image in \code{npc} (Normalised Parent Coordinates).}
+\item{\code{height = 0.1}}{ - The desired height of the image in \code{npc} (Normalised Parent Coordinates).}
+}
+}
+
 \examples{
 \donttest{
+library(nflplotR)
 library(ggplot2)
 
-team_abbr <- c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
-               "DAL", "DEN", "DET", "GB",  "HOU", "IND", "JAX", "KC",
-               "LA",  "LAC", "LV",  "MIA", "MIN", "NE",  "NO",  "NYG",
-               "NYJ", "PHI", "PIT", "SEA", "SF",  "TB",  "TEN", "WAS")
-
-df <- data.frame(
-  a = runif(length(team_abbr)),
-  b = runif(length(team_abbr)),
-  teams = team_abbr
-)
-
-df$alpha <- ifelse(df$teams \%in\% c("CLE", "PIT", "NE"), 1, 0.2)
-
-
-library(ggplot2)
-
-team_abbr <- c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
-               "DAL", "DEN", "DET", "GB",  "HOU", "IND", "JAX", "KC",
-               "LA",  "LAC", "LV",  "MIA", "MIN", "NE",  "NO",  "NYG",
-               "NYJ", "PHI", "PIT", "SEA", "SF",  "TB",  "TEN", "WAS")
+team_abbr <- valid_team_names()
 
 df <- data.frame(
   a = rep(1:8, 4),
