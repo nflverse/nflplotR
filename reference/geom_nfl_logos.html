@@ -12,8 +12,8 @@
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/yeti/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -40,9 +40,9 @@
 
 
 <meta property="og:title" content="ggplot2 Layer for Visualizing NFL Team Logos — geom_nfl_logos" />
-<meta property="og:description" content="This geom is used to plot NFL team logos instead of points in a
-ggplot. It requires x, y aesthetics as well as a valid NFL team abbreviation.
-The latter can be checked with valid_team_names()." />
+<meta property="og:description" content="This geom is used to plot NFL team and conference logos instead
+of points in a ggplot. It requires x, y aesthetics as well as a valid NFL
+team abbreviation. The latter can be checked with valid_team_names()." />
 
 
 
@@ -87,7 +87,7 @@ The latter can be checked with valid_team_names()." />
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../reference/index.html">Functions</a>
 </li>
 <li>
   <a href="../news/index.html">Changelog</a>
@@ -95,10 +95,52 @@ The latter can be checked with valid_team_names()." />
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
+  <a href="https://discord.com/invite/5Er2FBnnQa">
+    <span class="fab fa-discord fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="https://github.com/nflverse/nflplotR/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Packages &amp; More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">nflverse Packages</li>
+    <li>
+      <a href="https://www.nflfastr.com">nflfastR</a>
+    </li>
+    <li>
+      <a href="https://nflseedr.com">nflseedR</a>
+    </li>
+    <li>
+      <a href="https://www.nfl4th.com">nfl4th</a>
+    </li>
+    <li>
+      <a href="https://nflreadr.nflverse.com/">nflreadr</a>
+    </li>
+    <li>
+      <a href="https://www.opensourcefootball.com">Open Source Football</a>
+    </li>
+    <li class="dropdown-header">nflverse Data</li>
+    <li>
+      <a href="https://github.com/nflverse">nflverse GitHub</a>
+    </li>
+    <li>
+      <a href="https://jthomasmock.github.io/espnscrapeR/">espnscrapeR Package</a>
+    </li>
+    <li class="dropdown-header">ffverse</li>
+    <li>
+      <a href="https://www.ffverse.com">ffverse.com</a>
+    </li>
+  </ul>
 </li>
       </ul>
       
@@ -119,9 +161,9 @@ The latter can be checked with valid_team_names()." />
     </div>
 
     <div class="ref-description">
-    <p>This geom is used to plot NFL team logos instead of points in a
-ggplot. It requires x, y aesthetics as well as a valid NFL team abbreviation.
-The latter can be checked with <code><a href='valid_team_names.html'>valid_team_names()</a></code>.</p>
+    <p>This geom is used to plot NFL team and conference logos instead
+of points in a ggplot. It requires x, y aesthetics as well as a valid NFL
+team abbreviation. The latter can be checked with <code><a href='valid_team_names.html'>valid_team_names()</a></code>.</p>
     </div>
 
     <pre class="usage"><span class='fu'>geom_nfl_logos</span><span class='op'>(</span>
@@ -209,8 +251,14 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 <li><p><code>angle = 0</code> - The angle of the image as a numerical value between 0° and 360°.</p></li>
 <li><p><code>hjust = 0.5</code> - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.</p></li>
 <li><p><code>vjust = 0.5</code> - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.</p></li>
-<li><p><code>width = 0.1</code> - The desired width of the image in <code>npc</code> (Normalised Parent Coordinates).</p></li>
-<li><p><code>height = 0.1</code> - The desired height of the image in <code>npc</code> (Normalised Parent Coordinates).</p></li>
+<li><p><code>width = 1.0</code> - The desired width of the image in <code>npc</code> (Normalised Parent Coordinates).
+The default value is set to 1.0 which is <em>big</em> but it is necessary
+because all used values are computed relative to the default.
+A typical size is <code>width = 0.1</code> (see below examples).</p></li>
+<li><p><code>height = 1.0</code> - The desired height of the image in <code>npc</code> (Normalised Parent Coordinates).
+The default value is set to 1.0 which is <em>big</em> but it is necessary
+because all used values are computed relative to the default.
+A typical size is <code>height = 0.2</code> (see below examples).</p></li>
 </ul>
 
 
@@ -220,6 +268,8 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://ggplot2.tidyverse.org'>ggplot2</a></span><span class='op'>)</span>
 
 <span class='va'>team_abbr</span> <span class='op'>&lt;-</span> <span class='fu'><a href='valid_team_names.html'>valid_team_names</a></span><span class='op'>(</span><span class='op'>)</span>
+<span class='co'># remove conference logos from this example</span>
+<span class='va'>team_abbr</span> <span class='op'>&lt;-</span> <span class='va'>team_abbr</span><span class='op'>[</span><span class='op'>!</span><span class='va'>team_abbr</span> <span class='op'>%in%</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AFC"</span>, <span class='st'>"NFC"</span><span class='op'>)</span><span class='op'>]</span>
 
 <span class='va'>df</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>
   a <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span><span class='op'>(</span><span class='fl'>1</span><span class='op'>:</span><span class='fl'>8</span>, <span class='fl'>4</span><span class='op'>)</span>,
@@ -233,22 +283,30 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 
 <span class='co'># scatterplot of all logos</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>a</span>, y <span class='op'>=</span> <span class='va'>b</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>team_abbr</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='geom_nfl_logos-1.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># apply alpha via an aesthetic from inside the dataset `df`</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>a</span>, y <span class='op'>=</span> <span class='va'>b</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span>, alpha <span class='op'>=</span> <span class='va'>alpha</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>team_abbr</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span>, alpha <span class='op'>=</span> <span class='va'>alpha</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.1</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
 </div><div class='img'><img src='geom_nfl_logos-2.png' alt='' width='700' height='433' /></div><div class='input'>
 <span class='co'># apply alpha as constant for all logos</span>
 <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>df</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>a</span>, y <span class='op'>=</span> <span class='va'>b</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span> <span class='op'>+</span>
-  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>team_abbr</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.1</span>, alpha <span class='op'>=</span> <span class='fl'>0.6</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.35</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='geom_nfl_logos-3.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='img'><img src='geom_nfl_logos-3.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># it's also possible to plot conference logos</span>
+<span class='va'>conf</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span><span class='op'>(</span>a <span class='op'>=</span> <span class='fl'>1</span><span class='op'>:</span><span class='fl'>2</span>, b <span class='op'>=</span> <span class='fl'>0</span>, teams <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"AFC"</span>, <span class='st'>"NFC"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggplot.html'>ggplot</a></span><span class='op'>(</span><span class='va'>conf</span>, <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>x <span class='op'>=</span> <span class='va'>a</span>, y <span class='op'>=</span> <span class='va'>b</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'>geom_nfl_logos</span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>team_abbr <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, width <span class='op'>=</span> <span class='fl'>0.3</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.4</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>,<span class='fl'>2.5</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.75</span>,<span class='fl'>.75</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
+  <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
+</div><div class='img'><img src='geom_nfl_logos-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -261,7 +319,7 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sebastian Carl.</p>
+  <p>Developed by <a href='https://twitter.com/mrcaseb'>Sebastian Carl</a>.</p>
 </div>
 
 <div class="pkgdown">
