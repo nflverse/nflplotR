@@ -4,7 +4,7 @@ Many hands make light work! Here are some ways you can contribute to this projec
 
 ### Open an issue
 
-- You can [open an issue](https://github.com/nflverse/nflreadr/issues/new/choose) if you'd like to request a specific function or report a bug/error.
+- You can [open an issue](https://github.com/nflverse/nflplotR/issues/new/choose) if you'd like to request a specific function or report a bug/error.
 
 ### Fixing typos
 
