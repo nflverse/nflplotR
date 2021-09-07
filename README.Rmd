@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # **nflplotR**
 
 <!-- badges: start -->
-[![CRAN status](https://img.shields.io/cran/v/nflreadr?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
+[![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build status](https://img.shields.io/github/workflow/status/nflverse/nflplotR/R-CMD-check?label=R%20check&style=flat-square&logo=github)](https://github.com/nflverse/nflplotR/actions)
 <!-- badges: end -->
