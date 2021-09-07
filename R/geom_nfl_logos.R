@@ -1,8 +1,8 @@
 #' ggplot2 Layer for Visualizing NFL Team Logos
 #'
-#' @description This geom is used to plot NFL team logos instead of points in a
-#'   ggplot. It requires x, y aesthetics as well as a valid NFL team abbreviation.
-#'   The latter can be checked with [`valid_team_names()`].
+#' @description This geom is used to plot NFL team and conference logos instead
+#'   of points in a ggplot. It requires x, y aesthetics as well as a valid NFL
+#'   team abbreviation. The latter can be checked with [`valid_team_names()`].
 #'
 #' @inheritParams ggplot2::geom_point
 #' @section Aesthetics:
@@ -15,8 +15,14 @@
 #'   \item{`angle = 0`}{ - The angle of the image as a numerical value between 0° and 360°.}
 #'   \item{`hjust = 0.5`}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
 #'   \item{`vjust = 0.5`}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
-#'   \item{`width = 0.1`}{ - The desired width of the image in `npc` (Normalised Parent Coordinates).}
-#'   \item{`height = 0.1`}{ - The desired height of the image in `npc` (Normalised Parent Coordinates).}
+#'   \item{`width = 1.0`}{ - The desired width of the image in `npc` (Normalised Parent Coordinates).
+#'                           The default value is set to 1.0 which is *big* but it is necessary
+#'                           because all used values are computed relative to the default.
+#'                           A typical size is `width = 0.1` (see below examples).}
+#'   \item{`height = 1.0`}{ - The desired height of the image in `npc` (Normalised Parent Coordinates).
+#'                            The default value is set to 1.0 which is *big* but it is necessary
+#'                            because all used values are computed relative to the default.
+#'                            A typical size is `height = 0.2` (see below examples).}
 #' }
 #' @param ... Other arguments passed on to [ggplot2::layer()]. These are
 #'   often aesthetics, used to set an aesthetic to a fixed value. See the below
@@ -28,6 +34,8 @@
 #' library(ggplot2)
 #'
 #' team_abbr <- valid_team_names()
+#' # remove conference logos from this example
+#' team_abbr <- team_abbr[!team_abbr %in% c("AFC", "NFC")]
 #'
 #' df <- data.frame(
 #'   a = rep(1:8, 4),
@@ -41,20 +49,28 @@
 #'
 #' # scatterplot of all logos
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams)) +
-#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.1) +
+#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
 #'   theme_void()
 #'
 #' # apply alpha via an aesthetic from inside the dataset `df`
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha)) +
-#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.1) +
+#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
 #'   theme_void()
 #'
 #' # apply alpha as constant for all logos
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams), alpha = 0.6) +
-#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.1, alpha = 0.6) +
+#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   theme_void()
+#'
+#' # it's also possible to plot conference logos
+#' conf <- data.frame(a = 1:2, b = 0, teams = c("AFC", "NFC"))
+#' ggplot(conf, aes(x = a, y = b)) +
+#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.3) +
+#'   geom_label(aes(label = teams), nudge_y = -0.4, alpha = 0.5) +
+#'   coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75,.75)) +
 #'   theme_void()
 #' }
 geom_nfl_logos <- function(mapping = NULL, data = NULL,
@@ -85,7 +101,7 @@ GeomNFL <- ggplot2::ggproto(
   # non_missing_aes = c(""),
   default_aes = ggplot2::aes(
     alpha = NULL, angle = 0, hjust = 0.5,
-    vjust = 0.5, width = 0.1, height = 0.1
+    vjust = 0.5, width = 1.0, height = 1.0
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
