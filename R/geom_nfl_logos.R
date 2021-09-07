@@ -85,25 +85,24 @@ GeomNFL <- ggplot2::ggproto(
     vjust = 0.5, width = 0.1, height = 0.1
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
-    urls <- teams_colors_logos$team_logo_espn[teams_colors_logos$team_abbr %in% data$team_abbr]
-
     data <- coord$transform(data, panel_params)
 
-    grobs <- lapply(seq_along(urls), function(i, urls, alpha, data) {
+    grobs <- lapply(seq_along(data$team_abbr), function(i, urls, alpha, data) {
+      team_abbr <- data$team_abbr[i]
       if (is.null(alpha)) {
-        grid <- grid::rasterGrob(magick::image_read(urls[i]))
+        grid <- grid::rasterGrob(magick::image_read(logo_list[[team_abbr]]))
       } else if (length(alpha) == 1L) {
         if (as.numeric(alpha) <= 0 || as.numeric(alpha) >= 1) {
           cli::cli_abort("aesthetic {.var alpha} requires a value between {.val 0} and {.val 1}")
         }
-        img <- magick::image_read(urls[i])
+        img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha, "*a"), channel = "alpha")
         grid <- grid::rasterGrob(new)
       } else {
         if (any(as.numeric(alpha) < 0) || any(as.numeric(alpha) > 1)) {
           cli::cli_abort("aesthetics {.var alpha} require values between {.val 0} and {.val 1}")
         }
-        img <- magick::image_read(urls[i])
+        img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha[i], "*a"), channel = "alpha")
         grid <- grid::rasterGrob(new)
       }
