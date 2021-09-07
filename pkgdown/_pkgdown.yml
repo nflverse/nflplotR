@@ -46,4 +46,4 @@ navbar:
 
 template:
   params:
-    bootswatch: yeti
+    bootswatch: cosmo
