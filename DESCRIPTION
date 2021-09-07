@@ -1,0 +1,26 @@
+Package: nflplotR
+Title: Logo Plots in 'ggplot2'
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Sebastian",
+           family = "Carl",
+           role = c("aut", "cre"),
+           email = "mrcaseb@gmail.com")
+Description: What the package does (one paragraph).
+License: MIT + file LICENSE
+Depends: 
+    R (>= 3.2)
+Imports: 
+    cli (>= 3.0.0),
+    ggplot2 (>= 3.3.0),
+    grid,
+    magick (>= 2.7.3),
+    magrittr (>= 2.0.0),
+    rlang (>= 0.4.11)
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
