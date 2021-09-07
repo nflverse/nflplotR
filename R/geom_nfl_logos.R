@@ -4,25 +4,55 @@
 #' @examples
 #' \donttest{
 #' library(ggplot2)
-#' library(nflfastR)
 #'
-#' teams <- nflfastR::teams_colors_logos %>%
-#'   dplyr::filter(!team_abbr %in% c("OAK", "SD", "STL", "LAR"))
+#' team_abbr <- c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
+#'                "DAL", "DEN", "DET", "GB",  "HOU", "IND", "JAX", "KC",
+#'                "LA",  "LAC", "LV",  "MIA", "MIN", "NE",  "NO",  "NYG",
+#'                "NYJ", "PHI", "PIT", "SEA", "SF",  "TB",  "TEN", "WAS")
 #'
 #' df <- data.frame(
-#'   a = runif(nrow(teams)),
-#'   b = runif(nrow(teams)),
-#'   teams = teams$team_abbr
-#' ) %>%
-#'   dplyr::mutate(
-#'     alpha = ifelse(teams %in% c("CLE", "PIT", "NE"), 1, 0.2)
-#'   )
+#'   a = runif(length(team_abbr)),
+#'   b = runif(length(team_abbr)),
+#'   teams = team_abbr
+#' )
 #'
-#' df %>%
-#'   ggplot(aes(x = a, y = b)) +
+#' df$alpha <- ifelse(df$teams %in% c("CLE", "PIT", "NE"), 1, 0.2)
+#'
+#'
+#' library(ggplot2)
+#'
+#' team_abbr <- c("ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
+#'                "DAL", "DEN", "DET", "GB",  "HOU", "IND", "JAX", "KC",
+#'                "LA",  "LAC", "LV",  "MIA", "MIN", "NE",  "NO",  "NYG",
+#'                "NYJ", "PHI", "PIT", "SEA", "SF",  "TB",  "TEN", "WAS")
+#'
+#' df <- data.frame(
+#'   a = rep(1:8, 4),
+#'   b = sort(rep(1:4, 8), decreasing = TRUE),
+#'   teams = team_abbr
+#' )
+#'
+#' # keep alpha == 1 for all teams including an "A"
+#' matches <- grepl("A", team_abbr)
+#' df$alpha <- ifelse(matches, 1, 0.2)
+#'
+#' # scatterplot of all logos
+#' ggplot(df, aes(x = a, y = b)) +
+#'   geom_nfl_logos(aes(team_abbr = teams)) +
+#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   theme_void()
+#'
+#' # apply alpha via an aesthetic from inside the dataset `df`
+#' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha)) +
-#'   theme(minimal)
+#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   theme_void()
 #'
+#' # apply alpha as constant for all logos
+#' ggplot(df, aes(x = a, y = b)) +
+#'   geom_nfl_logos(aes(team_abbr = teams), alpha = 0.6) +
+#'   geom_label(aes(label = team_abbr), nudge_y = -0.35, alpha = 0.5) +
+#'   theme_void()
 #' }
 geom_nfl_logos <- function(mapping = NULL, data = NULL,
                            stat = "identity", position = "identity",
@@ -30,10 +60,6 @@ geom_nfl_logos <- function(mapping = NULL, data = NULL,
                            na.rm = FALSE,
                            show.legend = FALSE,
                            inherit.aes = TRUE) {
-
-  # if (!is_installed("ggplot2") | !is_installed("magick")) {
-  #   cli::cli_abort("{my_time()} | Packages {.val ggplot2} and {.val magick} required for {.var geom_nfl_logos}. Please install them.")
-  # }
 
   ggplot2::layer(
     data = data,
@@ -59,9 +85,7 @@ GeomNFL <- ggplot2::ggproto(
     vjust = 0.5, width = 0.1, height = 0.1
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
-    urls <- teams_colors_logos %>%
-      dplyr::filter(team_abbr %in% data$team_abbr) %>%
-      dplyr::pull(team_logo_espn)
+    urls <- teams_colors_logos$team_logo_espn[teams_colors_logos$team_abbr %in% data$team_abbr]
 
     data <- coord$transform(data, panel_params)
 
