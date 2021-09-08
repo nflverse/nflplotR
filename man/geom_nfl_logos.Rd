@@ -71,7 +71,7 @@ team abbreviation. The latter can be checked with \code{\link[=valid_team_names]
 \itemize{
 \item{\strong{x}}{ - The x-coordinate.}
 \item{\strong{y}}{ - The y-coordinate.}
-\item{\strong{team_abbr}}{ - The team abbreviation. Must be one of \code{\link[=valid_team_names]{valid_team_names()}}.}
+\item{\strong{team_abbr}}{ - The team abbreviation. Should be one of \code{\link[=valid_team_names]{valid_team_names()}}. The function tries to clean team names internally by calling \code{\link[nflreadr:clean_team_abbrs]{nflreadr::clean_team_abbrs()}}}
 \item{\code{alpha = NULL}}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 \item{\code{angle = 0}}{ - The angle of the image as a numerical value between 0° and 360°.}
 \item{\code{hjust = 0.5}}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
