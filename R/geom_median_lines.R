@@ -5,6 +5,10 @@
 #'   to compute their `median` or `mean` and draw the as a line.
 #'
 #' @inheritParams ggplot2::geom_hline
+#' @param inherit.aes If `FALSE`, overrides the default aesthetics,
+#'   rather than combining with them. This is most useful for helper functions
+#'   that define both data and aesthetics and shouldn't inherit behaviour from
+#'   the default plot specification.
 #' @section Aesthetics:
 #' `geom_median_lines()` and `geom_mean_lines()` understand the following
 #' aesthetics (at least one of the bold aesthetics is required):
