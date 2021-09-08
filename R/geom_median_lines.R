@@ -93,8 +93,6 @@ GeomMedianLines <- ggplot2::ggproto("GeomMedianLines", ggplot2::Geom,
     data_v$xintercept <- median(data$v_var, na.rm = na.rm, ...)
     data_h$yintercept <- median(data$h_var, na.rm = na.rm, ...)
 
-    message("test")
-
     if (!"v_var" %in% args){
       ggplot2::GeomHline$draw_panel(unique(data_h), panel_params, coord)
     } else if (!"h_var" %in% args) {

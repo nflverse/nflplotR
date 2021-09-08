@@ -40,8 +40,6 @@ GeomMeanLines <- ggplot2::ggproto("GeomMeanLines", ggplot2::Geom,
     data_v$xintercept <- mean(data$v_var, na.rm = na.rm, ...)
     data_h$yintercept <- mean(data$h_var, na.rm = na.rm, ...)
 
-    message("test")
-
     if (!"v_var" %in% args) {
       ggplot2::GeomHline$draw_panel(unique(data_h), panel_params, coord)
     } else if (!"h_var" %in% args) {
