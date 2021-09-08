@@ -1,6 +1,6 @@
 Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2'
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: 
     person(given = "Sebastian",
            family = "Carl",
@@ -19,6 +19,7 @@ Imports:
     grid,
     magick (>= 2.7.3),
     magrittr (>= 2.0.0),
+    nflreadr (> 1.1.0.0),
     rlang (>= 0.4.11)
 Suggests: 
     testthat (>= 3.0.0)

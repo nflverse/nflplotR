@@ -10,7 +10,7 @@
 #' \itemize{
 #'   \item{**x**}{ - The x-coordinate.}
 #'   \item{**y**}{ - The y-coordinate.}
-#'   \item{**team_abbr**}{ - The team abbreviation. Must be one of [`valid_team_names()`].}
+#'   \item{**team_abbr**}{ - The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
 #'   \item{`alpha = NULL`}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 #'   \item{`angle = 0`}{ - The angle of the image as a numerical value between 0° and 360°.}
 #'   \item{`hjust = 0.5`}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
@@ -106,9 +106,13 @@ GeomNFL <- ggplot2::ggproto(
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
 
+    data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
+
     grobs <- lapply(seq_along(data$team_abbr), function(i, urls, alpha, data) {
       team_abbr <- data$team_abbr[i]
-      if (is.null(alpha)) {
+      if (is.na(team_abbr)){
+        grid <- grid::nullGrob()
+      } else if (is.null(alpha)) {
         grid <- grid::rasterGrob(magick::image_read(logo_list[[team_abbr]]))
       } else if (length(alpha) == 1L) {
         if (as.numeric(alpha) <= 0 || as.numeric(alpha) >= 1) {
