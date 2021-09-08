@@ -74,7 +74,7 @@ team abbreviation. The latter can be checked with valid_team_names()." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">nflplotR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9001</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9002</span>
       </span>
     </div>
 
@@ -246,7 +246,7 @@ the default plot specification, e.g. <code><a href='https://ggplot2.tidyverse.or
 <p><code>geom_nfl_logos()</code> understands the following aesthetics (required aesthetics are in bold):</p><ul>
 <li><p><strong>x</strong> - The x-coordinate.</p></li>
 <li><p><strong>y</strong> - The y-coordinate.</p></li>
-<li><p><strong>team_abbr</strong> - The team abbreviation. Must be one of <code><a href='valid_team_names.html'>valid_team_names()</a></code>.</p></li>
+<li><p><strong>team_abbr</strong> - The team abbreviation. Should be one of <code><a href='valid_team_names.html'>valid_team_names()</a></code>. The function tries to clean team names internally by calling <code><a href='nflreadr.nflverse.com/reference/clean_team_abbrs.html'>nflreadr::clean_team_abbrs()</a></code></p></li>
 <li><p><code>alpha = NULL</code> - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.</p></li>
 <li><p><code>angle = 0</code> - The angle of the image as a numerical value between 0° and 360°.</p></li>
 <li><p><code>hjust = 0.5</code> - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.</p></li>
@@ -306,7 +306,7 @@ A typical size is <code>height = 0.1</code> (see below examples).</p></li>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/geom_text.html'>geom_label</a></span><span class='op'>(</span><span class='fu'><a href='https://ggplot2.tidyverse.org/reference/aes.html'>aes</a></span><span class='op'>(</span>label <span class='op'>=</span> <span class='va'>teams</span><span class='op'>)</span>, nudge_y <span class='op'>=</span> <span class='op'>-</span><span class='fl'>0.4</span>, alpha <span class='op'>=</span> <span class='fl'>0.5</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/coord_cartesian.html'>coord_cartesian</a></span><span class='op'>(</span>xlim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>0.5</span>,<span class='fl'>2.5</span><span class='op'>)</span>, ylim <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='op'>-</span><span class='fl'>0.75</span>,<span class='fl'>.75</span><span class='op'>)</span><span class='op'>)</span> <span class='op'>+</span>
   <span class='fu'><a href='https://ggplot2.tidyverse.org/reference/ggtheme.html'>theme_void</a></span><span class='op'>(</span><span class='op'>)</span>
-</div><div class='img'><img src='geom_nfl_logos-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: Abbreviations not found in `nflreadr::team_abbr_mapping`: AFC , NFC</span></div><div class='img'><img src='geom_nfl_logos-4.png' alt='' width='700' height='433' /></div><div class='input'><span class='co'># }</span>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
