@@ -2,8 +2,8 @@ pandoc: 2.7.3
 pkgdown: 1.6.1
 pkgdown_sha: ~
 articles: {}
-last_built: 2021-09-08T13:56Z
+last_built: 2021-09-08T14:12Z
 urls:
-  reference: https://nflverse.github.io/nflplotR//reference
-  article: https://nflverse.github.io/nflplotR//articles
+  reference: nflplotr.nflverse.com/reference
+  article: nflplotr.nflverse.com/articles
 
