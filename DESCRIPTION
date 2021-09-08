@@ -9,10 +9,10 @@ Authors@R:
 Description: A set of functions to visualize National Football
     League analysis in 'ggplot2'.
 License: MIT + file LICENSE
-URL: https://github.com/nflverse/nflplotR
+URL: https://nflplotr.nflverse.com, https://github.com/nflverse/nflplotR
 BugReports: https://github.com/nflverse/nflplotR/issues
 Depends: 
-    R (>= 3.2)
+    R (>= 3.5.0)
 Imports: 
     cli (>= 3.0.0),
     ggplot2 (>= 3.3.0),

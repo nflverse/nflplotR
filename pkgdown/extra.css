@@ -1,11 +1,11 @@
-@import 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=Londrina+Shadow&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=Kanit:wght@400;700&display=swap';
 
 body{
   font-family: 'IBM Plex Sans', sans-serif;
 }
 
 h1 {
-  font-family: 'Londrina Shadow', sans-serif
+  font-family: 'Kanit', sans-serif
 }
 
 h2,h3 {
@@ -18,7 +18,7 @@ pre, code {
 }
 
 .navbar-link {
-  font-family: 'Londrina Shadow', sans-serif;
+  font-family: 'Kanit', sans-serif;
 }
 
 h4.author,h4.date {
