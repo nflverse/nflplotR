@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>nflplotr.nflverse.com/index.html</loc>
+    <loc>https://nflplotr.nflverse.com/index.html</loc>
   </url>
   <url>
-    <loc>nflplotr.nflverse.com/reference/geom_median_lines.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/geom_median_lines.html</loc>
   </url>
   <url>
-    <loc>nflplotr.nflverse.com/reference/geom_nfl_logos.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/geom_nfl_logos.html</loc>
   </url>
   <url>
-    <loc>nflplotr.nflverse.com/reference/nflplotR-package.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/nflplotR-package.html</loc>
   </url>
   <url>
-    <loc>nflplotr.nflverse.com/reference/valid_team_names.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/valid_team_names.html</loc>
   </url>
 </urlset>
