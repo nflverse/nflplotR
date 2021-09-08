@@ -19,7 +19,7 @@ Imports:
     grid,
     magick (>= 2.7.3),
     magrittr (>= 2.0.0),
-    nflreadr (>= 1.1.0.01),
+    nflreadr (>= 1.1.0.03),
     rlang (>= 0.4.11)
 Suggests: 
     testthat (>= 3.0.0)
