@@ -65,7 +65,6 @@ geom_median_lines <- function(mapping = NULL, data = NULL,
     inherit.aes = inherit.aes,
     params = list(
       na.rm = na.rm,
-      fun = median,
       ...
     )
   )

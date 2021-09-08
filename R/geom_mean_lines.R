@@ -16,7 +16,6 @@ geom_mean_lines <- function(mapping = NULL, data = NULL,
     inherit.aes = inherit.aes,
     params = list(
       na.rm = na.rm,
-      fun = median,
       ...
     )
   )
@@ -33,7 +32,7 @@ GeomMeanLines <- ggplot2::ggproto("GeomMeanLines", ggplot2::Geom,
     args <- names(data)
 
     if (all(!c("v_var", "h_var") %in% args)) {
-      cli::cli_abort("{.var geom_median_lines()} requires at least one of the following aesthetics: {.var v_var}, {.var h_var}")
+      cli::cli_abort("{.var geom_mean_lines()} requires at least one of the following aesthetics: {.var v_var}, {.var h_var}")
     }
     if (!"v_var" %in% args) data$v_var <- NA
     if (!"h_var" %in% args) data$h_var <- NA
