@@ -4,13 +4,16 @@
     <loc>https://nflplotr.nflverse.com/index.html</loc>
   </url>
   <url>
-    <loc>https://nflplotr.nflverse.com/reference/geom_median_lines.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/geom_lines.html</loc>
   </url>
   <url>
     <loc>https://nflplotr.nflverse.com/reference/geom_nfl_logos.html</loc>
   </url>
   <url>
     <loc>https://nflplotr.nflverse.com/reference/nflplotR-package.html</loc>
+  </url>
+  <url>
+    <loc>https://nflplotr.nflverse.com/reference/scale_nfl.html</loc>
   </url>
   <url>
     <loc>https://nflplotr.nflverse.com/reference/valid_team_names.html</loc>
