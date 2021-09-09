@@ -1,7 +1,7 @@
 #' Scales for NFL Team Colors
 #'
-#' @description These functions allows you to map college football team names as
-#'   levels to the color and fill aesthetics
+#' @description These functions map NFL team names to their team colors in
+#'   color and fill aesthetics
 #' @inheritParams ggplot2::scale_fill_manual
 #' @param type One of `"primary"` or `"secondary"` to decide which colortype to use.
 #' @param values If `NULL` (the default) use the internal team color vectors. Otherwise

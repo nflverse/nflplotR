@@ -108,8 +108,8 @@ as output
 no guide will be plotted for this scale. See \code{\link[ggplot2:guides]{ggplot2::guides()}} for more information.}
 }
 \description{
-These functions allows you to map college football team names as
-levels to the color and fill aesthetics
+These functions map NFL team names to their team colors in
+color and fill aesthetics
 }
 \examples{
 library(nflplotR)
