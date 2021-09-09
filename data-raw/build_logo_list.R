@@ -15,4 +15,10 @@ logo_list <- lapply(teams_colors_logos$team_abbr, function(x){
 
 logo_list <- rlang::set_names(logo_list, teams_colors_logos$team_abbr)
 
-use_data(logo_list, internal = TRUE, overwrite = TRUE)
+primary_colors <- teams_colors_logos$team_color
+names(primary_colors) <- teams_colors_logos$team_abbr
+
+secondary_colors <- teams_colors_logos$team_color2
+names(secondary_colors) <- teams_colors_logos$team_abbr
+
+usethis::use_data(logo_list, primary_colors, secondary_colors, internal = TRUE, overwrite = TRUE)
