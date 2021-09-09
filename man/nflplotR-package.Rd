@@ -12,6 +12,7 @@ A set of functions to visualize National Football
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://nflplotr.nflverse.com}
   \item \url{https://github.com/nflverse/nflplotR}
   \item Report bugs at \url{https://github.com/nflverse/nflplotR/issues}
 }
