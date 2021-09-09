@@ -1,6 +1,7 @@
 #' Scales for NFL Team Colors
 #'
-#' @description These functions allows you to map college football team names as levels to the color and fill aesthetics
+#' @description These functions allows you to map college football team names as
+#'   levels to the color and fill aesthetics
 #' @inheritParams ggplot2::scale_fill_manual
 #' @param type One of `"primary"` or `"secondary"` to decide which colortype to use.
 #' @param values If `NULL` (the default) use the internal team color vectors. Otherwise
@@ -9,6 +10,8 @@
 #'   scale, or with `breaks` if provided. If this is a named vector, then the
 #'   values will be matched based on the names instead. Data values that don't
 #'   match will be given `na.value`.
+#' @param guide A function used to create a guide or its name. If `NULL` (the default)
+#'   no guide will be plotted for this scale. See [ggplot2::guides()] for more information.
 #'
 #' @name scale_nfl
 #' @aliases NULL

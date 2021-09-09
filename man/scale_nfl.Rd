@@ -103,9 +103,13 @@ as output
 }}
 
 \item{na.value}{The aesthetic value to use for missing (\code{NA}) values}
+
+\item{guide}{A function used to create a guide or its name. If \code{NULL} (the default)
+no guide will be plotted for this scale. See \code{\link[ggplot2:guides]{ggplot2::guides()}} for more information.}
 }
 \description{
-These functions allows you to map college football team names as levels to the color and fill aesthetics
+These functions allows you to map college football team names as
+levels to the color and fill aesthetics
 }
 \examples{
 library(nflplotR)
