@@ -12,7 +12,9 @@
 #'   match will be given `na.value`.
 #' @param guide A function used to create a guide or its name. If `NULL` (the default)
 #'   no guide will be plotted for this scale. See [ggplot2::guides()] for more information.
-#'
+#' @param alpha Factor to modify color transparency via a call to [`scales::alpha()`].
+#'   If `NA` (the default) no transparency will be applied. Can also be a vector of
+#'   alphas. All alpha levels must be in range `[0,1]`.
 #' @name scale_nfl
 #' @aliases NULL
 #' @examples
@@ -30,7 +32,7 @@
 #' ggplot(df, aes(x = teams, y = random_value)) +
 #'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
 #'   scale_color_nfl(type = "secondary") +
-#'   scale_fill_nfl() +
+#'   scale_fill_nfl(alpha = 0.4) +
 #'   theme_minimal() +
 #'   theme(axis.text.x = element_text(angle = 45, hjust = 1))
 NULL
@@ -43,7 +45,8 @@ scale_color_nfl <- function(type = c("primary", "secondary"),
                             aesthetics = "colour",
                             breaks = ggplot2::waiver(),
                             na.value = "grey50",
-                            guide = NULL) {
+                            guide = NULL,
+                            alpha = NA) {
 
   type <- rlang::arg_match(type)
 
@@ -53,6 +56,8 @@ scale_color_nfl <- function(type = c("primary", "secondary"),
       "secondary" = secondary_colors
     )
   }
+
+  if(!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
 
   ggplot2::scale_color_manual(
     ...,
@@ -77,7 +82,8 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
                            aesthetics = "fill",
                            breaks = ggplot2::waiver(),
                            na.value = "grey50",
-                           guide = NULL) {
+                           guide = NULL,
+                           alpha = NA) {
 
   type <- rlang::arg_match(type)
 
@@ -87,6 +93,8 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
       "secondary" = secondary_colors
     )
   }
+
+  if(!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
 
   ggplot2::scale_fill_manual(
     ...,
