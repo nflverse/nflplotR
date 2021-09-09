@@ -20,7 +20,8 @@ Imports:
     magick (>= 2.7.3),
     magrittr (>= 2.0.0),
     nflreadr (>= 1.1.0.03),
-    rlang (>= 0.4.11)
+    rlang (>= 0.4.11),
+    scales (>= 1.1.0)
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
