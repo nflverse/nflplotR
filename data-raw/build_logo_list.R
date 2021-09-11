@@ -21,4 +21,7 @@ names(primary_colors) <- teams_colors_logos$team_abbr
 secondary_colors <- teams_colors_logos$team_color2
 names(secondary_colors) <- teams_colors_logos$team_abbr
 
-usethis::use_data(logo_list, primary_colors, secondary_colors, internal = TRUE, overwrite = TRUE)
+logo_urls <- teams_colors_logos$team_logo_espn
+names(logo_urls) <- teams_colors_logos$team_abbr
+
+usethis::use_data(logo_list, primary_colors, secondary_colors, logo_urls, internal = TRUE, overwrite = TRUE)

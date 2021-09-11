@@ -1,3 +1,5 @@
+# Color and Fill Scales ---------------------------------------------------
+
 #' Scales for NFL Team Colors
 #'
 #' @description These functions map NFL team names to their team colors in
@@ -103,5 +105,82 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
     breaks = breaks,
     na.value = na.value,
     guide = guide
+  )
+}
+
+
+# Axis Scales -------------------------------------------------------------
+
+#' Axis Scales for NFL Team Logos
+#'
+#' @description These functions map NFL team names to their team logos and make
+#'   them available as axis labels
+#' @details The scale translates the NFL team abbreviations into raw image
+#'   html and places the html as axis labels. Because of the way ggplots are
+#'   constructed, it is necessary to adjust the [`theme()`] after calling this
+#'   scale. This can be done by calling [`theme_x_nfl()`] or [`theme_y_nfl()`]
+#'   or alternatively by manually changing the relevant `axis.text` to
+#'   [`ggtext::element_markdown()`].
+#' @inheritParams ggplot2::scale_x_discrete
+#' @param size The logo size in pixels. It is applied as height for an x-scale
+#'   and as width for an y-scale.
+#' @name scale_axes_nfl
+#' @aliases NULL
+#' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
+#' @examples
+#' library(nflplotR)
+#' library(ggplot2)
+#'
+#' team_abbr <- valid_team_names()
+#' # remove conference logos from this example
+#' team_abbr <- team_abbr[!team_abbr %in% c("AFC", "NFC")]
+#'
+#' df <- data.frame(
+#'   random_value = runif(length(team_abbr), 0, 1),
+#'   teams = team_abbr
+#' )
+#'
+#' ggplot(df, aes(x = teams, y = random_value)) +
+#'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
+#'   scale_color_nfl(type = "secondary") +
+#'   scale_fill_nfl(alpha = 0.4) +
+#'   scale_x_nfl() +
+#'   theme_minimal() +
+#'   theme_x_nfl()
+NULL
+
+#' @rdname scale_axes_nfl
+#' @export
+scale_x_nfl <- function(...,
+                        expand = ggplot2::waiver(),
+                        guide = ggplot2::waiver(),
+                        position = "bottom",
+                        size = 12) {
+  ggplot2::scale_x_discrete(
+    ...,
+    labels = function(x) {
+      logo_html(x, type = "height", size = size)
+    },
+    expand = expand,
+    guide = guide,
+    position = position
+  )
+}
+
+#' @rdname scale_axes_nfl
+#' @export
+scale_y_nfl <- function(...,
+                        expand = ggplot2::waiver(),
+                        guide = ggplot2::waiver(),
+                        position = "bottom",
+                        size = 12) {
+  ggplot2::scale_y_discrete(
+    ...,
+    labels = function(x) {
+      logo_html(x, type = "width", size = size)
+    },
+    expand = expand,
+    guide = guide,
+    position = position
   )
 }
