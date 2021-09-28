@@ -17,7 +17,7 @@ scale_y_nfl(
   ...,
   expand = ggplot2::waiver(),
   guide = ggplot2::waiver(),
-  position = "bottom",
+  position = "left",
   size = 12
 )
 }
@@ -116,6 +116,7 @@ df <- data.frame(
   teams = team_abbr
 )
 
+# use logos for x-axis
 ggplot(df, aes(x = teams, y = random_value)) +
   geom_col(aes(color = teams, fill = teams), width = 0.5) +
   scale_color_nfl(type = "secondary") +
@@ -123,6 +124,15 @@ ggplot(df, aes(x = teams, y = random_value)) +
   scale_x_nfl() +
   theme_minimal() +
   theme_x_nfl()
+
+# use logos for y-axis
+ggplot(df, aes(y = teams, x = random_value)) +
+  geom_col(aes(color = teams, fill = teams), width = 0.5) +
+  scale_color_nfl(type = "secondary") +
+  scale_fill_nfl(alpha = 0.4) +
+  scale_y_nfl() +
+  theme_minimal() +
+  theme_y_nfl()
 }
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}
