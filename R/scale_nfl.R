@@ -140,6 +140,7 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'   teams = team_abbr
 #' )
 #'
+#' # use logos for x-axis
 #' ggplot(df, aes(x = teams, y = random_value)) +
 #'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
 #'   scale_color_nfl(type = "secondary") +
@@ -147,6 +148,15 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'   scale_x_nfl() +
 #'   theme_minimal() +
 #'   theme_x_nfl()
+#'
+#' # use logos for y-axis
+#' ggplot(df, aes(y = teams, x = random_value)) +
+#'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
+#'   scale_color_nfl(type = "secondary") +
+#'   scale_fill_nfl(alpha = 0.4) +
+#'   scale_y_nfl() +
+#'   theme_minimal() +
+#'   theme_y_nfl()
 NULL
 
 #' @rdname scale_axes_nfl
@@ -156,6 +166,9 @@ scale_x_nfl <- function(...,
                         guide = ggplot2::waiver(),
                         position = "bottom",
                         size = 12) {
+
+  position <- rlang::arg_match0(position, c("top", "bottom"))
+
   ggplot2::scale_x_discrete(
     ...,
     labels = function(x) {
@@ -172,8 +185,11 @@ scale_x_nfl <- function(...,
 scale_y_nfl <- function(...,
                         expand = ggplot2::waiver(),
                         guide = ggplot2::waiver(),
-                        position = "bottom",
+                        position = "left",
                         size = 12) {
+
+  position <- rlang::arg_match0(position, c("left", "right"))
+
   ggplot2::scale_y_discrete(
     ...,
     labels = function(x) {
