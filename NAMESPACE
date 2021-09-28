@@ -3,6 +3,7 @@
 export(geom_mean_lines)
 export(geom_median_lines)
 export(geom_nfl_logos)
+export(ggpreview)
 export(scale_color_nfl)
 export(scale_colour_nfl)
 export(scale_fill_nfl)
