@@ -54,8 +54,9 @@ from the plot theme.}
 as specified by \code{device}.}
 }
 \description{
-This function allows to preview a ggplot in it's actual dimensions so it is
-possible to see how the plot will look like when it is actually saved.
+This function previews a ggplot in its actual dimensions in order to see how
+it will look when saved. It is also significantly faster than the default
+preview in RStudio for ggplots created using nflplotR.
 }
 \examples{
 library(nflplotR)
