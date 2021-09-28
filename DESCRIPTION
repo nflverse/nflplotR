@@ -1,6 +1,6 @@
 Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2'
-Version: 0.0.0.9005
+Version: 0.0.0.9006
 Authors@R: 
     person(given = "Sebastian",
            family = "Carl",
@@ -25,6 +25,7 @@ Imports:
     scales (>= 1.1.0)
 Suggests: 
     ggtext (>= 0.1.1),
+    rstudioapi (>= 0.13), 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Encoding: UTF-8
