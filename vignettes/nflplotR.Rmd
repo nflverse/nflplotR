@@ -1,6 +1,7 @@
 ---
 title: "Get Started with nflplotR"
 output: rmarkdown::html_vignette
+author: "Sebastian Carl"
 vignette: >
   %\VignetteIndexEntry{Get Started with nflplotR}
   %\VignetteEngine{knitr::rmarkdown}
