@@ -39,6 +39,12 @@ if (!require("remotes")) install.packages("remotes")
 remotes::install_github("nflverse/nflplotR")
 ```
 
+## Usage
+
+Please see the **[“Get Started with
+nflplotR”](https://nflplotr.nflverse.com/articles/nflplotR.html)
+article**.
+
 ## Getting help
 
 The best places to get help on this package are:
