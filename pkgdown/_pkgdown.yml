@@ -47,3 +47,11 @@ navbar:
 template:
   params:
     bootswatch: cosmo
+  opengraph:
+    image:
+      src: man/figures/social_preview.png
+      alt: "nflplotR social preview card"
+    twitter:
+      creator: "@mrcaseb"
+      site: "@nflfastR"
+      card: summary_large_image
