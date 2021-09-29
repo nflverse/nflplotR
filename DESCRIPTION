@@ -24,9 +24,11 @@ Imports:
     rlang (>= 0.4.11),
     scales (>= 1.1.0)
 Suggests: 
+    knitr,
     ggtext (>= 0.1.1),
-    rstudioapi (>= 0.13), 
-    testthat (>= 3.0.0)
+    rstudioapi (>= 0.13),
+    testthat (>= 3.0.0),
+    rmarkdown
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -34,3 +36,4 @@ RoxygenNote: 7.1.2
 Remotes:
     nflverse/nflreadr,
     wilkelab/gridtext
+VignetteBuilder: knitr

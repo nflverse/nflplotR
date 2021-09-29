@@ -12,7 +12,7 @@ home:
 
 navbar:
   structure:
-    left:  [home, reference, news, articles]
+    left:  [home, intro, reference, news, articles]
     right: [discord, github, more]
   components:
     discord:
