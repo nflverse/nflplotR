@@ -2,12 +2,9 @@ Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2'
 Version: 0.0.0.9006
 Authors@R: 
-    person(given = "Sebastian",
-           family = "Carl",
-           role = c("aut", "cre"),
-           email = "mrcaseb@gmail.com")
-Description: A set of functions to visualize National Football
-    League analysis in 'ggplot2'.
+    person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = c("aut", "cre"))
+Description: A set of functions to visualize National Football League
+    analysis in 'ggplot2'.
 License: MIT + file LICENSE
 URL: https://nflplotr.nflverse.com, https://github.com/nflverse/nflplotR
 BugReports: https://github.com/nflverse/nflplotR/issues
@@ -24,16 +21,18 @@ Imports:
     rlang (>= 0.4.11),
     scales (>= 1.1.0)
 Suggests: 
-    knitr,
+    dplyr (>= 1.0.0),
     ggtext (>= 0.1.1),
+    knitr,
+    rmarkdown,
     rstudioapi (>= 0.13),
-    testthat (>= 3.0.0),
-    rmarkdown
+    testthat (>= 3.0.0)
+VignetteBuilder: 
+    knitr
+Remotes:
+    nflverse/nflreadr,
+    wilkelab/gridtext
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.2
-Remotes:
-    nflverse/nflreadr,
-    wilkelab/gridtext
-VignetteBuilder: knitr
