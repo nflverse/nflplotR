@@ -73,6 +73,7 @@ team abbreviation. The latter can be checked with \code{\link[=valid_team_names]
 \item{\strong{y}}{ - The y-coordinate.}
 \item{\strong{team_abbr}}{ - The team abbreviation. Should be one of \code{\link[=valid_team_names]{valid_team_names()}}. The function tries to clean team names internally by calling \code{\link[nflreadr:clean_team_abbrs]{nflreadr::clean_team_abbrs()}}}
 \item{\code{alpha = NULL}}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
+\item{\code{colour = NULL}}{ - The image will be colorized with this colour. For more information on valid colour names in ggplot2 see \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}}
 \item{\code{angle = 0}}{ - The angle of the image as a numerical value between 0° and 360°.}
 \item{\code{hjust = 0.5}}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
 \item{\code{vjust = 0.5}}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
@@ -105,6 +106,8 @@ df <- data.frame(
 # keep alpha == 1 for all teams including an "A"
 matches <- grepl("A", team_abbr)
 df$alpha <- ifelse(matches, 1, 0.2)
+# also set a custom fill colour for the non "A" teams
+df$colour <- ifelse(matches, NA, "gray")
 
 # scatterplot of all logos
 ggplot(df, aes(x = a, y = b)) +
@@ -113,9 +116,22 @@ ggplot(df, aes(x = a, y = b)) +
   theme_void()
 
 # apply alpha via an aesthetic from inside the dataset `df`
+# please note that you have to add scale_alpha_identity() to use the alpha
+# values in your dataset!
 ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  scale_alpha_identity() +
+  theme_void()
+
+# apply alpha and colour via an aesthetic from inside the dataset `df`
+# please note that you have to add scale_alpha_identity() as well as
+# scale_color_identity() to use the alpha and colour values in your dataset!
+ggplot(df, aes(x = a, y = b)) +
+  geom_nfl_logos(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.075) +
+  geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  scale_alpha_identity() +
+  scale_color_identity() +
   theme_void()
 
 # apply alpha as constant for all logos
