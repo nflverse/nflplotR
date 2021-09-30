@@ -268,7 +268,7 @@
 
 <span class="va">combined</span> <span class="op">%&gt;%</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op">%in%</span> <span class="va">nfc_east</span>, <span class="cn">NA</span>, <span class="st">"gray"</span><span class="op">)</span>,
+    colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op">%in%</span> <span class="va">nfc_east</span>, <span class="cn">NA</span>, <span class="st">"b/w"</span><span class="op">)</span>,
     alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op">%in%</span> <span class="va">nfc_east</span>, <span class="fl">0.9</span>, <span class="fl">0.2</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -290,7 +290,7 @@
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
-<p>Please note that we have to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_alpha_identity()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_color_identity()</a></code> to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!</p>
+<p>Please note the usage of the special color character <code>"b/w"</code> which sets the colors to black and white and that we have to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_alpha_identity()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_color_identity()</a></code> to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!</p>
 <p><strong>This is just a small overview and it is recommended to check the examples provided for each function.</strong></p>
 </div>
 </div>
