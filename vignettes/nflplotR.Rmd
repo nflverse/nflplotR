@@ -11,7 +11,9 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  out.width = "100%",
+  dpi = 600
 )
 ```
 
@@ -179,3 +181,7 @@ Please note that we have to add `ggplot2::scale_alpha_identity()` and `ggplot2::
 # How about speed in the RStudio preview pane?
 
 If you are used to preview your plots in RStudio you will probably get a bit impatient if a lot of logos have to be added to a plot because the rendering can take a few seconds. This is what the nflplotR function `ggpreview()` is built for. It saves the plot in a temporary png file and previews it (in it's actual dimensions). Please see the function documentation for further information.
+
+# I Want this for College Football!
+
+Fortunately, nflplotR was adapted for college football and released under the name [cfbplotR](https://Kazink36.github.io/cfbplotR/). 
