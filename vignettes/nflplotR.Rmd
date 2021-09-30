@@ -151,7 +151,7 @@ nfc_east <- c("DAL", "NYG", "PHI", "WAS")
 
 combined %>%
   dplyr::mutate(
-    colour = ifelse(team %in% nfc_east, NA, "gray"),
+    colour = ifelse(team %in% nfc_east, NA, "b/w"),
     alpha = ifelse(team %in% nfc_east, 0.9, 0.2)
   ) %>%
   ggplot2::ggplot(aes(x = off_epa, y = def_epa)) +
@@ -174,7 +174,7 @@ combined %>%
   ggplot2::scale_y_reverse()
 ```
 
-Please note that we have to add `ggplot2::scale_alpha_identity()` and `ggplot2::scale_color_identity()` to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!
+Please note the usage of the special color character `"b/w"` which sets the colors to black and white and that we have to add `ggplot2::scale_alpha_identity()` and `ggplot2::scale_color_identity()` to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!
 
 **This is just a small overview and it is recommended to check the examples provided for each function.**
 

@@ -12,7 +12,7 @@
 #'   \item{**y**}{ - The y-coordinate.}
 #'   \item{**team_abbr**}{ - The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
 #'   \item{`alpha = NULL`}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
-#'   \item{`colour = NULL`}{ - The image will be colorized with this colour. For more information on valid colour names in ggplot2 see <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>}
+#'   \item{`colour = NULL`}{ - The image will be colorized with this colour. Use the special character `"b/w"` to set it to black and white. For more information on valid colour names in ggplot2 see <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>}
 #'   \item{`angle = 0`}{ - The angle of the image as a numerical value between 0° and 360°.}
 #'   \item{`hjust = 0.5`}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
 #'   \item{`vjust = 0.5`}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
@@ -131,9 +131,13 @@ GeomNFL <- ggplot2::ggproto(
       } else if (is.null(alpha)) {
         img <- magick::image_read(logo_list[[team_abbr]])
         col <- colour[i]
-        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
-        col <- ifelse(is.na(col) || is.null(col), "none", col)
-        new <- magick::image_colorize(img, opa, col)
+        if (!is.null(col) && col %in% "b/w"){
+          new <- magick::image_quantize(img, colorspace = 'gray')
+        } else{
+          opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+          col <- ifelse(is.na(col) || is.null(col), "none", col)
+          new <- magick::image_colorize(img, opa, col)
+        }
         grid <- grid::rasterGrob(new)
       } else if (length(alpha) == 1L) {
         if (as.numeric(alpha) <= 0 || as.numeric(alpha) >= 1) {
@@ -142,9 +146,13 @@ GeomNFL <- ggplot2::ggproto(
         img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha, "*a"), channel = "alpha")
         col <- colour[i]
-        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
-        col <- ifelse(is.na(col) || is.null(col), "none", col)
-        new <- magick::image_colorize(new, opa, col)
+        if (!is.null(col) && col %in% "b/w"){
+          new <- magick::image_quantize(new, colorspace = 'gray')
+        } else{
+          opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+          col <- ifelse(is.na(col) || is.null(col), "none", col)
+          new <- magick::image_colorize(new, opa, col)
+        }
         grid <- grid::rasterGrob(new)
       } else {
         if (any(as.numeric(alpha) < 0) || any(as.numeric(alpha) > 1)) {
@@ -153,9 +161,13 @@ GeomNFL <- ggplot2::ggproto(
         img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha[i], "*a"), channel = "alpha")
         col <- colour[i]
-        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
-        col <- ifelse(is.na(col) || is.null(col), "none", col)
-        new <- magick::image_colorize(new, opa, col)
+        if (!is.null(col) && col %in% "b/w"){
+          new <- magick::image_quantize(new, colorspace = 'gray')
+        } else{
+          opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+          col <- ifelse(is.na(col) || is.null(col), "none", col)
+          new <- magick::image_colorize(new, opa, col)
+        }
         grid <- grid::rasterGrob(new)
       }
 
