@@ -53,6 +53,8 @@ combined <- offense %>%
   dplyr::inner_join(defense, by = "team")
 ```
 
+## Logos as Axis Labels
+
 Let's start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.
 
 ```{r}
@@ -111,6 +113,8 @@ ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
   nflplotR::theme_y_nfl()
 ```
 
+## Logos in Scatter Plots
+
 Offensive and Defensive EPA per Play are typically used for NFL team tiers. Let's create this scatter plot and play around with the capabilities of the logo geom.
 
 ```{r}
@@ -137,6 +141,38 @@ There is a lot going on here:
 * we add mean lines for both x-axis and y-axis in a single line,
 * we add team logos that are printed in correct aspect ration regardless of plot dimensions and
 * we add an alpha channel to the team logos (which can also be done inside an aesthetic which means it can differ for each team).
+
+What if we would like to highlight just a few teams? Well, there are multiple ways to do this. Either set the alpha channel for the irrelevant teams lower or give them a color (or do both). Wait...a color? Yes, it is possible to overwrite the color of logos but keep their shape! Let's do this in the next example. We would like to highlight the NFC East Teams for no specific reason...
+
+```{r}
+nfc_east <- c("DAL", "NYG", "PHI", "WAS")
+
+combined %>%
+  dplyr::mutate(
+    colour = ifelse(team %in% nfc_east, NA, "gray"),
+    alpha = ifelse(team %in% nfc_east, 0.9, 0.2)
+  ) %>%
+  ggplot2::ggplot(aes(x = off_epa, y = def_epa)) +
+  ggplot2::geom_abline(slope = -1.5, intercept = seq(0.4, -0.3, -0.1), alpha = .2) +
+  nflplotR::geom_mean_lines(aes(v_var = off_epa , h_var = def_epa)) +
+  nflplotR::geom_nfl_logos(aes(team_abbr = team, alpha = alpha, colour = colour), width = 0.065) +
+  ggplot2::labs(
+    x = "Offense EPA/play",
+    y = "Defense EPA/play",
+    caption = "Data: @nflfastR",
+    title = "2020 NFL Offensive and Defensive EPA per Play"
+  ) +
+  ggplot2::scale_alpha_identity() +
+  ggplot2::scale_color_identity() +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold"),
+    plot.title.position = "plot"
+  ) +
+  ggplot2::scale_y_reverse()
+```
+
+Please note that we have to add `ggplot2::scale_alpha_identity()` and `ggplot2::scale_color_identity()` to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!
 
 **This is just a small overview and it is recommended to check the examples provided for each function.**
 

@@ -12,6 +12,7 @@
 #'   \item{**y**}{ - The y-coordinate.}
 #'   \item{**team_abbr**}{ - The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
 #'   \item{`alpha = NULL`}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
+#'   \item{`colour = NULL`}{ - The image will be colorized with this colour. For more information on valid colour names in ggplot2 see <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>}
 #'   \item{`angle = 0`}{ - The angle of the image as a numerical value between 0° and 360°.}
 #'   \item{`hjust = 0.5`}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
 #'   \item{`vjust = 0.5`}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
@@ -46,6 +47,8 @@
 #' # keep alpha == 1 for all teams including an "A"
 #' matches <- grepl("A", team_abbr)
 #' df$alpha <- ifelse(matches, 1, 0.2)
+#' # also set a custom fill colour for the non "A" teams
+#' df$colour <- ifelse(matches, NA, "gray")
 #'
 #' # scatterplot of all logos
 #' ggplot(df, aes(x = a, y = b)) +
@@ -54,9 +57,22 @@
 #'   theme_void()
 #'
 #' # apply alpha via an aesthetic from inside the dataset `df`
+#' # please note that you have to add scale_alpha_identity() to use the alpha
+#' # values in your dataset!
 #' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   scale_alpha_identity() +
+#'   theme_void()
+#'
+#' # apply alpha and colour via an aesthetic from inside the dataset `df`
+#' # please note that you have to add scale_alpha_identity() as well as
+#' # scale_color_identity() to use the alpha and colour values in your dataset!
+#' ggplot(df, aes(x = a, y = b)) +
+#'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.075) +
+#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   scale_alpha_identity() +
+#'   scale_color_identity() +
 #'   theme_void()
 #'
 #' # apply alpha as constant for all logos
@@ -100,7 +116,7 @@ GeomNFL <- ggplot2::ggproto(
   required_aes = c("x", "y", "team_abbr"),
   # non_missing_aes = c(""),
   default_aes = ggplot2::aes(
-    alpha = NULL, angle = 0, hjust = 0.5,
+    alpha = NULL, colour = NULL, angle = 0, hjust = 0.5,
     vjust = 0.5, width = 1.0, height = 1.0
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
@@ -108,18 +124,27 @@ GeomNFL <- ggplot2::ggproto(
 
     data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
 
-    grobs <- lapply(seq_along(data$team_abbr), function(i, urls, alpha, data) {
+    grobs <- lapply(seq_along(data$team_abbr), function(i, urls, alpha, colour, data) {
       team_abbr <- data$team_abbr[i]
       if (is.na(team_abbr)){
         grid <- grid::nullGrob()
       } else if (is.null(alpha)) {
-        grid <- grid::rasterGrob(magick::image_read(logo_list[[team_abbr]]))
+        img <- magick::image_read(logo_list[[team_abbr]])
+        col <- colour[i]
+        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+        col <- ifelse(is.na(col) || is.null(col), "none", col)
+        new <- magick::image_colorize(img, opa, col)
+        grid <- grid::rasterGrob(new)
       } else if (length(alpha) == 1L) {
         if (as.numeric(alpha) <= 0 || as.numeric(alpha) >= 1) {
           cli::cli_abort("aesthetic {.var alpha} requires a value between {.val 0} and {.val 1}")
         }
         img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha, "*a"), channel = "alpha")
+        col <- colour[i]
+        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+        col <- ifelse(is.na(col) || is.null(col), "none", col)
+        new <- magick::image_colorize(new, opa, col)
         grid <- grid::rasterGrob(new)
       } else {
         if (any(as.numeric(alpha) < 0) || any(as.numeric(alpha) > 1)) {
@@ -127,6 +152,10 @@ GeomNFL <- ggplot2::ggproto(
         }
         img <- magick::image_read(logo_list[[team_abbr]])
         new <- magick::image_fx(img, expression = paste0(alpha[i], "*a"), channel = "alpha")
+        col <- colour[i]
+        opa <- ifelse(is.na(col) || is.null(col), 0, 100)
+        col <- ifelse(is.na(col) || is.null(col), "none", col)
+        new <- magick::image_colorize(new, opa, col)
         grid <- grid::rasterGrob(new)
       }
 
@@ -146,7 +175,7 @@ GeomNFL <- ggplot2::ggproto(
       grid$name <- paste("nfl.grob", i, sep = ".")
 
       grid
-    }, urls = urls, alpha = data$alpha, data = data)
+    }, urls = urls, alpha = data$alpha, colour = data$colour, data = data)
 
     class(grobs) <- "gList"
 

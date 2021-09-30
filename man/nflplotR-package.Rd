@@ -6,8 +6,10 @@
 \alias{nflplotR-package}
 \title{nflplotR: NFL Logo Plots in 'ggplot2'}
 \description{
-A set of functions to visualize National Football
-    League analysis in 'ggplot2'.
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+
+A set of functions to visualize National Football League
+    analysis in 'ggplot2'.
 }
 \seealso{
 Useful links:
