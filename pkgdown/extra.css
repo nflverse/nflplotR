@@ -1,26 +1,8 @@
-@import 'https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&family=IBM+Plex+Sans:wght@400;700&family=Kanit:wght@400;700&display=swap';
-
-body{
-  font-family: 'IBM Plex Sans', sans-serif;
+ /*
+body {
+    padding-top: 65px;
 }
-
-h1 {
-  font-family: 'Kanit', sans-serif
-}
-
-h2,h3 {
-  font-family: 'IBM Plex Sans', sans-serif;
-  font-weight: 700;
-}
-
-pre, code {
-  font-family: 'Fira Code', monospace;
-}
-
-.navbar-link {
-  font-family: 'Kanit', sans-serif;
-}
-
+ */
 h4.author,h4.date {
   padding-top:0px;
   margin-top:0px;

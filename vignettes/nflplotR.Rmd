@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Preface
+## Preface
 
 Working with publicly available NFL data often results in a desire to visualize the findings of one's analyses (often in [ggplot2](https://ggplot2.tidyverse.org)) and then publish these visualizations. In team-level analyses, it appears that such visualizations are more aesthetically pleasing when their logos are used instead of team abbreviations. Another way to visually distinguish teams is to use their primary or secondary team colors.
 
@@ -25,7 +25,7 @@ Working with publicly available NFL data often results in a desire to visualize 
 
 Long story short: the only thing that is required to use NFL team logos or team colors in a ggplot is a variable in the plot data that holds official NFL team abbreviations.
 
-# Typical Use Cases 
+## Typical Use Cases 
 
 Let's look at some typical use cases for nflplotR using NFL play-by-play data. In a first step we load all necessary packages.
 
@@ -55,7 +55,7 @@ combined <- offense %>%
   dplyr::inner_join(defense, by = "team")
 ```
 
-## Logos as Axis Labels
+### Logos as Axis Labels
 
 Let's start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.
 
@@ -115,7 +115,7 @@ ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
   nflplotR::theme_y_nfl()
 ```
 
-## Logos in Scatter Plots
+### Logos in Scatter Plots
 
 Offensive and Defensive EPA per Play are typically used for NFL team tiers. Let's create this scatter plot and play around with the capabilities of the logo geom.
 
@@ -178,10 +178,10 @@ Please note the usage of the special color character `"b/w"` which sets the colo
 
 **This is just a small overview and it is recommended to check the examples provided for each function.**
 
-# How about speed in the RStudio preview pane?
+## How about speed in the RStudio preview pane?
 
 If you are used to preview your plots in RStudio you will probably get a bit impatient if a lot of logos have to be added to a plot because the rendering can take a few seconds. This is what the nflplotR function `ggpreview()` is built for. It saves the plot in a temporary png file and previews it (in it's actual dimensions). Please see the function documentation for further information.
 
-# I Want this for College Football!
+## I Want this for College Football!
 
 Fortunately, nflplotR was adapted for college football and released under the name [cfbplotR](https://Kazink36.github.io/cfbplotR/). 

@@ -22,9 +22,9 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@master
         with:
-          extra-packages: pkgdown
+          extra-packages: r-lib/pkgdown
           needs: website
 
       - name: Deploy package
