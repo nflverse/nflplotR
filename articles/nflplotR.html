@@ -4,7 +4,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="nflplotR">
 <title>Get Started with nflplotR • nflplotR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -12,11 +13,15 @@
 <link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/cosmo/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
-<script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="../deps/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><link href="../deps/_IBM%20Plex%20Sans-0.4.0/font.css" rel="stylesheet">
+<link href="../deps/_Fira%20Code-0.4.0/font.css" rel="stylesheet">
+<link href="../deps/_Kanit-0.4.0/font.css" rel="stylesheet">
+<script src="../deps/bs3compat-0.3.0/transition.js"></script><script src="../deps/bs3compat-0.3.0/tabs.js"></script><script src="../deps/bs3compat-0.3.0/bs3compat.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<link href="../syntax-highlighting.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Get Started with nflplotR">
 <meta property="og:description" content="nflplotR">
@@ -30,166 +35,139 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body data-spy="scroll" data-target="#toc">
-    <div class="container template-article">
-      <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">nflplotR</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.0.9007</span>
-      </span>
-    </div>
+<body data-spy="scroll" data-target="#toc" data-headroom>
+    
 
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-<li>
-  <a href="../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
+      <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    <a class="navbar-brand mb-0 h1" href="../index.html">nflplotR</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">0.0.0.9007</button>
+
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="navbar-nav mr-auto ml-3">
+<li class="active nav-item">
+  <a class="nav-link" href="../articles/nflplotR.html">Get started</a>
 </li>
-<li>
-  <a href="../articles/nflplotR.html">Get started</a>
+<li class="nav-item">
+  <a class="nav-link" href="../reference/index.html">Functions</a>
 </li>
-<li>
-  <a href="../reference/index.html">Functions</a>
-</li>
-<li>
-  <a href="../news/index.html">Changelog</a>
-</li>
-      </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://discord.com/invite/5Er2FBnnQa">
-    <span class="fab fa-discord fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/nflverse/nflplotR/">
-    <span class="fab fa-github fa-lg"></span>
-     
-  </a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Packages &amp; More
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li class="dropdown-header">nflverse Packages</li>
-    <li>
-      <a href="https://www.nflfastr.com">nflfastR</a>
-    </li>
-    <li>
-      <a href="https://nflseedr.com">nflseedR</a>
-    </li>
-    <li>
-      <a href="https://www.nfl4th.com">nfl4th</a>
-    </li>
-    <li>
-      <a href="https://nflreadr.nflverse.com/">nflreadr</a>
-    </li>
-    <li>
-      <a href="https://www.opensourcefootball.com">Open Source Football</a>
-    </li>
-    <li class="dropdown-header">nflverse Data</li>
-    <li>
-      <a href="https://github.com/nflverse">nflverse GitHub</a>
-    </li>
-    <li>
-      <a href="https://jthomasmock.github.io/espnscrapeR/">espnscrapeR Package</a>
-    </li>
-    <li class="dropdown-header">ffverse</li>
-    <li>
-      <a href="https://www.ffverse.com">ffverse.com</a>
-    </li>
-  </ul>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul>
-</div>
-<!--/.nav-collapse -->
+<form class="form-inline my-2 my-lg-0" role="search">
+        <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off">
+</form>
+
+      <ul class="navbar-nav ml-1">
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://discord.com/invite/5Er2FBnnQa">
+    <span class="fab fa fab fa-discord fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item">
+  <a class="external-link nav-link" href="https://github.com/nflverse/nflplotR/" aria-label="github">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li class="nav-item dropdown">
+  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-packages-amp-more">Packages &amp; More</a>
+  <div class="dropdown-menu" aria-labelledby="dropdown-packages-amp-more">
+    <h6 class="dropdown-header" data-toc-skip>nflverse Packages</h6>
+    <a class="external-link dropdown-item" href="https://www.nflfastr.com">nflfastR</a>
+    <a class="external-link dropdown-item" href="https://nflseedr.com">nflseedR</a>
+    <a class="external-link dropdown-item" href="https://www.nfl4th.com">nfl4th</a>
+    <a class="external-link dropdown-item" href="https://nflreadr.nflverse.com/">nflreadr</a>
+    <a class="external-link dropdown-item" href="https://www.opensourcefootball.com">Open Source Football</a>
+    <h6 class="dropdown-header" data-toc-skip>nflverse Data</h6>
+    <a class="external-link dropdown-item" href="https://github.com/nflverse">nflverse GitHub</a>
+    <a class="external-link dropdown-item" href="https://jthomasmock.github.io/espnscrapeR/">espnscrapeR Package</a>
+    <h6 class="dropdown-header" data-toc-skip>ffverse</h6>
+    <a class="external-link dropdown-item" href="https://www.ffverse.com">ffverse.com</a>
   </div>
-<!--/.container -->
+</li>
+      </ul>
 </div>
-<!--/.navbar -->
-
-      
-
-      </header><script src="nflplotR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+  </div>
+</nav><div class="container template-article">
+<script src="nflplotR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
-    <div class="page-header toc-ignore">
-      <h1 data-toc-skip>Get Started with nflplotR</h1>
-                        <h4 class="author">Sebastian Carl</h4>
+    <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
+      <h1 class="display-4" data-toc-skip>Get Started with nflplotR</h1>
+                        <h4 data-toc-skip class="author">Sebastian Carl</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/nflverse/nflplotR/blob/master/vignettes/nflplotR.Rmd"><code>vignettes/nflplotR.Rmd</code></a></small>
-      <div class="hidden name"><code>nflplotR.Rmd</code></div>
+      <small class="dont-index">Source: <a href="https://github.com/nflverse/nflplotR/blob/master/vignettes/nflplotR.Rmd" class="external-link"><code>vignettes/nflplotR.Rmd</code></a></small>
+      <div class="d-none name"><code>nflplotR.Rmd</code></div>
 
     </div>
 
     
     
-<div id="preface" class="section level1">
-<h1 class="hasAnchor">
-<a href="#preface" class="anchor"></a>Preface</h1>
-<p>Working with publicly available NFL data often results in a desire to visualize the findings of one’s analyses (often in <a href="https://ggplot2.tidyverse.org">ggplot2</a>) and then publish these visualizations. In team-level analyses, it appears that such visualizations are more aesthetically pleasing when their logos are used instead of team abbreviations. Another way to visually distinguish teams is to use their primary or secondary team colors.</p>
+<div id="preface" class="section level2">
+<h2 class="hasAnchor">
+<a href="#preface" class="anchor" aria-hidden="true"></a>Preface</h2>
+<p>Working with publicly available NFL data often results in a desire to visualize the findings of one’s analyses (often in <a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a>) and then publish these visualizations. In team-level analyses, it appears that such visualizations are more aesthetically pleasing when their logos are used instead of team abbreviations. Another way to visually distinguish teams is to use their primary or secondary team colors.</p>
 <p><strong>nflplotR</strong> provides ggplot2 extensions that greatly simplify these tasks and avoid typical problems.</p>
 <p>Long story short: the only thing that is required to use NFL team logos or team colors in a ggplot is a variable in the plot data that holds official NFL team abbreviations.</p>
 </div>
-<div id="typical-use-cases" class="section level1">
-<h1 class="hasAnchor">
-<a href="#typical-use-cases" class="anchor"></a>Typical Use Cases</h1>
+<div id="typical-use-cases" class="section level2">
+<h2 class="hasAnchor">
+<a href="#typical-use-cases" class="anchor" aria-hidden="true"></a>Typical Use Cases</h2>
 <p>Let’s look at some typical use cases for nflplotR using NFL play-by-play data. In a first step we load all necessary packages.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nflplotr.nflverse.com">nflplotR</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nflreadr.nflverse.com">nflreadr</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nflplotr.nflverse.com">nflplotR</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://nflreadr.nflverse.com" class="external-link">nflreadr</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
 <p>We will load the data and compute each team’s offensive and defensive EPA per play for the 2020 regular season.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_pbp.html">load_pbp</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">season_type</span> <span class="op">==</span> <span class="st">"REG"</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">posteam</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_pbp.html" class="external-link">load_pbp</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">season_type</span> <span class="op">==</span> <span class="st">"REG"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">posteam</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
+<span class="co">#&gt; Note: nflreadr caches (i.e., stores a saved version) data by default.</span>
+<span class="co">#&gt; If you expect different output try one of the following:</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Restart your R Session or</span>
+<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Run `nflreadr::.clear_cache()`.</span>
+<span class="co">#&gt; * To disable this warning, run `options(nflreadr.cache_warning = FALSE)`</span>
+<span class="co">#&gt; <span style="color: #555555;">This message is displayed once every 8 hours.</span></span>
 
-<span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>team <span class="op">=</span> <span class="va">posteam</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>off_epa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">epa</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span>team <span class="op">=</span> <span class="va">posteam</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>off_epa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">epa</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">defense</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span>team <span class="op">=</span> <span class="va">defteam</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span><span class="op">(</span>def_epa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html">mean</a></span><span class="op">(</span><span class="va">epa</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
+<span class="va">defense</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span>team <span class="op">=</span> <span class="va">defteam</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/summarise.html" class="external-link">summarise</a></span><span class="op">(</span>def_epa <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/mean.html" class="external-link">mean</a></span><span class="op">(</span><span class="va">epa</span>, na.rm <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span>
 
-<span class="va">combined</span> <span class="op">&lt;-</span> <span class="va">offense</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">defense</span>, by <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
-<div id="logos-as-axis-labels" class="section level2">
-<h2 class="hasAnchor">
-<a href="#logos-as-axis-labels" class="anchor"></a>Logos as Axis Labels</h2>
+<span class="va">combined</span> <span class="op">&lt;-</span> <span class="va">offense</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">defense</span>, by <span class="op">=</span> <span class="st">"team"</span><span class="op">)</span></code></pre></div>
+<div id="logos-as-axis-labels" class="section level3">
+<h3 class="hasAnchor">
+<a href="#logos-as-axis-labels" class="anchor" aria-hidden="true"></a>Logos as Axis Labels</h3>
 <p>Let’s start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">offense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">team</span>, y <span class="op">=</span> <span class="va">off_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">offense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">team</span>, y <span class="op">=</span> <span class="va">off_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_axes_nfl.html">scale_x_nfl</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"2020 NFL Offensive EPA per Play"</span>,
     y <span class="op">=</span> <span class="st">"Offense EPA/play"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
     <span class="co"># it's obvious what the x-axis is so we remove the title</span>
-    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>
+    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
   <span class="co"># so it must be placed after a theme definition</span>
@@ -208,24 +186,24 @@
 </li>
 <li>the team logos are provided by ESPN and it appears that one or more of them are using incorrect sRGB profiles which triggers a warning in the <code>png</code> package. It’s safe to ignore this.</li>
 </ul>
-<p>It is important to note that the call of <code><a href="../reference/theme_nfl.html">theme_x_nfl()</a></code> must be placed after a call to a global ggplot theme like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">ggplot2::theme_minimal()</a></code> because they replace all current theme options.</p>
+<p>It is important to note that the call of <code><a href="../reference/theme_nfl.html">theme_x_nfl()</a></code> must be placed after a call to a global ggplot theme like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_minimal()</a></code> because they replace all current theme options.</p>
 <p>We can do the same thing for the y-axis (now with defensive EPA per play)</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">defense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">team</span>, x <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">defense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">team</span>, x <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_axes_nfl.html">scale_y_nfl</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"2020 NFL Defensive EPA per Play"</span>,
     x <span class="op">=</span> <span class="st">"Defense EPA/play"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
     <span class="co"># it's obvious what the y-axis is so we remove the title</span>
-    axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
   <span class="op">)</span> <span class="op">+</span>
   <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
   <span class="co"># so it must be placed after a theme definition</span>
@@ -234,27 +212,27 @@
 <span class="co">#&gt; known incorrect sRGB profile</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
 </div>
-<div id="logos-in-scatter-plots" class="section level2">
-<h2 class="hasAnchor">
-<a href="#logos-in-scatter-plots" class="anchor"></a>Logos in Scatter Plots</h2>
+<div id="logos-in-scatter-plots" class="section level3">
+<h3 class="hasAnchor">
+<a href="#logos-in-scatter-plots" class="anchor" aria-hidden="true"></a>Logos in Scatter Plots</h3>
 <p>Offensive and Defensive EPA per Play are typically used for NFL team tiers. Let’s create this scatter plot and play around with the capabilities of the logo geom.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">combined</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_lines.html">geom_mean_lines</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>v_var <span class="op">=</span> <span class="va">off_epa</span> , h_var <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_nfl_logos.html">geom_nfl_logos</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>team_abbr <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.065</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">combined</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_lines.html">geom_mean_lines</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>v_var <span class="op">=</span> <span class="va">off_epa</span> , h_var <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_nfl_logos.html">geom_nfl_logos</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>team_abbr <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.065</span>, alpha <span class="op">=</span> <span class="fl">0.7</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="st">"Offense EPA/play"</span>,
     y <span class="op">=</span> <span class="st">"Defense EPA/play"</span>,
     caption <span class="op">=</span> <span class="st">"Data: @nflfastR"</span>,
     title <span class="op">=</span> <span class="st">"2020 NFL Offensive and Defensive EPA per Play"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-5-1.png" width="100%"></p>
 <p>There is a lot going on here:</p>
 <ul>
@@ -264,64 +242,67 @@
 </ul>
 <p>What if we would like to highlight just a few teams? Well, there are multiple ways to do this. Either set the alpha channel for the irrelevant teams lower or give them a color (or do both). Wait…a color? Yes, it is possible to overwrite the color of logos but keep their shape! Let’s do this in the next example. We would like to highlight the NFC East Teams for no specific reason…</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nfc_east</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"DAL"</span>, <span class="st">"NYG"</span>, <span class="st">"PHI"</span>, <span class="st">"WAS"</span><span class="op">)</span>
+<code class="sourceCode R"><span class="va">nfc_east</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DAL"</span>, <span class="st">"NYG"</span>, <span class="st">"PHI"</span>, <span class="st">"WAS"</span><span class="op">)</span>
 
-<span class="va">combined</span> <span class="op">%&gt;%</span>
-  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>
-    colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op">%in%</span> <span class="va">nfc_east</span>, <span class="cn">NA</span>, <span class="st">"b/w"</span><span class="op">)</span>,
-    alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op">%in%</span> <span class="va">nfc_east</span>, <span class="fl">0.9</span>, <span class="fl">0.2</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html">seq</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_lines.html">geom_mean_lines</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>v_var <span class="op">=</span> <span class="va">off_epa</span> , h_var <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_nfl_logos.html">geom_nfl_logos</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>team_abbr <span class="op">=</span> <span class="va">team</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, colour <span class="op">=</span> <span class="va">colour</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.065</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>
+<span class="va">combined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>
+    colour <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">nfc_east</span>, <span class="cn">NA</span>, <span class="st">"b/w"</span><span class="op">)</span>,
+    alpha <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">team</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="va">nfc_east</span>, <span class="fl">0.9</span>, <span class="fl">0.2</span><span class="op">)</span>
+  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_lines.html">geom_mean_lines</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>v_var <span class="op">=</span> <span class="va">off_epa</span> , h_var <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_nfl_logos.html">geom_nfl_logos</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>team_abbr <span class="op">=</span> <span class="va">team</span>, alpha <span class="op">=</span> <span class="va">alpha</span>, colour <span class="op">=</span> <span class="va">colour</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.065</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     x <span class="op">=</span> <span class="st">"Offense EPA/play"</span>,
     y <span class="op">=</span> <span class="st">"Defense EPA/play"</span>,
     caption <span class="op">=</span> <span class="st">"Data: @nflfastR"</span>,
     title <span class="op">=</span> <span class="st">"2020 NFL Offensive and Defensive EPA per Play"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_alpha_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">scale_color_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">scale_alpha_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">scale_color_identity</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>
   <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
-<p>Please note the usage of the special color character <code>"b/w"</code> which sets the colors to black and white and that we have to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_alpha_identity()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html">ggplot2::scale_color_identity()</a></code> to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!</p>
+<p>Please note the usage of the special color character <code>"b/w"</code> which sets the colors to black and white and that we have to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_alpha_identity()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_color_identity()</a></code> to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!</p>
 <p><strong>This is just a small overview and it is recommended to check the examples provided for each function.</strong></p>
 </div>
 </div>
-<div id="how-about-speed-in-the-rstudio-preview-pane" class="section level1">
-<h1 class="hasAnchor">
-<a href="#how-about-speed-in-the-rstudio-preview-pane" class="anchor"></a>How about speed in the RStudio preview pane?</h1>
+<div id="how-about-speed-in-the-rstudio-preview-pane" class="section level2">
+<h2 class="hasAnchor">
+<a href="#how-about-speed-in-the-rstudio-preview-pane" class="anchor" aria-hidden="true"></a>How about speed in the RStudio preview pane?</h2>
 <p>If you are used to preview your plots in RStudio you will probably get a bit impatient if a lot of logos have to be added to a plot because the rendering can take a few seconds. This is what the nflplotR function <code><a href="../reference/ggpreview.html">ggpreview()</a></code> is built for. It saves the plot in a temporary png file and previews it (in it’s actual dimensions). Please see the function documentation for further information.</p>
 </div>
-<div id="i-want-this-for-college-football" class="section level1">
-<h1 class="hasAnchor">
-<a href="#i-want-this-for-college-football" class="anchor"></a>I Want this for College Football!</h1>
-<p>Fortunately, nflplotR was adapted for college football and released under the name <a href="https://Kazink36.github.io/cfbplotR/">cfbplotR</a>.</p>
+<div id="i-want-this-for-college-football" class="section level2">
+<h2 class="hasAnchor">
+<a href="#i-want-this-for-college-football" class="anchor" aria-hidden="true"></a>I Want this for College Football!</h2>
+<p>Fortunately, nflplotR was adapted for college football and released under the name <a href="https://Kazink36.github.io/cfbplotR/" class="external-link">cfbplotR</a>.</p>
 </div>
   </div>
+ <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
+        <div class="sticky-top">
+    <nav id="toc"><h2 data-toc-skip>Contents</h2>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
-
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
     </nav>
 </div>
+      </div>
 
 </div>
 
 
 
-      <footer><div class="copyright">
-  <p>Developed by <a href="https://twitter.com/mrcaseb">Sebastian Carl</a>.</p>
+      <footer><div class="pkgdown-footer-left">
+  <p></p>
+<p>Developed by <a href="https://twitter.com/mrcaseb" class="external-link external-link">Sebastian Carl</a>.</p>
 </div>
 
-<div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+<div class="pkgdown-footer-right">
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -329,6 +310,7 @@
 
   
 
+  
 
   </body>
 </html>
