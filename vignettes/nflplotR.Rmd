@@ -1,7 +1,14 @@
 ---
 title: "Get Started with nflplotR"
-output: rmarkdown::html_vignette
+description: "A brief introduction to the ggplot2 extension."
 author: "Sebastian Carl"
+opengraph:
+  image: 
+    src: "https://nflplotr.nflverse.com/articles/nflplotR_files/figure-html/unnamed-chunk-6-1.png"
+  twitter:
+    card: summary_large_image
+    creator: "@mrcaseb"
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Get Started with nflplotR}
   %\VignetteEngine{knitr::rmarkdown}
