@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="description" content="nflplotR">
+<meta name="description" content="A brief introduction to the ggplot2 extension.">
 <title>Get Started with nflplotR • nflplotR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
@@ -24,8 +24,8 @@
 <link href="../syntax-highlighting.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Get Started with nflplotR">
-<meta property="og:description" content="nflplotR">
-<meta property="og:image" content="https://nflplotr.nflverse.com/reference/figures/social_preview.png">
+<meta property="og:description" content="A brief introduction to the ggplot2 extension.">
+<meta property="og:image" content="https://nflplotr.nflverse.com/articles/nflplotR_files/figure-html/unnamed-chunk-6-1.png">
 <meta property="og:image:alt" content="nflplotR social preview card">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:creator" content="@mrcaseb">
@@ -131,12 +131,6 @@
 <code class="sourceCode R"><span class="va">pbp</span> <span class="op">&lt;-</span> <span class="fu">nflreadr</span><span class="fu">::</span><span class="fu"><a href="https://nflreadr.nflverse.com/reference/load_pbp.html" class="external-link">load_pbp</a></span><span class="op">(</span><span class="fl">2020</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">season_type</span> <span class="op">==</span> <span class="st">"REG"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">posteam</span><span class="op">)</span> <span class="op">&amp;</span> <span class="op">(</span><span class="va">rush</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">|</span> <span class="va">pass</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>
-<span class="co">#&gt; Note: nflreadr caches (i.e., stores a saved version) data by default.</span>
-<span class="co">#&gt; If you expect different output try one of the following:</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Restart your R Session or</span>
-<span class="co">#&gt; <span style="color: #0000BB;">ℹ</span> Run `nflreadr::.clear_cache()`.</span>
-<span class="co">#&gt; * To disable this warning, run `options(nflreadr.cache_warning = FALSE)`</span>
-<span class="co">#&gt; <span style="color: #555555;">This message is displayed once every 8 hours.</span></span>
 
 <span class="va">offense</span> <span class="op">&lt;-</span> <span class="va">pbp</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span>team <span class="op">=</span> <span class="va">posteam</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -171,9 +165,7 @@
   <span class="op">)</span> <span class="op">+</span>
   <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
   <span class="co"># so it must be placed after a theme definition</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_x_nfl</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in png::readPNG(get_file(path), native = TRUE): libpng warning: iCCP:</span>
-<span class="co">#&gt; known incorrect sRGB profile</span></code></pre></div>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_x_nfl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-3-1.png" width="100%"></p>
 <p>Some notes:</p>
 <ul>
@@ -207,9 +199,7 @@
   <span class="op">)</span> <span class="op">+</span>
   <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
   <span class="co"># so it must be placed after a theme definition</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_y_nfl</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; Warning in png::readPNG(get_file(path), native = TRUE): libpng warning: iCCP:</span>
-<span class="co">#&gt; known incorrect sRGB profile</span></code></pre></div>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_y_nfl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-4-1.png" width="100%"></p>
 </div>
 <div id="logos-in-scatter-plots" class="section level3">
