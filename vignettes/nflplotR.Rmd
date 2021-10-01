@@ -4,7 +4,7 @@ description: "A brief introduction to the ggplot2 extension."
 author: "Sebastian Carl"
 opengraph:
   image: 
-    src: "https://i.imgur.com/kgnHo8Q.png"
+    src: "https://user-images.githubusercontent.com/38586519/135595009-ec611e41-22a0-47c6-976b-856a7b111cb1.png"
   twitter:
     card: summary_large_image
     creator: "@mrcaseb"
