@@ -111,8 +111,6 @@ GeomRefLines <- ggplot2::ggproto("GeomRefLines", ggplot2::Geom,
     colour = "red", size = 0.5, linetype = 2, alpha = NA
   ),
   draw_panel = function(data, panel_params, coord, ref_function, na.rm = FALSE) {
-    data <- data_h <- data_v <- coord$transform(data, panel_params)
-
     args <- names(data)
 
     if (all(!c("v_var", "h_var") %in% args)) {
@@ -121,17 +119,17 @@ GeomRefLines <- ggplot2::ggproto("GeomRefLines", ggplot2::Geom,
     if (!"v_var" %in% args) data$v_var <- NA
     if (!"h_var" %in% args) data$h_var <- NA
 
-    data_v$xintercept <- ref_function(data$v_var, na.rm = na.rm)
-    data_h$yintercept <- ref_function(data$h_var, na.rm = na.rm)
+    data$xintercept <- ref_function(data$v_var, na.rm = na.rm)
+    data$yintercept <- ref_function(data$h_var, na.rm = na.rm)
 
     if (!"v_var" %in% args) {
-      ggplot2::GeomHline$draw_panel(unique(data_h), panel_params, coord)
+      ggplot2::GeomHline$draw_panel(data, panel_params, coord)
     } else if (!"h_var" %in% args) {
-      ggplot2::GeomVline$draw_panel(unique(data_v), panel_params, coord)
+      ggplot2::GeomVline$draw_panel(data, panel_params, coord)
     } else {
       grid::gList(
-        ggplot2::GeomHline$draw_panel(unique(data_h), panel_params, coord),
-        ggplot2::GeomVline$draw_panel(unique(data_v), panel_params, coord)
+        ggplot2::GeomHline$draw_panel(data, panel_params, coord),
+        ggplot2::GeomVline$draw_panel(data, panel_params, coord)
       )
     }
   },
