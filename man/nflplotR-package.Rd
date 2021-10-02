@@ -8,8 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
-A set of functions to visualize National Football League
-    analysis in 'ggplot2'.
+A set of functions to visualize National Football League analysis in 'ggplot2'.
 }
 \seealso{
 Useful links:
