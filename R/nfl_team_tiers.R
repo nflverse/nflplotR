@@ -1,3 +1,7 @@
+###
+# Based on a suggestion by Timo Riske (https://twitter.com/PFF_Moo)
+###
+
 #' Create NFL Team Tiers
 #'
 #' @description This function sets up a ggplot to visualize NFL team tiers.
