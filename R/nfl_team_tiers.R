@@ -99,7 +99,7 @@ nfl_team_tiers <- function(data,
       trans = "reverse"
     ) +
     ggplot2::labs(
-      title = sprintf("NFL Team Tiers, %s as of Week %s", season, week),
+      title = title_string,
       subtitle = "created with the #nflplotR Tiermaker"
     ) +
     ggplot2::theme_minimal(base_size = 11.5) +
