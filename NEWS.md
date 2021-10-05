@@ -10,3 +10,4 @@
 * `geom_nfl_logos()` now supports a `colour` aesthetic that colorizes the logos. (v0.0.9007)
 * Added the function `nfl_team_tiers()` that build an NFL team tiers ggplot, thanks to [Timo Riske](https://twitter.com/PFF_Moo) for the suggestion. (v.0.0.9008)
 * Fixed a bug (#10) in `geom_median_lines()` and `geom_mean_lines()` that caused `alpha` to not work properly. (v.0.0.9009)
+* Improved `nfl_team_tiers()` by adding the opportunity to modify `title`, `subtitle`, `caption` of the plot. Added functionality to remove tier separation lines for combined tiers. Added functionality to run the function in "developer" mode which means, that team abbreviations will be plotted instead of logos (much faster). (v.0.0.9010)

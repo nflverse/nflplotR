@@ -6,13 +6,16 @@
 \usage{
 nfl_team_tiers(
   data,
-  season = NULL,
-  week = NULL,
+  title = "NFL Team Tiers, 2021 as of Week 4",
+  subtitle = "created with the #nflplotR Tiermaker",
+  caption = NULL,
   tier_desc = c(`1` = "Super Bowl", `2` = "Very Good", `3` = "Medium", `4` = "Bad", `5`
-    = "What are they doing?"),
+    = "What are they doing?", `6` = "", `7` = ""),
   presort = FALSE,
   alpha = 0.8,
-  width = 0.075
+  width = 0.075,
+  no_line_below_tier = NULL,
+  devel = FALSE
 )
 }
 \arguments{
@@ -20,13 +23,16 @@ nfl_team_tiers(
 number of the tier starting from the top tier no. 1) and \code{team_abbr} (the
 team abbreviation). \code{team_abbr} should be one of \code{\link[=valid_team_names]{valid_team_names()}} and
 the function tries to clean team names internally by calling
-\code{\link[nflreadr:clean_team_abbrs]{nflreadr::clean_team_abbrs()}}.}
+\code{\link[nflreadr:clean_team_abbrs]{nflreadr::clean_team_abbrs()}}. If data includes the variable \code{tier_rank},
+these ranks will be used within each tier. Otherwise, if \code{presort = FALSE},
+the function will assume that data is already sorted and if \code{presort = TRUE},
+teams will be sorted alphabetically within tiers.}
 
-\item{season}{The season the team tiers are built for. This will be placed
-in the title of the plot.}
+\item{title}{The title of the plot.}
 
-\item{week}{The week inside \code{season} the team tiers are built for. This will
-be placed in the title of the plot.}
+\item{subtitle}{The subtitle of the plot.}
+
+\item{caption}{The caption of the plot.}
 
 \item{tier_desc}{A named vector consisting of the tier descriptions. The names
 must equal the tier numbers from \code{tier_no}}
@@ -38,6 +44,15 @@ are already sorted within the tiers. Will otherwise sort alphabetically.}
 numerical value between 0 and 1.}
 
 \item{width}{The desired width of the logo in \code{npc} (Normalised Parent Coordinates).}
+
+\item{no_line_below_tier}{Vector of tier numbers. The function won't draw tier
+separation lines below these tiers. This is intended to be used for tiers
+that shall be combined (see examples).}
+
+\item{devel}{Determines if logos shall be rendered. If \code{FALSE} (the default),
+logos will be rendered on each run. If \code{TRUE} the team abbreviations will be
+plotted instead of the logos. This is much faster and helps with the plot
+development.}
 }
 \description{
 This function sets up a ggplot to visualize NFL team tiers.
@@ -59,6 +74,33 @@ df <- data.frame(
   dplyr::group_by(tier_no) \%>\%
   dplyr::mutate(tier_rank = sample(1:n(), n()))
 
-nfl_team_tiers(df, 2021, 4)
+# Plot team tiers
+nfl_team_tiers(df)
+
+# Create a combined tier which is useful for tiers with lots of teams that
+# should be split up in two or more rows. This is done by setting an empty
+# string for the tier 5 description and removing the tier separation line
+# below tier number 4.
+# This example also shows how to turn off the subtitle and add a caption
+nfl_team_tiers(df,
+               subtitle = NULL,
+               caption = "This is the caption",
+               tier_desc = c("1" = "Super Bowl",
+                             "2" = "Very Good",
+                             "3" = "Medium",
+                             "4" = "A Combined Tier",
+                             "5" = ""),
+               no_line_below_tier = 4)
+
+# For the development of the tiers, it can be useful to turn off logo image
+# rendering as this can take quite a long time. By setting `devel = TRUE`, the
+# logo images are replaced by team abbreviations which is much faster
+nfl_team_tiers(df,
+               tier_desc = c("1" = "Super Bowl",
+                             "2" = "Very Good",
+                             "3" = "",
+                             "4" = "A Combined Tier",
+                             "5" = ""),
+               no_line_below_tier = c(2, 4))
 }
 }
