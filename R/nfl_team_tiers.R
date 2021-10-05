@@ -14,9 +14,9 @@
 #'   these ranks will be used within each tier. Otherwise, if `presort = FALSE`,
 #'   the function will assume that data is already sorted and if `presort = TRUE`,
 #'   teams will be sorted alphabetically within tiers.
-#' @param title The title of the plot.
-#' @param subtitle The subtitle of the plot.
-#' @param caption The caption of the plot.
+#' @param title The title of the plot. If `NULL`, it will be omitted.
+#' @param subtitle The subtitle of the plot. If `NULL`, it will be omitted.
+#' @param caption The caption of the plot. If `NULL`, it will be omitted.
 #' @param tier_desc A named vector consisting of the tier descriptions. The names
 #'   must equal the tier numbers from `tier_no`
 #' @param presort If `FALSE` (the default) the function assumes that the teams

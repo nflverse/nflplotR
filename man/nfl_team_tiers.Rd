@@ -28,11 +28,11 @@ these ranks will be used within each tier. Otherwise, if \code{presort = FALSE},
 the function will assume that data is already sorted and if \code{presort = TRUE},
 teams will be sorted alphabetically within tiers.}
 
-\item{title}{The title of the plot.}
+\item{title}{The title of the plot. If \code{NULL}, it will be omitted.}
 
-\item{subtitle}{The subtitle of the plot.}
+\item{subtitle}{The subtitle of the plot. If \code{NULL}, it will be omitted.}
 
-\item{caption}{The caption of the plot.}
+\item{caption}{The caption of the plot. If \code{NULL}, it will be omitted.}
 
 \item{tier_desc}{A named vector consisting of the tier descriptions. The names
 must equal the tier numbers from \code{tier_no}}
