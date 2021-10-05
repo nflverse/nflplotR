@@ -106,32 +106,53 @@ geom_mean_lines <- function(mapping = NULL, data = NULL,
 
 
 GeomRefLines <- ggplot2::ggproto("GeomRefLines", ggplot2::Geom,
+
   optional_aes = c("v_var", "h_var"),
-  default_aes = ggplot2::aes(
-    colour = "red", size = 0.5, linetype = 2, alpha = NA
-  ),
+
+  default_aes = ggplot2::aes(colour = "red", size = 0.5, linetype = 2, alpha = NA),
+
   draw_panel = function(data, panel_params, coord, ref_function, na.rm = FALSE) {
     args <- names(data)
 
+    # Can't do anything if either of h_var and v_var are aesthetics
     if (all(!c("v_var", "h_var") %in% args)) {
       cli::cli_abort("{.var geom_median_lines()} and {.var geom_mean_lines()} require at least one of the following aesthetics: {.var v_var}, {.var h_var}")
     }
-    if (!"v_var" %in% args) data$v_var <- NA
-    if (!"h_var" %in% args) data$h_var <- NA
 
-    data$xintercept <- ref_function(data$v_var, na.rm = na.rm)
-    data$yintercept <- ref_function(data$h_var, na.rm = na.rm)
+    # Since h_var and v_var can be in data, it is necessary to select only
+    # those variables that are required for the underlying Geoms to work.
+    # This could also be achieved by setting inherit.aes to FALSE explicitly but
+    # I want to be able to inherit aesthetics so I had to do this differently.
+    relevant_columns <- c("PANEL", "group", "colour", "size", "linetype", "alpha")
+
+    # if v_var and/or h_var are present in data we have to compute the relevant
+    # xintercept and yintercept variables and drop anything irrelevant from data
+    # as the underlying Geoms will draw multiple lines if there are multiple
+    # unique rows. This caused alpha to not work properly because the geom draws
+    # many opaque lines which outputs as non-opaque lines.
+    if ("v_var" %in% args){
+      data_v <- data
+      data_v$xintercept <- ref_function(data_v$v_var, na.rm = na.rm)
+      data_v <- data_v[,c("xintercept", relevant_columns)]
+    }
+
+    if ("h_var" %in% args){
+      data_h <- data
+      data_h$yintercept <- ref_function(data_h$h_var, na.rm = na.rm)
+      data_h <- data_h[,c("yintercept", relevant_columns)]
+    }
 
     if (!"v_var" %in% args) {
-      ggplot2::GeomHline$draw_panel(data, panel_params, coord)
+      ggplot2::GeomHline$draw_panel(data_h, panel_params, coord)
     } else if (!"h_var" %in% args) {
-      ggplot2::GeomVline$draw_panel(data, panel_params, coord)
+      ggplot2::GeomVline$draw_panel(data_v, panel_params, coord)
     } else {
       grid::gList(
-        ggplot2::GeomHline$draw_panel(data, panel_params, coord),
-        ggplot2::GeomVline$draw_panel(data, panel_params, coord)
+        ggplot2::GeomHline$draw_panel(data_h, panel_params, coord),
+        ggplot2::GeomVline$draw_panel(data_v, panel_params, coord)
       )
     }
   },
+
   draw_key = ggplot2::draw_key_path
 )

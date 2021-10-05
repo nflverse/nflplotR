@@ -9,3 +9,4 @@
 * Added the function `ggpreview()` which allows to preview a ggplot in it's actual dimensions. (v.0.0.9006)
 * `geom_nfl_logos()` now supports a `colour` aesthetic that colorizes the logos. (v0.0.9007)
 * Added the function `nfl_team_tiers()` that build an NFL team tiers ggplot, thanks to [Timo Riske](https://twitter.com/PFF_Moo) for the suggestion. (v.0.0.9008)
+* Fixed a bug (#10) in `geom_median_lines()` and `geom_mean_lines()` that caused `alpha` to not work properly. (v.0.0.9009)
