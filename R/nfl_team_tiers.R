@@ -75,7 +75,8 @@
 #'                              "3" = "",
 #'                              "4" = "A Combined Tier",
 #'                              "5" = ""),
-#'                no_line_below_tier = c(2, 4))
+#'                no_line_below_tier = c(2, 4),
+#'                devel = TRUE)
 #' }
 #' @export
 nfl_team_tiers <- function(data,
