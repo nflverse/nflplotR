@@ -12,7 +12,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">0.0.0.9009</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">0.0.0.9010</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3"><li class="nav-item">
@@ -73,13 +73,16 @@
     <div id="ref-usage" class="ref-usage section level2 sourceCode">
     <pre class="sourceCode r"><code><span class="fu">nfl_team_tiers</span><span class="op">(</span>
   <span class="va">data</span>,
-  season <span class="op">=</span> <span class="cn">NULL</span>,
-  week <span class="op">=</span> <span class="cn">NULL</span>,
+  title <span class="op">=</span> <span class="st">"NFL Team Tiers, 2021 as of Week 4"</span>,
+  subtitle <span class="op">=</span> <span class="st">"created with the #nflplotR Tiermaker"</span>,
+  caption <span class="op">=</span> <span class="cn">NULL</span>,
   tier_desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span>`1` <span class="op">=</span> <span class="st">"Super Bowl"</span>, `2` <span class="op">=</span> <span class="st">"Very Good"</span>, `3` <span class="op">=</span> <span class="st">"Medium"</span>, `4` <span class="op">=</span> <span class="st">"Bad"</span>, `5`
-    <span class="op">=</span> <span class="st">"What are they doing?"</span><span class="op">)</span>,
+    <span class="op">=</span> <span class="st">"What are they doing?"</span>, `6` <span class="op">=</span> <span class="st">""</span>, `7` <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,
   presort <span class="op">=</span> <span class="cn">FALSE</span>,
   alpha <span class="op">=</span> <span class="fl">0.8</span>,
-  width <span class="op">=</span> <span class="fl">0.075</span>
+  width <span class="op">=</span> <span class="fl">0.075</span>,
+  no_line_below_tier <span class="op">=</span> <span class="cn">NULL</span>,
+  devel <span class="op">=</span> <span class="cn">FALSE</span>
 <span class="op">)</span></code></pre>
     </div>
 
@@ -89,13 +92,16 @@
 number of the tier starting from the top tier no. 1) and <code>team_abbr</code> (the
 team abbreviation). <code>team_abbr</code> should be one of <code><a href="valid_team_names.html">valid_team_names()</a></code> and
 the function tries to clean team names internally by calling
-<code><a href="https://nflreadr.nflverse.com/reference/clean_team_abbrs.html">nflreadr::clean_team_abbrs()</a></code>.</p></dd>
-    <dt class="col-sm-3 section level2" id="pkg-arg-season">season</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>The season the team tiers are built for. This will be placed
-in the title of the plot.</p></dd>
-    <dt class="col-sm-3 section level2" id="pkg-arg-week">week</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>The week inside <code>season</code> the team tiers are built for. This will
-be placed in the title of the plot.</p></dd>
+<code><a href="https://nflreadr.nflverse.com/reference/clean_team_abbrs.html">nflreadr::clean_team_abbrs()</a></code>. If data includes the variable <code>tier_rank</code>,
+these ranks will be used within each tier. Otherwise, if <code>presort = FALSE</code>,
+the function will assume that data is already sorted and if <code>presort = TRUE</code>,
+teams will be sorted alphabetically within tiers.</p></dd>
+    <dt class="col-sm-3 section level2" id="pkg-arg-title">title</dt>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>The title of the plot. If <code>NULL</code>, it will be omitted.</p></dd>
+    <dt class="col-sm-3 section level2" id="pkg-arg-subtitle">subtitle</dt>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>The subtitle of the plot. If <code>NULL</code>, it will be omitted.</p></dd>
+    <dt class="col-sm-3 section level2" id="pkg-arg-caption">caption</dt>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>The caption of the plot. If <code>NULL</code>, it will be omitted.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-tier_desc">tier_desc</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>A named vector consisting of the tier descriptions. The names
 must equal the tier numbers from <code>tier_no</code></p></dd>
@@ -107,6 +113,15 @@ are already sorted within the tiers. Will otherwise sort alphabetically.</p></dd
 numerical value between 0 and 1.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-width">width</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>The desired width of the logo in <code>npc</code> (Normalised Parent Coordinates).</p></dd>
+    <dt class="col-sm-3 section level2" id="pkg-arg-no_line_below_tier">no_line_below_tier</dt>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>Vector of tier numbers. The function won't draw tier
+separation lines below these tiers. This is intended to be used for tiers
+that shall be combined (see examples).</p></dd>
+    <dt class="col-sm-3 section level2" id="pkg-arg-devel">devel</dt>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>Determines if logos shall be rendered. If <code>FALSE</code> (the default),
+logos will be rendered on each run. If <code>TRUE</code> the team abbreviations will be
+plotted instead of the logos. This is much faster and helps with the plot
+development.</p></dd>
     </dl><h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
@@ -124,8 +139,37 @@ numerical value between 0 and 1.</p></dd>
 <span class="r-in">  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span><span class="op">(</span><span class="va">tier_no</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html">%&gt;%</a></span></span>
 <span class="r-in">  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>tier_rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"></span>
-<span class="r-in"><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span>, <span class="fl">2021</span>, <span class="fl">4</span><span class="op">)</span></span>
+<span class="r-in"><span class="co"># Plot team tiers</span></span>
+<span class="r-in"><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span>
 <span class="r-plt"><img src="nfl_team_tiers-1.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Create a combined tier which is useful for tiers with lots of teams that</span></span>
+<span class="r-in"><span class="co"># should be split up in two or more rows. This is done by setting an empty</span></span>
+<span class="r-in"><span class="co"># string for the tier 5 description and removing the tier separation line</span></span>
+<span class="r-in"><span class="co"># below tier number 4.</span></span>
+<span class="r-in"><span class="co"># This example also shows how to turn off the subtitle and add a caption</span></span>
+<span class="r-in"><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span>,</span>
+<span class="r-in">               subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span class="r-in">               caption <span class="op">=</span> <span class="st">"This is the caption"</span>,</span>
+<span class="r-in">               tier_desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"Super Bowl"</span>,</span>
+<span class="r-in">                             <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Very Good"</span>,</span>
+<span class="r-in">                             <span class="st">"3"</span> <span class="op">=</span> <span class="st">"Medium"</span>,</span>
+<span class="r-in">                             <span class="st">"4"</span> <span class="op">=</span> <span class="st">"A Combined Tier"</span>,</span>
+<span class="r-in">                             <span class="st">"5"</span> <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,</span>
+<span class="r-in">               no_line_below_tier <span class="op">=</span> <span class="fl">4</span><span class="op">)</span></span>
+<span class="r-plt"><img src="nfl_team_tiers-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># For the development of the tiers, it can be useful to turn off logo image</span></span>
+<span class="r-in"><span class="co"># rendering as this can take quite a long time. By setting `devel = TRUE`, the</span></span>
+<span class="r-in"><span class="co"># logo images are replaced by team abbreviations which is much faster</span></span>
+<span class="r-in"><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span>,</span>
+<span class="r-in">               tier_desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"Super Bowl"</span>,</span>
+<span class="r-in">                             <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Very Good"</span>,</span>
+<span class="r-in">                             <span class="st">"3"</span> <span class="op">=</span> <span class="st">""</span>,</span>
+<span class="r-in">                             <span class="st">"4"</span> <span class="op">=</span> <span class="st">"A Combined Tier"</span>,</span>
+<span class="r-in">                             <span class="st">"5"</span> <span class="op">=</span> <span class="st">""</span><span class="op">)</span>,</span>
+<span class="r-in">               no_line_below_tier <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">2</span>, <span class="fl">4</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-plt"><img src="nfl_team_tiers-3.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
   </div>
@@ -143,7 +187,7 @@ numerical value between 0 and 1.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer></div>

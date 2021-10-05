@@ -4,18 +4,6 @@
     <loc>https://nflplotr.nflverse.com/404.html</loc>
   </url>
   <url>
-    <loc>https://nflplotr.nflverse.com/CODE_OF_CONDUCT.html</loc>
-  </url>
-  <url>
-    <loc>https://nflplotr.nflverse.com/CONTRIBUTING.html</loc>
-  </url>
-  <url>
-    <loc>https://nflplotr.nflverse.com/LICENSE-text.html</loc>
-  </url>
-  <url>
-    <loc>https://nflplotr.nflverse.com/LICENSE.html</loc>
-  </url>
-  <url>
     <loc>https://nflplotr.nflverse.com/articles/index.html</loc>
   </url>
   <url>
@@ -25,7 +13,19 @@
     <loc>https://nflplotr.nflverse.com/authors.html</loc>
   </url>
   <url>
+    <loc>https://nflplotr.nflverse.com/CODE_OF_CONDUCT.html</loc>
+  </url>
+  <url>
+    <loc>https://nflplotr.nflverse.com/CONTRIBUTING.html</loc>
+  </url>
+  <url>
     <loc>https://nflplotr.nflverse.com/index.html</loc>
+  </url>
+  <url>
+    <loc>https://nflplotr.nflverse.com/LICENSE-text.html</loc>
+  </url>
+  <url>
+    <loc>https://nflplotr.nflverse.com/LICENSE.html</loc>
   </url>
   <url>
     <loc>https://nflplotr.nflverse.com/news/index.html</loc>
@@ -43,10 +43,10 @@
     <loc>https://nflplotr.nflverse.com/reference/index.html</loc>
   </url>
   <url>
-    <loc>https://nflplotr.nflverse.com/reference/nfl_team_tiers.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/nflplotR-package.html</loc>
   </url>
   <url>
-    <loc>https://nflplotr.nflverse.com/reference/nflplotR-package.html</loc>
+    <loc>https://nflplotr.nflverse.com/reference/nfl_team_tiers.html</loc>
   </url>
   <url>
     <loc>https://nflplotr.nflverse.com/reference/scale_axes_nfl.html</loc>
