@@ -47,7 +47,7 @@ remotes::install_github("nflverse/nflplotR")
 
 ## Usage
 
-Please see the **["Get Started with nflplotR"](https://nflplotr.nflverse.com/articles/nflplotR.html) article**.
+Please see the **'[Get Started with nflplotR](https://nflplotr.nflverse.com/articles/nflplotR.html)' article**.
 
 ## Getting help
 
@@ -61,9 +61,9 @@ The best places to get help on this package are:
 Many hands make light work! Here are some ways you can contribute to
 this project:
 
--   You can [open an issue](https://github.com/nflverse/nflplotR/issues/new/choose) if you’d like to request specific data or report a bug/error.
+-   You can [open an issue](https://github.com/nflverse/nflplotR/issues/new/choose) if you'd like to request specific data or report a bug/error.
 
--   If you’d like to contribute code, please check out [the contribution guidelines](https://nflplotr.nflverse.com/CONTRIBUTING.html).
+-   If you'd like to contribute code, please check out [the contribution guidelines](https://nflplotr.nflverse.com/CONTRIBUTING.html).
 
 ## Terms of Use
 

@@ -41,8 +41,8 @@ remotes::install_github("nflverse/nflplotR")
 
 ## Usage
 
-Please see the **[“Get Started with
-nflplotR”](https://nflplotr.nflverse.com/articles/nflplotR.html)
+Please see the **‘[Get Started with
+nflplotR](https://nflplotr.nflverse.com/articles/nflplotR.html)’
 article**.
 
 ## Getting help
