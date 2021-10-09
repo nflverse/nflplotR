@@ -2,6 +2,7 @@
 
 export(geom_mean_lines)
 export(geom_median_lines)
+export(geom_nfl_headshots)
 export(geom_nfl_logos)
 export(ggpreview)
 export(nfl_team_tiers)
