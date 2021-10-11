@@ -33,6 +33,8 @@
 #' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
+#' # Silence an nflreadr message that is irrelevant here
+#' old <- options(nflreadr.cache_warning = FALSE)
 #'
 #' df <- data.frame(
 #'   a = rep(1:3, 3),
@@ -82,6 +84,8 @@
 #'   scale_colour_identity() +
 #'   theme_void()
 #'
+#' # Restore old options
+#' options(old)
 #' }
 geom_nfl_headshots <- function(mapping = NULL, data = NULL,
                                stat = "identity", position = "identity",

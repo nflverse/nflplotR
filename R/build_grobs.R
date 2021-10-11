@@ -8,7 +8,7 @@ build_grobs <- function(i, alpha, colour, data, teams = TRUE) {
     if (is.na(team_abbr)) make_null <- TRUE
   } else{
     gsis <- data$player_gsis[i]
-    headshot_map <- nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/R/headshot_gsis_map.rds")
+    headshot_map <- nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/src/headshot_gsis_map.rds")
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
     if(length(image_to_read) == 0) image_to_read <- "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
   }

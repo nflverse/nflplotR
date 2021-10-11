@@ -92,6 +92,8 @@ A typical size is \code{height = 0.1} (see below examples).}
 \donttest{
 library(nflplotR)
 library(ggplot2)
+# Silence an nflreadr message that is irrelevant here
+old <- options(nflreadr.cache_warning = FALSE)
 
 df <- data.frame(
   a = rep(1:3, 3),
@@ -141,5 +143,7 @@ ggplot(df, aes(x = a, y = b)) +
   scale_colour_identity() +
   theme_void()
 
+# Restore old options
+options(old)
 }
 }
