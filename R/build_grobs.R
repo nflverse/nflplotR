@@ -1,16 +1,18 @@
 # INTERNAL HELPER THAT BUILD THE GROBS FOR
 # GEOM LOGOS AND HEADSHOTS
 build_grobs <- function(i, alpha, colour, data, teams = TRUE) {
+  make_null <- FALSE
   if(isTRUE(teams)){
     team_abbr <- data$team_abbr[i]
     image_to_read <- logo_list[[team_abbr]]
+    if (is.na(team_abbr)) make_null <- TRUE
   } else{
     gsis <- data$player_gsis[i]
     headshot_map <- nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/R/headshot_gsis_map.rds")
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
     if(length(image_to_read) == 0) image_to_read <- "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
   }
-  if (is.na(image_to_read)){
+  if (is.na(make_null)){
     grid <- grid::nullGrob()
   } else if (is.null(alpha)) {
     img <- magick::image_read(image_to_read)
