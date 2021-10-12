@@ -24,7 +24,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@master
         with:
-          extra-packages: r-lib/pkgdown
+          extra-packages: r-lib/pkgdown, r-lib/rlang
 
       - name: Deploy package
         run: |
