@@ -22,4 +22,28 @@ logo_html <- function(team_abbr, type = c("height", "width"), size = 15){
   sprintf("<img src='%s' %s = '%s'>", url, type, size)
 }
 
+headshot_html <- function(player_gsis, type = c("height", "width"), size = 25){
+  type <- rlang::arg_match(type)
+  headshot_map <- load_headshots()
+  player_gsis <- ifelse(player_gsis %in% headshot_map$gsis_id, player_gsis, "NA_ID")
+  headshot_map <- rbind(
+    headshot_map,
+    list(gsis_id = "NA_ID", headshot_nfl = na_headshot())
+  )
+  joined <- merge(
+    data.frame(gsis_id = player_gsis),
+    headshot_map,
+    by = "gsis_id",
+    all.x = TRUE,
+    sort = FALSE
+  )
+  url <- joined$headshot_nfl
+  url <- ifelse(grepl(".png", url), url, paste0(url, ".png"))
+  sprintf("<img src='%s' %s = '%s'>", url, type, size)
+}
+
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
+
+load_headshots <- function() nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/src/headshot_gsis_map.rds")
+
+na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"

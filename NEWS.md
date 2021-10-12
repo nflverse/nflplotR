@@ -12,3 +12,4 @@
 * Fixed a bug (#10) in `geom_median_lines()` and `geom_mean_lines()` that caused `alpha` to not work properly. (v.0.0.9009)
 * Improved `nfl_team_tiers()` by adding the opportunity to modify `title`, `subtitle`, `caption` of the plot. Added functionality to remove tier separation lines for combined tiers. Added functionality to run the function in "developer" mode which means, that team abbreviations will be plotted instead of logos (much faster). (v.0.0.9010)
 * Added the `geom_nfl_headshots()` geom that plots headshots for valid gsis IDs. (v0.0.9011)
+* Added the axis scales `scale_x_nfl_headshots()` and `scale_y_nfl_headshots()`. (v.0.0.9012)
