@@ -119,6 +119,7 @@ These functions map NFL team names to their team colors in
 color and fill aesthetics
 }
 \examples{
+\donttest{
 library(nflplotR)
 library(ggplot2)
 
@@ -136,4 +137,5 @@ ggplot(df, aes(x = teams, y = random_value)) +
   scale_fill_nfl(alpha = 0.4) +
   theme_minimal() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+}
 }

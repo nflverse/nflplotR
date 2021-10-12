@@ -3,6 +3,8 @@
 \name{scale_axes_nfl}
 \alias{scale_x_nfl}
 \alias{scale_y_nfl}
+\alias{scale_x_nfl_headshots}
+\alias{scale_y_nfl_headshots}
 \title{Axis Scales for NFL Team Logos}
 \usage{
 scale_x_nfl(
@@ -19,6 +21,22 @@ scale_y_nfl(
   guide = ggplot2::waiver(),
   position = "left",
   size = 12
+)
+
+scale_x_nfl_headshots(
+  ...,
+  expand = ggplot2::waiver(),
+  guide = ggplot2::waiver(),
+  position = "bottom",
+  size = 20
+)
+
+scale_y_nfl_headshots(
+  ...,
+  expand = ggplot2::waiver(),
+  guide = ggplot2::waiver(),
+  position = "left",
+  size = 30
 )
 }
 \arguments{
@@ -104,6 +122,7 @@ or alternatively by manually changing the relevant \code{axis.text} to
 \code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}.
 }
 \examples{
+\donttest{
 library(nflplotR)
 library(ggplot2)
 
@@ -133,6 +152,46 @@ ggplot(df, aes(y = teams, x = random_value)) +
   scale_y_nfl() +
   theme_minimal() +
   theme_y_nfl()
+
+#############################################################################
+# Headshot Examples
+#############################################################################
+library(nflplotR)
+library(ggplot2)
+
+# Silence an nflreadr message that is irrelevant here
+old <- options(nflreadr.cache_warning = FALSE)
+
+dfh <- data.frame(
+  random_value = runif(9, 0, 1),
+  player_gsis = c("00-0033873",
+                  "00-0026498",
+                  "00-0035228",
+                  "00-0031237",
+                  "00-0036355",
+                  "00-0019596",
+                  "00-0033077",
+                  "00-0012345",
+                  "00-0031280")
+)
+
+# use headshots for x-axis
+ggplot(dfh, aes(x = player_gsis, y = random_value)) +
+  geom_col(width = 0.5) +
+  scale_x_nfl_headshots() +
+  theme_minimal() +
+  theme_x_nfl()
+
+# use headshots for y-axis
+ggplot(dfh, aes(y = player_gsis, x = random_value)) +
+  geom_col(width = 0.5) +
+  scale_y_nfl_headshots() +
+  theme_minimal() +
+  theme_y_nfl()
+
+# Restore old options
+options(old)
+}
 }
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}

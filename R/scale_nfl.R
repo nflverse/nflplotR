@@ -20,6 +20,7 @@
 #' @name scale_nfl
 #' @aliases NULL
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
 #'
@@ -37,6 +38,7 @@
 #'   scale_fill_nfl(alpha = 0.4) +
 #'   theme_minimal() +
 #'   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+#' }
 NULL
 
 #' @rdname scale_nfl
@@ -128,6 +130,7 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #' @aliases NULL
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
 #'
@@ -157,6 +160,46 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'   scale_y_nfl() +
 #'   theme_minimal() +
 #'   theme_y_nfl()
+#'
+#' #############################################################################
+#' # Headshot Examples
+#' #############################################################################
+#' library(nflplotR)
+#' library(ggplot2)
+#'
+#' # Silence an nflreadr message that is irrelevant here
+#' old <- options(nflreadr.cache_warning = FALSE)
+#'
+#' dfh <- data.frame(
+#'   random_value = runif(9, 0, 1),
+#'   player_gsis = c("00-0033873",
+#'                   "00-0026498",
+#'                   "00-0035228",
+#'                   "00-0031237",
+#'                   "00-0036355",
+#'                   "00-0019596",
+#'                   "00-0033077",
+#'                   "00-0012345",
+#'                   "00-0031280")
+#' )
+#'
+#' # use headshots for x-axis
+#' ggplot(dfh, aes(x = player_gsis, y = random_value)) +
+#'   geom_col(width = 0.5) +
+#'   scale_x_nfl_headshots() +
+#'   theme_minimal() +
+#'   theme_x_nfl()
+#'
+#' # use headshots for y-axis
+#' ggplot(dfh, aes(y = player_gsis, x = random_value)) +
+#'   geom_col(width = 0.5) +
+#'   scale_y_nfl_headshots() +
+#'   theme_minimal() +
+#'   theme_y_nfl()
+#'
+#' # Restore old options
+#' options(old)
+#' }
 NULL
 
 #' @rdname scale_axes_nfl
@@ -194,6 +237,48 @@ scale_y_nfl <- function(...,
     ...,
     labels = function(x) {
       logo_html(x, type = "width", size = size)
+    },
+    expand = expand,
+    guide = guide,
+    position = position
+  )
+}
+
+#' @rdname scale_axes_nfl
+#' @export
+scale_x_nfl_headshots <- function(...,
+                                  expand = ggplot2::waiver(),
+                                  guide = ggplot2::waiver(),
+                                  position = "bottom",
+                                  size = 20) {
+
+  position <- rlang::arg_match0(position, c("top", "bottom"))
+
+  ggplot2::scale_x_discrete(
+    ...,
+    labels = function(x) {
+      headshot_html(x, type = "height", size = size)
+    },
+    expand = expand,
+    guide = guide,
+    position = position
+  )
+}
+
+#' @rdname scale_axes_nfl
+#' @export
+scale_y_nfl_headshots <- function(...,
+                                  expand = ggplot2::waiver(),
+                                  guide = ggplot2::waiver(),
+                                  position = "left",
+                                  size = 30) {
+
+  position <- rlang::arg_match0(position, c("left", "right"))
+
+  ggplot2::scale_y_discrete(
+    ...,
+    labels = function(x) {
+      headshot_html(x, type = "width", size = size)
     },
     expand = expand,
     guide = guide,
