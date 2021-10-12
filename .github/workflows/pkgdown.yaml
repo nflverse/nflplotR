@@ -26,7 +26,6 @@ jobs:
         with:
           extra-packages: |
             r-lib/pkgdown
-            r-lib/rlang
           cache-version: 2
 
       - name: Deploy package
