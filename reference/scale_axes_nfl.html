@@ -14,7 +14,7 @@ them available as axis labels"><meta property="og:image" content="https://nflplo
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">0.0.0.9011</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">0.0.0.9012</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3"><li class="nav-item">
@@ -88,6 +88,22 @@ them available as axis labels</p>
   guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html">waiver</a></span><span class="op">(</span><span class="op">)</span>,
   position <span class="op">=</span> <span class="st">"left"</span>,
   size <span class="op">=</span> <span class="fl">12</span>
+<span class="op">)</span>
+
+<span class="fu">scale_x_nfl_headshots</span><span class="op">(</span>
+  <span class="va">...</span>,
+  expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html">waiver</a></span><span class="op">(</span><span class="op">)</span>,
+  guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html">waiver</a></span><span class="op">(</span><span class="op">)</span>,
+  position <span class="op">=</span> <span class="st">"bottom"</span>,
+  size <span class="op">=</span> <span class="fl">20</span>
+<span class="op">)</span>
+
+<span class="fu">scale_y_nfl_headshots</span><span class="op">(</span>
+  <span class="va">...</span>,
+  expand <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html">waiver</a></span><span class="op">(</span><span class="op">)</span>,
+  guide <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/waiver.html">waiver</a></span><span class="op">(</span><span class="op">)</span>,
+  position <span class="op">=</span> <span class="st">"left"</span>,
+  size <span class="op">=</span> <span class="fl">30</span>
 <span class="op">)</span></code></pre>
     </div>
 
@@ -173,7 +189,8 @@ or alternatively by manually changing the relevant <code>axis.text</code> to
     </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nflplotr.nflverse.com">nflplotR</a></span><span class="op">)</span></span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nflplotr.nflverse.com">nflplotR</a></span><span class="op">)</span></span>
 <span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">team_abbr</span> <span class="op">&lt;-</span> <span class="fu"><a href="valid_team_names.html">valid_team_names</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -206,6 +223,48 @@ or alternatively by manually changing the relevant <code>axis.text</code> to
 <span class="r-in">  <span class="fu"><a href="theme_nfl.html">theme_y_nfl</a></span><span class="op">(</span><span class="op">)</span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>libpng warning: iCCP: known incorrect sRGB profile</span>
 <span class="r-plt"><img src="scale_axes_nfl-2.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co">#############################################################################</span></span>
+<span class="r-in"><span class="co"># Headshot Examples</span></span>
+<span class="r-in"><span class="co">#############################################################################</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://nflplotr.nflverse.com">nflplotR</a></span><span class="op">)</span></span>
+<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Silence an nflreadr message that is irrelevant here</span></span>
+<span class="r-in"><span class="va">old</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>nflreadr.cache_warning <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">dfh</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span></span>
+<span class="r-in">  random_value <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/Uniform.html">runif</a></span><span class="op">(</span><span class="fl">9</span>, <span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span class="r-in">  player_gsis <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"00-0033873"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0026498"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0035228"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0031237"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0036355"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0019596"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0033077"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0012345"</span>,</span>
+<span class="r-in">                  <span class="st">"00-0031280"</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># use headshots for x-axis</span></span>
+<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dfh</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">player_gsis</span>, y <span class="op">=</span> <span class="va">random_value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu">scale_x_nfl_headshots</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="theme_nfl.html">theme_x_nfl</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-plt"><img src="scale_axes_nfl-3.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># use headshots for y-axis</span></span>
+<span class="r-in"><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span><span class="op">(</span><span class="va">dfh</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">player_gsis</span>, x <span class="op">=</span> <span class="va">random_value</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html">geom_col</a></span><span class="op">(</span>width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu">scale_y_nfl_headshots</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span class="r-in">  <span class="fu"><a href="theme_nfl.html">theme_y_nfl</a></span><span class="op">(</span><span class="op">)</span></span>
+<span class="r-plt"><img src="scale_axes_nfl-4.png" alt="" width="700" height="433"></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="co"># Restore old options</span></span>
+<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span><span class="va">old</span><span class="op">)</span></span>
+<span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
