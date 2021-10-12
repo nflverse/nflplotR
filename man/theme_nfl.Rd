@@ -22,6 +22,7 @@ They are made to be used in conjunction with \code{\link[=scale_x_nfl]{scale_x_n
 \code{\link[=scale_y_nfl]{scale_y_nfl()}} respectively.
 }
 \examples{
+\donttest{
 library(nflplotR)
 library(ggplot2)
 
@@ -41,6 +42,7 @@ ggplot(df, aes(x = teams, y = random_value)) +
   scale_x_nfl() +
   theme_minimal() +
   theme_x_nfl()
+}
 }
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}

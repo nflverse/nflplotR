@@ -12,6 +12,7 @@
 #' @aliases NULL
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
 #'
@@ -31,6 +32,7 @@
 #'   scale_x_nfl() +
 #'   theme_minimal() +
 #'   theme_x_nfl()
+#' }
 NULL
 
 #' @rdname theme_nfl

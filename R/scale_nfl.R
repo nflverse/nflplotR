@@ -20,6 +20,7 @@
 #' @name scale_nfl
 #' @aliases NULL
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
 #'
@@ -37,6 +38,7 @@
 #'   scale_fill_nfl(alpha = 0.4) +
 #'   theme_minimal() +
 #'   theme(axis.text.x = element_text(angle = 45, hjust = 1))
+#' }
 NULL
 
 #' @rdname scale_nfl
@@ -128,6 +130,7 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #' @aliases NULL
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(ggplot2)
 #'
@@ -196,6 +199,7 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'
 #' # Restore old options
 #' options(old)
+#' }
 NULL
 
 #' @rdname scale_axes_nfl

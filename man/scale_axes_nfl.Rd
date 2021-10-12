@@ -122,6 +122,7 @@ or alternatively by manually changing the relevant \code{axis.text} to
 \code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}.
 }
 \examples{
+\donttest{
 library(nflplotR)
 library(ggplot2)
 
@@ -190,6 +191,7 @@ ggplot(dfh, aes(y = player_gsis, x = random_value)) +
 
 # Restore old options
 options(old)
+}
 }
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}
