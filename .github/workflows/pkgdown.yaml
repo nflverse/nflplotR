@@ -22,11 +22,11 @@ jobs:
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@master
+      - uses: r-lib/actions/setup-r-dependencies@v1
         with:
-          extra-packages: |
+          extra-packages: >
             r-lib/pkgdown
-          cache-version: 2
+          needs: website
 
       - name: Deploy package
         run: |
