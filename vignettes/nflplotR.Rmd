@@ -45,8 +45,10 @@ remotes::install_github("nflverse/nflplotR")
 
 Trying to install nflplotR from CRAN using `install.packages()` results in an uninformative and rather confusing error message (see below) suggesting that you need to update R which is not the case!
 
-```{r}
+```{r, eval=FALSE}
 install.packages("nflplotR")
+#>Warning in install.packages :
+#>  package ‘nflplotR’ is not available for this version of R
 ```
 
 ## Typical Use Cases 
