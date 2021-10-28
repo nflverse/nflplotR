@@ -34,6 +34,21 @@ Working with publicly available NFL data often results in a desire to visualize 
 
 Long story short: the only thing that is required to use NFL team logos or team colors in a ggplot is a variable in the plot data that holds official NFL team abbreviations.
 
+## Install the Package
+
+nflplotR is a normal R package but since it is still quite new, you can't download it from CRAN yet. The plan is to release the package on CRAN and the code base is ready for it, however it depends on another package that needs to be updated on CRAN first. Until then, you can install nflplotR from GitHub with
+
+```{r, eval=FALSE}
+if (!require("remotes")) install.packages("remotes")
+remotes::install_github("nflverse/nflplotR")
+```
+
+Trying to install nflplotR from CRAN using `install.packages()` results in an uninformative and rather confusing error message (see below) suggesting that you need to update R which is not the case!
+
+```{r}
+install.packages("nflplotR")
+```
+
 ## Typical Use Cases 
 
 Let's look at some typical use cases for nflplotR using NFL play-by-play data. In a first step we load all necessary packages.
