@@ -2,9 +2,10 @@
 teams_colors_logos <- nflreadr::load_teams() |>
   dplyr::bind_rows(
     tibble::tibble(
-      team_abbr = c("AFC", "NFC"),
+      team_abbr = c("AFC", "NFC", "NFL"),
       team_logo_espn = c("https://github.com/nflverse/nflplotR/raw/main/data-raw/AFC.png",
-                         "https://github.com/nflverse/nflplotR/raw/main/data-raw/NFC.png")
+                         "https://github.com/nflverse/nflplotR/raw/main/data-raw/NFC.png",
+                         "https://raw.githubusercontent.com/nflverse/nflfastR-data/master/NFL.png")
     )
   )
 
