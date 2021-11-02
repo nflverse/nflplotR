@@ -1,7 +1,7 @@
 test_that("valid_team_names works", {
   valid_all <- c("AFC", "ARI", "ATL", "BAL", "BUF", "CAR", "CHI", "CIN", "CLE",
                  "DAL", "DEN", "DET", "GB", "HOU", "IND", "JAX", "KC",
-                 "LA", "LAC", "LAR", "LV", "MIA", "MIN", "NE", "NFC", "NO",
+                 "LA", "LAC", "LAR", "LV", "MIA", "MIN", "NE", "NFC", "NFL", "NO",
                  "NYG", "NYJ", "OAK", "PHI", "PIT", "SD", "SEA", "SF",
                  "STL", "TB", "TEN", "WAS")
 
