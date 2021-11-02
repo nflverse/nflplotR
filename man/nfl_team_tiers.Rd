@@ -63,7 +63,7 @@ library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
 team_abbr <- valid_team_names()
 # remove conference logos from this example
-team_abbr <- team_abbr[!team_abbr \%in\% c("AFC", "NFC")]
+team_abbr <- team_abbr[!team_abbr \%in\% c("AFC", "NFC", "NFL")]
 
 # Build the team tiers data frame
 # This is completely random!

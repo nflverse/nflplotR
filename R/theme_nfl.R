@@ -18,7 +18,7 @@
 #'
 #' team_abbr <- valid_team_names()
 #' # remove conference logos from this example
-#' team_abbr <- team_abbr[!team_abbr %in% c("AFC", "NFC")]
+#' team_abbr <- team_abbr[!team_abbr %in% c("AFC", "NFC", "NFL")]
 #'
 #' df <- data.frame(
 #'   random_value = runif(length(team_abbr), 0, 1),
