@@ -11,6 +11,8 @@ home:
     League analysis in 'ggplot2'.
 
 navbar:
+  type: dark
+  bg: dark
   structure:
     left:  [home, intro, reference, news, articles]
     right: [discord, github, more]
@@ -46,8 +48,8 @@ navbar:
 
 template:
   bootstrap: 5
-  bootswatch: quartz
-  theme: dark
+  bootswatch: cosmo
+  # theme: arrow-light
   bslib:
     font_scale: 1.2
     base_font: {google: "IBM Plex Sans"}
