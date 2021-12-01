@@ -11,8 +11,6 @@ home:
     League analysis in 'ggplot2'.
 
 navbar:
-  type: dark
-  bg: dark
   structure:
     left:  [home, intro, reference, news, articles]
     right: [discord, github, more]
@@ -47,16 +45,14 @@ navbar:
           href: https://www.ffverse.com
 
 template:
-  bootstrap: 4
-  bootswatch: cosmo
+  bootstrap: 5
+  bootswatch: quartz
+  theme: dark
   bslib:
     font_scale: 1.2
-    base_font:
-      google: "IBM Plex Sans"
-    heading_font:
-      google: "Kanit"
-    code_font:
-      google: "Fira Code"
+    base_font: {google: "IBM Plex Sans"}
+    heading_font: {google: "Kanit"}
+    code_font: {google: "Fira Code"}
   opengraph:
     image:
       src: man/figures/social_preview.png
