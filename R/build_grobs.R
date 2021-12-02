@@ -1,12 +1,17 @@
-# INTERNAL HELPER THAT BUILD THE GROBS FOR
-# GEOM LOGOS AND HEADSHOTS
-build_grobs <- function(i, alpha, colour, data, teams = TRUE) {
+# INTERNAL HELPER THAT BUILDS THE GROBS FOR
+# GEOM LOGOS, WORDMARKS AND HEADSHOTS
+build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "wordmarks")) {
   make_null <- FALSE
-  if(isTRUE(teams)){
+  type <- rlang::arg_match(type)
+  if(type == "teams") {
     team_abbr <- data$team_abbr[i]
     image_to_read <- logo_list[[team_abbr]]
     if (is.na(team_abbr)) make_null <- TRUE
-  } else{
+  } else if(type == "wordmarks") {
+    team_abbr <- data$team_abbr[i]
+    image_to_read <- wordmark_list[[team_abbr]]
+    if (is.na(team_abbr)) make_null <- TRUE
+  } else {
     gsis <- data$player_gsis[i]
     headshot_map <- load_headshots()
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
