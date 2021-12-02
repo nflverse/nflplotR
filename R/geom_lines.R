@@ -104,7 +104,8 @@ geom_mean_lines <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' @rdname nflplotR-package
+#' @export
 GeomRefLines <- ggplot2::ggproto("GeomRefLines", ggplot2::Geom,
 
   optional_aes = c("v_var", "h_var"),

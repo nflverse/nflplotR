@@ -111,6 +111,8 @@ geom_nfl_logos <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' @rdname nflplotR-package
+#' @export
 GeomNFLlogo <- ggplot2::ggproto(
   "GeomNFLlogo", ggplot2::Geom,
   required_aes = c("x", "y", "team_abbr"),
@@ -124,7 +126,7 @@ GeomNFLlogo <- ggplot2::ggproto(
 
     data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
 
-    grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, teams = TRUE)
+    grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "teams")
 
     class(grobs) <- "gList"
 

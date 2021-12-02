@@ -109,6 +109,8 @@ geom_nfl_headshots <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' @rdname nflplotR-package
+#' @export
 GeomNFLheads <- ggplot2::ggproto(
   "GeomNFLheads", ggplot2::Geom,
   required_aes = c("x", "y", "player_gsis"),
@@ -120,7 +122,7 @@ GeomNFLheads <- ggplot2::ggproto(
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
 
-    grobs <- lapply(seq_along(data$player_gsis), build_grobs, alpha = data$alpha, colour = data$colour, data = data, teams = FALSE)
+    grobs <- lapply(seq_along(data$player_gsis), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "headshots")
 
     class(grobs) <- "gList"
 
