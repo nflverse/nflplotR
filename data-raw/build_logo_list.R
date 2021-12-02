@@ -25,4 +25,12 @@ names(secondary_colors) <- teams_colors_logos$team_abbr
 logo_urls <- teams_colors_logos$team_logo_espn
 names(logo_urls) <- teams_colors_logos$team_abbr
 
-usethis::use_data(logo_list, primary_colors, secondary_colors, logo_urls, internal = TRUE, overwrite = TRUE)
+# Save raw logos in internal data for more speed
+wordmarks <- nflreadr::load_teams() |> dplyr::select(team_abbr, team_wordmark)
+wordmark_list <- lapply(wordmarks$team_wordmark, function(url){
+  curl::curl_fetch_memory(url)$content
+})
+
+wordmark_list <- rlang::set_names(wordmark_list, wordmarks$team_abbr)
+
+usethis::use_data(logo_list, primary_colors, secondary_colors, logo_urls, wordmark_list, internal = TRUE, overwrite = TRUE)
