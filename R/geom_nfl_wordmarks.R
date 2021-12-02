@@ -1,6 +1,6 @@
-#' ggplot2 Layer for Visualizing NFL Team Logos
+#' ggplot2 Layer for Visualizing NFL Team Wordmarks
 #'
-#' @description This geom is used to plot NFL team and conference logos instead
+#' @description This geom is used to plot NFL team wordmarks instead
 #'   of points in a ggplot. It requires x, y aesthetics as well as a valid NFL
 #'   team abbreviation. The latter can be checked with [`valid_team_names()`].
 #'
@@ -19,7 +19,7 @@
 #'   \item{`width = 1.0`}{ - The desired width of the image in `npc` (Normalised Parent Coordinates).
 #'                           The default value is set to 1.0 which is *big* but it is necessary
 #'                           because all used values are computed relative to the default.
-#'                           A typical size is `width = 0.075` (see below examples).}
+#'                           A typical size is `width = 0.1` (see below examples).}
 #'   \item{`height = 1.0`}{ - The desired height of the image in `npc` (Normalised Parent Coordinates).
 #'                            The default value is set to 1.0 which is *big* but it is necessary
 #'                            because all used values are computed relative to the default.
@@ -50,18 +50,20 @@
 #' # also set a custom fill colour for the non "A" teams
 #' df$colour <- ifelse(matches, NA, "gray")
 #'
-#' # scatterplot of all logos
+#' # scatterplot of all wordmarks
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.075) +
-#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_wordmarks(aes(team_abbr = teams), width = 0.12) +
+#'   geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5) +
+#'   scale_x_continuous(expand = expansion(add = 0.5)) +
 #'   theme_void()
 #'
 #' # apply alpha via an aesthetic from inside the dataset `df`
 #' # please note that you have to add scale_alpha_identity() to use the alpha
 #' # values in your dataset!
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
-#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_wordmarks(aes(team_abbr = teams, alpha = alpha), width = 0.12) +
+#'   geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5) +
+#'   scale_x_continuous(expand = expansion(add = 0.5)) +
 #'   scale_alpha_identity() +
 #'   theme_void()
 #'
@@ -69,38 +71,33 @@
 #' # please note that you have to add scale_alpha_identity() as well as
 #' # scale_color_identity() to use the alpha and colour values in your dataset!
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.075) +
-#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_wordmarks(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.12) +
+#'   geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5) +
+#'   scale_x_continuous(expand = expansion(add = 0.5)) +
 #'   scale_alpha_identity() +
 #'   scale_color_identity() +
 #'   theme_void()
 #'
 #' # apply alpha as constant for all logos
 #' ggplot(df, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.075, alpha = 0.6) +
-#'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   geom_nfl_wordmarks(aes(team_abbr = teams), width = 0.12, alpha = 0.6) +
+#'   geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5) +
+#'   scale_x_continuous(expand = expansion(add = 0.5)) +
 #'   theme_void()
 #'
-#' # it's also possible to plot conference logos
-#' conf <- data.frame(a = 1:2, b = 0, teams = c("AFC", "NFC"))
-#' ggplot(conf, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.3) +
-#'   geom_label(aes(label = teams), nudge_y = -0.4, alpha = 0.5) +
-#'   coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75,.75)) +
-#'   theme_void()
 #' }
-geom_nfl_logos <- function(mapping = NULL, data = NULL,
-                           stat = "identity", position = "identity",
-                           ...,
-                           na.rm = FALSE,
-                           show.legend = FALSE,
-                           inherit.aes = TRUE) {
+geom_nfl_wordmarks <- function(mapping = NULL, data = NULL,
+                               stat = "identity", position = "identity",
+                               ...,
+                               na.rm = FALSE,
+                               show.legend = FALSE,
+                               inherit.aes = TRUE) {
 
   ggplot2::layer(
     data = data,
     mapping = mapping,
     stat = stat,
-    geom = GeomNFLlogo,
+    geom = GeomNFLwordmark,
     position = position,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
@@ -113,8 +110,8 @@ geom_nfl_logos <- function(mapping = NULL, data = NULL,
 
 #' @rdname nflplotR-package
 #' @export
-GeomNFLlogo <- ggplot2::ggproto(
-  "GeomNFLlogo", ggplot2::Geom,
+GeomNFLwordmark <- ggplot2::ggproto(
+  "GeomNFLwordmark", ggplot2::Geom,
   required_aes = c("x", "y", "team_abbr"),
   # non_missing_aes = c(""),
   default_aes = ggplot2::aes(
@@ -126,7 +123,7 @@ GeomNFLlogo <- ggplot2::ggproto(
 
     data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
 
-    grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "teams")
+    grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "wordmarks")
 
     class(grobs) <- "gList"
 
