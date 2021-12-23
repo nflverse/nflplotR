@@ -14,4 +14,5 @@
 * Added the `geom_nfl_headshots()` geom that plots headshots for valid gsis IDs. (v0.0.9011)
 * Added the axis scales `scale_x_nfl_headshots()` and `scale_y_nfl_headshots()`. (v.0.0.9012)
 * Updated internal data to use the new team colors in nflfastR. (v.0.0.9013)
-* Added the `geom_nfl_wordmarks()` geom that plots NFL wordmarks using valid team abbreviations.
+* Added the `geom_nfl_wordmarks()` geom that plots NFL wordmarks using valid team abbreviations. (v.0.0.9014)
+* Added the `geom_from_path()` geom that plots images from urls, local paths and more. (v.0.0.9015)

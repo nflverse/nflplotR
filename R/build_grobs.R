@@ -1,6 +1,6 @@
 # INTERNAL HELPER THAT BUILDS THE GROBS FOR
 # GEOM LOGOS, WORDMARKS AND HEADSHOTS
-build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "wordmarks")) {
+build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "wordmarks", "path")) {
   make_null <- FALSE
   type <- rlang::arg_match(type)
   if(type == "teams") {
@@ -11,6 +11,8 @@ build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "
     team_abbr <- data$team_abbr[i]
     image_to_read <- wordmark_list[[team_abbr]]
     if (is.na(team_abbr)) make_null <- TRUE
+  } else if (type == "path"){
+    image_to_read <- data$path[i]
   } else {
     gsis <- data$player_gsis[i]
     headshot_map <- load_headshots()
