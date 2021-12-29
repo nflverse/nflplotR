@@ -41,7 +41,7 @@ theme_x_nfl <- function(){
   if (!is_installed("ggtext")) {
     cli::cli_abort(c(
       "Package {.val ggtext} required to create this scale.",
-      'Please install it with {.var install.packages("gridtext")}'
+      'Please install it with {.var install.packages("ggtext")}'
     ))
   }
   loadNamespace("gridtext", versionCheck = list(op = ">=", version = "0.1.4"))
@@ -54,7 +54,7 @@ theme_y_nfl <- function(){
   if (!is_installed("ggtext")) {
     cli::cli_abort(c(
       "Package {.val ggtext} required to create this scale.",
-      'Please install it with {.var install.packages("gridtext")}'
+      'Please install it with {.var install.packages("ggtext")}'
     ))
   }
   loadNamespace("gridtext", versionCheck = list(op = ">=", version = "0.1.4"))
