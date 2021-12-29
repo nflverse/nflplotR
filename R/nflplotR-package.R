@@ -5,7 +5,8 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @importFrom ggplot2 element_grob
+#' @import grid
 #' @importFrom magrittr %>%
-#' @importFrom rlang .data
+#' @importFrom rlang .data %||%
 ## usethis namespace: end
 NULL

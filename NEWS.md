@@ -16,3 +16,5 @@
 * Updated internal data to use the new team colors in nflfastR. (v.0.0.9013)
 * Added the `geom_nfl_wordmarks()` geom that plots NFL wordmarks using valid team abbreviations. (v.0.0.9014)
 * Added the `geom_from_path()` geom that plots images from urls, local paths and more. (v.0.0.9015)
+* Added the ggplot2 theme-elements `element_nfl_logo()`, `element_nfl_wordmark()`,
+`element_nfl_headshot()`, and `element_path()` which translate NFL team abbreviations or player IDs into team logos and player headshots. These elements feature a major speed improvement over the axis scales `scale_x_nfl_headshots()` and `scale_y_nfl_headshots()` and make the package less dependent on an underlying package. (v.0.0.0.9016)
