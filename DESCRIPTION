@@ -20,6 +20,7 @@ Imports:
     rlang (>= 0.4.11),
     scales (>= 1.1.0)
 Suggests: 
+    covr,
     dplyr (>= 1.0.0),
     ggtext (>= 0.1.1),
     gridtext (>= 0.1.4),
