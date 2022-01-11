@@ -14,13 +14,13 @@ test_that("logo element works", {
   p1 <- ggplot(df, aes(x = teams, y = random_value)) +
     geom_col(width = 0.01) +
     theme_void() +
-    theme(axis.text.x = element_nfl_logo(colour = "b/w"))
+    theme(axis.text.x = element_nfl_logo())
 
   # use logos for y-axis
   p2 <- ggplot(df, aes(y = teams, x = random_value)) +
     geom_col(width = 0.01) +
     theme_void() +
-    theme(axis.text.y = element_nfl_logo(colour = "b/w"))
+    theme(axis.text.y = element_nfl_logo())
 
   vdiffr::expect_doppelganger("p1", p1)
   vdiffr::expect_doppelganger("p2", p2)

@@ -45,9 +45,8 @@ test_that("logo geom works", {
     scale_color_identity() +
     theme_void()
 
-  # use "b/w" color
   p3 <- ggplot(df_c, aes(x = a, y = b)) +
-    geom_nfl_logos(aes(team_abbr = teams), width = 0.04, colour = "b/w") +
+    geom_nfl_logos(aes(team_abbr = teams), width = 0.04) +
     geom_label(aes(label = teams), nudge_y = -0.4, alpha = 0.5) +
     theme_void()
 
