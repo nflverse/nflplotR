@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' data-engine-version='2.0' width='720.00pt' height='576.00pt' viewBox='0 0 720.00 576.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: #FFFFFF;'/>
+<defs>
+  <clipPath id='cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA='>
+    <rect x='0.00' y='0.00' width='720.00' height='576.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.12; stroke: #1E1E1E; fill: #1E1E1E;' />
+</g>
+<defs>
+  <clipPath id='cpODYuODJ8NzE0LjI3fDM5Ljg1fDU2Ny40MQ=='>
+    <rect x='86.82' y='39.85' width='627.45' height='527.56' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpODYuODJ8NzE0LjI3fDM5Ljg1fDU2Ny40MQ==)'>
+<rect x='86.82' y='39.85' width='627.45' height='527.56' style='stroke-width: 1.12; stroke: #1E1E1E; fill: #1E1E1E;' />
+<line x1='86.82' y1='49.99' x2='714.27' y2='49.99' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='86.82' y1='151.45' x2='714.27' y2='151.45' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='86.82' y1='354.35' x2='714.27' y2='354.35' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='86.82' y1='557.26' x2='714.27' y2='557.26' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
+<text x='219.05' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>ARI</text>
+<text x='115.34' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.25px' lengthAdjust='spacingAndGlyphs'>ATL</text>
+<text x='270.91' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.87px' lengthAdjust='spacingAndGlyphs'>BAL</text>
+<text x='115.34' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>BUF</text>
+<text x='374.62' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.32px' lengthAdjust='spacingAndGlyphs'>CAR</text>
+<text x='374.62' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>CHI</text>
+<text x='219.05' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>CIN</text>
+<text x='167.20' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>CLE</text>
+<text x='115.34' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>DAL</text>
+<text x='219.05' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.32px' lengthAdjust='spacingAndGlyphs'>DEN</text>
+<text x='115.34' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>DET</text>
+<text x='530.18' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.96px' lengthAdjust='spacingAndGlyphs'>GB</text>
+<text x='270.91' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='24.54px' lengthAdjust='spacingAndGlyphs'>HOU</text>
+<text x='322.76' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>IND</text>
+<text x='426.47' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.26px' lengthAdjust='spacingAndGlyphs'>JAX</text>
+<text x='167.20' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.34px' lengthAdjust='spacingAndGlyphs'>KC</text>
+<text x='270.91' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='13.51px' lengthAdjust='spacingAndGlyphs'>LA</text>
+<text x='633.90' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>LAC</text>
+<text x='167.20' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='13.51px' lengthAdjust='spacingAndGlyphs'>LV</text>
+<text x='426.47' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.63px' lengthAdjust='spacingAndGlyphs'>MIA</text>
+<text x='426.47' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.24px' lengthAdjust='spacingAndGlyphs'>MIN</text>
+<text x='478.33' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.34px' lengthAdjust='spacingAndGlyphs'>NE</text>
+<text x='167.20' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='16.57px' lengthAdjust='spacingAndGlyphs'>NO</text>
+<text x='322.76' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.93px' lengthAdjust='spacingAndGlyphs'>NYG</text>
+<text x='478.33' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.86px' lengthAdjust='spacingAndGlyphs'>NYJ</text>
+<text x='685.75' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>PHI</text>
+<text x='219.05' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='17.18px' lengthAdjust='spacingAndGlyphs'>PIT</text>
+<text x='167.20' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.10px' lengthAdjust='spacingAndGlyphs'>SEA</text>
+<text x='582.04' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='14.11px' lengthAdjust='spacingAndGlyphs'>SF</text>
+<text x='322.76' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='14.11px' lengthAdjust='spacingAndGlyphs'>TB</text>
+<text x='115.34' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>TEN</text>
+<text x='374.62' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='25.15px' lengthAdjust='spacingAndGlyphs'>WAS</text>
+</g>
+<g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
+<text x='81.66' y='408.56' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='75.94px' lengthAdjust='spacingAndGlyphs'>A Combined Tier</text>
+<text x='81.66' y='205.66' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='48.39px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
+<text x='81.66' y='104.20' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='51.76px' lengthAdjust='spacingAndGlyphs'>Super Bowl</text>
+<text x='5.73' y='31.73' style='font-size: 11.50px; fill: #8E8E93; font-family: sans;' textLength='184.73px' lengthAdjust='spacingAndGlyphs'>created with the #nflplotR Tiermaker</text>
+<text x='5.73' y='15.23' style='font-size: 13.80px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='222.44px' lengthAdjust='spacingAndGlyphs'>NFL Team Tiers, 2021 as of Week 4</text>
+</g>
+</svg>
