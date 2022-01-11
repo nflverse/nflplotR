@@ -6,11 +6,10 @@ test_that("geom from path works", {
 
   # create x-y-coordinates of a pentagon and add nflverse logo urls
   df <- data.frame(
-    a = sin(2 * pi * (0:1) / 5),
-    b = cos(2 * pi * (0:1) / 5),
+    a = sin(2 * pi * (0) / 5),
+    b = cos(2 * pi * (0) / 5),
     url = c(
-      "https://github.com/nflverse/nflseedR/raw/master/man/figures/logo.png",
-      "https://github.com/nflverse/nflreadr/raw/main/data-raw/logo.svg"
+      "https://github.com/nflverse/nflseedR/raw/master/man/figures/logo.png"
     )
   )
 
