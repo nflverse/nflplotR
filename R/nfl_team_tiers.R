@@ -126,7 +126,7 @@ nfl_team_tiers <- function(data,
       dplyr::ungroup()
   }
 
-  data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
+  data$team_abbr <- nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = FALSE)
 
   p <- ggplot2::ggplot(data, ggplot2::aes(y = .data$tier_no, x = .data$tier_rank)) +
     ggplot2::geom_hline(yintercept = tierlines, color = lines)
