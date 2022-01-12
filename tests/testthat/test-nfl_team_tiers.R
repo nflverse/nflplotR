@@ -5,7 +5,7 @@ test_that("team tiers work", {
   # remove conference logos from this example
   teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
 
-  set.seed(20220105)
+  set.seed(32)
 
   # Build the team tiers data frame
   # This is completely random!
@@ -14,7 +14,8 @@ test_that("team tiers work", {
     team_abbr = teams
   ) %>%
     dplyr::group_by(tier_no) %>%
-    dplyr::mutate(tier_rank = sample(1:n(), n()))
+    dplyr::mutate(tier_rank = sample(1:n(), n())) %>%
+    dplyr::ungroup()
 
   # Check dev mode only because logos are tested elsewhere
   p1 <- nfl_team_tiers(df,
