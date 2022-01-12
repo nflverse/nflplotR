@@ -83,6 +83,7 @@ build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "
 }
 
 reader_function <- function(img){
+  if(is.factor(img)) img <- as.character(img)
   if(is.raw(img) || tools::file_ext(img) != "svg"){
     magick::image_read(img)
   } else if(tools::file_ext(img) == "svg"){
