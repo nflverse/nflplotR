@@ -61,15 +61,15 @@ This function sets up a ggplot to visualize NFL team tiers.
 \donttest{
 library(ggplot2)
 library(dplyr, warn.conflicts = FALSE)
-team_abbr <- valid_team_names()
+teams <- valid_team_names()
 # remove conference logos from this example
-team_abbr <- team_abbr[!team_abbr \%in\% c("AFC", "NFC", "NFL")]
+teams <- teams[!teams \%in\% c("AFC", "NFC", "NFL")]
 
 # Build the team tiers data frame
 # This is completely random!
 df <- data.frame(
-  tier_no = sample(1:5, length(team_abbr), replace = TRUE),
-  team_abbr = team_abbr
+  tier_no = sample(1:5, length(teams), replace = TRUE),
+  team_abbr = teams
 ) \%>\%
   dplyr::group_by(tier_no) \%>\%
   dplyr::mutate(tier_rank = sample(1:n(), n()))

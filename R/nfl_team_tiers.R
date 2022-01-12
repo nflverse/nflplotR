@@ -35,15 +35,15 @@
 #' \donttest{
 #' library(ggplot2)
 #' library(dplyr, warn.conflicts = FALSE)
-#' team_abbr <- valid_team_names()
+#' teams <- valid_team_names()
 #' # remove conference logos from this example
-#' team_abbr <- team_abbr[!team_abbr %in% c("AFC", "NFC", "NFL")]
+#' teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
 #'
 #' # Build the team tiers data frame
 #' # This is completely random!
 #' df <- data.frame(
-#'   tier_no = sample(1:5, length(team_abbr), replace = TRUE),
-#'   team_abbr = team_abbr
+#'   tier_no = sample(1:5, length(teams), replace = TRUE),
+#'   team_abbr = teams
 #' ) %>%
 #'   dplyr::group_by(tier_no) %>%
 #'   dplyr::mutate(tier_rank = sample(1:n(), n()))
@@ -126,7 +126,7 @@ nfl_team_tiers <- function(data,
       dplyr::ungroup()
   }
 
-  data$team_abbr <- nflreadr::clean_team_abbrs(data$team_abbr, keep_non_matches = FALSE)
+  data$team_abbr <- nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = FALSE)
 
   p <- ggplot2::ggplot(data, ggplot2::aes(y = .data$tier_no, x = .data$tier_rank)) +
     ggplot2::geom_hline(yintercept = tierlines, color = lines)
