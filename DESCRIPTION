@@ -27,6 +27,7 @@ Suggests:
     knitr,
     rmarkdown,
     rstudioapi (>= 0.13),
+    rsvg (>= 2.0),
     sjmisc (>= 2.8.7),
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2)
