@@ -26,7 +26,7 @@ options(nflreadr.cache_warning = FALSE)
 options(warn = -1)
 ```
 
-## Preface
+# Preface
 
 Working with publicly available NFL data often results in a desire to visualize the findings of one's analyses (often in [ggplot2](https://ggplot2.tidyverse.org)) and then publish these visualizations. In team-level analyses, it appears that such visualizations are more aesthetically pleasing when their logos are used instead of team abbreviations. Another way to visually distinguish teams is to use their primary or secondary team colors.
 
@@ -34,7 +34,7 @@ Working with publicly available NFL data often results in a desire to visualize 
 
 Long story short: the only thing that is required to use NFL team logos or team colors in a ggplot is a variable in the plot data that holds official NFL team abbreviations.
 
-## Install the Package
+# Install the Package
 
 nflplotR is a normal R package but since it is still quite new, you can't download it from CRAN yet. The plan is to release the package on CRAN and the code base is ready for it, however it depends on another package that needs to be updated on CRAN first. Until then, you can install nflplotR from GitHub with
 
@@ -51,7 +51,7 @@ install.packages("nflplotR")
 #>  package ‘nflplotR’ is not available for this version of R
 ```
 
-## Typical Use Cases 
+# Typical Use Cases 
 
 Let's look at some typical use cases for nflplotR using NFL play-by-play data. In a first step we load all necessary packages.
 
@@ -94,67 +94,7 @@ qbs <- pbp %>%
   dplyr::slice_max(qb_epa, n = 10)
 ```
 
-### Logos as Axis Labels
-
-Let's start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.
-
-```{r}
-ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
-  ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
-  nflplotR::scale_color_nfl(type = "secondary") +
-  nflplotR::scale_fill_nfl(alpha = 0.4) +
-  nflplotR::scale_x_nfl() +
-  ggplot2::labs(
-    title = "2020 NFL Offensive EPA per Play",
-    y = "Offense EPA/play"
-  ) +
-  ggplot2::theme_minimal() +
-  ggplot2::theme(
-    plot.title = ggplot2::element_text(face = "bold"),
-    plot.title.position = "plot",
-    # it's obvious what the x-axis is so we remove the title
-    axis.title.x = ggplot2::element_blank()
-  ) +
-  # this line triggers the download of the logos and calls a ggplot theme internally
-  # so it must be placed after a theme definition
-  nflplotR::theme_x_nfl()
-```
-
-Some notes:
-
-* color and fill allow primary or secondary team colors
-* the axis labels are replaced with the logos in two steps: 
-  - first step is to call `scale_x_nfl()` which replaces the team names with logo urls internally and 
-  - second step is to call `theme_x_nfl()` which triggers the actual download of the logos. 
-* the team logos are provided by ESPN and it appears that one or more of them are using incorrect sRGB profiles which triggers a warning in the `png` package. It's safe to ignore this.
-
-It is important to note that the call of `theme_x_nfl()` must be placed after a call to a global ggplot theme like `ggplot2::theme_minimal()` because they replace all current theme options.
-  
-We can do the same thing for the y-axis (now with defensive EPA per play)
-
-```{r}
-ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
-  ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
-  nflplotR::scale_color_nfl(type = "secondary") +
-  nflplotR::scale_fill_nfl(alpha = 0.4) +
-  nflplotR::scale_y_nfl() +
-  ggplot2::labs(
-    title = "2020 NFL Defensive EPA per Play",
-    x = "Defense EPA/play"
-  ) +
-  ggplot2::theme_minimal() +
-  ggplot2::theme(
-    plot.title = ggplot2::element_text(face = "bold"),
-    plot.title.position = "plot",
-    # it's obvious what the y-axis is so we remove the title
-    axis.title.y = ggplot2::element_blank(),
-  ) +
-  # this line triggers the download of the logos and calls a ggplot theme internally
-  # so it must be placed after a theme definition
-  nflplotR::theme_y_nfl()
-```
-
-### Logos in Scatter Plots
+## Logos in Scatter Plots
 
 Offensive and Defensive EPA per Play are typically used for NFL team tiers. Let's create this scatter plot and play around with the capabilities of the logo geom.
 
@@ -217,7 +157,58 @@ Please note the usage of the special color character `"b/w"` which sets the colo
 
 **This is just a small overview and it is recommended to check the examples provided for each function.**
 
-### Player Headshots as Axis Labels
+## Logos as Axis Labels
+
+Let's start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.
+
+```{r}
+ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
+  ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
+  nflplotR::scale_color_nfl(type = "secondary") +
+  nflplotR::scale_fill_nfl(alpha = 0.4) +
+  ggplot2::labs(
+    title = "2020 NFL Offensive EPA per Play",
+    y = "Offense EPA/play"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold"),
+    plot.title.position = "plot",
+    # it's obvious what the x-axis is so we remove the title
+    axis.title.x = ggplot2::element_blank(),
+    # this line triggers the replacement of team abbreviations with logos
+    axis.text.x = element_nfl_logo()
+  )
+```
+
+Some notes:
+
+* color and fill allow primary or secondary team colors
+* the axis labels are replaced with the logos by setting `axis.text.x = element_nfl_logo()` in the ggplot2 theme call. 
+  
+We can do the same thing for the y-axis (now with defensive EPA per play). Let's make them less intrusive by changing the color to black and white
+
+```{r}
+ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
+  ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
+  nflplotR::scale_color_nfl(type = "secondary") +
+  nflplotR::scale_fill_nfl(alpha = 0.4) +
+  ggplot2::labs(
+    title = "2020 NFL Defensive EPA per Play",
+    x = "Defense EPA/play"
+  ) +
+  ggplot2::theme_minimal() +
+  ggplot2::theme(
+    plot.title = ggplot2::element_text(face = "bold"),
+    plot.title.position = "plot",
+    # it's obvious what the y-axis is so we remove the title
+    axis.title.y = ggplot2::element_blank(),
+    # this line triggers the replacement of team abbreviations with logos
+    axis.text.y = element_nfl_logo(color = "b/w")
+  )
+```
+
+## Player Headshots as Axis Labels
 
 Similar to the usage of team logos as axis labels, we can also use player headshots. The only requirement is a valid NFL gsis ID as used in the nflfastR play-by-play data.
 
@@ -226,7 +217,6 @@ ggplot2::ggplot(qbs, aes(x = reorder(id, -qb_epa), y = qb_epa)) +
   ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
   nflplotR::scale_color_nfl(type = "secondary") +
   nflplotR::scale_fill_nfl(alpha = 0.4) +
-  nflplotR::scale_x_nfl_headshots() +
   ggplot2::labs(
     title = "2020 NFL Quarterback EPA per Play",
     y = "EPA/play"
@@ -236,14 +226,13 @@ ggplot2::ggplot(qbs, aes(x = reorder(id, -qb_epa), y = qb_epa)) +
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
     # it's obvious what the x-axis is so we remove the title
-    axis.title.x = ggplot2::element_blank()
-  ) +
-  # this line triggers the download of the headshot images and calls a ggplot 
-  # theme internally so it must be placed after a theme definition
-  nflplotR::theme_x_nfl()
+    axis.title.x = ggplot2::element_blank(),
+    # this line triggers the replacement of gsis ids with player headshots
+    axis.text.x = element_nfl_headshot(size = 1)
+  )
 ```
 
-### Player Headshots in Scatter Plots
+## Player Headshots in Scatter Plots
 
 We can do the above example alternatively by putting the player image on top of the columns and use team logos as axis labels instead.
 
@@ -271,10 +260,10 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
   nflplotR::theme_x_nfl()
 ```
 
-## How about speed in the RStudio preview pane?
+# How about speed in the RStudio preview pane?
 
 If you are used to preview your plots in RStudio you will probably get a bit impatient if a lot of logos have to be added to a plot because the rendering can take a few seconds. This is what the nflplotR function `ggpreview()` is built for. It saves the plot in a temporary png file and previews it (in it's actual dimensions). Please see the function documentation for further information.
 
-## I Want this for College Football!
+# I Want this for College Football!
 
 Fortunately, nflplotR was adapted for college football and released under the name [cfbplotR](https://Kazink36.github.io/cfbplotR/). 
