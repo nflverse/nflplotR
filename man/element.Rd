@@ -47,15 +47,15 @@ element_path(
 \item{alpha}{The alpha channel, i.e. transparency level, as a numerical value
 between 0 and 1.}
 
-\item{colour, color}{The image will be colorized with this colour. Use the
+\item{colour, color}{The image will be colorized with this color. Use the
 special character \code{"b/w"} to set it to black and white. For more information
-on valid colour names in ggplot2 see
+on valid color names in ggplot2 see
 \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.}
 
 \item{hjust, vjust}{The horizontal and vertical adjustment respectively.
 Must be a numerical value between 0 and 1.}
 
-\item{size}{The ouput grob size in \code{cm} (!).}
+\item{size}{The output grob size in \code{cm} (!).}
 }
 \value{
 An S3 object of class \code{element}.

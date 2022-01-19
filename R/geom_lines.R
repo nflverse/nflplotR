@@ -7,14 +7,14 @@
 #' @inheritParams ggplot2::geom_hline
 #' @param inherit.aes If `FALSE`, overrides the default aesthetics,
 #'   rather than combining with them. This is most useful for helper functions
-#'   that define both data and aesthetics and shouldn't inherit behaviour from
+#'   that define both data and aesthetics and shouldn't inherit behavior from
 #'   the default plot specification.
 #' @section Aesthetics:
 #' `geom_median_lines()` and `geom_mean_lines()` understand the following
 #' aesthetics (at least one of the bold aesthetics is required):
 #' \itemize{
 #'   \item{**v_var**}{ - The variable for which to compute the median/mean that is drawn as vertical line.}
-#'   \item{**h_var**}{ - TThe variable for which to compute the median/mean that is drawn as horizontal line.}
+#'   \item{**h_var**}{ - The variable for which to compute the median/mean that is drawn as horizontal line.}
 #'   \item{`alpha = NA`}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 #'   \item{`color = "red"`}{ - The color of the drawn lines.}
 #'   \item{`linetype = 2`}{ - The linetype of the drawn lines.}
