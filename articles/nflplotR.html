@@ -48,7 +48,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="active nav-item">
   <a class="nav-link" href="../articles/nflplotR.html">Get started</a>
@@ -99,6 +99,9 @@
     
   </div>
 </nav><div class="container template-article">
+
+
+
 <script src="nflplotR_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Get Started with nflplotR</h1>
@@ -170,70 +173,10 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">plays</span> <span class="op">&gt;</span> <span class="fl">200</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/slice.html" class="external-link">slice_max</a></span><span class="op">(</span><span class="va">qb_epa</span>, n <span class="op">=</span> <span class="fl">10</span><span class="op">)</span></code></pre></div>
 <div class="section level3">
-<h3 id="logos-as-axis-labels">Logos as Axis Labels<a class="anchor" aria-label="anchor" href="#logos-as-axis-labels"></a>
-</h3>
-<p>Let’s start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">offense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">team</span>, y <span class="op">=</span> <span class="va">off_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_axes_nfl.html">scale_x_nfl</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"2020 NFL Offensive EPA per Play"</span>,
-    y <span class="op">=</span> <span class="st">"Offense EPA/play"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
-    plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
-    <span class="co"># it's obvious what the x-axis is so we remove the title</span>
-    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
-  <span class="co"># so it must be placed after a theme definition</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_x_nfl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="nflplotR_files/figure-html/unnamed-chunk-5-1.png" width="100%"></p>
-<p>Some notes:</p>
-<ul>
-<li>color and fill allow primary or secondary team colors</li>
-<li>the axis labels are replaced with the logos in two steps:
-<ul>
-<li>first step is to call <code><a href="../reference/scale_axes_nfl.html">scale_x_nfl()</a></code> which replaces the team names with logo urls internally and</li>
-<li>second step is to call <code><a href="../reference/theme_nfl.html">theme_x_nfl()</a></code> which triggers the actual download of the logos.</li>
-</ul>
-</li>
-<li>the team logos are provided by ESPN and it appears that one or more of them are using incorrect sRGB profiles which triggers a warning in the <code>png</code> package. It’s safe to ignore this.</li>
-</ul>
-<p>It is important to note that the call of <code><a href="../reference/theme_nfl.html">theme_x_nfl()</a></code> must be placed after a call to a global ggplot theme like <code><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">ggplot2::theme_minimal()</a></code> because they replace all current theme options.</p>
-<p>We can do the same thing for the y-axis (now with defensive EPA per play)</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">defense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">team</span>, x <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_axes_nfl.html">scale_y_nfl</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
-    title <span class="op">=</span> <span class="st">"2020 NFL Defensive EPA per Play"</span>,
-    x <span class="op">=</span> <span class="st">"Defense EPA/play"</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
-    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
-    plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
-    <span class="co"># it's obvious what the y-axis is so we remove the title</span>
-    axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="co"># this line triggers the download of the logos and calls a ggplot theme internally</span>
-  <span class="co"># so it must be placed after a theme definition</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_y_nfl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="nflplotR_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
-</div>
-<div class="section level3">
 <h3 id="logos-in-scatter-plots">Logos in Scatter Plots<a class="anchor" aria-label="anchor" href="#logos-in-scatter-plots"></a>
 </h3>
 <p>Offensive and Defensive EPA per Play are typically used for NFL team tiers. Let’s create this scatter plot and play around with the capabilities of the logo geom.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">combined</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">off_epa</span>, y <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_abline</a></span><span class="op">(</span>slope <span class="op">=</span> <span class="op">-</span><span class="fl">1.5</span>, intercept <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0.4</span>, <span class="op">-</span><span class="fl">0.3</span>, <span class="op">-</span><span class="fl">0.1</span><span class="op">)</span>, alpha <span class="op">=</span> <span class="fl">.2</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/geom_lines.html">geom_mean_lines</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>v_var <span class="op">=</span> <span class="va">off_epa</span> , h_var <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
@@ -250,7 +193,7 @@
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="nflplotR_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
+<p><img src="nflplotR_files/figure-html/unnamed-chunk-5-1.png" width="100%"></p>
 <p>There is a lot going on here:</p>
 <ul>
 <li>we add mean lines for both x-axis and y-axis in a single line,</li>
@@ -258,7 +201,7 @@
 <li>we add an alpha channel to the team logos (which can also be done inside an aesthetic which means it can differ for each team).</li>
 </ul>
 <p>What if we would like to highlight just a few teams? Well, there are multiple ways to do this. Either set the alpha channel for the irrelevant teams lower or give them a color (or do both). Wait…a color? Yes, it is possible to overwrite the color of logos but keep their shape! Let’s do this in the next example. We would like to highlight the NFC East Teams for no specific reason…</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">nfc_east</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"DAL"</span>, <span class="st">"NYG"</span>, <span class="st">"PHI"</span>, <span class="st">"WAS"</span><span class="op">)</span>
 
 <span class="va">combined</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -284,9 +227,58 @@
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>
   <span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_reverse</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<p><img src="nflplotR_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
+<p><img src="nflplotR_files/figure-html/unnamed-chunk-6-1.png" width="100%"></p>
 <p>Please note the usage of the special color character <code>"b/w"</code> which sets the colors to black and white and that we have to add <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_alpha_identity()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/scale_identity.html" class="external-link">ggplot2::scale_color_identity()</a></code> to our plot in case we are using alphas or colors as aesthetics because we want to use the actual alpha and color values in our data set and not some random defaults!</p>
 <p><strong>This is just a small overview and it is recommended to check the examples provided for each function.</strong></p>
+</div>
+<div class="section level3">
+<h3 id="logos-as-axis-labels">Logos as Axis Labels<a class="anchor" aria-label="anchor" href="#logos-as-axis-labels"></a>
+</h3>
+<p>Let’s start with the offense and build a bar chart using logos as axis labels and team colors as bar colors.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">offense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">team</span>, y <span class="op">=</span> <span class="va">off_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"2020 NFL Offensive EPA per Play"</span>,
+    y <span class="op">=</span> <span class="st">"Offense EPA/play"</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+    plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
+    <span class="co"># it's obvious what the x-axis is so we remove the title</span>
+    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    <span class="co"># this line triggers the replacement of team abbreviations with logos</span>
+    axis.text.x <span class="op">=</span> <span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p><img src="nflplotR_files/figure-html/unnamed-chunk-7-1.png" width="100%"></p>
+<p>Some notes:</p>
+<ul>
+<li>color and fill allow primary or secondary team colors</li>
+<li>the axis labels are replaced with the logos by setting <code>axis.text.x = element_nfl_logo()</code> in the ggplot2 theme call.</li>
+</ul>
+<p>We can do the same thing for the y-axis (now with defensive EPA per play). Let’s make them less intrusive by changing the color to black and white</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="va">defense</span>, <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>y <span class="op">=</span> <span class="va">team</span>, x <span class="op">=</span> <span class="va">def_epa</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
+    title <span class="op">=</span> <span class="st">"2020 NFL Defensive EPA per Play"</span>,
+    x <span class="op">=</span> <span class="st">"Defense EPA/play"</span>
+  <span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html" class="external-link">theme_minimal</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html" class="external-link">theme</a></span><span class="op">(</span>
+    plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
+    plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
+    <span class="co"># it's obvious what the y-axis is so we remove the title</span>
+    axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    <span class="co"># this line triggers the replacement of team abbreviations with logos</span>
+    axis.text.y <span class="op">=</span> <span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"b/w"</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
+<p><img src="nflplotR_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 </div>
 <div class="section level3">
 <h3 id="player-headshots-as-axis-labels">Player Headshots as Axis Labels<a class="anchor" aria-label="anchor" href="#player-headshots-as-axis-labels"></a>
@@ -297,7 +289,6 @@
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_bar.html" class="external-link">geom_col</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span>color <span class="op">=</span> <span class="va">team</span>, fill <span class="op">=</span> <span class="va">team</span><span class="op">)</span>, width <span class="op">=</span> <span class="fl">0.5</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_color_nfl</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"secondary"</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_nfl.html">scale_fill_nfl</a></span><span class="op">(</span>alpha <span class="op">=</span> <span class="fl">0.4</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/scale_axes_nfl.html">scale_x_nfl_headshots</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span>
   <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html" class="external-link">labs</a></span><span class="op">(</span>
     title <span class="op">=</span> <span class="st">"2020 NFL Quarterback EPA per Play"</span>,
     y <span class="op">=</span> <span class="st">"EPA/play"</span>
@@ -307,11 +298,10 @@
     plot.title <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>face <span class="op">=</span> <span class="st">"bold"</span><span class="op">)</span>,
     plot.title.position <span class="op">=</span> <span class="st">"plot"</span>,
     <span class="co"># it's obvious what the x-axis is so we remove the title</span>
-    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>
-  <span class="op">)</span> <span class="op">+</span>
-  <span class="co"># this line triggers the download of the headshot images and calls a ggplot </span>
-  <span class="co"># theme internally so it must be placed after a theme definition</span>
-  <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/theme_nfl.html">theme_x_nfl</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,
+    <span class="co"># this line triggers the replacement of gsis ids with player headshots</span>
+    axis.text.x <span class="op">=</span> <span class="fu"><a href="../reference/element.html">element_nfl_headshot</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>
+  <span class="op">)</span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 </div>
 <div class="section level3">
@@ -366,7 +356,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.1.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>
