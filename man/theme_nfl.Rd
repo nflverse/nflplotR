@@ -34,14 +34,16 @@ df <- data.frame(
   random_value = runif(length(team_abbr), 0, 1),
   teams = team_abbr
 )
-
-ggplot(df, aes(x = teams, y = random_value)) +
-  geom_col(aes(color = teams, fill = teams), width = 0.5) +
-  scale_color_nfl(type = "secondary") +
-  scale_fill_nfl(alpha = 0.4) +
-  scale_x_nfl() +
-  theme_minimal() +
-  theme_x_nfl()
+if (utils::packageVersion("gridtext") > "0.1.4"){
+  ggplot(df, aes(x = teams, y = random_value)) +
+    geom_col(aes(color = teams, fill = teams), width = 0.5) +
+    scale_color_nfl(type = "secondary") +
+    scale_fill_nfl(alpha = 0.4) +
+    scale_x_nfl() +
+    theme_minimal() +
+    # theme_*_nfl requires gridtext version > 0.1.4
+    theme_x_nfl()
+}
 }
 }
 \seealso{

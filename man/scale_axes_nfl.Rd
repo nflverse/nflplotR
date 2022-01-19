@@ -119,7 +119,8 @@ html and places the html as axis labels. Because of the way ggplots are
 constructed, it is necessary to adjust the \code{\link[=theme]{theme()}} after calling this
 scale. This can be done by calling \code{\link[=theme_x_nfl]{theme_x_nfl()}} or \code{\link[=theme_y_nfl]{theme_y_nfl()}}
 or alternatively by manually changing the relevant \code{axis.text} to
-\code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}.
+\code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}. However, this will only work if an underlying
+dependency, "gridtext", is installed with a newer version than 0.1.4
 }
 \examples{
 \donttest{
@@ -135,24 +136,27 @@ df <- data.frame(
   teams = team_abbr
 )
 
-# use logos for x-axis
-ggplot(df, aes(x = teams, y = random_value)) +
-  geom_col(aes(color = teams, fill = teams), width = 0.5) +
-  scale_color_nfl(type = "secondary") +
-  scale_fill_nfl(alpha = 0.4) +
-  scale_x_nfl() +
-  theme_minimal() +
-  theme_x_nfl()
+if (utils::packageVersion("gridtext") > "0.1.4"){
+  # use logos for x-axis
+  ggplot(df, aes(x = teams, y = random_value)) +
+    geom_col(aes(color = teams, fill = teams), width = 0.5) +
+    scale_color_nfl(type = "secondary") +
+    scale_fill_nfl(alpha = 0.4) +
+    scale_x_nfl() +
+    theme_minimal() +
+    # theme_*_nfl requires gridtext version > 0.1.4
+    theme_x_nfl()
 
-# use logos for y-axis
-ggplot(df, aes(y = teams, x = random_value)) +
-  geom_col(aes(color = teams, fill = teams), width = 0.5) +
-  scale_color_nfl(type = "secondary") +
-  scale_fill_nfl(alpha = 0.4) +
-  scale_y_nfl() +
-  theme_minimal() +
-  theme_y_nfl()
-
+  # use logos for y-axis
+  ggplot(df, aes(y = teams, x = random_value)) +
+    geom_col(aes(color = teams, fill = teams), width = 0.5) +
+    scale_color_nfl(type = "secondary") +
+    scale_fill_nfl(alpha = 0.4) +
+    scale_y_nfl() +
+    theme_minimal() +
+    # theme_*_nfl requires gridtext version > 0.1.4
+    theme_y_nfl()
+}
 #############################################################################
 # Headshot Examples
 #############################################################################
@@ -175,20 +179,23 @@ dfh <- data.frame(
                   "00-0031280")
 )
 
-# use headshots for x-axis
-ggplot(dfh, aes(x = player_gsis, y = random_value)) +
-  geom_col(width = 0.5) +
-  scale_x_nfl_headshots() +
-  theme_minimal() +
-  theme_x_nfl()
+if (utils::packageVersion("gridtext") > "0.1.4"){
+  # use headshots for x-axis
+  ggplot(dfh, aes(x = player_gsis, y = random_value)) +
+    geom_col(width = 0.5) +
+    scale_x_nfl_headshots() +
+    theme_minimal() +
+    # theme_*_nfl requires gridtext version > 0.1.4
+    theme_x_nfl()
 
-# use headshots for y-axis
-ggplot(dfh, aes(y = player_gsis, x = random_value)) +
-  geom_col(width = 0.5) +
-  scale_y_nfl_headshots() +
-  theme_minimal() +
-  theme_y_nfl()
-
+  # use headshots for y-axis
+  ggplot(dfh, aes(y = player_gsis, x = random_value)) +
+    geom_col(width = 0.5) +
+    scale_y_nfl_headshots() +
+    theme_minimal() +
+    # theme_*_nfl requires gridtext version > 0.1.4
+    theme_y_nfl()
+}
 # Restore old options
 options(old)
 }
