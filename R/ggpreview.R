@@ -8,6 +8,7 @@
 #' @param asp The aspect ratio of the plot calculated as `width / height`. If
 #'   this is a numeric value (and not `NULL`) the `height` of the plot will be
 #'   recalculated to `height = width / asp`.
+#' @return No return value, called for side effects.
 #' @export
 #' @examples
 #' library(nflplotR)

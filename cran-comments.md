@@ -1,3 +1,7 @@
+## Re-Submission
+
+This is a re-submission that adds the return value to the documentation of all exported functions per review request.
+
 ## Test environments
 
 * GitHub Actions (ubuntu-16.04): devel, release, oldrel, 3.5

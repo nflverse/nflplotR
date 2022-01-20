@@ -9,6 +9,9 @@ theme_x_nfl()
 
 theme_y_nfl()
 }
+\value{
+A ggplot2 theme created with \code{\link[ggplot2:theme]{ggplot2::theme()}}.
+}
 \description{
 These functions are convenience wrappers around a theme call
 that activates markdown in x-axis and y-axis labels

@@ -10,6 +10,7 @@
 #'   [`scale_y_nfl()`] respectively.
 #' @name theme_nfl
 #' @aliases NULL
+#' @return A ggplot2 theme created with [ggplot2::theme()].
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
 #' \donttest{

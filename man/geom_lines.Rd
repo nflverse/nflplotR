@@ -60,6 +60,10 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behavior from
 the default plot specification.}
 }
+\value{
+A ggplot2 layer (\code{\link[ggplot2:layer]{ggplot2::layer()}}) that can be added to a plot
+created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 These geoms can be used to draw horizontal or vertical reference
 lines in a ggplot. They use the data in the aesthetics \code{v_var} and \code{h_var}

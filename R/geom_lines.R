@@ -22,6 +22,8 @@
 #' }
 #' @seealso The underlying ggplot2 geoms [`geom_hline()`] and [`geom_vline()`]
 #' @name geom_lines
+#' @return A ggplot2 layer ([ggplot2::layer()]) that can be added to a plot
+#'   created with [ggplot2::ggplot()].
 #' @aliases NULL
 #' @examples
 #' library(nflplotR)

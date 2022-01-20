@@ -53,6 +53,9 @@ from the plot theme.}
 \item{...}{Other arguments passed on to the graphics device function,
 as specified by \code{device}.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This function previews a ggplot in its actual dimensions in order to see how
 it will look when saved. It is also significantly faster than the default

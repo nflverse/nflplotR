@@ -4,6 +4,7 @@
 #' abbreviations will exclude duplicates related to franchises that have been
 #' moved
 #' @export
+#' @return A vector of type `"character"`.
 #' @examples
 #' # List valid team abbreviations excluding duplicates
 #' valid_team_names()

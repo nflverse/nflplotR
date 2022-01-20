@@ -54,6 +54,9 @@ logos will be rendered on each run. If \code{TRUE} the team abbreviations will b
 plotted instead of the logos. This is much faster and helps with the plot
 development.}
 }
+\value{
+A plot object created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 This function sets up a ggplot to visualize NFL team tiers.
 }

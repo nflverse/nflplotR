@@ -128,6 +128,8 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #' @param size The logo size in pixels. It is applied as height for an x-scale
 #'   and as width for an y-scale.
 #' @name scale_axes_nfl
+#' @return A discrete ggplot2 scale created with [ggplot2::scale_x_discrete()] or
+#'   [ggplot2::scale_y_discrete()].
 #' @aliases NULL
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples

@@ -109,6 +109,10 @@ expand the scale by 5\% on each side for continuous variables, and by
 \item{size}{The logo size in pixels. It is applied as height for an x-scale
 and as width for an y-scale.}
 }
+\value{
+A discrete ggplot2 scale created with \code{\link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete()}} or
+\code{\link[ggplot2:scale_discrete]{ggplot2::scale_y_discrete()}}.
+}
 \description{
 These functions map NFL team names to their team logos and make
 them available as axis labels
