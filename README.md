@@ -4,8 +4,9 @@
 # nflplotR <a href='https://nflplotr.nflverse.com'><img src='man/figures/logo.png' align="right" width="25%" min-width="120px" /></a>
 
 <!-- badges: start -->
-<!-- [![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR) -->
 
+[![CRAN
+status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
