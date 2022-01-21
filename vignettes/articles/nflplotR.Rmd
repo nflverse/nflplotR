@@ -242,7 +242,6 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
   nflplotR::geom_nfl_headshots(aes(player_gsis = id), width = 0.075, vjust = 0.45) +
   nflplotR::scale_color_nfl(type = "secondary") +
   nflplotR::scale_fill_nfl(alpha = 0.4) +
-  nflplotR::scale_x_nfl() +
   ggplot2::labs(
     title = "2020 NFL Quarterback EPA per Play",
     y = "EPA/play"
@@ -253,11 +252,10 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
     # it's obvious what the x-axis is so we remove the title
-    axis.title.x = ggplot2::element_blank()
-  ) +
-  # this line triggers the download of the logo images and calls a ggplot 
-  # theme internally so it must be placed after a theme definition
-  nflplotR::theme_x_nfl()
+    axis.title.x = ggplot2::element_blank(),
+    # this line triggers the replacement of team abbreviations with logos
+    axis.text.x = element_nfl_logo()
+  )
 ```
 
 # How about speed in the RStudio preview pane?
