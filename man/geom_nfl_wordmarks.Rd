@@ -60,6 +60,10 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 }
+\value{
+A ggplot2 layer (\code{\link[ggplot2:layer]{ggplot2::layer()}}) that can be added to a plot
+created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
+}
 \description{
 This geom is used to plot NFL team wordmarks instead
 of points in a ggplot. It requires x, y aesthetics as well as a valid NFL

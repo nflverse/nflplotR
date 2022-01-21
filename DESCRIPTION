@@ -1,6 +1,6 @@
 Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2'
-Version: 0.0.0.9017
+Version: 1.0.0
 Authors@R: 
     person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = c("aut", "cre"))
 Description: A set of functions to visualize National Football League
@@ -31,8 +31,6 @@ Suggests:
     sjmisc (>= 2.8.7),
     testthat (>= 3.0.0),
     vdiffr (>= 1.0.2)
-VignetteBuilder: 
-    knitr
 Config/testthat/edition: 3
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)

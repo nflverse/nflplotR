@@ -11,6 +11,9 @@ valid_team_names(exclude_duplicates = TRUE)
 abbreviations will exclude duplicates related to franchises that have been
 moved}
 }
+\value{
+A vector of type \code{"character"}.
+}
 \description{
 Output Valid NFL Team Abbreviations
 }

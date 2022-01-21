@@ -9,3 +9,5 @@
 ^docs$
 ^pkgdown$
 ^codecov\.yml$
+^vignettes/articles$
+^CRAN-SUBMISSION$

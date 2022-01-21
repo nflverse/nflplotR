@@ -4,9 +4,8 @@
 # nflplotR <a href='https://nflplotr.nflverse.com'><img src='man/figures/logo.png' align="right" width="25%" min-width="120px" /></a>
 
 <!-- badges: start -->
+<!-- [![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR) -->
 
-[![CRAN
-status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build
@@ -24,17 +23,16 @@ correct aspect ratio and possible transparency.
 
 ## Installation
 
-<!-- You can install the released version of nflplotR from [CRAN](https://CRAN.R-project.org) with: -->
-<!-- ``` r -->
-<!-- install.packages("nflplotR") -->
-<!-- ``` -->
-<!-- And the development version from [GitHub](https://github.com/) with: -->
-<!-- ``` r -->
-<!-- # install.packages("devtools") -->
-<!-- devtools::install_github("nflverse/nflplotR") -->
-<!-- ``` -->
+The easiest way to get nflplotR is to install it from
+[CRAN](https://CRAN.R-project.org) with:
 
-You can install `nflplotR` with
+``` r
+install.packages("nflplotR")
+```
+
+To get a bug fix or to use a feature from the development version, you
+can install the development version of nflplotR from
+[GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ``` r
 if (!require("remotes")) install.packages("remotes")

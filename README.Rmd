@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 # nflplotR <a href='https://nflplotr.nflverse.com'><img src='man/figures/logo.png' align="right" width="25%" min-width="120px" /></a>
 
 <!-- badges: start -->
-[![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
+<!-- [![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR) -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html)
 [![R build status](https://img.shields.io/github/workflow/status/nflverse/nflplotR/R-CMD-check?label=R%20check&style=flat-square&logo=github)](https://github.com/nflverse/nflplotR/actions)
 [![nflverse support](https://img.shields.io/discord/789805604076126219?color=7289da&label=nflverse%20support&logo=discord&logoColor=fff&style=flat-square)](https://discord.com/invite/5Er2FBnnQa)
@@ -27,19 +27,13 @@ The goal of nflplotR is to provide functions and geoms that help visualization o
 
 ## Installation
 
-<!-- You can install the released version of nflplotR from [CRAN](https://CRAN.R-project.org) with: -->
+The easiest way to get nflplotR is to install it from [CRAN](https://CRAN.R-project.org) with:
 
-<!-- ``` r -->
-<!-- install.packages("nflplotR") -->
-<!-- ``` -->
+``` r
+install.packages("nflplotR")
+```
 
-<!-- And the development version from [GitHub](https://github.com/) with: -->
-
-<!-- ``` r -->
-<!-- # install.packages("devtools") -->
-<!-- devtools::install_github("nflverse/nflplotR") -->
-<!-- ``` -->
-You can install `nflplotR` with 
+To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR from [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ``` r
 if (!require("remotes")) install.packages("remotes")

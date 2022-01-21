@@ -53,6 +53,9 @@ from the plot theme.}
 \item{...}{Other arguments passed on to the graphics device function,
 as specified by \code{device}.}
 }
+\value{
+No return value, called for side effects.
+}
 \description{
 This function previews a ggplot in its actual dimensions in order to see how
 it will look when saved. It is also significantly faster than the default
@@ -77,9 +80,8 @@ p <- ggplot(df, aes(x = teams, y = random_value)) +
   geom_col(aes(color = teams, fill = teams), width = 0.5) +
   scale_color_nfl(type = "secondary") +
   scale_fill_nfl(alpha = 0.4) +
-  scale_x_nfl() +
   theme_minimal() +
-  theme_x_nfl()
+  theme(axis.text.x = element_nfl_logo())
 
 # preview p with defined width and aspect ratio (only available in RStudio)
 if (rstudioapi::isAvailable()){
