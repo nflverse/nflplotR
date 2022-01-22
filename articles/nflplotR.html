@@ -124,15 +124,13 @@
 <div class="section level2">
 <h2 id="install-the-package">Install the Package<a class="anchor" aria-label="anchor" href="#install-the-package"></a>
 </h2>
-<p>nflplotR is a normal R package but since it is still quite new, you can’t download it from CRAN yet. The plan is to release the package on CRAN and the code base is ready for it, however it depends on another package that needs to be updated on CRAN first. Until then, you can install nflplotR from GitHub with</p>
+<p>The easiest way to get nflplotR is to install it from <a href="https://cran.r-project.org/package=nflplotR" class="external-link">CRAN</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nflplotR"</span><span class="op">)</span></code></pre></div>
+<p>To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR from <a href="https://github.com/nflverse/nflplotR/" class="external-link">GitHub</a> with:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st"><a href="https://remotes.r-lib.org" class="external-link">"remotes"</a></span><span class="op">)</span><span class="op">)</span> <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"remotes"</span><span class="op">)</span>
 <span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"nflverse/nflplotR"</span><span class="op">)</span></code></pre></div>
-<p>Trying to install nflplotR from CRAN using <code><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages()</a></code> results in an uninformative and rather confusing error message (see below) suggesting that you need to update R which is not the case!</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"nflplotR"</span><span class="op">)</span>
-<span class="co">#&gt;Warning in install.packages :</span>
-<span class="co">#&gt;  package ‘nflplotR’ is not available for this version of R</span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="typical-use-cases">Typical Use Cases<a class="anchor" aria-label="anchor" href="#typical-use-cases"></a>
