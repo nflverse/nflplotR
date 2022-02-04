@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Updated the internal logo files with the new Washington Commanders logo. The Commanders wordmark hasn't been added because the NFL hasn't updated it yet. (v1.0.0.9000)
+
 # nflplotR 1.0.0
 
 * Added the `geom_nfl_logos()` geom.
