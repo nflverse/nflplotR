@@ -1,4 +1,4 @@
-# nflplotR (development version)
+# nflplotR 1.0.0
 
 * Added the `geom_nfl_logos()` geom.
 * Added the `geom_mean_lines()` and `geom_median_lines()` geoms. (v0.0.0.9002)

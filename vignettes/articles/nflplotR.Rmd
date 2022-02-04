@@ -36,19 +36,17 @@ Long story short: the only thing that is required to use NFL team logos or team 
 
 # Install the Package
 
-nflplotR is a normal R package but since it is still quite new, you can't download it from CRAN yet. The plan is to release the package on CRAN and the code base is ready for it, however it depends on another package that needs to be updated on CRAN first. Until then, you can install nflplotR from GitHub with
+The easiest way to get nflplotR is to install it from [CRAN](https://cran.r-project.org/package=nflplotR) with:
+
+```{r, eval=FALSE}
+install.packages("nflplotR")
+```
+
+To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR from [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ```{r, eval=FALSE}
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("nflverse/nflplotR")
-```
-
-Trying to install nflplotR from CRAN using `install.packages()` results in an uninformative and rather confusing error message (see below) suggesting that you need to update R which is not the case!
-
-```{r, eval=FALSE}
-install.packages("nflplotR")
-#>Warning in install.packages :
-#>  package ‘nflplotR’ is not available for this version of R
 ```
 
 # Typical Use Cases 
@@ -242,7 +240,6 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
   nflplotR::geom_nfl_headshots(aes(player_gsis = id), width = 0.075, vjust = 0.45) +
   nflplotR::scale_color_nfl(type = "secondary") +
   nflplotR::scale_fill_nfl(alpha = 0.4) +
-  nflplotR::scale_x_nfl() +
   ggplot2::labs(
     title = "2020 NFL Quarterback EPA per Play",
     y = "EPA/play"
@@ -253,11 +250,10 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
     # it's obvious what the x-axis is so we remove the title
-    axis.title.x = ggplot2::element_blank()
-  ) +
-  # this line triggers the download of the logo images and calls a ggplot 
-  # theme internally so it must be placed after a theme definition
-  nflplotR::theme_x_nfl()
+    axis.title.x = ggplot2::element_blank(),
+    # this line triggers the replacement of team abbreviations with logos
+    axis.text.x = element_nfl_logo()
+  )
 ```
 
 # How about speed in the RStudio preview pane?

@@ -27,6 +27,8 @@
 #' @param ... Other arguments passed on to [ggplot2::layer()]. These are
 #'   often aesthetics, used to set an aesthetic to a fixed value. See the below
 #'   section "Aesthetics" for a full list of possible arguments.
+#' @return A ggplot2 layer ([ggplot2::layer()]) that can be added to a plot
+#'   created with [ggplot2::ggplot()].
 #' @export
 #' @examples
 #' \donttest{

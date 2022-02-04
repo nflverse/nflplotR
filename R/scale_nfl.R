@@ -122,11 +122,14 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'   constructed, it is necessary to adjust the [`theme()`] after calling this
 #'   scale. This can be done by calling [`theme_x_nfl()`] or [`theme_y_nfl()`]
 #'   or alternatively by manually changing the relevant `axis.text` to
-#'   [`ggtext::element_markdown()`].
+#'   [`ggtext::element_markdown()`]. However, this will only work if an underlying
+#'   dependency, "gridtext", is installed with a newer version than 0.1.4
 #' @inheritParams ggplot2::scale_x_discrete
 #' @param size The logo size in pixels. It is applied as height for an x-scale
 #'   and as width for an y-scale.
 #' @name scale_axes_nfl
+#' @return A discrete ggplot2 scale created with [ggplot2::scale_x_discrete()] or
+#'   [ggplot2::scale_y_discrete()].
 #' @aliases NULL
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
@@ -143,24 +146,27 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'   teams = team_abbr
 #' )
 #'
-#' # use logos for x-axis
-#' ggplot(df, aes(x = teams, y = random_value)) +
-#'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
-#'   scale_color_nfl(type = "secondary") +
-#'   scale_fill_nfl(alpha = 0.4) +
-#'   scale_x_nfl() +
-#'   theme_minimal() +
-#'   theme_x_nfl()
+#' if (utils::packageVersion("gridtext") > "0.1.4"){
+#'   # use logos for x-axis
+#'   ggplot(df, aes(x = teams, y = random_value)) +
+#'     geom_col(aes(color = teams, fill = teams), width = 0.5) +
+#'     scale_color_nfl(type = "secondary") +
+#'     scale_fill_nfl(alpha = 0.4) +
+#'     scale_x_nfl() +
+#'     theme_minimal() +
+#'     # theme_*_nfl requires gridtext version > 0.1.4
+#'     theme_x_nfl()
 #'
-#' # use logos for y-axis
-#' ggplot(df, aes(y = teams, x = random_value)) +
-#'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
-#'   scale_color_nfl(type = "secondary") +
-#'   scale_fill_nfl(alpha = 0.4) +
-#'   scale_y_nfl() +
-#'   theme_minimal() +
-#'   theme_y_nfl()
-#'
+#'   # use logos for y-axis
+#'   ggplot(df, aes(y = teams, x = random_value)) +
+#'     geom_col(aes(color = teams, fill = teams), width = 0.5) +
+#'     scale_color_nfl(type = "secondary") +
+#'     scale_fill_nfl(alpha = 0.4) +
+#'     scale_y_nfl() +
+#'     theme_minimal() +
+#'     # theme_*_nfl requires gridtext version > 0.1.4
+#'     theme_y_nfl()
+#'}
 #' #############################################################################
 #' # Headshot Examples
 #' #############################################################################
@@ -183,20 +189,23 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #'                   "00-0031280")
 #' )
 #'
-#' # use headshots for x-axis
-#' ggplot(dfh, aes(x = player_gsis, y = random_value)) +
-#'   geom_col(width = 0.5) +
-#'   scale_x_nfl_headshots() +
-#'   theme_minimal() +
-#'   theme_x_nfl()
+#' if (utils::packageVersion("gridtext") > "0.1.4"){
+#'   # use headshots for x-axis
+#'   ggplot(dfh, aes(x = player_gsis, y = random_value)) +
+#'     geom_col(width = 0.5) +
+#'     scale_x_nfl_headshots() +
+#'     theme_minimal() +
+#'     # theme_*_nfl requires gridtext version > 0.1.4
+#'     theme_x_nfl()
 #'
-#' # use headshots for y-axis
-#' ggplot(dfh, aes(y = player_gsis, x = random_value)) +
-#'   geom_col(width = 0.5) +
-#'   scale_y_nfl_headshots() +
-#'   theme_minimal() +
-#'   theme_y_nfl()
-#'
+#'   # use headshots for y-axis
+#'   ggplot(dfh, aes(y = player_gsis, x = random_value)) +
+#'     geom_col(width = 0.5) +
+#'     scale_y_nfl_headshots() +
+#'     theme_minimal() +
+#'     # theme_*_nfl requires gridtext version > 0.1.4
+#'     theme_y_nfl()
+#'}
 #' # Restore old options
 #' options(old)
 #' }

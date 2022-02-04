@@ -31,6 +31,7 @@
 #'   logos will be rendered on each run. If `TRUE` the team abbreviations will be
 #'   plotted instead of the logos. This is much faster and helps with the plot
 #'   development.
+#' @return A plot object created with [ggplot2::ggplot()].
 #' @examples
 #' \donttest{
 #' library(ggplot2)

@@ -8,6 +8,7 @@
 #' @param asp The aspect ratio of the plot calculated as `width / height`. If
 #'   this is a numeric value (and not `NULL`) the `height` of the plot will be
 #'   recalculated to `height = width / asp`.
+#' @return No return value, called for side effects.
 #' @export
 #' @examples
 #' library(nflplotR)
@@ -28,9 +29,8 @@
 #'   geom_col(aes(color = teams, fill = teams), width = 0.5) +
 #'   scale_color_nfl(type = "secondary") +
 #'   scale_fill_nfl(alpha = 0.4) +
-#'   scale_x_nfl() +
 #'   theme_minimal() +
-#'   theme_x_nfl()
+#'   theme(axis.text.x = element_nfl_logo())
 #'
 #' # preview p with defined width and aspect ratio (only available in RStudio)
 #' if (rstudioapi::isAvailable()){

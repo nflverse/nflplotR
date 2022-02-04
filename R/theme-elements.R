@@ -13,13 +13,13 @@
 #'   into logo images or player headshots, respectively.
 #' @param alpha The alpha channel, i.e. transparency level, as a numerical value
 #'   between 0 and 1.
-#' @param colour,color The image will be colorized with this colour. Use the
+#' @param colour,color The image will be colorized with this color. Use the
 #'   special character `"b/w"` to set it to black and white. For more information
-#'   on valid colour names in ggplot2 see
+#'   on valid color names in ggplot2 see
 #'   <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>.
 #' @param hjust,vjust The horizontal and vertical adjustment respectively.
 #'   Must be a numerical value between 0 and 1.
-#' @param size The ouput grob size in `cm` (!).
+#' @param size The output grob size in `cm` (!).
 #' @seealso [geom_nfl_logos()], [geom_nfl_headshots()], [geom_nfl_wordmarks()],
 #'   and [geom_from_path()] for more information on valid team abbreviations,
 #'   player IDs, and other parameters.
