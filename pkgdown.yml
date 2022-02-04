@@ -3,7 +3,7 @@ pkgdown: 2.0.2
 pkgdown_sha: ~
 articles:
   nflplotR: nflplotR.html
-last_built: 2022-01-22T10:39Z
+last_built: 2022-02-04T10:40Z
 urls:
   reference: https://nflplotr.nflverse.com/reference
   article: https://nflplotr.nflverse.com/articles
