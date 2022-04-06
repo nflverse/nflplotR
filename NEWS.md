@@ -2,6 +2,7 @@
 
 * Updated the internal logo files with the new Washington Commanders logo. The Commanders wordmark hasn't been added because the NFL hasn't updated it yet. (v1.0.0.9000)
 * Fixed some issues with `theme-elements` and updated examples. (v1.0.0.9001)
+* Updated Commanders wordmark. (v1.0.0.9002)
 
 # nflplotR 1.0.0
 
