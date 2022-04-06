@@ -147,15 +147,14 @@ options(old)
 
 library(ggplot2)
 
-df <- mtcars |>
-  dplyr::mutate(
-    team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
-    player = sample(
-    c("00-0033873", "00-0035228", "00-0036355", "00-0019596"),
-    nrow(mtcars),
-    TRUE
-    )
+df <- dplyr::mutate(mtcars,
+  team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
+  player = sample(
+  c("00-0033873", "00-0035228", "00-0036355", "00-0019596"),
+  nrow(mtcars),
+  TRUE
   )
+)
 
 ggplot(df, aes(x = mpg, y = disp)) +
   geom_point() +
