@@ -42,11 +42,17 @@ The easiest way to get nflplotR is to install it from [CRAN](https://cran.r-proj
 install.packages("nflplotR")
 ```
 
-To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR from [GitHub](https://github.com/nflverse/nflplotR/) with:
+To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR either from [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ```{r, eval=FALSE}
 if (!require("remotes")) install.packages("remotes")
 remotes::install_github("nflverse/nflplotR")
+```
+
+or prebuilt from the [development repo](https://nflverse.r-universe.dev) with:
+
+```{r eval = FALSE}
+install.packages("nflplotR", repos = "https://nflverse.r-universe.dev")
 ```
 
 # Typical Use Cases 
