@@ -130,20 +130,57 @@ dfh <- data.frame(
 ggplot(dfh, aes(x = player_gsis, y = random_value)) +
   geom_col(width = 0.5) +
   theme_minimal() +
-  theme(axis.text.x = element_nfl_headshot())
+  theme(axis.text.x = element_nfl_headshot(size = 1))
 
 # use headshots for y-axis
 ggplot(dfh, aes(y = player_gsis, x = random_value)) +
   geom_col(width = 0.5) +
   theme_minimal() +
-  theme(axis.text.y = element_nfl_headshot())
+  theme(axis.text.y = element_nfl_headshot(size = 1))
 
 # Restore old options
 options(old)
+
+#############################################################################
+# Wordmarks and other Images
+#############################################################################
+
+library(ggplot2)
+
+df <- mtcars |>
+  dplyr::mutate(
+    team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
+    player = sample(
+    c("00-0033873", "00-0035228", "00-0036355", "00-0019596"),
+    nrow(mtcars),
+    TRUE
+    )
+  )
+
+ggplot(df, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(vars(team)) +
+  labs(
+    title = tools::toTitleCase("These are random teams and data"),
+    subtitle = "I just want to show how the nflplotR theme elements work",
+    caption = "https://github.com/nflverse/nflseedR/raw/master/man/figures/caption.png"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = element_text(face = "bold"),
+    axis.title = element_blank(),
+    # make wordmarks of team abbreviations
+    strip.text = element_nfl_wordmark(size = 1),
+    # load image from url in caption
+    plot.caption = element_path(hjust = 1, size = 0.4)
+  )
 }
 }
 \seealso{
 \code{\link[=geom_nfl_logos]{geom_nfl_logos()}}, \code{\link[=geom_nfl_headshots]{geom_nfl_headshots()}}, \code{\link[=geom_nfl_wordmarks]{geom_nfl_wordmarks()}},
 and \code{\link[=geom_from_path]{geom_from_path()}} for more information on valid team abbreviations,
 player IDs, and other parameters.
+
+The examples on \url{https://nflplotr.nflverse.com/articles/nflplotR.html}
 }

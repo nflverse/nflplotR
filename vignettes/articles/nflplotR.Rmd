@@ -175,7 +175,7 @@ ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.x = element_nfl_logo()
+    axis.text.x = element_nfl_logo(size = 1)
   )
 ```
 
@@ -202,7 +202,7 @@ ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
     # it's obvious what the y-axis is so we remove the title
     axis.title.y = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.y = element_nfl_logo(color = "b/w")
+    axis.text.y = element_nfl_logo(color = "b/w", size = 1)
   )
 ```
 
@@ -252,7 +252,110 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.x = element_nfl_logo()
+    axis.text.x = element_nfl_logo(size = 1)
+  )
+```
+
+# Let's Play with Wordmarks and Other Images
+
+The `theme_elements` presented above are more powerful than it seems at first sight. We can replace text with NFL logos, NFL wordmarks, NFL player headshots at every position, where ggplot can put text!
+And we can do the same with literally every image url on the internet.
+
+To show this, we create a dataframe of example data and add some nfl team abbreviations and player gsis ids. 
+
+```{r}
+df <- mtcars |> 
+  dplyr::mutate(
+    team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
+    player = sample(c("00-0033873", "00-0035228", "00-0036355", "00-0019596"), nrow(mtcars), TRUE)
+  )
+```
+
+Now we plot some of the data and facet by the team abbreviations.
+
+```{r}
+ggplot(df, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(vars(team)) +
+  labs(
+    title = tools::toTitleCase("These are random teams and data"),
+    subtitle = "I just want to show how the nflplotR theme elements work",
+    caption = "https://github.com/nflverse/nflseedR/raw/master/man/figures/caption.png"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = ggplot2::element_text(face = "bold"),
+    axis.title = element_blank()
+  )
+```
+
+There are valid team names in the facet titles and there is an image url in the caption. nflplotR can make images of these with two simple lines in the `theme()` call.
+
+```{r}
+ggplot(df, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(vars(team)) +
+  labs(
+    title = tools::toTitleCase("These are random teams and data"),
+    subtitle = "I just want to show how the nflplotR theme elements work",
+    caption = "https://github.com/nflverse/nflseedR/raw/master/man/figures/caption.png"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = ggplot2::element_text(face = "bold"),
+    axis.title = element_blank(),
+    # make wordmarks of team abbreviations
+    strip.text = element_nfl_wordmark(size = 1),
+    # load image from url in caption
+    plot.caption = element_path(hjust = 1, size = 0.4)
+  )
+```
+
+If you want logos instead of wordmarks...
+
+```{r}
+ggplot(df, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(vars(team)) +
+  labs(
+    title = tools::toTitleCase("These are random teams and data"),
+    subtitle = "I just want to show how the nflplotR theme elements work",
+    caption = "https://github.com/nflverse/nflseedR/raw/master/man/figures/caption.png"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = ggplot2::element_text(face = "bold"),
+    axis.title = element_blank(),
+    # make wordmarks of team abbreviations
+    strip.text = element_nfl_logo(size = 1),
+    # load image from url in caption
+    plot.caption = element_path(hjust = 1, size = 0.4)
+  )
+```
+
+Or maybe facet by player and use headshots...
+
+```{r}
+ggplot(df, aes(x = mpg, y = disp)) +
+  geom_point() +
+  facet_wrap(vars(player)) +
+  labs(
+    title = tools::toTitleCase("These are random players and data"),
+    subtitle = "I just want to show how the nflplotR theme elements work",
+    caption = "https://github.com/nflverse/nflseedR/raw/master/man/figures/caption.png"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title.position = "plot",
+    plot.title = ggplot2::element_text(face = "bold"),
+    axis.title = element_blank(),
+    # make wordmarks of team abbreviations
+    strip.text = element_nfl_headshot(size = 1),
+    # load image from url in caption
+    plot.caption = element_path(hjust = 1, size = 0.4)
   )
 ```
 
