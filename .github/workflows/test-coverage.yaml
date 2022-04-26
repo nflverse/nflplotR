@@ -11,6 +11,7 @@ name: test-coverage
 jobs:
   test-coverage:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 

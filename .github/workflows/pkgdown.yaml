@@ -11,6 +11,7 @@ name: pkgdown
 jobs:
   pkgdown:
     runs-on: macOS-latest
+    timeout-minutes: 20
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
