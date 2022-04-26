@@ -48,3 +48,24 @@ is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 load_headshots <- function() nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/src/headshot_gsis_map.rds")
 
 na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
+
+#' Clear nflplotR Cache
+#'
+#' This function clears the memoised cache of all functions memoised by `nflplotR`.
+#'
+#' @export
+#' @return Invisibly `NULL`
+#' @examples
+#' .clear_cache()
+.clear_cache <- function(){
+
+  functions <- list(
+    reader_function
+  )
+
+  lapply(functions, memoise::forget)
+
+  cli::cli_alert_success("nflplotR cache cleared!")
+
+  invisible(NULL)
+}

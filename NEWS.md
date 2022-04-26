@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* nflplotR will internally cache images used in all geoms and elements. The cache behavior can be controlled by setting `options("nflplotR.cache")` to one of `"memory"`, `"filesystem"`, or `"off"`. It is possible to clear the cache with the new function `.clear_cache()`. This functionality added the dependencies cachem, memoise and rappdirs.
+
 # nflplotR 1.0.1
 
 * Updated the internal logo and wordmark files with the new Washington Commanders design. 

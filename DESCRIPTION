@@ -1,6 +1,6 @@
 Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2'
-Version: 1.0.1
+Version: 1.0.1.9000
 Authors@R: 
     person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = c("aut", "cre"))
 Description: A set of functions to visualize National Football League
@@ -11,12 +11,15 @@ BugReports: https://github.com/nflverse/nflplotR/issues
 Depends: 
     R (>= 3.5.0)
 Imports: 
+    cachem (>= 1.0.0),
     cli (>= 3.0.0),
     ggplot2 (>= 3.3.0),
     grid,
     magick (>= 2.7.3),
     magrittr (>= 2.0.0),
+    memoise (>= 2.0.0),
     nflreadr (>= 1.1.2),
+    rappdirs (>= 0.3.0),
     rlang (>= 0.4.11),
     scales (>= 1.1.0)
 Suggests: 

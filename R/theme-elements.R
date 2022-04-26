@@ -357,7 +357,7 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
   if (is.na(make_null)){
     return(grid::nullGrob())
   } else if (is.null(alpha[i])) {
-    img <- magick::image_read(image_to_read)
+    img <- reader_function(image_to_read)
     col <- colour[i]
     if (!is.null(col) && col %in% "b/w"){
       new <- magick::image_quantize(img, colorspace = 'gray')
@@ -370,7 +370,7 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
     if (as.numeric(alpha) <= 0 || as.numeric(alpha) >= 1) {
       cli::cli_abort("aesthetic {.var alpha} requires a value between {.val 0} and {.val 1}")
     }
-    img <- magick::image_read(image_to_read)
+    img <- reader_function(image_to_read)
     new <- magick::image_fx(img, expression = paste0(alpha, "*a"), channel = "alpha")
     col <- colour[i]
     if (!is.null(col) && col %in% "b/w"){
@@ -384,7 +384,7 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
     if (any(as.numeric(alpha) < 0) || any(as.numeric(alpha) > 1)) {
       cli::cli_abort("aesthetics {.var alpha} require values between {.val 0} and {.val 1}")
     }
-    img <- magick::image_read(image_to_read)
+    img <- reader_function(image_to_read)
     new <- magick::image_fx(img, expression = paste0(alpha[i], "*a"), channel = "alpha")
     col <- colour[i]
     if (!is.null(col) && col %in% "b/w"){
