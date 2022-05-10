@@ -114,6 +114,21 @@ GeomRefLines <- ggplot2::ggproto("GeomRefLines", ggplot2::Geom,
 
   default_aes = ggplot2::aes(colour = "red", size = 0.5, linetype = 2, alpha = NA),
 
+  setup_data = function(data, params){
+    # This step is important for transformations. ggplot2 transforms aesthetics
+    # that are included in the ggplot2 environments ggplot_global$x_aes and
+    # ggplot_global$y_aes. We can't modify that environment so we need to
+    # modify our data here.
+    # That's why this step overwrites v_var and h_var with x and y. These
+    # x and y are already transformed if any kind of transformation is required,
+    # e.g. trans = "reverse". Without transformation, x/v_var and y/h_var are
+    # identical.
+    vars <- names(data)
+    if ("v_var" %in% vars) data$v_var <- data$x
+    if ("h_var" %in% vars) data$h_var <- data$y
+    data
+  },
+
   draw_panel = function(data, panel_params, coord, ref_function, na.rm = FALSE) {
     args <- names(data)
 
