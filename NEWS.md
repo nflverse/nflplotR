@@ -1,6 +1,7 @@
 # nflplotR (development version)
 
 * nflplotR will internally cache images used in all geoms and elements. The cache behavior can be controlled by setting `options("nflplotR.cache")` to one of `"memory"`, `"filesystem"`, or `"off"`. It is possible to clear the cache with the new function `.clear_cache()`. This functionality added the dependencies cachem, memoise and rappdirs.
+* Resolved an issue where `geom_mean_lines()` and `geom_median_lines()` didn't draw lines when a scale transformation, e.g. `scale_*_reverse()`, was applied. (v1.0.1.9001)
 
 # nflplotR 1.0.1
 
