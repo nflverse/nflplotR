@@ -35,7 +35,7 @@ GeomNFLlogo
 GeomNFLwordmark
 }
 \description{
-\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
 A set of functions to visualize National Football League analysis in 'ggplot2'.
 }
