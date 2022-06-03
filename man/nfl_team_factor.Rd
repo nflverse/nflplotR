@@ -40,6 +40,7 @@ nfl_team_factor(teams, rev(team_abbr))
 ######### HOW TO USE IN PRACTICE #########
 
 library(ggplot2)
+library(magrittr)
 # load some sample data from the ggplot2 package
 plot_data <- mpg
 # add a new column by randomly sampling the above defined teams vector
