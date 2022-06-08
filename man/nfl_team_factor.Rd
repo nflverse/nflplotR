@@ -11,9 +11,9 @@ nfl_team_factor(teams, ...)
 \code{\link[=valid_team_names]{valid_team_names()}}. The function tries to clean team names internally
 by calling \code{\link[nflreadr:clean_team_abbrs]{nflreadr::clean_team_abbrs()}}.}
 
-\item{...}{One or more unqouted column names of \code{\link[nflreadr:load_teams]{nflreadr::load_teams()}}
+\item{...}{One or more unquoted column names of \code{\link[nflreadr:load_teams]{nflreadr::load_teams()}}
 to sort by. If empty, the function will sort by division and nick name in
-ascending order. This is intended to be used for facetted plots where team
+ascending order. This is intended to be used for faceted plots where team
 wordmarks are used in strip texts, i.e. \code{element_nfl_wordmark()}.
 See examples for more details.}
 }
@@ -31,7 +31,7 @@ teams <- c("LAC", "LV", "CLE", "BAL", "DEN", "PIT", "CIN", "KC")
 # defaults to sort by division and nick name in ascending order
 nfl_team_factor(teams)
 
-# can sort by every column in nflreadr::clean_team_abbrs()
+# can sort by every column in nflreadr::load_teams()
 nfl_team_factor(teams, team_abbr)
 
 # descending order by using base::rev()

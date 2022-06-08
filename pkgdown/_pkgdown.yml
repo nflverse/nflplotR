@@ -63,3 +63,41 @@ template:
       creator: "@mrcaseb"
       site: "@nflfastR"
       card: summary_large_image
+
+reference:
+
+- title: Geoms
+  desc: >
+    ggplot2 geoms (geometric objects) that create a `layer()`. A layer combines data,
+    aesthetic mapping, a geom (geometric object), a stat (statistical transformation),
+    and a position adjustment.
+  contents:
+  - starts_with("geom_")
+
+- title: Theme Elements
+  desc: >
+    Themes control the display of all non-data elements of the plot. Theme elements
+    can tweak individual settings inside `theme()`.
+  contents:
+  - starts_with("element")
+  - starts_with("theme")
+
+- title: Scales
+  desc: >
+    Scales control the details of how data values are translated to visual
+    properties. Override the default scales to tweak details like the axis
+    labels or legend keys, or to use a completely different translation from
+    data to aesthetic.
+  contents:
+  - starts_with("scale")
+
+- title: Utilities
+  desc: >
+    Various helper functions.
+  contents:
+  - ggpreview
+  - nfl_team_factor
+  - nfl_team_tiers
+  - valid_team_names
+  - .clear_cache
+

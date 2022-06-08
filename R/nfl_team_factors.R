@@ -3,9 +3,9 @@
 #' @param teams A vector of NFL team abbreviations that should be included in
 #'   [`valid_team_names()`]. The function tries to clean team names internally
 #'   by calling [`nflreadr::clean_team_abbrs()`].
-#' @param ... One or more unqouted column names of [`nflreadr::load_teams()`]
+#' @param ... One or more unquoted column names of [`nflreadr::load_teams()`]
 #'   to sort by. If empty, the function will sort by division and nick name in
-#'   ascending order. This is intended to be used for facetted plots where team
+#'   ascending order. This is intended to be used for faceted plots where team
 #'   wordmarks are used in strip texts, i.e. `element_nfl_wordmark()`.
 #'   See examples for more details.
 #'
@@ -19,7 +19,7 @@
 #' # defaults to sort by division and nick name in ascending order
 #' nfl_team_factor(teams)
 #'
-#' # can sort by every column in nflreadr::clean_team_abbrs()
+#' # can sort by every column in nflreadr::load_teams()
 #' nfl_team_factor(teams, team_abbr)
 #'
 #' # descending order by using base::rev()
