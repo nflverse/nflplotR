@@ -88,9 +88,9 @@ by calling <code><a href="https://nflreadr.nflverse.com/reference/clean_team_abb
 
 
 <dt>...</dt>
-<dd><p>One or more unqouted column names of <code><a href="https://nflreadr.nflverse.com/reference/load_teams.html" class="external-link">nflreadr::load_teams()</a></code>
+<dd><p>One or more unquoted column names of <code><a href="https://nflreadr.nflverse.com/reference/load_teams.html" class="external-link">nflreadr::load_teams()</a></code>
 to sort by. If empty, the function will sort by division and nick name in
-ascending order. This is intended to be used for facetted plots where team
+ascending order. This is intended to be used for faceted plots where team
 wordmarks are used in strip texts, i.e. <code><a href="element.html">element_nfl_wordmark()</a></code>.
 See examples for more details.</p></dd>
 
@@ -115,7 +115,7 @@ See examples for more details.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] LAC LV  CLE BAL DEN PIT CIN KC </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: CIN &lt; CLE &lt; BAL &lt; PIT &lt; DEN &lt; LAC &lt; KC &lt; LV</span>
 <span class="r-in"></span>
-<span class="r-in"><span class="co"># can sort by every column in nflreadr::clean_team_abbrs()</span></span>
+<span class="r-in"><span class="co"># can sort by every column in nflreadr::load_teams()</span></span>
 <span class="r-in"><span class="fu">nfl_team_factor</span><span class="op">(</span><span class="va">teams</span>, <span class="va">team_abbr</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] LAC LV  CLE BAL DEN PIT CIN KC </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Levels: BAL &lt; CIN &lt; CLE &lt; DEN &lt; KC &lt; LAC &lt; LV &lt; PIT</span>
