@@ -81,9 +81,20 @@
 
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    <p></p>
-<p></p>
-    </div>
+    <dl><dt>teams</dt>
+<dd><p>A vector of NFL team abbreviations that should be included in
+<code><a href="valid_team_names.html">valid_team_names()</a></code>. The function tries to clean team names internally
+by calling <code><a href="https://nflreadr.nflverse.com/reference/clean_team_abbrs.html" class="external-link">nflreadr::clean_team_abbrs()</a></code>.</p></dd>
+
+
+<dt>...</dt>
+<dd><p>One or more unqouted column names of <code><a href="https://nflreadr.nflverse.com/reference/load_teams.html" class="external-link">nflreadr::load_teams()</a></code>
+to sort by. If empty, the function will sort by division and nick name in
+ascending order. This is intended to be used for facetted plots where team
+wordmarks are used in strip texts, i.e. <code><a href="element.html">element_nfl_wordmark()</a></code>.
+See examples for more details.</p></dd>
+
+</dl></div>
     <div class="section level2">
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
