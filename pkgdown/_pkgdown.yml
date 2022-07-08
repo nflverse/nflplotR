@@ -99,5 +99,5 @@ reference:
   - nfl_team_factor
   - nfl_team_tiers
   - valid_team_names
-  - .clear_cache
+  - .nflplotR_clear_cache
 
