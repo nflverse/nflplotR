@@ -56,8 +56,8 @@ na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_pro
 #' @export
 #' @return Invisibly `NULL`
 #' @examples
-#' .clear_cache()
-.clear_cache <- function(){
+#' .nflplotR_clear_cache()
+.nflplotR_clear_cache <- function(){
 
   functions <- list(
     reader_function
