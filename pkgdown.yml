@@ -1,9 +1,9 @@
 pandoc: 2.14.2
-pkgdown: 2.0.3.9000
-pkgdown_sha: e72848dfc7647f8d7fa2c88e4448f563f615ef31
+pkgdown: 2.0.5.9000
+pkgdown_sha: b4096aa376773d7dee98a267fd0b5a025975a3dc
 articles:
   nflplotR: nflplotR.html
-last_built: 2022-06-08T15:52Z
+last_built: 2022-07-08T18:05Z
 urls:
   reference: https://nflplotr.nflverse.com/reference
   article: https://nflplotr.nflverse.com/articles
