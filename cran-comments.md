@@ -1,14 +1,7 @@
 ## Submission
 
 This is a minor release that updates internal files and improves some functions.
-
-## Test environments
-
-* GitHub Actions (ubuntu-18.04): devel, release, oldrel, 3.5
-* GitHub Actions (windows): release, oldrel
-* GitHub Actions (macOS): release
-* win-builder: devel
-* mac-builder: release
+It also fixes html 5 docs.
 
 ## R CMD check results
 

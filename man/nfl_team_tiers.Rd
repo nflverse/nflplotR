@@ -9,8 +9,8 @@ nfl_team_tiers(
   title = "NFL Team Tiers, 2021 as of Week 4",
   subtitle = "created with the #nflplotR Tiermaker",
   caption = NULL,
-  tier_desc = c(`1` = "Super Bowl", `2` = "Very Good", `3` = "Medium", `4` = "Bad", `5`
-    = "What are they doing?", `6` = "", `7` = ""),
+  tier_desc = c(`1` = "Super Bowl", `2` = "Very Good", `3` = "Medium", `4` = "Bad", `5` =
+    "What are they doing?", `6` = "", `7` = ""),
   presort = FALSE,
   alpha = 0.8,
   width = 0.075,
