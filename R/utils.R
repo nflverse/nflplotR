@@ -69,3 +69,15 @@ na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_pro
 
   invisible(NULL)
 }
+
+#' nflverse sitrep
+#'
+#' See \code{nflreadr::nflverse_sitrep} for details.
+#'
+#' @name nflverse_sitrep
+#' @keywords internal
+#' @export nflverse_sitrep
+#' @importFrom nflreadr nflverse_sitrep
+#' @usage nflverse_sitrep()
+#' @return Situation report of R and package/dependencies.
+NULL
