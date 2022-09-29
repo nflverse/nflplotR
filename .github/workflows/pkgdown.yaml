@@ -13,7 +13,7 @@ name: pkgdown
 
 jobs:
   pkgdown:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     timeout-minutes: 20
     # Only restrict concurrency for non-PR jobs
     concurrency:
