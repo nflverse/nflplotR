@@ -100,4 +100,5 @@ reference:
   - nfl_team_tiers
   - valid_team_names
   - .nflplotR_clear_cache
+  - nflverse_sitrep
 

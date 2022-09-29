@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Import/export `nflverse_sitrep()`
+
 # nflplotR 1.1.0
 
 * nflplotR will internally cache images used in all geoms and elements. The cache behavior can be controlled by setting `options("nflplotR.cache")` to one of `"memory"`, `"filesystem"`, or `"off"`. It is possible to clear the cache with the new function `.nflplotR_clear_cache()`. This functionality added the dependencies cachem, memoise and rappdirs.
