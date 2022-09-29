@@ -48,7 +48,7 @@ or prebuilt from the [development repo](https://nflverse.r-universe.dev)
 with:
 
 ``` r
-install.packages("nflplotR", repos = "https://nflverse.r-universe.dev")
+install.packages("nflplotR", repos = c("https://nflverse.r-universe.dev", getOption("repos")))
 ```
 
 ## Usage
