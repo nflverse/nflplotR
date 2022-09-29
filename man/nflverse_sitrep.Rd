@@ -2,14 +2,10 @@
 % Please edit documentation in R/utils.R
 \name{nflverse_sitrep}
 \alias{nflverse_sitrep}
-\title{nflverse sitrep}
-\usage{
-nflverse_sitrep()
-}
+\title{Get a Situation Report on System, nflverse Package Versions and Dependencies}
 \value{
 Situation report of R and package/dependencies.
 }
 \description{
-See \code{nflreadr::nflverse_sitrep} for details.
+See \code{\link[nflreadr:sitrep]{nflreadr::nflverse_sitrep}} for details.
 }
-\keyword{internal}
