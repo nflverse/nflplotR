@@ -1,6 +1,7 @@
 # nflplotR (development version)
 
 * Import/export `nflverse_sitrep()`
+* Add new functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` to render logos and wordmarks in `gt()` html tables. (#161)
 
 # nflplotR 1.1.0
 
