@@ -4,6 +4,8 @@ test_that("nfl team factors work", {
 
   library(ggplot2)
 
+  set.seed(20220128)
+
   # unsorted vector including NFL team abbreviations
   teams <- c("LAC", "LV", "CLE", "BAL", "DEN", "PIT", "CIN", "KC")
 
