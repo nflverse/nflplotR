@@ -96,6 +96,7 @@ reference:
     Various helper functions.
   contents:
   - ggpreview
+  - starts_with("gt_nfl")
   - nfl_team_factor
   - nfl_team_tiers
   - valid_team_names
