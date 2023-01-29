@@ -133,7 +133,7 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
 #' @return An object of class `gt_tbl`.
 #' @export
 #' @section Output of below example:
-#' \if{html}{\figure{headshot_tbl.png}{options: width=75\%}}
+#' \if{html}{\figure{headshot_tbl.png}{options: width=50\%}}
 #' @examples
 #' \donttest{
 #' library(nflplotR)
