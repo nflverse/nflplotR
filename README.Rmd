@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN status](https://img.shields.io/cran/v/nflplotR?style=flat-square&logo=R&label=CRAN)](https://CRAN.R-project.org/package=nflplotR)
 [![CRAN downloads](http://cranlogs.r-pkg.org/badges/grand-total/nflplotR)](https://CRAN.R-project.org/package=nflplotR)
 [![Dev status](https://img.shields.io/github/r-package/v/nflverse/nflplotR/main?label=dev%20version&style=flat-square&logo=github)](https://nflplotr.nflverse.com)
-[![R build status](https://img.shields.io/github/workflow/status/nflverse/nflplotR/R-CMD-check?label=R%20check&style=flat-square&logo=github)](https://github.com/nflverse/nflplotR/actions)
+[![R build status](https://img.shields.io/github/actions/workflow/status/nflverse/nflplotR/R-CMD-check.yaml?label=R%20check&style=flat-square&logo=github)](https://github.com/nflverse/nflplotR/actions)
 [![Codecov test coverage](https://codecov.io/gh/nflverse/nflplotR/branch/main/graph/badge.svg)](https://app.codecov.io/gh/nflverse/nflplotR?branch=main)
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg?style=flat-square)](https://lifecycle.r-lib.org/articles/stages.html)
 [![nflverse support](https://img.shields.io/discord/789805604076126219?color=7289da&label=nflverse%20support&logo=discord&logoColor=fff&style=flat-square)](https://discord.com/invite/5Er2FBnnQa)
