@@ -121,3 +121,76 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
     }
   )
 }
+
+
+#' Render Player Headshots in 'gt' Tables
+#'
+#' @description Translate NFL player gsis IDs to player headshots and
+#'   render these images in html tables with the 'gt' package.
+#'
+#' @inheritParams gt_nfl_logos
+#'
+#' @return An object of class `gt_tbl`.
+#' @export
+#'
+#' @examples
+#' library(nflplotR)
+#' library(gt)
+#' # Silence an nflreadr message that is irrelevant here
+#' old <- options(nflreadr.cache_warning = FALSE)
+#' df <- data.frame(
+#'   player_gsis = c("00-0033873",
+#'                   "00-0026498",
+#'                   "00-0035228",
+#'                   "00-0031237",
+#'                   "00-0036355",
+#'                   "00-0019596",
+#'                   "00-0033077",
+#'                   "00-0012345",
+#'                   "00-0031280"),
+#'   player_name = c("P.Mahomes",
+#'                   "M.Stafford",
+#'                   "K.Murray",
+#'                   "T.Bridgewater",
+#'                   "J.Herbert",
+#'                   "T.Brady",
+#'                   "D.Prescott",
+#'                   "Non.Match",
+#'                   "D.Carr")
+#' )
+#'
+#' # Replace player IDs with headshot images
+#' table <- gt(df) %>%
+#'   gt_nfl_headshots("player_gsis")
+#'
+#' # Restore old options
+#' options(old)
+gt_nfl_headshots <- function(gt_object,
+                             columns,
+                             height = 30,
+                             locations = NULL){
+  rlang::check_installed("gt (>= 0.8.0)", "to render images in gt tables.")
+
+  if(is.null(locations)){
+    locations <- gt::cells_body({{ columns }})
+  }
+
+  gt::text_transform(
+    data = gt_object,
+    locations = locations,
+    fn = function(gsis){
+      headshot_map <- load_headshots()
+      image_urls <- vapply(
+        gsis,
+        FUN.VALUE = character(1),
+        USE.NAMES = FALSE,
+        FUN = function(id) {
+          ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
+          if(length(ret) == 0) ret <- na_headshot()
+          ret
+        }
+      )
+      gt::web_image(image_urls, height = height)
+    }
+  )
+}
