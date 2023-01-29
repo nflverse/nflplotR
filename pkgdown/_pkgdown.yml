@@ -91,12 +91,17 @@ reference:
   contents:
   - starts_with("scale")
 
+- title: Tables
+  desc: >
+    Utility functions that work with the gt package to create html tables.
+  contents:
+  - starts_with("gt_nfl")
+
 - title: Utilities
   desc: >
     Various helper functions.
   contents:
   - ggpreview
-  - starts_with("gt_nfl")
   - nfl_team_factor
   - nfl_team_tiers
   - valid_team_names
