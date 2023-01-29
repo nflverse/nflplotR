@@ -29,7 +29,13 @@ An object of class \code{gt_tbl}.
 Translate NFL player gsis IDs to player headshots and
 render these images in html tables with the 'gt' package.
 }
+\section{Output of below example}{
+
+\if{html}{\figure{headshot_tbl.png}{options: width=75\%}}
+}
+
 \examples{
+\donttest{
 library(nflplotR)
 library(gt)
 # Silence an nflreadr message that is irrelevant here
@@ -61,4 +67,5 @@ table <- gt(df) \%>\%
 
 # Restore old options
 options(old)
+}
 }

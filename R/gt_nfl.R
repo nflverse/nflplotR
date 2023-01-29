@@ -132,8 +132,10 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
 #'
 #' @return An object of class `gt_tbl`.
 #' @export
-#'
+#' @section Output of below example:
+#' \if{html}{\figure{headshot_tbl.png}{options: width=75\%}}
 #' @examples
+#' \donttest{
 #' library(nflplotR)
 #' library(gt)
 #' # Silence an nflreadr message that is irrelevant here
@@ -165,6 +167,7 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
 #'
 #' # Restore old options
 #' options(old)
+#' }
 gt_nfl_headshots <- function(gt_object,
                              columns,
                              height = 30,
