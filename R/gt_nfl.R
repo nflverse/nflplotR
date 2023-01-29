@@ -15,6 +15,7 @@
 #'   if we wish to make the transformation happen at different locations.
 #'
 #' @return An object of class `gt_tbl`.
+#' @seealso The player headshot rendering function [gt_nfl_headshots()].
 #' @export
 #' @section Output of below example:
 #' \if{html}{\figure{logo_tbl.png}{options: width=75\%}}
@@ -131,6 +132,8 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
 #' @inheritParams gt_nfl_logos
 #'
 #' @return An object of class `gt_tbl`.
+#' @seealso The logo and wordmark rendering functions [gt_nfl_logos()] and
+#'   [gt_nfl_wordmarks()].
 #' @export
 #' @section Output of below example:
 #' \if{html}{\figure{headshot_tbl.png}{options: width=50\%}}

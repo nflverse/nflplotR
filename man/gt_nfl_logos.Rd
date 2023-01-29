@@ -60,3 +60,6 @@ table <- df \%>\%
   gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
 }
 }
+\seealso{
+The player headshot rendering function \code{\link[=gt_nfl_headshots]{gt_nfl_headshots()}}.
+}

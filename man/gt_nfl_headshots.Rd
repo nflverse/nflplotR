@@ -69,3 +69,7 @@ table <- gt(df) \%>\%
 options(old)
 }
 }
+\seealso{
+The logo and wordmark rendering functions \code{\link[=gt_nfl_logos]{gt_nfl_logos()}} and
+\code{\link[=gt_nfl_wordmarks]{gt_nfl_wordmarks()}}.
+}
