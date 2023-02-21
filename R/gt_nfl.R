@@ -200,3 +200,30 @@ gt_nfl_headshots <- function(gt_object,
     }
   )
 }
+
+#' Render gt Table to temporary png file
+#'
+#' Saves a gt table to a temporary png image file and renders the image
+#' with magick to be able to render tables in reproducible examples like
+#' [reprex::reprex()] or in package function examples.
+#'
+#' @param gt_tbl An object of class `gt_tbl` usually created bt [gt::gt()]
+#' @param ... Arguments passed on to [webshot2::webshot()]
+#'
+#' @return Returns `NULL` invisibly.
+#' @export
+#'
+#' @examples
+#' tbl <- gt::gt_preview(mtcars)
+#' gt_render_image(tbl)
+gt_render_image <- function(gt_tbl, ...){
+  if(!inherits(gt_tbl, "gt_tbl")){
+    cli::cli_abort("The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}")
+  }
+  rlang::check_installed("gt", "to render images in gt tables.")
+  temp_file <- tempfile(fileext = ".png")
+  gt::gtsave(gt_tbl, temp_file, ...)
+  on.exit(unlink(temp_file))
+  magick::image_read(temp_file)
+  invisible(NULL)
+}
