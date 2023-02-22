@@ -204,7 +204,7 @@ gt_nfl_headshots <- function(gt_object,
 #' Render gt Table to temporary png file
 #'
 #' Saves a gt table to a temporary png image file and uses magick to render
-#' tables in reproducible examples like [reprex::reprex()] or in package
+#' tables in reproducible examples like `reprex::reprex()` or in package
 #' function examples.
 #'
 #' @param gt_tbl An object of class `gt_tbl` usually created bt [gt::gt()]

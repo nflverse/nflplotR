@@ -16,7 +16,7 @@ Returns \code{NULL} invisibly.
 }
 \description{
 Saves a gt table to a temporary png image file and uses magick to render
-tables in reproducible examples like \code{\link[reprex:reprex]{reprex::reprex()}} or in package
+tables in reproducible examples like \code{reprex::reprex()} or in package
 function examples.
 }
 \examples{
