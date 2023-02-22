@@ -203,12 +203,12 @@ gt_nfl_headshots <- function(gt_object,
 
 #' Render gt Table to temporary png file
 #'
-#' Saves a gt table to a temporary png image file and renders the image
-#' with magick to be able to render tables in reproducible examples like
-#' [reprex::reprex()] or in package function examples.
+#' Saves a gt table to a temporary png image file and uses magick to render
+#' tables in reproducible examples like [reprex::reprex()] or in package
+#' function examples.
 #'
 #' @param gt_tbl An object of class `gt_tbl` usually created bt [gt::gt()]
-#' @param ... Arguments passed on to [webshot2::webshot()]
+#' @param ... Arguments passed on to [webshot2::webshot()] and [par()].
 #'
 #' @return Returns `NULL` invisibly.
 #' @export
@@ -222,8 +222,9 @@ gt_render_image <- function(gt_tbl, ...){
   }
   rlang::check_installed("gt", "to render images in gt tables.")
   temp_file <- tempfile(fileext = ".png")
-  gt::gtsave(gt_tbl, temp_file, ...)
+  suppressWarnings(gt::gtsave(gt_tbl, temp_file, ...))
   on.exit(unlink(temp_file))
-  magick::image_read(temp_file)
+  par(ask = FALSE, mai = c(0,0,0,0), ...)
+  plot(magick::image_read(temp_file))
   invisible(NULL)
 }

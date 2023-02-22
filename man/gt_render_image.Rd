@@ -9,15 +9,15 @@ gt_render_image(gt_tbl, ...)
 \arguments{
 \item{gt_tbl}{An object of class \code{gt_tbl} usually created bt \code{\link[gt:gt]{gt::gt()}}}
 
-\item{...}{Arguments passed on to \code{\link[webshot2:webshot]{webshot2::webshot()}}}
+\item{...}{Arguments passed on to \code{\link[webshot2:webshot]{webshot2::webshot()}} and \code{\link[=par]{par()}}.}
 }
 \value{
 Returns \code{NULL} invisibly.
 }
 \description{
-Saves a gt table to a temporary png image file and renders the image
-with magick to be able to render tables in reproducible examples like
-\code{\link[reprex:reprex]{reprex::reprex()}} or in package function examples.
+Saves a gt table to a temporary png image file and uses magick to render
+tables in reproducible examples like \code{\link[reprex:reprex]{reprex::reprex()}} or in package
+function examples.
 }
 \examples{
 tbl <- gt::gt_preview(mtcars)
