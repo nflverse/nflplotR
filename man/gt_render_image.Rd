@@ -2,7 +2,7 @@
 % Please edit documentation in R/gt_nfl.R
 \name{gt_render_image}
 \alias{gt_render_image}
-\title{Render gt Table to temporary png file}
+\title{Render 'gt' Table to Temporary png File}
 \usage{
 gt_render_image(gt_tbl, ...)
 }
@@ -20,6 +20,13 @@ tables in reproducible examples like \code{reprex::reprex()} or in package
 function examples.
 }
 \examples{
+# Don't run this on CRAN because an underlying dependency (chromote)
+# keeps open connections which causes R CMD check errors.
+# This code will run in CI workflows. To avoid problems in those workflows,
+# you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
+# "FALSE"
+if (Sys.getenv("NOT_CRAN") == "true") {
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
+}
 }

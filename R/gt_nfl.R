@@ -201,7 +201,7 @@ gt_nfl_headshots <- function(gt_object,
   )
 }
 
-#' Render gt Table to temporary png file
+#' Render 'gt' Table to Temporary png File
 #'
 #' Saves a gt table to a temporary png image file and uses magick to render
 #' tables in reproducible examples like `reprex::reprex()` or in package
@@ -214,17 +214,30 @@ gt_nfl_headshots <- function(gt_object,
 #' @export
 #'
 #' @examples
+#' # Don't run this on CRAN because an underlying dependency (chromote)
+#' # keeps open connections which causes R CMD check errors.
+#' # This code will run in CI workflows. To avoid problems in those workflows,
+#' # you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
+#' # "FALSE"
+#' if (Sys.getenv("NOT_CRAN") == "true") {
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
+#' }
 gt_render_image <- function(gt_tbl, ...){
+  # gt_tbl <- gt::gt_preview(mtcars)
   if(!inherits(gt_tbl, "gt_tbl")){
     cli::cli_abort("The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}")
   }
   rlang::check_installed("gt", "to render images in gt tables.")
   temp_file <- tempfile(fileext = ".png")
-  suppressWarnings(gt::gtsave(gt_tbl, temp_file, ...))
+  # webshot2 sends a message that can't be suppressed with suppressMessages()
+  # so we capture the output and return it invisibly
+  gt::gtsave(gt_tbl, temp_file) %>%
+    capture.output(type = "message") %>%
+    invisible()
   on.exit(unlink(temp_file))
-  par(ask = FALSE, mai = c(0,0,0,0), ...)
+  old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
   plot(magick::image_read(temp_file))
+  graphics::par(old)
   invisible(NULL)
 }
