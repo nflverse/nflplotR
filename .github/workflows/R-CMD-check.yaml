@@ -29,7 +29,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
-      _R_CHECK_CONNECTIONS_LEFT_OPEN_: false
+      _R_CHECK_CONNECTIONS_LEFT_OPEN_: FALSE
 
     steps:
       - uses: actions/checkout@v2
