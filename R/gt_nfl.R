@@ -233,7 +233,7 @@ gt_render_image <- function(gt_tbl, ...){
   # webshot2 sends a message that can't be suppressed with suppressMessages()
   # so we capture the output and return it invisibly
   gt::gtsave(gt_tbl, temp_file) %>%
-    capture.output(type = "message") %>%
+    utils::capture.output(type = "message") %>%
     invisible()
   on.exit(unlink(temp_file))
   old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
