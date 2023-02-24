@@ -47,7 +47,8 @@ jobs:
           needs: check
 
       - name: Set env var to avoid R CMD Check problems
-         run: echo "_R_CHECK_CONNECTIONS_LEFT_OPEN_=FALSE" >> $GITHUB_ENV
+         run: Sys.setenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_" = "FALSE")
+         shell: Rscript {0}
 
       - uses: r-lib/actions/check-r-package@v2
         with:
