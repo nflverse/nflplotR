@@ -216,7 +216,7 @@ gt_nfl_headshots <- function(gt_object,
 #' \donttest{
 #' # Don't run this on CRAN because an underlying dependency (chromote)
 #' # keeps open connections which causes R CMD check errors.
-#' # This code will run in CI workflows. To avoid problems in those workflows,
+#' # This code will run in CI workflows, to avoid problems in those workflows,
 #' # you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
 #' # "false"
 #' if (Sys.getenv("NOT_CRAN") == "true") {
