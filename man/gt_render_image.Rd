@@ -20,13 +20,15 @@ tables in reproducible examples like \code{reprex::reprex()} or in package
 function examples.
 }
 \examples{
+\donttest{
 # Don't run this on CRAN because an underlying dependency (chromote)
 # keeps open connections which causes R CMD check errors.
 # This code will run in CI workflows. To avoid problems in those workflows,
 # you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
-# "FALSE"
+# "false"
 if (Sys.getenv("NOT_CRAN") == "true") {
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
+}
 }
 }

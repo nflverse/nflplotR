@@ -10,5 +10,6 @@
 #' @import grid
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data %||%
+#' @importFrom utils capture.output
 ## usethis namespace: end
 NULL

@@ -212,16 +212,17 @@ gt_nfl_headshots <- function(gt_object,
 #'
 #' @return Returns `NULL` invisibly.
 #' @export
-#'
 #' @examples
+#' \donttest{
 #' # Don't run this on CRAN because an underlying dependency (chromote)
 #' # keeps open connections which causes R CMD check errors.
 #' # This code will run in CI workflows. To avoid problems in those workflows,
 #' # you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
-#' # "FALSE"
+#' # "false"
 #' if (Sys.getenv("NOT_CRAN") == "true") {
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
+#' }
 #' }
 gt_render_image <- function(gt_tbl, ...){
   # gt_tbl <- gt::gt_preview(mtcars)
@@ -232,7 +233,7 @@ gt_render_image <- function(gt_tbl, ...){
   temp_file <- tempfile(fileext = ".png")
   # webshot2 sends a message that can't be suppressed with suppressMessages()
   # so we capture the output and return it invisibly
-  gt::gtsave(gt_tbl, temp_file) %>%
+  gt::gtsave(gt_tbl, temp_file, ...) %>%
     utils::capture.output(type = "message") %>%
     invisible()
   on.exit(unlink(temp_file))
