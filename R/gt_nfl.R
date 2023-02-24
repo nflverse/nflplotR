@@ -237,7 +237,7 @@ gt_render_image <- function(gt_tbl, ...){
     utils::capture.output(type = "message") %>%
     invisible()
   # if the output is something else than the annoying webshot message, print it
-  if(!grepl("screenshot completed")) print(output)
+  if(!grepl("screenshot completed", output)) print(output)
   # get rid of te file when function exits
   on.exit(unlink(temp_file))
   # remove margin from plots so we render the table only
