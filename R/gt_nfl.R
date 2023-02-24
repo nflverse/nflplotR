@@ -233,12 +233,17 @@ gt_render_image <- function(gt_tbl, ...){
   temp_file <- tempfile(fileext = ".png")
   # webshot2 sends a message that can't be suppressed with suppressMessages()
   # so we capture the output and return it invisibly
-  gt::gtsave(gt_tbl, temp_file, ...) %>%
+  output <- gt::gtsave(gt_tbl, temp_file, ...) %>%
     utils::capture.output(type = "message") %>%
     invisible()
+  # if the output is something else than the annoying webshot message, print it
+  if(!grepl("screenshot completed")) print(output)
+  # get rid of te file when function exits
   on.exit(unlink(temp_file))
+  # remove margin from plots so we render the table only
   old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
   plot(magick::image_read(temp_file))
+  # restore old margins
   graphics::par(old)
   invisible(NULL)
 }
