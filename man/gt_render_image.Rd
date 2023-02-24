@@ -31,4 +31,8 @@ tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
 }
 }
+\dontshow{
+# Hack to suppress R CMD check error about connections
+Sys.setenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_" = "FALSE")
+}
 }

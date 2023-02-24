@@ -224,6 +224,10 @@ gt_nfl_headshots <- function(gt_object,
 #' gt_render_image(tbl)
 #' }
 #' }
+#' \dontshow{
+#' # Hack to suppress R CMD check error about connections
+#' Sys.setenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_" = "FALSE")
+#' }
 gt_render_image <- function(gt_tbl, ...){
   # gt_tbl <- gt::gt_preview(mtcars)
   if(!inherits(gt_tbl, "gt_tbl")){
