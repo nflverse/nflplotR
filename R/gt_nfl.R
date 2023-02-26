@@ -207,7 +207,7 @@ gt_nfl_headshots <- function(gt_object,
 #' tables in reproducible examples like `reprex::reprex()` or in package
 #' function examples (see details for further information).
 #'
-#' @param gt_tbl An object of class `gt_tbl` usually created bt [gt::gt()]
+#' @param gt_tbl An object of class `gt_tbl` usually created by [gt::gt()]
 #' @param ... Arguments passed on to [webshot2::webshot()] and [par()].
 #' @details Rendering gt tables in function examples is not trivial because
 #'  of the behavior of an underlying dependency: chromote. It keeps a process
@@ -224,7 +224,6 @@ gt_nfl_headshots <- function(gt_object,
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
 gt_render_image <- function(gt_tbl, ...){
-  # gt_tbl <- gt::gt_preview(mtcars)
   if(!inherits(gt_tbl, "gt_tbl")){
     cli::cli_abort("The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}")
   }
