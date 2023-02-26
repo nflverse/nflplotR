@@ -96,6 +96,7 @@ reference:
     Utility functions that work with the gt package to create html tables.
   contents:
   - starts_with("gt_nfl")
+  - starts_with("gt_")
 
 - title: Utilities
   desc: >

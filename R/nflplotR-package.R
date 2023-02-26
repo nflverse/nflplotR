@@ -6,8 +6,10 @@
 ## usethis namespace: start
 #' @import data.table
 #' @importFrom ggplot2 element_grob
+#' @importFrom graphics par
 #' @import grid
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data %||%
+#' @importFrom utils capture.output
 ## usethis namespace: end
 NULL

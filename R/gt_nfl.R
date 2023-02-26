@@ -200,3 +200,48 @@ gt_nfl_headshots <- function(gt_object,
     }
   )
 }
+
+#' Render 'gt' Table to Temporary png File
+#'
+#' Saves a gt table to a temporary png image file and uses magick to render
+#' tables in reproducible examples like `reprex::reprex()` or in package
+#' function examples (see details for further information).
+#'
+#' @param gt_tbl An object of class `gt_tbl` usually created by [gt::gt()]
+#' @param ... Arguments passed on to [webshot2::webshot()] and [par()].
+#' @details Rendering gt tables in function examples is not trivial because
+#'  of the behavior of an underlying dependency: chromote. It keeps a process
+#'  running even if the chromote session is closed. Unfortunately, this causes
+#'  R CMD Check errors related to open connections after example runs. The only
+#'  way to avoid this is setting the environment variable `_R_CHECK_CONNECTIONS_LEFT_OPEN_`
+#'  to `"true"`. How to do that depends on where and how developers check their
+#'  package. A good way to prevent an example from being executed because the
+#'  environment variable was not set can be taken from the source code of this
+#'  function.
+#' @return Returns `NULL` invisibly.
+#' @export
+#' @examplesIf identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false")
+#' tbl <- gt::gt_preview(mtcars)
+#' gt_render_image(tbl)
+gt_render_image <- function(gt_tbl, ...){
+  if(!inherits(gt_tbl, "gt_tbl")){
+    cli::cli_abort("The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}")
+  }
+  rlang::check_installed("gt", "to render images in gt tables.")
+  temp_file <- tempfile(fileext = ".png")
+  # webshot2 sends a message that can't be suppressed with suppressMessages()
+  # so we capture the output and return it invisibly
+  output <- gt::gtsave(gt_tbl, temp_file, ...) %>%
+    utils::capture.output(type = "message") %>%
+    invisible()
+  # if the output is something other than the annoying webshot message, print it
+  if(!grepl("screenshot completed", output)) print(output)
+  # get rid of the file when function exits
+  on.exit(unlink(temp_file))
+  # remove margin from plots so we render the table only
+  old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
+  plot(magick::image_read(temp_file))
+  # restore old margins
+  graphics::par(old)
+  invisible(NULL)
+}
