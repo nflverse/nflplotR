@@ -17,18 +17,22 @@ Returns \code{NULL} invisibly.
 \description{
 Saves a gt table to a temporary png image file and uses magick to render
 tables in reproducible examples like \code{reprex::reprex()} or in package
-function examples.
+function examples (see details for further information).
+}
+\details{
+Rendering gt tables in function examples is not trivial because
+of the behavior of an underlying dependency: chromote. It keeps a process
+running even if the chromote session is closed. Unfortunately, this causes
+R CMD Check errors related to open connections after example runs. The only
+way to avoid this is setting the environment variable \verb{_R_CHECK_CONNECTIONS_LEFT_OPEN_}
+to \code{"true"}. How to do that depends on where and how developers check their
+package. A good way to prevent an example from being executed because the
+environment variable was not set can be taken from the source code of this
+function.
 }
 \examples{
-\donttest{
-# Don't run this on CRAN because an underlying dependency (chromote)
-# keeps open connections which causes R CMD check errors.
-# This code will run in CI workflows. To avoid problems in those workflows,
-# you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
-# "false"
-if (Sys.getenv("NOT_CRAN") == "true") {
+\dontshow{if (identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
-}
-}
+\dontshow{\}) # examplesIf}
 }

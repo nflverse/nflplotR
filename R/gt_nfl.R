@@ -205,25 +205,24 @@ gt_nfl_headshots <- function(gt_object,
 #'
 #' Saves a gt table to a temporary png image file and uses magick to render
 #' tables in reproducible examples like `reprex::reprex()` or in package
-#' function examples.
+#' function examples (see details for further information).
 #'
 #' @param gt_tbl An object of class `gt_tbl` usually created bt [gt::gt()]
 #' @param ... Arguments passed on to [webshot2::webshot()] and [par()].
-#'
+#' @details Rendering gt tables in function examples is not trivial because
+#'  of the behavior of an underlying dependency: chromote. It keeps a process
+#'  running even if the chromote session is closed. Unfortunately, this causes
+#'  R CMD Check errors related to open connections after example runs. The only
+#'  way to avoid this is setting the environment variable `_R_CHECK_CONNECTIONS_LEFT_OPEN_`
+#'  to `"true"`. How to do that depends on where and how developers check their
+#'  package. A good way to prevent an example from being executed because the
+#'  environment variable was not set can be taken from the source code of this
+#'  function.
 #' @return Returns `NULL` invisibly.
 #' @export
-#' @examples
-#' \donttest{
-#' # Don't run this on CRAN because an underlying dependency (chromote)
-#' # keeps open connections which causes R CMD check errors.
-#' # This code will run in CI workflows, to avoid problems in those workflows,
-#' # you can set the environment variable "_R_CHECK_CONNECTIONS_LEFT_OPEN_" to
-#' # "false"
-#' if (Sys.getenv("NOT_CRAN") == "true") {
+#' @examplesIf identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false")
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
-#' }
-#' }
 gt_render_image <- function(gt_tbl, ...){
   # gt_tbl <- gt::gt_preview(mtcars)
   if(!inherits(gt_tbl, "gt_tbl")){
@@ -236,9 +235,9 @@ gt_render_image <- function(gt_tbl, ...){
   output <- gt::gtsave(gt_tbl, temp_file, ...) %>%
     utils::capture.output(type = "message") %>%
     invisible()
-  # if the output is something else than the annoying webshot message, print it
+  # if the output is something other than the annoying webshot message, print it
   if(!grepl("screenshot completed", output)) print(output)
-  # get rid of te file when function exits
+  # get rid of the file when function exits
   on.exit(unlink(temp_file))
   # remove margin from plots so we render the table only
   old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
