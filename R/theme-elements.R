@@ -165,14 +165,7 @@ element_nfl_headshot <- function(alpha = NULL, colour = NA, hjust = NULL, vjust 
 
 #' @export
 #' @rdname element
-element_path <- function(alpha = NULL, colour = NA, hjust = NULL, vjust = NULL,
-                         color = NULL, size = 0.5) {
-  if (!is.null(color))  colour <- color
-  structure(
-    list(alpha = alpha, colour = colour, hjust = hjust, vjust = vjust, size = size),
-    class = c("element_path", "element_text", "element")
-  )
-}
+element_path <- function(...) ggpath::element_path(...)
 
 #' @export
 element_grob.element_nfl_logo <- function(element, label = "", x = NULL, y = NULL,
@@ -293,49 +286,9 @@ element_grob.element_nfl_headshot <- function(element, label = "", x = NULL, y =
   )
 }
 
-#' @export
-element_grob.element_path <- function(element, label = "", x = NULL, y = NULL,
-                                      alpha = NULL, colour = NULL,
-                                      hjust = 0.5, vjust = 0.5,
-                                      size = NULL, ...) {
-
-  if (is.null(label)) return(ggplot2::zeroGrob())
-
-  n <- max(length(x), length(y), 1)
-  vj <- element$vjust %||% vjust
-  hj <- element$hjust %||% hjust
-  x <- x %||% rep(hj, n)
-  y <- y %||% rep(vj, n)
-  alpha <- alpha %||% element$alpha
-  colour <- colour %||% rep(element$colour, n)
-  size <- size %||% element$size
-
-  grobs <- lapply(
-    seq_along(label),
-    axisImageGrob,
-    alpha = alpha,
-    colour = colour,
-    label = label,
-    x = x,
-    y = y,
-    hjust = hj,
-    vjust = vj,
-    type = "path"
-  )
-
-  class(grobs) <- "gList"
-
-  grid::gTree(
-    gp = grid::gpar(),
-    children = grobs,
-    size = size,
-    cl = "axisImageGrob"
-  )
-}
-
 axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
                           width = 1, height = 1,
-                          type = c("teams", "headshots", "wordmarks", "path")) {
+                          type = c("teams", "headshots", "wordmarks")) {
   make_null <- FALSE
   type <- rlang::arg_match(type)
   if(type == "teams") {
@@ -346,8 +299,6 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
     team_abbr <- label[i]
     image_to_read <- wordmark_list[[team_abbr]]
     if (is.na(team_abbr)) make_null <- TRUE
-  } else if (type == "path"){
-    image_to_read <- label[i]
   } else {
     gsis <- label[i]
     headshot_map <- load_headshots()

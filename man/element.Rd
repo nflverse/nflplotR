@@ -34,14 +34,7 @@ element_nfl_headshot(
   size = 0.5
 )
 
-element_path(
-  alpha = NULL,
-  colour = NA,
-  hjust = NULL,
-  vjust = NULL,
-  color = NULL,
-  size = 0.5
-)
+element_path(...)
 }
 \arguments{
 \item{alpha}{The alpha channel, i.e. transparency level, as a numerical value

@@ -2,21 +2,21 @@ test_that("geom lines work", {
   library(ggplot2)
 
   # inherit top level aesthetics
-  p1 <- ggplot(mtcars, aes(x = disp, y = mpg, h_var = mpg, v_var = disp)) +
+  p1 <- ggplot(mtcars, aes(x = disp, y = mpg, y0 = mpg, x0 = disp)) +
     geom_point() +
     geom_median_lines() +
     geom_mean_lines(color = "blue") +
     theme_minimal()
 
   # draw horizontal line only
-  p2 <- ggplot(mtcars, aes(x = disp, y = mpg, h_var = mpg)) +
+  p2 <- ggplot(mtcars, aes(x = disp, y = mpg, y0 = mpg)) +
     geom_point() +
     geom_median_lines() +
     geom_mean_lines(color = "blue") +
     theme_minimal()
 
   # draw vertical line only
-  p3 <- ggplot(mtcars, aes(x = disp, y = mpg, v_var = disp)) +
+  p3 <- ggplot(mtcars, aes(x = disp, y = mpg, x0 = disp)) +
     geom_point() +
     geom_median_lines() +
     geom_mean_lines(color = "blue") +
@@ -25,8 +25,8 @@ test_that("geom lines work", {
   # choose your own value
   p4 <- ggplot(mtcars, aes(x = disp, y = mpg)) +
     geom_point() +
-    geom_median_lines(v_var = 400, h_var = 15) +
-    geom_mean_lines(v_var = 150, h_var = 30, color = "blue") +
+    geom_median_lines(x0 = 400, y0 = 15) +
+    geom_mean_lines(x0 = 150, y0 = 30, color = "blue") +
     theme_minimal()
 
   vdiffr::expect_doppelganger("p1", p1)
