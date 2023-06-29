@@ -9,6 +9,9 @@
 #'   - `element_nfl_headshot()`: draws NFL player headshots instead of their GSIS IDs.
 #'   - `element_path()`: draws images from valid image URLs instead of the URL.
 #'
+#' @inheritParams ggpath::element_path
+#' @inheritDotParams ggpath::element_path
+#'
 #' @details The elements translate NFL team abbreviations or NFL player GSIS IDs
 #'   into logo images or player headshots, respectively.
 #' @param alpha The alpha channel, i.e. transparency level, as a numerical value
