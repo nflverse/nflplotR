@@ -4,6 +4,7 @@
 * Add new functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` to render logos and wordmarks in `gt()` html tables. (#39)
 * Add new function `gt_nfl_headshots()` to render player headshots in `gt()` html tables. (#41)
 * Add new function `gt_render_image()` to render gt tables to an image in package function examples or reproducible examples. (#42)
+* The functions `geom_from_path()`, `element_path()` as well as the ref line functions `geom_mean_line()` and `geom_median_line()` have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics `x0` and `y0` instead of `v_var` and `h_var` respectively. This means that nflplotR will break code (!) where ref line geoms are called with `v_var` and `h_var` aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (#43)
 
 # nflplotR 1.1.0
 
