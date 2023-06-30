@@ -34,14 +34,7 @@ element_nfl_headshot(
   size = 0.5
 )
 
-element_path(
-  alpha = NULL,
-  colour = NA,
-  hjust = NULL,
-  vjust = NULL,
-  color = NULL,
-  size = 0.5
-)
+element_path(...)
 }
 \arguments{
 \item{alpha}{The alpha channel, i.e. transparency level, as a numerical value
@@ -56,6 +49,18 @@ on valid color names in ggplot2 see
 Must be a numerical value between 0 and 1.}
 
 \item{size}{The output grob size in \code{cm} (!).}
+
+\item{...}{
+  Arguments passed on to \code{\link[ggpath:element_path]{ggpath::element_path}}
+  \describe{
+    \item{\code{colour,color}}{The image will be colorized with this color. Use the
+special character \code{"b/w"} to set it to black and white. For more information
+on valid color names in ggplot2 see
+\url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.}
+    \item{\code{hjust,vjust}}{The horizontal and vertical adjustment respectively.
+Must be a numerical value between 0 and 1.}
+    \item{\code{angle}}{The angle of the element as a numerical value between 0° and 360°.}
+  }}
 }
 \value{
 An S3 object of class \code{element}.

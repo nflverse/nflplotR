@@ -4,24 +4,17 @@
 \alias{geom_from_path}
 \title{ggplot2 Layer for Visualizing Images from URLs or Local Paths}
 \usage{
-geom_from_path(
-  mapping = NULL,
-  data = NULL,
-  stat = "identity",
-  position = "identity",
-  ...,
-  na.rm = FALSE,
-  show.legend = FALSE,
-  inherit.aes = TRUE
-)
+geom_from_path(...)
 }
 \arguments{
-\item{mapping}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
+\item{...}{
+  Arguments passed on to \code{\link[ggpath:geom_from_path]{ggpath::geom_from_path}}
+  \describe{
+    \item{\code{mapping}}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}. If specified and
 \code{inherit.aes = TRUE} (the default), it is combined with the default mapping
 at the top level of the plot. You must supply \code{mapping} if there is no plot
 mapping.}
-
-\item{data}{The data to be displayed in this layer. There are three
+    \item{\code{data}}{The data to be displayed in this layer. There are three
 options:
 
 If \code{NULL}, the default, the data is inherited from the plot
@@ -35,46 +28,45 @@ A \code{function} will be called with a single argument,
 the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
-
-\item{stat}{The statistical transformation to use on the data for this
+    \item{\code{stat}}{The statistical transformation to use on the data for this
 layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
 stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
 \code{"stat_count"})}
-
-\item{position}{Position adjustment, either as a string naming the adjustment
+    \item{\code{position}}{Position adjustment, either as a string naming the adjustment
 (e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
 position adjustment function. Use the latter if you need to change the
 settings of the adjustment.}
-
-\item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{ggplot2::layer()}}. These are
-often aesthetics, used to set an aesthetic to a fixed value. See the below
-section "Aesthetics" for a full list of possible arguments.}
-
-\item{na.rm}{If \code{FALSE}, the default, missing values are removed with
+    \item{\code{na.rm}}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
-
-\item{show.legend}{logical. Should this layer be included in the legends?
+    \item{\code{show.legend}}{logical. Should this layer be included in the legends?
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
 display.}
-
-\item{inherit.aes}{If \code{FALSE}, overrides the default aesthetics,
+    \item{\code{inherit.aes}}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
+  }}
 }
 \value{
 A ggplot2 layer (\code{\link[ggplot2:layer]{ggplot2::layer()}}) that can be added to a plot
 created with \code{\link[ggplot2:ggplot]{ggplot2::ggplot()}}.
 }
 \description{
-This geom is used to plot NFL images instead
+This geom is used to plot images instead
 of points in a ggplot. It requires x, y aesthetics as well as a path.
+It has been outsourced to ggpath and is re-exported in nflplotR for
+compatibility reasons.
+}
+\details{
+This function has been outsourced to the ggpath package.
+See \code{\link[ggpath:geom_from_path]{ggpath::geom_from_path}} for details.
 }
 \section{Aesthetics}{
 
-\code{geom_nfl_logos()} understands the following aesthetics (required aesthetics are in bold):
+
+\code{geom_from_path()} understands the following aesthetics (required aesthetics are in bold):
 \itemize{
 \item{\strong{x}}{ - The x-coordinate.}
 \item{\strong{y}}{ - The y-coordinate.}
@@ -93,6 +85,7 @@ The default value is set to 1.0 which is \emph{big} but it is necessary
 because all used values are computed relative to the default.
 A typical size is \code{height = 0.1} (see below examples).}
 }
+
 }
 
 \examples{
@@ -130,7 +123,7 @@ ggplot(df, aes(x = a, y = b)) +
 # ggplot2 annotation
 ggplot() +
   annotate(
-    nflplotR::GeomFromPath,
+    ggpath::GeomFromPath,
     x = 0,
     y = 0,
     path = "https://github.com/nflverse/nflplotR/raw/main/man/figures/logo.png",
