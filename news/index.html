@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9005</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9006</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,6 +77,7 @@
 <li>Add new function <code><a href="../reference/gt_nfl_headshots.html">gt_nfl_headshots()</a></code> to render player headshots in <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt()</a></code> html tables. (<a href="https://github.com/nflverse/nflplotR/issues/41" class="external-link">#41</a>)</li>
 <li>Add new function <code><a href="../reference/gt_render_image.html">gt_render_image()</a></code> to render gt tables to an image in package function examples or reproducible examples. (<a href="https://github.com/nflverse/nflplotR/issues/42" class="external-link">#42</a>)</li>
 <li>The functions <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code>, <code><a href="../reference/element.html">element_path()</a></code> as well as the ref line functions <code>geom_mean_line()</code> and <code>geom_median_line()</code> have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics <code>x0</code> and <code>y0</code> instead of <code>v_var</code> and <code>h_var</code> respectively. This means that nflplotR will break code (!) where ref line geoms are called with <code>v_var</code> and <code>h_var</code> aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (<a href="https://github.com/nflverse/nflplotR/issues/43" class="external-link">#43</a>)</li>
+<li>Update Eagles and Commanders wordmarks with latest versions from NFL. (<a href="https://github.com/nflverse/nflplotR/issues/44" class="external-link">#44</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="nflplotr-110">nflplotR 1.1.0<a class="anchor" aria-label="anchor" href="#nflplotr-110"></a></h2><p class="text-muted">CRAN release: 2022-08-11</p>
