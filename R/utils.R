@@ -79,3 +79,11 @@ na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_pro
 #' @export
 #' @return Situation report of R and package/dependencies.
 NULL
+
+release_bullets <- function() {
+  c(
+    '`devtools::check_mac_release()`',
+    '`usethis::use_tidy_thanks()`',
+    NULL
+  )
+}
