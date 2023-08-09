@@ -1,6 +1,11 @@
-## Limit datatable to two CPU cores for test purposes
-# https://github.com/Rdatatable/data.table/issues/5658
+# CRAN incoming checks can fail if examples use more than 2 cores.
+# We can run in this problem by using data.table https://github.com/Rdatatable/data.table/issues/5658
+# R CMD Check throws the NOTE because CRAN sets
+# _R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_ to "2.5"
+# which means "more than two cores are running".
+# We check for this specific environment variable and run the nflreadr helper
+# if it is set to any value
+cpu_threshold <- as.numeric(Sys.getenv("_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_",
+                                       NA_character_))
 
-current_threads <- data.table::getDTthreads()
-data.table::setDTthreads(2)
-withr::defer(data.table::setDTthreads(current_threads), testthat::teardown_env())
+if (!is.na(cpu_threshold)) nflreadr::.for_cran()
