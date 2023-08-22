@@ -14,6 +14,7 @@
 ## Minor Changes
 
 * Update Eagles and Commanders wordmarks with latest versions from NFL. (#44)
+* Update Bears logo (it's now the Bear) and secondary color to meet their brand guidelines. (#46)
 
 Thank you to [&#x0040;Adeiko](https://github.com/Adeiko), and [&#x0040;tanho63](https://github.com/tanho63) for their questions, feedback, and contributions towards this release.
 
