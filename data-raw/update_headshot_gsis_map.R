@@ -30,7 +30,10 @@ purrr::walk(
         gsis_id = player_gsis_id,
         headshot_nfl = player_headshot
       ) |>
-      dplyr::filter(!is.na(gsis_id), !is.na(headshot_nfl))
+      dplyr::filter(!is.na(gsis_id), !is.na(headshot_nfl)) |>
+      dplyr::mutate(
+        headshot_nfl = stringr::str_replace(headshot_nfl, "\\{formatInstructions\\}", "f_auto,q_auto")
+      )
 
     nflversedata::nflverse_save(
       r,
