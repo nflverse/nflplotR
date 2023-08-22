@@ -45,7 +45,7 @@ headshot_html <- function(player_gsis, type = c("height", "width"), size = 25){
 
 is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
-load_headshots <- function() nflreadr::rds_from_url("https://github.com/nflverse/nflfastR-roster/raw/master/src/headshot_gsis_map.rds")
+load_headshots <- function() nflreadr::rds_from_url("https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map.rds")
 
 na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
 
