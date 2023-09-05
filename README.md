@@ -40,8 +40,8 @@ can install the development version of nflplotR either from
 [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ``` r
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("nflverse/nflplotR")
+if (!require("pak")) install.packages("pak")
+pak::pak("nflverse/nflplotR")
 ```
 
 or prebuilt from the [development repo](https://nflverse.r-universe.dev)
