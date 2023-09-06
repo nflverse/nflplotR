@@ -62,6 +62,7 @@ Let's look at some typical use cases for nflplotR using NFL play-by-play data. I
 ```{r setup}
 library(nflplotR)
 library(ggplot2)
+library(gt)
 library(nflreadr)
 library(dplyr, warn.conflicts = FALSE)
 options(nflreadr.verbose = FALSE)
@@ -366,7 +367,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
   )
 ```
 
-# Absolute Freedom
+# Absolute Freedom in ggplot2
 
 One thing is particularly hard to implement in ggplot, namely the free arrangement of an image (e.g. your logo) somewhere in the plot. But with the help of the powerful `theme_elements` it is possible!
 
@@ -421,6 +422,45 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
     plot.tag = nflplotR::element_nfl_headshot(size = 5, hjust = 1, vjust = 1),
     plot.tag.position = c(1, 1)
   )
+```
+
+# nflplotR and the gt package
+
+The R package gt is becoming increasingly popular for creating aesthetically pleasing tables. nflplotR supports rendering of team logos, team wordmarks, and player headshots in gt tables similar to ggplot2. 
+
+This example creates a table that renders all team logos and wordmarks. We split the table into 2 x 16 rows to avoid an overly long table and convert all variables starting with "logo" to logos and all variables starting with "wordmark" to wordmarks. 
+
+```{r}
+teams <- valid_team_names()
+# remove conference logos from this example
+teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
+# create dataframe with all 32 team names
+df <- data.frame(
+  team_a = head(teams, 16),
+  logo_a = head(teams, 16),
+  wordmark_a = head(teams, 16),
+  team_b = tail(teams, 16),
+  logo_b = tail(teams, 16),
+  wordmark_b = tail(teams, 16)
+)
+# create gt table and translate team names to logo/wordmark images
+df %>%
+  gt() %>%
+  gt_nfl_logos(columns = gt::starts_with("logo")) %>%
+  gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
+```
+
+It is also possible to render headshots through gsis IDs.
+
+```{r}
+df <- data.frame(
+  A = c("00-0036355", "00-0033873"),
+  B = c("00-0033077", "00-0035228")
+)
+
+df |>
+  gt() |> 
+  gt_nfl_headshots(columns = gt::everything(), height = 50)
 ```
 
 # How about speed in the RStudio preview pane?
