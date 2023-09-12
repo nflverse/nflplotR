@@ -17,6 +17,7 @@ if (!is.na(cpu_threshold)){
     2L,
     na.rm = TRUE
   )
+  # Gotta set the OMP env var for magick
   Sys.setenv("OMP_THREAD_LIMIT" = cores)
   data.table::setDTthreads(cores)
 }
