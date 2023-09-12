@@ -8,4 +8,15 @@
 cpu_threshold <- as.numeric(Sys.getenv("_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_",
                                        NA_character_))
 
-if (!is.na(cpu_threshold)) nflreadr::.for_cran()
+if (!is.na(cpu_threshold)){
+  cores <- min(
+    getOption("Ncpus", default = 2L),
+    as.integer(Sys.getenv("OMP_THREAD_LIMIT",unset = "2")),
+    floor(as.integer(Sys.getenv("_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_", unset = 2))),
+    floor(as.integer(Sys.getenv("_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_", unset = 2))),
+    2L,
+    na.rm = TRUE
+  )
+  Sys.setenv("OMP_THREAD_LIMIT" = cores)
+  data.table::setDTthreads(cores)
+}
