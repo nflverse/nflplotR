@@ -1,4 +1,6 @@
 test_that("wordmark geom works", {
+  # skip because of the multithread problem
+  skip_on_cran()
   library(ggplot2)
 
   teams_a <- c("KC", "MIA", "TB", "ARI", "LAC", "IND", "TEN", "PIT",

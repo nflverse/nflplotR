@@ -1,4 +1,6 @@
 test_that("logo geom works", {
+  # skip because of the multithread problem
+  skip_on_cran()
   library(ggplot2)
 
   teams_a <- c("DEN", "KC", "LA", "CAR", "LAC", "IND", "DAL", NA_character_, "ARI", "WAS", "MIN", "TB")
