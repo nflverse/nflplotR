@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.0.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,15 +70,25 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="nflplotr-development-version">nflplotR (development version)<a class="anchor" aria-label="anchor" href="#nflplotr-development-version"></a></h2>
-<ul><li>Import/export <code><a href="../reference/nflverse_sitrep.html">nflverse_sitrep()</a></code>
-</li>
-<li>Add new functions <code><a href="../reference/gt_nfl_logos.html">gt_nfl_logos()</a></code> and <code><a href="../reference/gt_nfl_logos.html">gt_nfl_wordmarks()</a></code> to render logos and wordmarks in <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt()</a></code> html tables. (<a href="https://github.com/nflverse/nflplotR/issues/39" class="external-link">#39</a>)</li>
+<h2 class="pkg-version" data-toc-text="1.2.0" id="nflplotr-120">nflplotR 1.2.0<a class="anchor" aria-label="anchor" href="#nflplotr-120"></a></h2>
+<div class="section level3">
+<h3 id="new-features-1-2-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-2-0"></a></h3>
+<ul><li>Add new functions <code><a href="../reference/gt_nfl_logos.html">gt_nfl_logos()</a></code> and <code><a href="../reference/gt_nfl_logos.html">gt_nfl_wordmarks()</a></code> to render logos and wordmarks in <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt()</a></code> html tables. (<a href="https://github.com/nflverse/nflplotR/issues/39" class="external-link">#39</a>)</li>
 <li>Add new function <code><a href="../reference/gt_nfl_headshots.html">gt_nfl_headshots()</a></code> to render player headshots in <code><a href="https://gt.rstudio.com/reference/gt.html" class="external-link">gt()</a></code> html tables. (<a href="https://github.com/nflverse/nflplotR/issues/41" class="external-link">#41</a>)</li>
 <li>Add new function <code><a href="../reference/gt_render_image.html">gt_render_image()</a></code> to render gt tables to an image in package function examples or reproducible examples. (<a href="https://github.com/nflverse/nflplotR/issues/42" class="external-link">#42</a>)</li>
-<li>The functions <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code>, <code><a href="../reference/element.html">element_path()</a></code> as well as the ref line functions <code>geom_mean_line()</code> and <code>geom_median_line()</code> have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics <code>x0</code> and <code>y0</code> instead of <code>v_var</code> and <code>h_var</code> respectively. This means that nflplotR will break code (!) where ref line geoms are called with <code>v_var</code> and <code>h_var</code> aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (<a href="https://github.com/nflverse/nflplotR/issues/43" class="external-link">#43</a>)</li>
-<li>Update Eagles and Commanders wordmarks with latest versions from NFL. (<a href="https://github.com/nflverse/nflplotR/issues/44" class="external-link">#44</a>)</li>
+<li>Add new function <code><a href="../reference/nflverse_sitrep.html">nflverse_sitrep()</a></code> to compute a nflverse related situation report.</li>
 </ul></div>
+<div class="section level3">
+<h3 id="breaking-changes-1-2-0">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-2-0"></a></h3>
+<ul><li>The functions <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code>, <code><a href="../reference/element.html">element_path()</a></code> as well as the ref line functions <code>geom_mean_line()</code> and <code>geom_median_line()</code> have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics <code>x0</code> and <code>y0</code> instead of <code>v_var</code> and <code>h_var</code> respectively. This means that nflplotR will break code (!) where ref line geoms are called with <code>v_var</code> and <code>h_var</code> aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (<a href="https://github.com/nflverse/nflplotR/issues/43" class="external-link">#43</a>)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="minor-changes-1-2-0">Minor Changes<a class="anchor" aria-label="anchor" href="#minor-changes-1-2-0"></a></h3>
+<ul><li>Update Eagles and Commanders wordmarks with latest versions from NFL. (<a href="https://github.com/nflverse/nflplotR/issues/44" class="external-link">#44</a>)</li>
+<li>Update Bears logo (it’s now the Bear) and secondary color to meet their brand guidelines. (<a href="https://github.com/nflverse/nflplotR/issues/46" class="external-link">#46</a>)</li>
+</ul><p>Thank you to <a href="https://github.com/Adeiko" class="external-link">@Adeiko</a>, and <a href="https://github.com/tanho63" class="external-link">@tanho63</a> for their questions, feedback, and contributions towards this release.</p>
+</div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.1.0" id="nflplotr-110">nflplotR 1.1.0<a class="anchor" aria-label="anchor" href="#nflplotr-110"></a></h2><p class="text-muted">CRAN release: 2022-08-11</p>
 <ul><li>nflplotR will internally cache images used in all geoms and elements. The cache behavior can be controlled by setting <code>options("nflplotR.cache")</code> to one of <code>"memory"</code>, <code>"filesystem"</code>, or <code>"off"</code>. It is possible to clear the cache with the new function <code><a href="../reference/dot-nflplotR_clear_cache.html">.nflplotR_clear_cache()</a></code>. This functionality added the dependencies cachem, memoise and rappdirs.</li>
@@ -103,7 +113,7 @@
 <li>Added the function <code><a href="../reference/ggpreview.html">ggpreview()</a></code> which allows to preview a ggplot in it’s actual dimensions. (v.0.0.9006)</li>
 <li>
 <code><a href="../reference/geom_nfl_logos.html">geom_nfl_logos()</a></code> now supports a <code>colour</code> aesthetic that colorizes the logos. (v0.0.9007)</li>
-<li>Added the function <code><a href="../reference/nfl_team_tiers.html">nfl_team_tiers()</a></code> that build an NFL team tiers ggplot, thanks to <a href="https://twitter.com/PFF_Moo" class="external-link">Timo Riske</a> for the suggestion. (v.0.0.9008)</li>
+<li>Added the function <code><a href="../reference/nfl_team_tiers.html">nfl_team_tiers()</a></code> that build an NFL team tiers ggplot, thanks to Timo Riske for the suggestion. (v.0.0.9008)</li>
 <li>Fixed a bug (<a href="https://github.com/nflverse/nflplotR/issues/10" class="external-link">#10</a>) in <code><a href="../reference/geom_lines.html">geom_median_lines()</a></code> and <code><a href="../reference/geom_lines.html">geom_mean_lines()</a></code> that caused <code>alpha</code> to not work properly. (v.0.0.9009)</li>
 <li>Improved <code><a href="../reference/nfl_team_tiers.html">nfl_team_tiers()</a></code> by adding the opportunity to modify <code>title</code>, <code>subtitle</code>, <code>caption</code> of the plot. Added functionality to remove tier separation lines for combined tiers. Added functionality to run the function in “developer” mode which means, that team abbreviations will be plotted instead of logos (much faster). (v.0.0.9010)</li>
 <li>Added the <code><a href="../reference/geom_nfl_headshots.html">geom_nfl_headshots()</a></code> geom that plots headshots for valid gsis IDs. (v0.0.9011)</li>
