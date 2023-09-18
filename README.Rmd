@@ -37,9 +37,9 @@ install.packages("nflplotR")
 
 To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR either from [GitHub](https://github.com/nflverse/nflplotR/) with:
 
-``` r
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("nflverse/nflplotR")
+```{r eval = FALSE}
+if (!require("pak")) install.packages("pak")
+pak::pak("nflverse/nflplotR")
 ```
 
 or prebuilt from the [development repo](https://nflverse.r-universe.dev) with:

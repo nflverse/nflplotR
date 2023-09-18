@@ -1,5 +1,5 @@
 # Save raw logos in internal data for more speed
-teams_colors_logos <- nflreadr::load_teams() |>
+teams_colors_logos <- nflreadr::load_teams(current = FALSE) |>
   dplyr::bind_rows(
     tibble::tibble(
       team_abbr = c("AFC", "NFC", "NFL"),

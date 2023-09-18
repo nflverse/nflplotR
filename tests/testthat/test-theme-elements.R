@@ -1,4 +1,6 @@
 test_that("logo element works", {
+  # skip because of the multithread problem
+  skip_on_cran()
   library(ggplot2)
 
   team_abbr <- c("LAC", "KC")

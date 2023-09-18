@@ -141,7 +141,7 @@ df <- data.frame(
   teams = team_abbr
 )
 
-if (utils::packageVersion("gridtext") > "0.1.4"){
+if (utils::packageVersion("gridtext") > "0.1.4" && FALSE){
   # use logos for x-axis
   ggplot(df, aes(x = teams, y = random_value)) +
     geom_col(aes(color = teams, fill = teams), width = 0.5) +
@@ -184,7 +184,7 @@ dfh <- data.frame(
                   "00-0031280")
 )
 
-if (utils::packageVersion("gridtext") > "0.1.4"){
+if (utils::packageVersion("gridtext") > "0.1.4" && FALSE){
   # use headshots for x-axis
   ggplot(dfh, aes(x = player_gsis, y = random_value)) +
     geom_col(width = 0.5) +

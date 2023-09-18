@@ -30,7 +30,10 @@ purrr::walk(
         gsis_id = player_gsis_id,
         headshot_nfl = player_headshot
       ) |>
-      dplyr::filter(!is.na(gsis_id), !is.na(headshot_nfl))
+      dplyr::filter(!is.na(gsis_id), !is.na(headshot_nfl)) |>
+      dplyr::mutate(
+        headshot_nfl = stringr::str_replace(headshot_nfl, "\\{formatInstructions\\}", "f_auto,q_auto")
+      )
 
     nflversedata::nflverse_save(
       r,
@@ -47,15 +50,17 @@ purrr::walk(
 # NOW COMBINE ALL SEASONS INTO ONE FILE
 
 combined_map <- purrr::map(
-  seasons_to_update,
+  1999:nflreadr::most_recent_season(),
   function(s){
     load_from <- glue::glue("https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map_{s}.rds")
-    nflreadr::rds_from_url(load_from)
+    nflreadr::rds_from_url(load_from) |>
+      dplyr::mutate(season = s)
   },
   .progress = TRUE
 ) |>
   purrr::list_rbind() |>
-  dplyr::distinct()
+  dplyr::slice_max(season, n = 1, with_ties = FALSE, by = gsis_id) |>
+  dplyr::select(-season)
 
 nflversedata::nflverse_save(
   combined_map,

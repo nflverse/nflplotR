@@ -44,9 +44,9 @@ install.packages("nflplotR")
 
 To get a bug fix or to use a feature from the development version, you can install the development version of nflplotR either from [GitHub](https://github.com/nflverse/nflplotR/) with:
 
-```{r, eval=FALSE}
-if (!require("remotes")) install.packages("remotes")
-remotes::install_github("nflverse/nflplotR")
+```{r eval = FALSE}
+if (!require("pak")) install.packages("pak")
+pak::pak("nflverse/nflplotR")
 ```
 
 or prebuilt from the [development repo](https://nflverse.r-universe.dev) with:
@@ -62,8 +62,10 @@ Let's look at some typical use cases for nflplotR using NFL play-by-play data. I
 ```{r setup}
 library(nflplotR)
 library(ggplot2)
+library(gt)
 library(nflreadr)
 library(dplyr, warn.conflicts = FALSE)
+options(nflreadr.verbose = FALSE)
 ```
 
 We will load the data and compute each team's offensive and defensive EPA per play for the 2020 regular season. We will also compute the top 10 Quarterbacks in EPA per play.
@@ -363,6 +365,102 @@ ggplot(df, aes(x = mpg, y = disp)) +
     # load image from url in caption
     plot.caption = ggpath::element_path(hjust = 1, size = 0.4)
   )
+```
+
+# Absolute Freedom in ggplot2
+
+One thing is particularly hard to implement in ggplot, namely the free arrangement of an image (e.g. your logo) somewhere in the plot. But with the help of the powerful `theme_elements` it is possible!
+
+All we need to do is assign the ggplot tag either an image URL or - in terms of nflplotR - a team abbreviation or player gsis_id. Then we can convert the tag with `theme_elements` in `plot.tag` into the corresponding image and position it anywhere with `plot.tag.position`. 
+
+Let's try a logo first:
+
+```{r}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point() +
+  labs(
+    title = tools::toTitleCase("These are random data"),
+    subtitle = "I just want to show how to place an NFL logo somewhere in the plot",
+    tag = "LAC"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.tag = nflplotR::element_nfl_logo(size = 2),
+    plot.tag.position = c(0.5, 0.85)
+  )
+```
+
+Looks even better with wordmarks:
+
+```{r}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point() +
+  labs(
+    title = tools::toTitleCase("These are random data"),
+    subtitle = "I just want to show how to place an NFL wordmark top right",
+    tag = "LAC"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.tag = nflplotR::element_nfl_wordmark(size = 5, hjust = 1, vjust = 1),
+    plot.tag.position = c(1, 1)
+  )
+```
+
+And we can do player headshots:
+
+```{r}
+ggplot(mtcars, aes(x = mpg, y = disp)) +
+  geom_point() +
+  labs(
+    title = tools::toTitleCase("These are random data"),
+    subtitle = "I just want to show how to place an NFL wordmark top right",
+    tag = "00-0036355"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.tag = nflplotR::element_nfl_headshot(size = 5, hjust = 1, vjust = 1),
+    plot.tag.position = c(1, 1)
+  )
+```
+
+# nflplotR and the gt package
+
+The R package gt is becoming increasingly popular for creating aesthetically pleasing tables. nflplotR supports rendering of team logos, team wordmarks, and player headshots in gt tables similar to ggplot2. 
+
+This example creates a table that renders all team logos and wordmarks. We split the table into 2 x 16 rows to avoid an overly long table and convert all variables starting with "logo" to logos and all variables starting with "wordmark" to wordmarks. 
+
+```{r}
+teams <- valid_team_names()
+# remove conference logos from this example
+teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
+# create dataframe with all 32 team names
+df <- data.frame(
+  team_a = head(teams, 16),
+  logo_a = head(teams, 16),
+  wordmark_a = head(teams, 16),
+  team_b = tail(teams, 16),
+  logo_b = tail(teams, 16),
+  wordmark_b = tail(teams, 16)
+)
+# create gt table and translate team names to logo/wordmark images
+df %>%
+  gt() %>%
+  gt_nfl_logos(columns = gt::starts_with("logo")) %>%
+  gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
+```
+
+It is also possible to render headshots through gsis IDs.
+
+```{r}
+df <- data.frame(
+  A = c("00-0036355", "00-0033873"),
+  B = c("00-0033077", "00-0035228")
+)
+
+df |>
+  gt() |> 
+  gt_nfl_headshots(columns = gt::everything(), height = 50)
 ```
 
 # How about speed in the RStudio preview pane?

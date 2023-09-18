@@ -1,5 +1,5 @@
 test_that("geom from path works", {
-  # skip thi son cran because we load images from github which could fail
+  # skip this on cran because we load images from github which could fail
   skip_on_cran()
 
   library(ggplot2)
