@@ -414,7 +414,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point() +
   labs(
     title = tools::toTitleCase("These are random data"),
-    subtitle = "I just want to show how to place an NFL wordmark top right",
+    subtitle = "I just want to show how to place player headshot top right",
     tag = "00-0036355"
   ) +
   theme_minimal() +
