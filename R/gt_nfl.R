@@ -95,7 +95,11 @@ gt_nflplotR_image <- function(gt_object,
       # Create the image URI
       uri <- get_image_uri(team_abbr = team_abbr, type = type)
       # Generate the Base64-encoded image and place it within <img> tags
-      paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
+      out <- paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
+      # If the image uri returns NA we didn't find a match. We will return the
+      # actual value then to allow the user to call gt::sub_missing()
+      out[is.na(uri)] <- x[is.na(uri)]
+      out
     }
   )
 
@@ -115,6 +119,8 @@ get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
     FUN.VALUE = character(1),
     USE.NAMES = FALSE,
     FUN = function(team) {
+      # every non match will return NULL which is when we want NA
+      if (is.null(lookup_list[[team]])) return(NA_character_)
       paste0(
         "data:", "image/png",
         ";base64,", base64enc::base64encode(lookup_list[[team]])
@@ -191,12 +197,18 @@ gt_nfl_headshots <- function(gt_object,
         FUN.VALUE = character(1),
         USE.NAMES = FALSE,
         FUN = function(id) {
+          if(is.na(id) | !is_gsis(id)) return(NA_character_)
           ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
           if(length(ret) == 0) ret <- na_headshot()
           ret
         }
       )
-      gt::web_image(image_urls, height = height)
+      img_tags <- gt::web_image(image_urls, height = height)
+      # gt::web_image inserts a placeholder for NAs
+      # We want the actual input instead because users might call
+      # gt::sub_missing which defaults to "---"
+      img_tags[is.na(image_urls)] <- gsis[is.na(image_urls)]
+      img_tags
     }
   )
 }
