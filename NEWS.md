@@ -1,6 +1,7 @@
 # nflplotR (development version)
 
 * The functions `geom_nfl_headshots()` and `gt_nfl_headshots()` better handle `NA` gsis IDs. (#48)
+* The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` now keep non team name matches to allow the user to call `gt::sub_missing()`. (#48)
 
 # nflplotR 1.2.0
 
