@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* The functions `geom_nfl_headshots()` and `gt_nfl_headshots()` better handle `NA` gsis IDs. (#48)
+
 # nflplotR 1.2.0
 
 ## New Features
