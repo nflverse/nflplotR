@@ -191,12 +191,17 @@ gt_nfl_headshots <- function(gt_object,
         FUN.VALUE = character(1),
         USE.NAMES = FALSE,
         FUN = function(id) {
+          if(is.na(id)) return(NA_character_)
           ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
           if(length(ret) == 0) ret <- na_headshot()
           ret
         }
       )
-      gt::web_image(image_urls, height = height)
+      img_tags <- gt::web_image(image_urls, height = height)
+      # gt::web_image inserts a placeholder for NAs
+      # We want an empty string instead
+      img_tags[is.na(image_urls)] <- ""
+      img_tags
     }
   )
 }
