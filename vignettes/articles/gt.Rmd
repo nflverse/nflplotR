@@ -30,7 +30,7 @@ The R package [{gt}](https://gt.rstudio.com/) is becoming increasingly popular f
 
 ## Team Logos & Wordmarks
 
-The function `gt_nfl_logos()` and `gt_nfl_wordmarks()` come with a powerful `locations` argument that allows usage of gt selection helpers. We will create an example dataframe to show how this all works.
+The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` come with a powerful `locations` argument that allows usage of gt selection helpers. We will create an example dataframe to show how this all works.
 
 ```{r}
 df <- data.frame(
