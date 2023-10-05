@@ -96,6 +96,7 @@ gt_nflplotR_image <- function(gt_object,
       uri <- get_image_uri(team_abbr = team_abbr, type = type)
       # Generate the Base64-encoded image and place it within <img> tags
       out <- paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
+      out <- lapply(out, gt::html)
       # If the image uri returns NA we didn't find a match. We will return the
       # actual value then to allow the user to call gt::sub_missing()
       out[is.na(uri)] <- x[is.na(uri)]
