@@ -68,7 +68,7 @@ example_table <- gt::gt(
 example_table
 ```
 
-This is our final table. We have valid NFL abbreviations in the cell body, in row group labels and in the stubhead. We can now use nflplotR to render images instead of those abbreviations.
+This is our final table. We have valid NFL abbreviations in the cell body, in row group labels and in the stub. We can now use nflplotR to render images instead of those abbreviations.
 
 ### Cell Body
 
