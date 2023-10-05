@@ -1,0 +1,237 @@
+---
+title: "nflplotR & the gt Package"
+description: "How nflplotR works as gt extension"
+author: "Sebastian Carl"
+opengraph:
+  image: 
+    src: "https://user-images.githubusercontent.com/38586519/135595009-ec611e41-22a0-47c6-976b-856a7b111cb1.png"
+  twitter:
+    card: summary_large_image
+    creator: "@mrcaseb"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{nflplotR & the gt Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  out.width = "100%",
+  dpi = 600
+)
+options(nflreadr.cache_warning = FALSE)
+options(warn = -1)
+```
+
+The R package [{gt}](https://gt.rstudio.com/) is becoming increasingly popular for creating aesthetically pleasing tables. nflplotR supports rendering of team logos, team wordmarks, and player headshots in gt tables similar to ggplot2. This article will provide some typical examples. 
+
+## Team Logos & Wordmarks
+
+The function `gt_nfl_logos()` and `gt_nfl_wordmarks()` come with a powerful `locations` argument that allows usage of gt selection helpers. We will create an example dataframe to show how this all works.
+
+```{r}
+df <- data.frame(
+  row_group_column = c("AFC", "NFC", "AFC", "NFC"),
+  row_name_column = c("LAC", "SEA"),
+  column_a = 11:12,
+  column_b = c("KC", "LA")
+) 
+```
+
+Our example dataframe in a gt table without any formatting.
+
+```{r}
+gt::gt(df)
+```
+
+The column `row_group_column` is intended to serve as row group variable so let's apply this.
+
+```{r}
+gt::gt(df, groupname_col = "row_group_column")
+```
+
+We also would like to render images in the stub, i.e. the rownames so we tell gt about the `row_name_column`. 
+
+```{r}
+example_table <- gt::gt(
+  df, 
+  groupname_col = "row_group_column", 
+  rowname_col = "row_name_column"
+) |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+example_table
+```
+
+This is our final table. We have valid NFL abbreviations in the cell body, in row group labels and in the stubhead. We can now use nflplotR to render images instead of those abbreviations.
+
+### Cell Body
+
+To render images in the cell body, i.e. the rows of the table, we can either use the `columns` argument or the appropriate `locations` helper.
+
+```{r}
+example_table |> 
+  nflplotR::gt_nfl_logos(columns = "column_b")
+```
+
+Please note, that the locations helper will allow you to selectively apply the function to a set of rows
+
+```{r}
+example_table |> 
+  nflplotR::gt_nfl_logos(locations = gt::cells_body(rows = gt::starts_with("LAC")))
+```
+
+
+### Row Group Label
+
+Rendering images outside of the cell body will always require the appropriate call to the `locations` argument. The `columns` argument cannot handle anything outside cell bodies.
+
+```{r}
+example_table |> 
+  nflplotR::gt_nfl_logos(locations = gt::cells_row_groups())
+```
+
+### Stub
+
+Now we would like to convert rownames to images.
+
+```{r}
+example_table |> 
+  nflplotR::gt_nfl_wordmarks(locations = gt::cells_stub())
+```
+
+### Combine all together
+
+The `locations` argument allows multiple locations in one call by wrapping them in a list.
+
+```{r}
+example_table |> 
+  nflplotR::gt_nfl_wordmarks(locations = gt::cells_stub()) |> 
+  nflplotR::gt_nfl_logos(
+    locations = list(
+      gt::cells_body(), gt::cells_row_groups()
+    )
+  )
+```
+
+### How about Column Labels?
+
+Well...it's complicated because [gt behaves inconsistent in my opinion](https://github.com/rstudio/gt/issues/1433). Currently, the nflplotR gt helpers fail to render images in column labels. 
+
+Until a better solution has been found, the following code is recommended for the implementation of logos and wordmarks in column labels. 
+
+LOGOS:
+
+```{r}
+data.frame(
+  BUF = 1:2,
+  LAC = 11:12
+) |> 
+  gt::gt() |> 
+  gt::cols_label_with(
+    fn = function(team_abbrs){
+      teams <- nflreadr::load_teams(current = FALSE)
+      image_urls <- vapply(
+        team_abbrs,
+        FUN.VALUE = character(1L),
+        USE.NAMES = FALSE,
+        FUN = function(abbr) {
+          if(!abbr %in% nflplotR::valid_team_names()) return(NA_character_)
+          ret <- teams$team_logo_espn[teams$team_abbr == abbr]
+          ret
+        }
+      )
+      img_tags <- gt::web_image(image_urls, height = 30)
+      gt::html(img_tags)
+    }
+  ) |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+```
+
+WORDMARKS:
+
+```{r}
+data.frame(
+  BUF = 1:2,
+  LAC = 11:12
+) |> 
+  gt::gt() |> 
+  gt::cols_label_with(
+    fn = function(team_abbrs){
+      teams <- nflreadr::load_teams(current = FALSE)
+      image_urls <- vapply(
+        team_abbrs,
+        FUN.VALUE = character(1L),
+        USE.NAMES = FALSE,
+        FUN = function(abbr) {
+          if(!abbr %in% nflplotR::valid_team_names()) return(NA_character_)
+          ret <- teams$team_wordmark[teams$team_abbr == abbr]
+          ret
+        }
+      )
+      img_tags <- gt::web_image(image_urls, height = 30)
+      gt::html(img_tags)
+    }
+  ) |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+```
+
+
+
+### Logos and Wordmarks Rendered by nflplotR
+
+This example creates a table that renders all team logos and wordmarks. We split the table into 2 x 16 rows to avoid an overly long table and convert all variables starting with "logo" to logos and all variables starting with "wordmark" to wordmarks. 
+
+```{r}
+teams <- nflplotR::valid_team_names()
+# remove conference logos from this example
+teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
+# create dataframe with all 32 team names
+df <- data.frame(
+  team_a = head(teams, 16),
+  logo_a = head(teams, 16),
+  wordmark_a = head(teams, 16),
+  team_b = tail(teams, 16),
+  logo_b = tail(teams, 16),
+  wordmark_b = tail(teams, 16)
+)
+# create gt table and translate team names to logo/wordmark images
+df |>
+  gt::gt() |>
+  nflplotR::gt_nfl_logos(columns = gt::starts_with("logo")) |>
+  nflplotR::gt_nfl_wordmarks(columns = gt::starts_with("wordmark")) |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+```
+
+## Player Headshots
+
+All of the above applies to `gt_nfl_headshots()` as well. All you need is a gsis ID. 
+
+```{r}
+df <- data.frame(
+  A = c("00-0036355", "00-0033873"),
+  B = c("00-0033077", "00-0035228")
+)
+
+df |>
+  gt::gt() |> 
+  nflplotR::gt_nfl_headshots(columns = gt::everything(), height = 50) |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+```
