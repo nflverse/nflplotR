@@ -69,6 +69,8 @@ nfl_team_factor <- function(teams, ...){
 
   # load nflreadr teams and make it a data.table
   nfl_teams <- nflreadr::load_teams() %>% data.table::setDT()
+  div_split <- data.table::tstrsplit(nfl_teams$team_division, " ")
+  nfl_teams$team_division_rev <- paste(div_split[[2]], div_split[[1]])
 
   # character vector of team names in teams in desired order
   levels <-
