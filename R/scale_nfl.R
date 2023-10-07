@@ -224,7 +224,7 @@ scale_x_nfl <- function(...,
 
   lifecycle::deprecate_warn(
     "1.3.0",
-    "scale_x_nfl_headshots()",
+    "scale_x_nfl()",
     details = "This function is slow and inferior to theme elements;
               use `element_*()` functions instead."
   )
@@ -280,7 +280,7 @@ scale_x_nfl_headshots <- function(...,
 
   lifecycle::deprecate_warn(
     "1.3.0",
-    "scale_x_nfl()",
+    "scale_x_nfl_headshots()",
     details = "This function is slow and inferior to theme elements;
               use `element_*()` functions instead."
   )
