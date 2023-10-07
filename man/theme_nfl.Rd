@@ -13,6 +13,8 @@ theme_y_nfl()
 A ggplot2 theme created with \code{\link[ggplot2:theme]{ggplot2::theme()}}.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
 These functions are convenience wrappers around a theme call
 that activates markdown in x-axis and y-axis labels
 using \code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}.
@@ -52,3 +54,4 @@ if (utils::packageVersion("gridtext") > "0.1.4"){
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}
 }
+\keyword{internal}

@@ -115,8 +115,10 @@ A discrete ggplot2 scale created with \code{\link[ggplot2:scale_discrete]{ggplot
 \code{\link[ggplot2:scale_discrete]{ggplot2::scale_y_discrete()}}.
 }
 \description{
-These functions map NFL team names to their team logos and make
-them available as axis labels
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+These functions map NFL team names to their team logos and make them
+available as axis labels
 }
 \details{
 The scale translates the NFL team abbreviations into raw image
@@ -208,3 +210,4 @@ options(old)
 \seealso{
 \code{\link[=theme_x_nfl]{theme_x_nfl()}}, \code{\link[=theme_y_nfl]{theme_y_nfl()}}
 }
+\keyword{internal}

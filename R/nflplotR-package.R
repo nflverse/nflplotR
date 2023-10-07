@@ -5,9 +5,10 @@
 # roxygen namespace tags. Modify with care!
 ## usethis namespace: start
 #' @import data.table
+#' @import grid
 #' @importFrom ggplot2 element_grob
 #' @importFrom graphics par
-#' @import grid
+#' @importFrom lifecycle deprecated
 #' @importFrom magrittr %>%
 #' @importFrom rlang .data %||%
 #' @importFrom utils capture.output

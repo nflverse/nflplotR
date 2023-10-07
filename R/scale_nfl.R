@@ -115,8 +115,10 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 
 #' Axis Scales for NFL Team Logos
 #'
-#' @description These functions map NFL team names to their team logos and make
-#'   them available as axis labels
+#' @description `r lifecycle::badge("deprecated")`
+#'
+#'   These functions map NFL team names to their team logos and make them
+#'   available as axis labels
 #' @details The scale translates the NFL team abbreviations into raw image
 #'   html and places the html as axis labels. Because of the way ggplots are
 #'   constructed, it is necessary to adjust the [`theme()`] after calling this
@@ -128,6 +130,7 @@ scale_fill_nfl <- function(type = c("primary", "secondary"),
 #' @param size The logo size in pixels. It is applied as height for an x-scale
 #'   and as width for an y-scale.
 #' @name scale_axes_nfl
+#' @keywords internal
 #' @return A discrete ggplot2 scale created with [ggplot2::scale_x_discrete()] or
 #'   [ggplot2::scale_y_discrete()].
 #' @aliases NULL
@@ -219,6 +222,13 @@ scale_x_nfl <- function(...,
                         position = "bottom",
                         size = 12) {
 
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "scale_x_nfl()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
+
   position <- rlang::arg_match0(position, c("top", "bottom"))
 
   ggplot2::scale_x_discrete(
@@ -239,6 +249,13 @@ scale_y_nfl <- function(...,
                         guide = ggplot2::waiver(),
                         position = "left",
                         size = 12) {
+
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "scale_y_nfl()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
 
   position <- rlang::arg_match0(position, c("left", "right"))
 
@@ -261,6 +278,13 @@ scale_x_nfl_headshots <- function(...,
                                   position = "bottom",
                                   size = 20) {
 
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "scale_x_nfl_headshots()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
+
   position <- rlang::arg_match0(position, c("top", "bottom"))
 
   ggplot2::scale_x_discrete(
@@ -281,6 +305,13 @@ scale_y_nfl_headshots <- function(...,
                                   guide = ggplot2::waiver(),
                                   position = "left",
                                   size = 30) {
+
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "scale_y_nfl_headshots()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
 
   position <- rlang::arg_match0(position, c("left", "right"))
 
