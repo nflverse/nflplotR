@@ -1,6 +1,8 @@
 #' Theme for NFL Team Logos
 #'
-#' @description These functions are convenience wrappers around a theme call
+#' @description `r lifecycle::badge("deprecated")`
+#'
+#' These functions are convenience wrappers around a theme call
 #'   that activates markdown in x-axis and y-axis labels
 #'   using [`ggtext::element_markdown()`].
 #' @details These functions are a wrapper around the function calls
@@ -10,6 +12,7 @@
 #'   [`scale_y_nfl()`] respectively.
 #' @name theme_nfl
 #' @aliases NULL
+#' @keywords internal
 #' @return A ggplot2 theme created with [ggplot2::theme()].
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
@@ -41,6 +44,12 @@ NULL
 #' @rdname theme_nfl
 #' @export
 theme_x_nfl <- function(){
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "theme_x_nfl()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
   if (!is_installed("ggtext")) {
     cli::cli_abort(c(
       "Package {.val ggtext} required to create this scale.",
@@ -54,6 +63,12 @@ theme_x_nfl <- function(){
 #' @rdname theme_nfl
 #' @export
 theme_y_nfl <- function(){
+  lifecycle::deprecate_warn(
+    "1.3.0",
+    "theme_y_nfl()",
+    details = "This function is slow and inferior to theme elements;
+              use `element_*()` functions instead."
+  )
   if (!is_installed("ggtext")) {
     cli::cli_abort(c(
       "Package {.val ggtext} required to create this scale.",
