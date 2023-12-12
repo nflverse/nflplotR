@@ -10,7 +10,7 @@
 #' \itemize{
 #'   \item{**x**}{ - The x-coordinate.}
 #'   \item{**y**}{ - The y-coordinate.}
-#'   \item{**team_abbr**}{ - The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
+#'   \item{**team_abbr**}{ - The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]. Note: `"NFL"`, `"AFC"`, `"NFC"` are valid abbreviations!}
 #'   \item{`alpha = NULL`}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 #'   \item{`colour = NULL`}{ - The image will be colorized with this colour. Use the special character `"b/w"` to set it to black and white. For more information on valid colour names in ggplot2 see <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>}
 #'   \item{`angle = 0`}{ - The angle of the image as a numerical value between 0° and 360°.}
@@ -83,12 +83,11 @@
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
 #'   theme_void()
 #'
-#' # it's also possible to plot conference logos
-#' conf <- data.frame(a = 1:2, b = 0, teams = c("AFC", "NFC"))
-#' ggplot(conf, aes(x = a, y = b)) +
-#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.3) +
-#'   geom_label(aes(label = teams), nudge_y = -0.4, alpha = 0.5) +
-#'   coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75,.75)) +
+#' # it's also possible to plot NFL and conference logos
+#' dat <- data.frame(a = c(1.5, 1:2), b = c(1, 0, 0), teams = c("NFL", "AFC", "NFC"))
+#' ggplot(dat, aes(x = a, y = b)) +
+#'   geom_nfl_logos(aes(team_abbr = teams), width = 0.25) +
+#'   coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75, 1.75)) +
 #'   theme_void()
 #' }
 geom_nfl_logos <- function(mapping = NULL, data = NULL,
@@ -126,7 +125,7 @@ GeomNFLlogo <- ggplot2::ggproto(
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
 
-    data$team_abbr <- nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = FALSE)
+    data$team_abbr <- nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = TRUE)
 
     grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "teams")
 

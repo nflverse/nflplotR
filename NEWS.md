@@ -4,6 +4,7 @@
 * The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` now keep non team name matches to allow the user to call `gt::sub_missing()`. (#48)
 * The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` now correctly render images in gt row group labels. (#49)
 * Deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. These function are slow and require a possibly unstable dependency. Please use the far superior `element_nfl_logo()` and friends instead. (#50)
+* The function `geom_nfl_logos()` now plots the NFL logo, if `team_abbr == "NFL"`. (#51)
 
 # nflplotR 1.2.0
 
