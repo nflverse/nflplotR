@@ -6,11 +6,11 @@ build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "
   if(type == "teams") {
     team_abbr <- data$team_abbr[i]
     image_to_read <- logo_list[[team_abbr]]
-    if (is.na(team_abbr)) make_null <- TRUE
+    if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else if(type == "wordmarks") {
     team_abbr <- data$team_abbr[i]
     image_to_read <- wordmark_list[[team_abbr]]
-    if (is.na(team_abbr)) make_null <- TRUE
+    if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else if (type == "path"){
     image_to_read <- data$path[i]
   } else {
