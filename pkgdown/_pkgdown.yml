@@ -11,7 +11,7 @@ home:
     League analysis in 'ggplot2'.
 
 navbar:
-  type: dark
+  type: light
   bg: dark
   structure:
     left:  [home, intro, reference, news, articles]
