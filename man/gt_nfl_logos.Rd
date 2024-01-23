@@ -3,11 +3,18 @@
 \name{gt_nfl_logos}
 \alias{gt_nfl_logos}
 \alias{gt_nfl_wordmarks}
+\alias{gt_nfl_cols_label}
 \title{Render Logos and Wordmarks in 'gt' Tables}
 \usage{
 gt_nfl_logos(gt_object, columns, height = 30, locations = NULL)
 
 gt_nfl_wordmarks(gt_object, columns, height = 30, locations = NULL)
+
+gt_nfl_cols_label(
+  gt_tbl,
+  columns = gt::everything(),
+  type = c("logo", "wordmark")
+)
 }
 \arguments{
 \item{gt_object}{A table object that is created using the \code{\link[gt:gt]{gt::gt()}} function.}
@@ -24,6 +31,9 @@ transformation. Only the \code{\link[gt:cells_body]{gt::cells_body()}}, \code{\l
 \code{\link[gt:cells_column_labels]{gt::cells_column_labels()}}, and \code{\link[gt:cells_row_groups]{gt::cells_row_groups()}} helper functions
 can be used here. We can enclose several of these calls within a \code{list()}
 if we wish to make the transformation happen at different locations.}
+
+\item{type}{One of \code{"logo"} or \code{"wordmark"} selecting whether to render
+a team's logo or wordmark image.}
 }
 \value{
 An object of class \code{gt_tbl}.
@@ -62,4 +72,7 @@ table <- df \%>\%
 }
 \seealso{
 The player headshot rendering function \code{\link[=gt_nfl_headshots]{gt_nfl_headshots()}}.
+
+The article that describes how nflplotR works with the {gt} package
+\url{https://nflplotr.nflverse.com/articles/gt.html}
 }
