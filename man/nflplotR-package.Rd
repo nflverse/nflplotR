@@ -6,7 +6,6 @@
 \alias{GeomNFLheads}
 \alias{GeomNFLlogo}
 \alias{GeomNFLwordmark}
-\alias{nflplotR}
 \alias{nflplotR-package}
 \title{nflplotR: NFL Logo Plots in 'ggplot2'}
 \format{
