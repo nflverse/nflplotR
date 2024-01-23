@@ -121,73 +121,38 @@ example_table |>
 
 ### How about Column Labels?
 
-Well...it's complicated because [gt behaves inconsistent in my opinion](https://github.com/rstudio/gt/issues/1433). Currently, the nflplotR gt helpers fail to render images in column labels. 
+Well...it's complicated, because [gt behaves inconsistent in my opinion](https://github.com/rstudio/gt/issues/1433).
 
-Until a better solution has been found, the following code is recommended for the implementation of logos and wordmarks in column labels. 
+The actually correct way would be a call to `nflplotR::gt_nfl_logos` or `nflplotR::gt_nfl_wordmarks` with the `locations` argument set to `gt::cells_column_labels()`. Currently, this wouldn't render any images in column labels as discussed in the above linked issue. 
+
+However, as a convenient workaround, nflplotR supports logos and wordmarks in column labels through `gt_nfl_cols_label()`. 
 
 LOGOS:
 
 ```{r}
-data.frame(
-  BUF = 1:2,
-  LAC = 11:12
-) |> 
-  gt::gt() |> 
-  gt::cols_label_with(
-    fn = function(team_abbrs){
-      teams <- nflreadr::load_teams(current = FALSE)
-      image_urls <- vapply(
-        team_abbrs,
-        FUN.VALUE = character(1L),
-        USE.NAMES = FALSE,
-        FUN = function(abbr) {
-          if(!abbr %in% nflplotR::valid_team_names()) return(NA_character_)
-          ret <- teams$team_logo_espn[teams$team_abbr == abbr]
-          ret
-        }
-      )
-      img_tags <- gt::web_image(image_urls, height = 30)
-      gt::html(img_tags)
-    }
-  ) |> 
+teams <- valid_team_names() |> head(6)
+df <- cbind(1, 2, 3, 4, 5, 6) |> 
+  as.data.frame() |> 
+  rlang::set_names(teams)
+
+gt::gt(df) |> 
+  nflplotR::gt_nfl_cols_label() |> 
   # align the complete table left
   gt::tab_options(
     table.align = "left"
   )
 ```
 
-WORDMARKS:
+WORDMARKS (note how non matches remain unchanged):
 
 ```{r}
-data.frame(
-  BUF = 1:2,
-  LAC = 11:12
-) |> 
-  gt::gt() |> 
-  gt::cols_label_with(
-    fn = function(team_abbrs){
-      teams <- nflreadr::load_teams(current = FALSE)
-      image_urls <- vapply(
-        team_abbrs,
-        FUN.VALUE = character(1L),
-        USE.NAMES = FALSE,
-        FUN = function(abbr) {
-          if(!abbr %in% nflplotR::valid_team_names()) return(NA_character_)
-          ret <- teams$team_wordmark[teams$team_abbr == abbr]
-          ret
-        }
-      )
-      img_tags <- gt::web_image(image_urls, height = 30)
-      gt::html(img_tags)
-    }
-  ) |> 
+gt::gt(df) |> 
+  nflplotR::gt_nfl_cols_label(type = "wordmark") |> 
   # align the complete table left
   gt::tab_options(
     table.align = "left"
   )
 ```
-
-
 
 ### Logos and Wordmarks Rendered by nflplotR
 
