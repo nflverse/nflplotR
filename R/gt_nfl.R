@@ -76,7 +76,7 @@ gt_nfl_wordmarks <- function(gt_object,
 
 #' @rdname gt_nfl_logos
 #' @export
-gt_nfl_cols_label <- function(gt_tbl,
+gt_nfl_cols_label <- function(gt_object,
                               columns = gt::everything(),
                               height = 30,
                               type = c("logo", "wordmark")){
@@ -90,7 +90,7 @@ gt_nfl_cols_label <- function(gt_tbl,
   )
 
   gt::cols_label_with(
-    data = gt_tbl,
+    data = gt_object,
     columns = {{ columns }},
     fn = function(team_abbrs){
       image_urls <- lookup[team_abbrs]
