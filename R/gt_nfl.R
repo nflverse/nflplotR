@@ -13,9 +13,13 @@
 #'   [gt::cells_column_labels()], and [gt::cells_row_groups()] helper functions
 #'   can be used here. We can enclose several of these calls within a `list()`
 #'   if we wish to make the transformation happen at different locations.
+#' @param type One of `"logo"` or `"wordmark"` selecting whether to render
+#'    a team's logo or wordmark image.
 #'
 #' @return An object of class `gt_tbl`.
 #' @seealso The player headshot rendering function [gt_nfl_headshots()].
+#' @seealso The article that describes how nflplotR works with the {gt} package
+#'    <https://nflplotr.nflverse.com/articles/gt.html>
 #' @export
 #' @section Output of below example:
 #' \if{html}{\figure{logo_tbl.png}{options: width=75\%}}
@@ -66,6 +70,32 @@ gt_nfl_wordmarks <- function(gt_object,
     height = height,
     locations = locations,
     type = "wordmarks"
+  )
+}
+
+
+#' @rdname gt_nfl_logos
+#' @export
+gt_nfl_cols_label <- function(gt_tbl,
+                              columns = gt::everything(),
+                              type = c("logo", "wordmark")){
+
+  type <- rlang::arg_match(type)
+
+  lookup <- switch (type,
+                    "logo" = logo_urls,
+                    "wordmark" = wordmark_urls
+  )
+
+  gt::cols_label_with(
+    data = gt_tbl,
+    columns = {{ columns }},
+    fn = function(team_abbrs){
+      image_urls <- lookup[team_abbrs]
+      img_tags <- gt::web_image(image_urls, height = 35)
+      img_tags[is.na(image_urls)] <- team_abbrs[is.na(image_urls)]
+      gt::html(img_tags)
+    }
   )
 }
 
