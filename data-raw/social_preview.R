@@ -24,3 +24,44 @@ p <- ggplot(df, aes(x = a, y = b)) +
 ggsave("man/figures/social_preview.png",
        p, width = 1280, height = 640, units = "px", dpi = 600,
        bg = "#222222")
+
+
+
+# GT ----------------------------------------------------------------------
+
+teams <- nflplotR::valid_team_names()
+# remove conference logos from this example
+teams <- c(teams[!teams %in% c("AFC", "NFC", "NFL")], c("AFC", "NFC", "NFL"))
+# create dataframe with all 32 team names
+df <- data.frame(
+  team_a = teams[1:9],
+  logo_a = teams[1:9],
+  wordmark_a = teams[1:9],
+  team_b = teams[10:18],
+  logo_b = teams[10:18],
+  wordmark_b = teams[10:18],
+  team_c = teams[19:27],
+  logo_c = teams[19:27],
+  wordmark_c = teams[19:27],
+  team_d = teams[28:36],
+  logo_d = teams[28:36],
+  wordmark_d = teams[28:36]
+)
+gt_preview <- df |>
+  gt::gt() |>
+  nflplotR::gt_nfl_logos(columns = gt::starts_with("logo")) |>
+  nflplotR::gt_nfl_wordmarks(columns = gt::starts_with("wordmark")) |>
+  gt::cols_label(
+    gt::starts_with("team") ~ "TEAM",
+    gt::starts_with("logo") ~ "LOGO",
+    gt::starts_with("wordmark") ~ "WORDMARK"
+  ) |>
+  nflseedR:::table_theme() |>
+  gt::sub_missing(missing_text = "") |>
+  gt::tab_style(
+    style = gt::cell_borders(sides = "left", weight = gt::px(1)),
+    locations = gt::cells_body(columns = c(team_b, team_c, team_d))
+  ) |>
+  gt::tab_header("NFL Logos & Wordmarks in nflplotR", "by @mrcaseb")
+
+gt::gtsave(gt_preview, "man/figures/social_preview_gt.png", zoom = 3)

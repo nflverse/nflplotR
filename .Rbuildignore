@@ -11,3 +11,4 @@
 ^codecov\.yml$
 ^vignettes/articles$
 ^CRAN-SUBMISSION$
+^man/figures/social_preview_gt\.png$
