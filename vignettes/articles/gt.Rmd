@@ -130,7 +130,7 @@ However, as a convenient workaround, nflplotR supports logos and wordmarks in co
 LOGOS:
 
 ```{r}
-teams <- valid_team_names() |> head(6)
+teams <- nflplotR::valid_team_names() |> head(6)
 df <- cbind(1, 2, 3, 4, 5, 6) |> 
   as.data.frame() |> 
   rlang::set_names(teams)
