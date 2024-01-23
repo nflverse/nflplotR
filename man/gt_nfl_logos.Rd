@@ -13,6 +13,7 @@ gt_nfl_wordmarks(gt_object, columns, height = 30, locations = NULL)
 gt_nfl_cols_label(
   gt_tbl,
   columns = gt::everything(),
+  height = 30,
   type = c("logo", "wordmark")
 )
 }

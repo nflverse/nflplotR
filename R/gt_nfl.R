@@ -78,13 +78,15 @@ gt_nfl_wordmarks <- function(gt_object,
 #' @export
 gt_nfl_cols_label <- function(gt_tbl,
                               columns = gt::everything(),
+                              height = 30,
                               type = c("logo", "wordmark")){
 
   type <- rlang::arg_match(type)
 
-  lookup <- switch (type,
-                    "logo" = logo_urls,
-                    "wordmark" = wordmark_urls
+  lookup <- switch (
+    type,
+    "logo" = logo_urls,
+    "wordmark" = wordmark_urls
   )
 
   gt::cols_label_with(
@@ -92,7 +94,7 @@ gt_nfl_cols_label <- function(gt_tbl,
     columns = {{ columns }},
     fn = function(team_abbrs){
       image_urls <- lookup[team_abbrs]
-      img_tags <- gt::web_image(image_urls, height = 35)
+      img_tags <- gt::web_image(image_urls, height = height)
       img_tags[is.na(image_urls)] <- team_abbrs[is.na(image_urls)]
       gt::html(img_tags)
     }
