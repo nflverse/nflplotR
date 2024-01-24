@@ -101,16 +101,18 @@
 #'
 #' library(ggplot2)
 #'
-#' df <- dplyr::mutate(mtcars,
-#'   team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
-#'   player = sample(
-#'   c("00-0033873", "00-0035228", "00-0036355", "00-0019596"),
-#'   nrow(mtcars),
-#'   TRUE
+#' dt <- data.table::as.data.table(mtcars)[,
+#'   `:=`(
+#'     team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
+#'     player = sample(
+#'       c("00-0033873", "00-0035228", "00-0036355", "00-0019596"),
+#'       nrow(mtcars),
+#'       TRUE
+#'     )
 #'   )
-#' )
+#' ]
 #'
-#' ggplot(df, aes(x = mpg, y = disp)) +
+#' ggplot(dt, aes(x = mpg, y = disp)) +
 #'   geom_point() +
 #'   facet_wrap(vars(team)) +
 #'   labs(

@@ -40,7 +40,6 @@ nfl_team_factor(teams, rev(team_abbr))
 ######### HOW TO USE IN PRACTICE #########
 
 library(ggplot2)
-library(magrittr)
 # load some sample data from the ggplot2 package
 plot_data <- mpg
 # add a new column by randomly sampling the above defined teams vector
@@ -56,8 +55,7 @@ ggplot(plot_data, aes(displ, hwy)) +
 # We'll change the order of facets by making another team name column and
 # converting it to an ordered factor. Again, this defaults to sort by division
 # and nick name in ascending order.
-plot_data$ordered_team <- sample(teams, nrow(mpg), replace = TRUE) \%>\%
-  nfl_team_factor()
+plot_data$ordered_team <- nfl_team_factor(sample(teams, nrow(mpg), replace = TRUE))
 
 # Let's check how the facets are ordered now.
 ggplot(plot_data, aes(displ, hwy)) +

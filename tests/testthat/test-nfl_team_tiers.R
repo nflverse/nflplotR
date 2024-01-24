@@ -1,21 +1,17 @@
 test_that("team tiers work", {
   library(ggplot2)
-  library(dplyr, warn.conflicts = FALSE)
-  teams <- valid_team_names()
+  teams <- nflplotR::valid_team_names()
   # remove conference logos from this example
   teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
-
   set.seed(32)
 
-  # Build the team tiers data frame
+  teams <- sample(teams)
+  # Build the team tiers data
   # This is completely random!
-  df <- data.frame(
+  dt <- data.table::data.table(
     tier_no = sample(1:5, length(teams), replace = TRUE),
     team_abbr = teams
-  ) %>%
-    dplyr::group_by(tier_no) %>%
-    dplyr::mutate(tier_rank = sample(1:n(), n())) %>%
-    dplyr::ungroup()
+  )[,tier_rank := sample(1:.N, .N), by = "tier_no"]
 
   # Check dev mode only because logos are tested elsewhere
   p1 <- nfl_team_tiers(df,
