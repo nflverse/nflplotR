@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9006</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9007</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -165,22 +165,21 @@ development.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span>, warn.conflicts <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="valid_team_names.html">valid_team_names</a></span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://r-datatable.com" class="external-link">data.table</a></span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="valid_team_names.html">valid_team_names</a></span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="co"># remove conference logos from this example</span></span></span>
 <span class="r-in"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="va">teams</span><span class="op">[</span><span class="op">!</span><span class="va">teams</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"AFC"</span>, <span class="st">"NFC"</span>, <span class="st">"NFL"</span><span class="op">)</span><span class="op">]</span></span></span>
+<span class="r-in"><span><span class="va">teams</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="va">teams</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="co"># Build the team tiers data frame</span></span></span>
+<span class="r-in"><span><span class="co"># Build the team tiers data</span></span></span>
 <span class="r-in"><span><span class="co"># This is completely random!</span></span></span>
-<span class="r-in"><span><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span><span class="va">dt</span> <span class="op">&lt;-</span> <span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://rdatatable.gitlab.io/data.table/reference/data.table.html" class="external-link">data.table</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span>  tier_no <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fl">5</span>, <span class="fu"><a href="https://rdrr.io/r/base/length.html" class="external-link">length</a></span><span class="op">(</span><span class="va">teams</span><span class="op">)</span>, replace <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>,</span></span>
 <span class="r-in"><span>  team_abbr <span class="op">=</span> <span class="va">teams</span></span></span>
-<span class="r-in"><span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">tier_no</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
-<span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>tier_rank <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span>, <span class="fu"><a href="https://dplyr.tidyverse.org/reference/context.html" class="external-link">n</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">[</span>,<span class="va">tier_rank</span> <span class="op">:=</span> <span class="fu"><a href="https://rdrr.io/r/base/sample.html" class="external-link">sample</a></span><span class="op">(</span><span class="fl">1</span><span class="op">:</span><span class="va">.N</span>, <span class="va">.N</span><span class="op">)</span>, by <span class="op">=</span> <span class="st">"tier_no"</span><span class="op">]</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Plot team tiers</span></span></span>
-<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">dt</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="nfl_team_tiers-1.png" alt="" width="700" height="433"></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Create a combined tier which is useful for tiers with lots of teams that</span></span></span>
@@ -188,7 +187,7 @@ development.</p></dd>
 <span class="r-in"><span><span class="co"># string for the tier 5 description and removing the tier separation line</span></span></span>
 <span class="r-in"><span><span class="co"># below tier number 4.</span></span></span>
 <span class="r-in"><span><span class="co"># This example also shows how to turn off the subtitle and add a caption</span></span></span>
-<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span>,</span></span>
+<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">dt</span>,</span></span>
 <span class="r-in"><span>               subtitle <span class="op">=</span> <span class="cn">NULL</span>,</span></span>
 <span class="r-in"><span>               caption <span class="op">=</span> <span class="st">"This is the caption"</span>,</span></span>
 <span class="r-in"><span>               tier_desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"Super Bowl"</span>,</span></span>
@@ -202,7 +201,7 @@ development.</p></dd>
 <span class="r-in"><span><span class="co"># For the development of the tiers, it can be useful to turn off logo image</span></span></span>
 <span class="r-in"><span><span class="co"># rendering as this can take quite a long time. By setting `devel = TRUE`, the</span></span></span>
 <span class="r-in"><span><span class="co"># logo images are replaced by team abbreviations which is much faster</span></span></span>
-<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">df</span>,</span></span>
+<span class="r-in"><span><span class="fu">nfl_team_tiers</span><span class="op">(</span><span class="va">dt</span>,</span></span>
 <span class="r-in"><span>               tier_desc <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"1"</span> <span class="op">=</span> <span class="st">"Super Bowl"</span>,</span></span>
 <span class="r-in"><span>                             <span class="st">"2"</span> <span class="op">=</span> <span class="st">"Very Good"</span>,</span></span>
 <span class="r-in"><span>                             <span class="st">"3"</span> <span class="op">=</span> <span class="st">""</span>,</span></span>
