@@ -14,7 +14,7 @@ test_that("team tiers work", {
   )[,tier_rank := sample(1:.N, .N), by = "tier_no"]
 
   # Check dev mode only because logos are tested elsewhere
-  p1 <- nfl_team_tiers(df,
+  p1 <- nfl_team_tiers(dt,
                        tier_desc = c("1" = "Super Bowl",
                                      "2" = "Very Good",
                                      "3" = "",

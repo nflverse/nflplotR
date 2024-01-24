@@ -49,14 +49,14 @@
 #' )[,tier_rank := sample(1:.N, .N), by = "tier_no"]
 #'
 #' # Plot team tiers
-#' nfl_team_tiers(df)
+#' nfl_team_tiers(dt)
 #'
 #' # Create a combined tier which is useful for tiers with lots of teams that
 #' # should be split up in two or more rows. This is done by setting an empty
 #' # string for the tier 5 description and removing the tier separation line
 #' # below tier number 4.
 #' # This example also shows how to turn off the subtitle and add a caption
-#' nfl_team_tiers(df,
+#' nfl_team_tiers(dt,
 #'                subtitle = NULL,
 #'                caption = "This is the caption",
 #'                tier_desc = c("1" = "Super Bowl",
@@ -69,7 +69,7 @@
 #' # For the development of the tiers, it can be useful to turn off logo image
 #' # rendering as this can take quite a long time. By setting `devel = TRUE`, the
 #' # logo images are replaced by team abbreviations which is much faster
-#' nfl_team_tiers(df,
+#' nfl_team_tiers(dt,
 #'                tier_desc = c("1" = "Super Bowl",
 #'                              "2" = "Very Good",
 #'                              "3" = "",
