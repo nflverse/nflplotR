@@ -9,7 +9,7 @@
 #' @importFrom ggplot2 element_grob
 #' @importFrom graphics par
 #' @importFrom lifecycle deprecated
-#' @importFrom magrittr %>%
+#' @importFrom gt %>%
 #' @importFrom rlang .data %||%
 #' @importFrom utils capture.output
 ## usethis namespace: end

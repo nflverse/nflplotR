@@ -35,29 +35,28 @@
 #' @examples
 #' \donttest{
 #' library(ggplot2)
-#' library(dplyr, warn.conflicts = FALSE)
-#' teams <- valid_team_names()
+#' library(data.table)
+#' teams <- nflplotR::valid_team_names()
 #' # remove conference logos from this example
 #' teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
+#' teams <- sample(teams)
 #'
-#' # Build the team tiers data frame
+#' # Build the team tiers data
 #' # This is completely random!
-#' df <- data.frame(
+#' dt <- data.table::data.table(
 #'   tier_no = sample(1:5, length(teams), replace = TRUE),
 #'   team_abbr = teams
-#' ) %>%
-#'   dplyr::group_by(tier_no) %>%
-#'   dplyr::mutate(tier_rank = sample(1:n(), n()))
+#' )[,tier_rank := sample(1:.N, .N), by = "tier_no"]
 #'
 #' # Plot team tiers
-#' nfl_team_tiers(df)
+#' nfl_team_tiers(dt)
 #'
 #' # Create a combined tier which is useful for tiers with lots of teams that
 #' # should be split up in two or more rows. This is done by setting an empty
 #' # string for the tier 5 description and removing the tier separation line
 #' # below tier number 4.
 #' # This example also shows how to turn off the subtitle and add a caption
-#' nfl_team_tiers(df,
+#' nfl_team_tiers(dt,
 #'                subtitle = NULL,
 #'                caption = "This is the caption",
 #'                tier_desc = c("1" = "Super Bowl",
@@ -70,7 +69,7 @@
 #' # For the development of the tiers, it can be useful to turn off logo image
 #' # rendering as this can take quite a long time. By setting `devel = TRUE`, the
 #' # logo images are replaced by team abbreviations which is much faster
-#' nfl_team_tiers(df,
+#' nfl_team_tiers(dt,
 #'                tier_desc = c("1" = "Super Bowl",
 #'                              "2" = "Very Good",
 #'                              "3" = "",
@@ -97,8 +96,6 @@ nfl_team_tiers <- function(data,
                            no_line_below_tier = NULL,
                            devel = FALSE){
 
-  rlang::check_installed("sjmisc", "to build the nflplotR team tiers.")
-
   required_vars <- c("tier_no", "team_abbr")
 
   if (!all(required_vars %in% names(data))){
@@ -113,18 +110,13 @@ nfl_team_tiers <- function(data,
   tierlines <- c(min(tiers) - 0.5, tierlines)
 
   if (isTRUE(presort)){
-    data <- data %>%
-      dplyr::group_by(.data$tier_no) %>%
-      dplyr::arrange(.data$team_abbr) %>%
-      dplyr::mutate(tier_rank = 1:dplyr::n()) %>%
-      dplyr::ungroup()
+    data <- data.table::as.data.table(data)[order(tier_no, team_abbr)]
+    data[, tier_rank := 1:.N, by = "tier_no"]
   }
 
   if (!"tier_rank" %in% names(data)){
-    data <- data %>%
-      dplyr::group_by(.data$tier_no) %>%
-      dplyr::mutate(tier_rank = 1:dplyr::n()) %>%
-      dplyr::ungroup()
+    data <- data.table::as.data.table(data)
+    data[, tier_rank := 1:.N, by = "tier_no"]
   }
 
   data$team_abbr <- nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = FALSE)
@@ -140,7 +132,7 @@ nfl_team_tiers <- function(data,
       expand = ggplot2::expansion(add = 0.1),
       limits = rev(c(min(tiers) - 0.5, max(tiers) + 0.5)),
       breaks = rev(tiers),
-      labels = function(x) sjmisc::word_wrap(tier_desc[x], 15),
+      labels = function(x) scales::label_wrap(15)(tier_desc[x]),
       trans = "reverse"
     ) +
     ggplot2::labs(title = title, subtitle = subtitle, caption = caption) +

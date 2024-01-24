@@ -63,29 +63,28 @@ This function sets up a ggplot to visualize NFL team tiers.
 \examples{
 \donttest{
 library(ggplot2)
-library(dplyr, warn.conflicts = FALSE)
-teams <- valid_team_names()
+library(data.table)
+teams <- nflplotR::valid_team_names()
 # remove conference logos from this example
 teams <- teams[!teams \%in\% c("AFC", "NFC", "NFL")]
+teams <- sample(teams)
 
-# Build the team tiers data frame
+# Build the team tiers data
 # This is completely random!
-df <- data.frame(
+dt <- data.table::data.table(
   tier_no = sample(1:5, length(teams), replace = TRUE),
   team_abbr = teams
-) \%>\%
-  dplyr::group_by(tier_no) \%>\%
-  dplyr::mutate(tier_rank = sample(1:n(), n()))
+)[,tier_rank := sample(1:.N, .N), by = "tier_no"]
 
 # Plot team tiers
-nfl_team_tiers(df)
+nfl_team_tiers(dt)
 
 # Create a combined tier which is useful for tiers with lots of teams that
 # should be split up in two or more rows. This is done by setting an empty
 # string for the tier 5 description and removing the tier separation line
 # below tier number 4.
 # This example also shows how to turn off the subtitle and add a caption
-nfl_team_tiers(df,
+nfl_team_tiers(dt,
                subtitle = NULL,
                caption = "This is the caption",
                tier_desc = c("1" = "Super Bowl",
@@ -98,7 +97,7 @@ nfl_team_tiers(df,
 # For the development of the tiers, it can be useful to turn off logo image
 # rendering as this can take quite a long time. By setting `devel = TRUE`, the
 # logo images are replaced by team abbreviations which is much faster
-nfl_team_tiers(df,
+nfl_team_tiers(dt,
                tier_desc = c("1" = "Super Bowl",
                              "2" = "Very Good",
                              "3" = "",
