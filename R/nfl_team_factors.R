@@ -87,6 +87,6 @@ nfl_team_factor <- function(teams, ...){
 
 # silence global variable NOTES
 utils::globalVariables(
-  names = c("team_abbr", "team_division", "team_nick"),
+  names = c("team_abbr", "team_division", "team_nick", "tier_no", "tier_rank"),
   package = "nflplotR"
 )
