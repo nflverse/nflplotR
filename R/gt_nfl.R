@@ -54,7 +54,7 @@ gt_nfl_logos <- function(gt_object,
     columns = columns,
     height = height,
     locations = locations,
-    type = "logos"
+    type = "logo"
   )
 }
 
@@ -69,7 +69,7 @@ gt_nfl_wordmarks <- function(gt_object,
     columns = columns,
     height = height,
     locations = locations,
-    type = "wordmarks"
+    type = "wordmark"
   )
 }
 
@@ -83,20 +83,23 @@ gt_nfl_cols_label <- function(gt_object,
 
   type <- rlang::arg_match(type)
 
-  lookup <- switch (
-    type,
-    "logo" = logo_urls,
-    "wordmark" = wordmark_urls
-  )
+  if (is.numeric(height)) {
+    height <- paste0(height, "px")
+  }
 
   gt::cols_label_with(
     data = gt_object,
     columns = {{ columns }},
-    fn = function(team_abbrs){
-      image_urls <- lookup[team_abbrs]
-      img_tags <- gt::web_image(image_urls, height = height)
-      img_tags[is.na(image_urls)] <- team_abbrs[is.na(image_urls)]
-      gt::html(img_tags)
+    fn = function(x){
+      team_abbr <- nflreadr::clean_team_abbrs(as.character(x), keep_non_matches = FALSE)
+      # Create the image URI
+      uri <- get_image_uri(team_abbr = team_abbr, type = type)
+      # Generate the Base64-encoded image and place it within <img> tags
+      out <- paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
+      # If the image uri returns NA we didn't find a match. We will return the
+      # actual value then to avoid removing a label
+      out[is.na(uri)] <- x[is.na(uri)]
+      gt::html(out)
     }
   )
 }
@@ -105,7 +108,7 @@ gt_nflplotR_image <- function(gt_object,
                               columns,
                               height = 30,
                               locations = NULL,
-                              type = c("logos", "wordmarks")){
+                              type = c("logo", "wordmark")){
 
   rlang::check_installed("gt (>= 0.8.0)", "to render images in gt tables.")
 
@@ -140,11 +143,11 @@ gt_nflplotR_image <- function(gt_object,
 
 # Taken from gt package and modified for nflplotR purposes
 # Get image URIs from image lists as a vector Base64-encoded image strings
-get_image_uri <- function(team_abbr, type = c("logos", "wordmarks")) {
+get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
 
   lookup_list <- switch (type,
-    "logos" = logo_list,
-    "wordmarks" = wordmark_list
+    "logo" = logo_list,
+    "wordmark" = wordmark_list
   )
 
   vapply(
