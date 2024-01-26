@@ -50,7 +50,7 @@ install.packages("nflplotR", repos = c("https://nflverse.r-universe.dev", getOpt
 
 ## Usage
 
-Please see the **'[Get Started with nflplotR](https://nflplotr.nflverse.com/articles/nflplotR.html)' article**.
+Please see the **[Get Started with nflplotR](https://nflplotr.nflverse.com/articles/nflplotR.html)** and **[nflplotR & the gt Package](https://nflplotr.nflverse.com/articles/gt.html)** articles.
 
 ## Getting help
 
