@@ -104,6 +104,41 @@ gt_nfl_cols_label <- function(gt_object,
   )
 }
 
+gt_headshot_cols_label <- function(gt_object,
+                              columns = gt::everything(),
+                              height = 45){
+  
+  if (is.numeric(height)) {
+    height <- paste0(height, "px")
+  }
+  
+  gt::cols_label_with(
+    data = gt_object,
+    columns = {{ columns }},
+    
+    fn = function(gsis){
+      headshot_map <- nflplotR:::load_headshots()
+      image_urls <- vapply(
+        gsis,
+        FUN.VALUE = character(1),
+        USE.NAMES = FALSE,
+        FUN = function(id) {
+          if(is.na(id) | !is_gsis(id)) return(NA_character_)
+          ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
+          if(length(ret) == 0) ret <- na_headshot()
+          ret
+        }
+      )
+      img_tags <- gt::web_image(image_urls, height = height)
+      # gt::web_image inserts a placeholder for NAs
+      # We want the actual input instead because users might call
+      # gt::sub_missing which defaults to "---"
+      img_tags[is.na(image_urls)] <- gsis[is.na(image_urls)]
+      gt::html(img_tags)
+    }
+  )
+}
+
 gt_nflplotR_image <- function(gt_object,
                               columns,
                               height = 30,
