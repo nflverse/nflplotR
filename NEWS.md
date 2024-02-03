@@ -7,6 +7,7 @@
 * The function `geom_nfl_logos()` now plots the NFL logo, if `team_abbr == "NFL"`. (#51)
 * Added the new function `gt_nfl_cols_label()` that renders logos and wordmarks in column labels of {gt} tables. (#52)
 * The function `gt_nfl_cols_label()` now allows rendering of player headshots in column labels. Thanks Steven Patton @spatto12 for the PR. (#55)
+* Adjust lists in documentation as the next R version checks for correctly formatted lists. (#56)
 
 # nflplotR 1.2.0
 
