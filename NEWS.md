@@ -6,6 +6,7 @@
 * Deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. These function are slow and require a possibly unstable dependency. Please use the far superior `element_nfl_logo()` and friends instead. (#50)
 * The function `geom_nfl_logos()` now plots the NFL logo, if `team_abbr == "NFL"`. (#51)
 * Added the new function `gt_nfl_cols_label()` that renders logos and wordmarks in column labels of {gt} tables. (#52)
+* The function `gt_nfl_cols_label()` now allows rendering of player headshots in column labels. Thanks Steven Patton @spatto12 for the PR. (#55)
 
 # nflplotR 1.2.0
 

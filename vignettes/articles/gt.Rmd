@@ -154,6 +154,22 @@ gt::gt(df) |>
   )
 ```
 
+HEADSHOTS:
+
+```{r}
+headshot_df <- data.frame(
+  "00-0036355" = 1, 
+  "00-0033873" = 2,
+  check.names = FALSE
+)
+gt::gt(headshot_df) |> 
+  nflplotR::gt_nfl_cols_label(type = "headshot") |> 
+  # align the complete table left
+  gt::tab_options(
+    table.align = "left"
+  )
+```
+
 ### Logos and Wordmarks Rendered by nflplotR
 
 This example creates a table that renders all team logos and wordmarks. We split the table into 2 x 16 rows to avoid an overly long table and convert all variables starting with "logo" to logos and all variables starting with "wordmark" to wordmarks. 

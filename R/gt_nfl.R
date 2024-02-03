@@ -13,8 +13,6 @@
 #'   [gt::cells_column_labels()], and [gt::cells_row_groups()] helper functions
 #'   can be used here. We can enclose several of these calls within a `list()`
 #'   if we wish to make the transformation happen at different locations.
-#' @param type One of `"logo"` or `"wordmark"` selecting whether to render
-#'    a team's logo or wordmark image.
 #'
 #' @return An object of class `gt_tbl`.
 #' @seealso The player headshot rendering function [gt_nfl_headshots()].
@@ -73,13 +71,52 @@ gt_nfl_wordmarks <- function(gt_object,
   )
 }
 
-
-#' @rdname gt_nfl_logos
+#' Render Logos, Wordmarks, and Headshots in 'gt' Table Column Labels
+#'
+#' @description Translate NFL team abbreviations into logos and wordmarks or
+#'  NFL player gsis IDs to player headshots and render these images in
+#'  column labels of 'gt' tables.
+#'
+#' @inheritParams gt_nfl_logos
+#' @param ... Currently not in use
+#' @param type One of `"logo"`, `"wordmark"`, or `"headshot"` selecting whether
+#'   to render a team's logo or wordmark image, or a player's headshot.
+#'
+#' @return An object of class `gt_tbl`.
+#' @seealso The article that describes how nflplotR works with the {gt} package
+#'    <https://nflplotr.nflverse.com/articles/gt.html>
+#' @seealso The logo and wordmark rendering functions [gt_nfl_logos()] and
+#'   [gt_nfl_wordmarks()].
+#' @seealso The player headshot rendering function [gt_nfl_headshots()].
 #' @export
+#' @section Output of below example:
+#' \if{html}{\figure{cols_label.png}{options: width=75\%}}
+#' @examples
+#' \donttest{
+#' library(gt)
+#' label_df <- data.frame(
+#'   "00-0036355" = 1,
+#'   "00-0033873" = 2,
+#'   "LAC" = 11,
+#'   "KC" = 12,
+#'   check.names = FALSE
+#' )
+#'
+#' # create gt table and translate player IDs and team abbreviations
+#' # into headshots, logos, and wordmarks
+#' table <- gt::gt(label_df) %>%
+#'   nflplotR::gt_nfl_cols_label(
+#'     columns = gt::starts_with("00"),
+#'     type = "headshot"
+#'   ) %>%
+#'   nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") %>%
+#'   nflplotR::gt_nfl_cols_label("KC", type = "logo")
+#' }
 gt_nfl_cols_label <- function(gt_object,
                               columns = gt::everything(),
+                              ...,
                               height = 30,
-                              type = c("logo", "wordmark")){
+                              type = c("logo", "wordmark", "headshot")){
 
   type <- rlang::arg_match(type)
 
@@ -91,14 +128,23 @@ gt_nfl_cols_label <- function(gt_object,
     data = gt_object,
     columns = {{ columns }},
     fn = function(x){
-      team_abbr <- nflreadr::clean_team_abbrs(as.character(x), keep_non_matches = FALSE)
-      # Create the image URI
-      uri <- get_image_uri(team_abbr = team_abbr, type = type)
-      # Generate the Base64-encoded image and place it within <img> tags
-      out <- paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
-      # If the image uri returns NA we didn't find a match. We will return the
-      # actual value then to avoid removing a label
-      out[is.na(uri)] <- x[is.na(uri)]
+      if (type == "headshot"){
+        headshots <- load_headshots()
+        lookup <- headshots$headshot_nfl
+        names(lookup) <- headshots$gsis_id
+        image_url <- lookup[x]
+        out <- gt::web_image(image_url, height = height)
+        out[is.na(image_url)] <- x[is.na(image_url)]
+      } else {
+        team_abbr <- nflreadr::clean_team_abbrs(as.character(x), keep_non_matches = FALSE)
+        # Create the image URI
+        uri <- get_image_uri(team_abbr = team_abbr, type = type)
+        # Generate the Base64-encoded image and place it within <img> tags
+        out <- paste0("<img src=\"", uri, "\" style=\"height:", height, ";\">")
+        # If the image uri returns NA we didn't find a match. We will return the
+        # actual value then to avoid removing a label
+        out[is.na(uri)] <- x[is.na(uri)]
+      }
       gt::html(out)
     }
   )
