@@ -14,7 +14,7 @@ to compute their median or mean and draw them as a line."><meta property="og:ima
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -151,14 +151,29 @@ See <code><a href="https://mrcaseb.github.io/ggpath/reference/geom_lines.html" c
 
 
 <p><code>geom_median_lines()</code> and <code>geom_mean_lines()</code> understand the following
-aesthetics (at least one of the bold aesthetics is required):</p><ul><li><p><strong>x0</strong> - The variable for which to compute the median/mean that is drawn as vertical line.</p></li>
-<li><p><strong>y0</strong> - The variable for which to compute the median/mean that is drawn as horizontal line.</p></li>
-<li><p><code>alpha = NA</code> - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.</p></li>
-<li><p><code>color = "red"</code> - The color of the drawn lines.</p></li>
-<li><p><code>linetype = 2</code> - The linetype of the drawn lines.</p></li>
-<li><p><code>size = 0.5</code> - The size of the drawn lines. Deprecated as of ggplot2 v3.4.0, use <code>linewidth</code> instead.</p></li>
-<li><p><code>linewidth = 0.5</code> - The width of the drawn lines. Starting at ggplot2 v3.4.0.</p></li>
-</ul></div>
+aesthetics (at least one of the bold aesthetics is required):</p><dl><dt><strong>x0</strong></dt>
+<dd><p>The variable for which to compute the median/mean that is drawn as vertical line.</p></dd>
+
+<dt><strong>y0</strong></dt>
+<dd><p>The variable for which to compute the median/mean that is drawn as horizontal line.</p></dd>
+
+<dt><code>alpha = NA</code></dt>
+<dd><p>The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.</p></dd>
+
+<dt><code>color = "red"</code></dt>
+<dd><p>The color of the drawn lines.</p></dd>
+
+<dt><code>linetype = 2</code></dt>
+<dd><p>The linetype of the drawn lines.</p></dd>
+
+<dt><code>size = 0.5</code></dt>
+<dd><p>The size of the drawn lines. Deprecated as of ggplot2 v3.4.0, use <code>linewidth</code> instead.</p></dd>
+
+<dt><code>linewidth = 0.5</code></dt>
+<dd><p>The width of the drawn lines. Starting at ggplot2 v3.4.0.</p></dd>
+
+
+</dl></div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
     <div class="dont-index"><p>The underlying ggplot2 geoms <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_hline()</a></code> and <code><a href="https://ggplot2.tidyverse.org/reference/geom_abline.html" class="external-link">geom_vline()</a></code></p></div>

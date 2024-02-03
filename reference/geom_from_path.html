@@ -16,7 +16,7 @@ compatibility reasons."><meta property="og:image" content="https://nflplotr.nflv
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9008</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9009</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -166,23 +166,44 @@ See <code><a href="https://mrcaseb.github.io/ggpath/reference/geom_from_path.htm
     
 
 
-<p><code>geom_from_path()</code> understands the following aesthetics (required aesthetics are in bold):</p><ul><li><p><strong>x</strong> - The x-coordinate.</p></li>
-<li><p><strong>y</strong> - The y-coordinate.</p></li>
-<li><p><strong>path</strong> - a file path, url, raster object or bitmap array. See <code><a href="https://docs.ropensci.org/magick/reference/editing.html" class="external-link">magick::image_read()</a></code> for further information.</p></li>
-<li><p><code>alpha = NULL</code> - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.</p></li>
-<li><p><code>colour = NULL</code> - The image will be colorized with this colour. Use the special character <code>"b/w"</code> to set it to black and white. For more information on valid colour names in ggplot2 see <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill" class="external-link">https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill</a></p></li>
-<li><p><code>angle = 0</code> - The angle of the image as a numerical value between 0° and 360°.</p></li>
-<li><p><code>hjust = 0.5</code> - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.</p></li>
-<li><p><code>vjust = 0.5</code> - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.</p></li>
-<li><p><code>width = 1.0</code> - The desired width of the image in <code>npc</code> (Normalised Parent Coordinates).
+<p><code>geom_from_path()</code> understands the following aesthetics (required aesthetics are in bold):</p><dl><dt><strong>x</strong></dt>
+<dd><p>The x-coordinate.</p></dd>
+
+<dt><strong>y</strong></dt>
+<dd><p>The y-coordinate.</p></dd>
+
+<dt><strong>path</strong></dt>
+<dd><p>a file path, url, raster object or bitmap array. See <code><a href="https://docs.ropensci.org/magick/reference/editing.html" class="external-link">magick::image_read()</a></code> for further information.</p></dd>
+
+<dt><code>alpha = NULL</code></dt>
+<dd><p>The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.</p></dd>
+
+<dt><code>colour = NULL</code></dt>
+<dd><p>The image will be colorized with this colour. Use the special character <code>"b/w"</code> to set it to black and white. For more information on valid colour names in ggplot2 see <a href="https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill" class="external-link">https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill</a></p></dd>
+
+<dt><code>angle = 0</code></dt>
+<dd><p>The angle of the image as a numerical value between 0° and 360°.</p></dd>
+
+<dt><code>hjust = 0.5</code></dt>
+<dd><p>The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.</p></dd>
+
+<dt><code>vjust = 0.5</code></dt>
+<dd><p>The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.</p></dd>
+
+<dt><code>width = 1.0</code></dt>
+<dd><p>The desired width of the image in <code>npc</code> (Normalised Parent Coordinates).
 The default value is set to 1.0 which is <em>big</em> but it is necessary
 because all used values are computed relative to the default.
-A typical size is <code>width = 0.1</code> (see below examples).</p></li>
-<li><p><code>height = 1.0</code> - The desired height of the image in <code>npc</code> (Normalised Parent Coordinates).
+A typical size is <code>width = 0.1</code> (see below examples).</p></dd>
+
+<dt><code>height = 1.0</code></dt>
+<dd><p>The desired height of the image in <code>npc</code> (Normalised Parent Coordinates).
 The default value is set to 1.0 which is <em>big</em> but it is necessary
 because all used values are computed relative to the default.
-A typical size is <code>height = 0.1</code> (see below examples).</p></li>
-</ul></div>
+A typical size is <code>height = 0.1</code> (see below examples).</p></dd>
+
+
+</dl></div>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
