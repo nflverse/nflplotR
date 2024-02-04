@@ -8,9 +8,9 @@
 #' @section Aesthetics:
 #' `geom_nfl_logos()` understands the following aesthetics (required aesthetics are in bold):
 #' \describe{
-#'   \item{**x**}{The x-coordinate.}
-#'   \item{**y**}{The y-coordinate.}
-#'   \item{**team_abbr**}{The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
+#'   \item{**`x`**}{The x-coordinate.}
+#'   \item{**`y`**}{The y-coordinate.}
+#'   \item{**`team_abbr`**}{The team abbreviation. Should be one of [`valid_team_names()`]. The function tries to clean team names internally by calling [`nflreadr::clean_team_abbrs()`]}
 #'   \item{`alpha = NULL`}{The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 #'   \item{`colour = NULL`}{The image will be colorized with this colour. Use the special character `"b/w"` to set it to black and white. For more information on valid colour names in ggplot2 see <https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill>}
 #'   \item{`angle = 0`}{The angle of the image as a numerical value between 0° and 360°.}
