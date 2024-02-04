@@ -61,7 +61,7 @@ table <- gt::gt(label_df) \%>\%
 }
 }
 \seealso{
-The article that describes how nflplotR works with the {gt} package
+The article that describes how nflplotR works with the 'gt' package
 \url{https://nflplotr.nflverse.com/articles/gt.html}
 
 The logo and wordmark rendering functions \code{\link[=gt_nfl_logos]{gt_nfl_logos()}} and

@@ -16,7 +16,7 @@
 #'
 #' @return An object of class `gt_tbl`.
 #' @seealso The player headshot rendering function [gt_nfl_headshots()].
-#' @seealso The article that describes how nflplotR works with the {gt} package
+#' @seealso The article that describes how nflplotR works with the 'gt' package
 #'    <https://nflplotr.nflverse.com/articles/gt.html>
 #' @export
 #' @section Output of below example:
@@ -83,7 +83,7 @@ gt_nfl_wordmarks <- function(gt_object,
 #'   to render a team's logo or wordmark image, or a player's headshot.
 #'
 #' @return An object of class `gt_tbl`.
-#' @seealso The article that describes how nflplotR works with the {gt} package
+#' @seealso The article that describes how nflplotR works with the 'gt' package
 #'    <https://nflplotr.nflverse.com/articles/gt.html>
 #' @seealso The logo and wordmark rendering functions [gt_nfl_logos()] and
 #'   [gt_nfl_wordmarks()].
