@@ -8,6 +8,7 @@
 * Added the new function `gt_nfl_cols_label()` that renders logos and wordmarks in column labels of {gt} tables. (#52)
 * The function `gt_nfl_cols_label()` now allows rendering of player headshots in column labels. Thanks Steven Patton @spatto12 for the PR. (#55)
 * Adjust lists in documentation as the next R version checks for correctly formatted lists. (#56)
+* `gt_nfl_logos()` and `gt_nfl_wordmarks()` now correctly allow unquoted column names in the `columns` argument. (#57)
 
 # nflplotR 1.2.0
 
