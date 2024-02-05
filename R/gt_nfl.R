@@ -49,7 +49,7 @@ gt_nfl_logos <- function(gt_object,
                          locations = NULL){
   gt_nflplotR_image(
     gt_object = gt_object,
-    columns = columns,
+    columns = {{ columns }},
     height = height,
     locations = locations,
     type = "logo"
@@ -64,7 +64,7 @@ gt_nfl_wordmarks <- function(gt_object,
                              locations = NULL){
   gt_nflplotR_image(
     gt_object = gt_object,
-    columns = columns,
+    columns = {{ columns }},
     height = height,
     locations = locations,
     type = "wordmark"
