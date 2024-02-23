@@ -1,14 +1,22 @@
-# nflplotR (development version)
+# nflplotR 1.3.0
+
+## New Features
+
+* Added the new function `gt_nfl_cols_label()` that renders logos and wordmarks in column labels of {gt} tables. (#52)
+
+## Bug Fixes & Minor Improvements
 
 * The functions `geom_nfl_headshots()` and `gt_nfl_headshots()` better handle `NA` gsis IDs. (#48)
 * The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` now keep non team name matches to allow the user to call `gt::sub_missing()`. (#48)
 * The functions `gt_nfl_logos()` and `gt_nfl_wordmarks()` now correctly render images in gt row group labels. (#49)
-* Deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. These function are slow and require a possibly unstable dependency. Please use the far superior `element_nfl_logo()` and friends instead. (#50)
 * The function `geom_nfl_logos()` now plots the NFL logo, if `team_abbr == "NFL"`. (#51)
-* Added the new function `gt_nfl_cols_label()` that renders logos and wordmarks in column labels of {gt} tables. (#52)
-* The function `gt_nfl_cols_label()` now allows rendering of player headshots in column labels. Thanks Steven Patton @spatto12 for the PR. (#55)
+* The function `gt_nfl_cols_label()` now allows rendering of player headshots in column labels. Thanks Steven Patton[&#x0040;spatto12](https://github.com/spatto12) for the PR. (#55)
 * Adjust lists in documentation as the next R version checks for correctly formatted lists. (#56)
 * `gt_nfl_logos()` and `gt_nfl_wordmarks()` now correctly allow unquoted column names in the `columns` argument. (#57)
+
+## Deprecation
+
+* Deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. These function are slow and require a possibly unstable dependency. Please use the far superior `element_nfl_logo()` and friends instead. (#50)
 
 # nflplotR 1.2.0
 

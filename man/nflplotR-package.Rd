@@ -7,7 +7,7 @@
 \alias{GeomNFLlogo}
 \alias{GeomNFLwordmark}
 \alias{nflplotR-package}
-\title{nflplotR: NFL Logo Plots in 'ggplot2'}
+\title{nflplotR: NFL Logo Plots in 'ggplot2' and 'gt'}
 \format{
 An object of class \code{GeomNFLheads} (inherits from \code{Geom}, \code{ggproto}, \code{gg}) of length 5.
 
@@ -25,7 +25,7 @@ GeomNFLwordmark
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-A set of functions to visualize National Football League analysis in 'ggplot2'.
+A set of functions to visualize National Football League analysis in 'ggplot2' plots and 'gt' tables.
 }
 \seealso{
 Useful links:
