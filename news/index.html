@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.2.0.9010</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.3.0</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -76,18 +76,27 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="nflplotr-development-version">nflplotR (development version)<a class="anchor" aria-label="anchor" href="#nflplotr-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="1.3.0" id="nflplotr-130">nflplotR 1.3.0<a class="anchor" aria-label="anchor" href="#nflplotr-130"></a></h2><p class="text-muted">CRAN release: 2024-02-23</p>
+<div class="section level3">
+<h3 id="new-features-1-3-0">New Features<a class="anchor" aria-label="anchor" href="#new-features-1-3-0"></a></h3>
+<ul><li>Added the new function <code><a href="../reference/gt_nfl_cols_label.html">gt_nfl_cols_label()</a></code> that renders logos and wordmarks in column labels of {gt} tables. (<a href="https://github.com/nflverse/nflplotR/issues/52" class="external-link">#52</a>)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="bug-fixes--minor-improvements-1-3-0">Bug Fixes &amp; Minor Improvements<a class="anchor" aria-label="anchor" href="#bug-fixes--minor-improvements-1-3-0"></a></h3>
 <ul><li>The functions <code><a href="../reference/geom_nfl_headshots.html">geom_nfl_headshots()</a></code> and <code><a href="../reference/gt_nfl_headshots.html">gt_nfl_headshots()</a></code> better handle <code>NA</code> gsis IDs. (<a href="https://github.com/nflverse/nflplotR/issues/48" class="external-link">#48</a>)</li>
 <li>The functions <code><a href="../reference/gt_nfl_logos.html">gt_nfl_logos()</a></code> and <code><a href="../reference/gt_nfl_logos.html">gt_nfl_wordmarks()</a></code> now keep non team name matches to allow the user to call <code><a href="https://gt.rstudio.com/reference/sub_missing.html" class="external-link">gt::sub_missing()</a></code>. (<a href="https://github.com/nflverse/nflplotR/issues/48" class="external-link">#48</a>)</li>
 <li>The functions <code><a href="../reference/gt_nfl_logos.html">gt_nfl_logos()</a></code> and <code><a href="../reference/gt_nfl_logos.html">gt_nfl_wordmarks()</a></code> now correctly render images in gt row group labels. (<a href="https://github.com/nflverse/nflplotR/issues/49" class="external-link">#49</a>)</li>
-<li>Deprecated the functions <code>scale_x_nfl</code>, <code>scale_y_nfl</code>, <code>scale_x_nfl_headshots</code>, <code>scale_y_nfl_headshots</code>, <code>theme_x_nfl</code>, <code>theme_y_nfl</code>. These function are slow and require a possibly unstable dependency. Please use the far superior <code><a href="../reference/element.html">element_nfl_logo()</a></code> and friends instead. (<a href="https://github.com/nflverse/nflplotR/issues/50" class="external-link">#50</a>)</li>
 <li>The function <code><a href="../reference/geom_nfl_logos.html">geom_nfl_logos()</a></code> now plots the NFL logo, if <code>team_abbr == "NFL"</code>. (<a href="https://github.com/nflverse/nflplotR/issues/51" class="external-link">#51</a>)</li>
-<li>Added the new function <code><a href="../reference/gt_nfl_cols_label.html">gt_nfl_cols_label()</a></code> that renders logos and wordmarks in column labels of {gt} tables. (<a href="https://github.com/nflverse/nflplotR/issues/52" class="external-link">#52</a>)</li>
-<li>The function <code><a href="../reference/gt_nfl_cols_label.html">gt_nfl_cols_label()</a></code> now allows rendering of player headshots in column labels. Thanks Steven Patton <a href="https://github.com/spatto12" class="external-link">@spatto12</a> for the PR. (<a href="https://github.com/nflverse/nflplotR/issues/55" class="external-link">#55</a>)</li>
+<li>The function <code><a href="../reference/gt_nfl_cols_label.html">gt_nfl_cols_label()</a></code> now allows rendering of player headshots in column labels. Thanks Steven Patton<a href="https://github.com/spatto12" class="external-link">@spatto12</a> for the PR. (<a href="https://github.com/nflverse/nflplotR/issues/55" class="external-link">#55</a>)</li>
 <li>Adjust lists in documentation as the next R version checks for correctly formatted lists. (<a href="https://github.com/nflverse/nflplotR/issues/56" class="external-link">#56</a>)</li>
 <li>
 <code><a href="../reference/gt_nfl_logos.html">gt_nfl_logos()</a></code> and <code><a href="../reference/gt_nfl_logos.html">gt_nfl_wordmarks()</a></code> now correctly allow unquoted column names in the <code>columns</code> argument. (<a href="https://github.com/nflverse/nflplotR/issues/57" class="external-link">#57</a>)</li>
 </ul></div>
+<div class="section level3">
+<h3 id="deprecation-1-3-0">Deprecation<a class="anchor" aria-label="anchor" href="#deprecation-1-3-0"></a></h3>
+<ul><li>Deprecated the functions <code>scale_x_nfl</code>, <code>scale_y_nfl</code>, <code>scale_x_nfl_headshots</code>, <code>scale_y_nfl_headshots</code>, <code>theme_x_nfl</code>, <code>theme_y_nfl</code>. These function are slow and require a possibly unstable dependency. Please use the far superior <code><a href="../reference/element.html">element_nfl_logo()</a></code> and friends instead. (<a href="https://github.com/nflverse/nflplotR/issues/50" class="external-link">#50</a>)</li>
+</ul></div>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.2.0" id="nflplotr-120">nflplotR 1.2.0<a class="anchor" aria-label="anchor" href="#nflplotr-120"></a></h2><p class="text-muted">CRAN release: 2023-09-18</p>
 <div class="section level3">
