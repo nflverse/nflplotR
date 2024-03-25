@@ -1,3 +1,7 @@
+# nflplotR 1.3.1
+
+* Adjusted internals by CRAN request. No visible changes for the user. (#60)
+
 # nflplotR 1.3.0
 
 ## New Features
