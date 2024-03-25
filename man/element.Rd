@@ -51,13 +51,12 @@ Must be a numerical value between 0 and 1.}
 \item{size}{The output grob size in \code{cm} (!).}
 
 \item{...}{
-  Arguments passed on to \code{\link[ggpath:element_path]{ggpath::element_path}}
+  Arguments passed on to \code{\link[ggpath:theme_elements]{ggpath::element_path}}
   \describe{
     \item{\code{colour,color}}{The image will be colorized with this color. Use the
 special character \code{"b/w"} to set it to black and white. For more information
 on valid color names in ggplot2 see
-\url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.}
-    \item{\code{hjust,vjust}}{The horizontal and vertical adjustment respectively.
+\url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.
 Must be a numerical value between 0 and 1.}
     \item{\code{angle}}{The angle of the element as a numerical value between 0° and 360°.}
   }}
