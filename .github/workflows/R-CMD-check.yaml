@@ -29,6 +29,8 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
       R_KEEP_PKG_SOURCE: yes
+      _R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_: "2.5"
+      _R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_: "NA"
 
     steps:
       - uses: actions/checkout@v3
