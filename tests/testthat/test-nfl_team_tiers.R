@@ -1,4 +1,7 @@
 test_that("team tiers work", {
+  # skip because of data.table multithreading
+  skip_on_cran()
+
   library(ggplot2)
   teams <- nflplotR::valid_team_names()
   # remove conference logos from this example
