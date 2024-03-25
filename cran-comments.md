@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release that updates internal files and improves some functions.
+This is a minor release that updates internal functionality requested by CRAN.
 
 ## R CMD check results
 

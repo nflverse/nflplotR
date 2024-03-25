@@ -27,24 +27,24 @@
   # (EDIT: They probably use different ones in R DEVEL)
   # which means "more than two cores are running".
   # We check for these environment variables and if we find them
-  # we set data.table to two threads and the OMP library
+  # we set data.table to two threads
   # nflplotR depends on magick which also uses OMP but doesn't respect
   # OMP_THREAD_LIMIT. I have to skip the related tests unfortunately.
-  cpu_check <- as.numeric(
-    c(
+  cpu_check <- suppressWarnings(stats::na.omit(as.numeric(c(
       Sys.getenv("_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_", unset = 0),
       Sys.getenv("_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_", unset = 0)
-    )
-  )
+    ))))
 
   if (any(cpu_check != 0)) {
-    cores <- min(
+    cores <- suppressWarnings(min(
       floor(as.integer(Sys.getenv("_R_CHECK_EXAMPLE_TIMING_CPU_TO_ELAPSED_THRESHOLD_"))),
       floor(as.integer(Sys.getenv("_R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_"))),
       2L,
       na.rm = TRUE
-    )
+    ))
     Sys.setenv("OMP_THREAD_LIMIT" = cores)
+    # see https://stat.ethz.ch/pipermail/r-package-devel/2023q4/009969.html
+    Sys.setenv("OMP_NUM_THREADS" = cores)
     data.table::setDTthreads(cores)
   }
 }

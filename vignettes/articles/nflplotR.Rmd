@@ -344,6 +344,12 @@ ggplot(df, aes(x = mpg, y = disp)) +
   )
 ```
 
+```{r, echo=FALSE, message=FALSE}
+# the pkgdown workflow ran in cache size problems
+# so we clear the cache here hoping to resolve the issue
+nflplotR::.nflplotR_clear_cache()
+```
+
 Or maybe facet by player and use headshots...
 
 ```{r}

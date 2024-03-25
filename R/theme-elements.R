@@ -9,9 +9,6 @@
 #'   - `element_nfl_headshot()`: draws NFL player headshots instead of their GSIS IDs.
 #'   - `element_path()`: draws images from valid image URLs instead of the URL.
 #'
-#' @inheritParams ggpath::element_path
-#' @inheritDotParams ggpath::element_path
-#'
 #' @details The elements translate NFL team abbreviations or NFL player GSIS IDs
 #'   into logo images or player headshots, respectively.
 #' @param alpha The alpha channel, i.e. transparency level, as a numerical value
@@ -23,6 +20,7 @@
 #' @param hjust,vjust The horizontal and vertical adjustment respectively.
 #'   Must be a numerical value between 0 and 1.
 #' @param size The output grob size in `cm` (!).
+#' @param ... Arguments passed on to [ggpath::element_path]
 #' @seealso [geom_nfl_logos()], [geom_nfl_headshots()], [geom_nfl_wordmarks()],
 #'   and [geom_from_path()] for more information on valid team abbreviations,
 #'   player IDs, and other parameters.
