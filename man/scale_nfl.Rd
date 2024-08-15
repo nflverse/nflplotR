@@ -106,9 +106,9 @@ as output
 \item{na.value}{The aesthetic value to use for missing (\code{NA}) values}
 
 \item{guide}{A function used to create a guide or its name. If \code{NULL} (the default)
-no guide will be plotted for this scale. See \code{\link[ggplot2:guides]{ggplot2::guides()}} for more information.}
+no guide will be plotted for this scale. See \code{\link[ggplot2:guides]{ggplot2::guides}} for more information.}
 
-\item{alpha}{Factor to modify color transparency via a call to \code{\link[scales:alpha]{scales::alpha()}}.
+\item{alpha}{Factor to modify color transparency via a call to \code{\link[scales:alpha]{scales::alpha}}.
 If \code{NA} (the default) no transparency will be applied. Can also be a vector of
 alphas. All alpha levels must be in range \verb{[0,1]}.}
 }
