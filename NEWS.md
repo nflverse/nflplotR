@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Updated the New York Jets logo to their new design introduced in the 2024 offseason. (#62)
+
 # nflplotR 1.3.1
 
 * Adjusted internals by CRAN request. No visible changes for the user. (#60)
