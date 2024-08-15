@@ -28,8 +28,6 @@ Imports:
 Suggests: 
     base64enc (>= 0.1-3),
     covr,
-    ggtext (>= 0.1.1),
-    gridtext (>= 0.1.4),
     knitr,
     rmarkdown,
     rstudioapi (>= 0.13),
