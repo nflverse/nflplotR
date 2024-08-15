@@ -56,6 +56,7 @@
 #' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams), width = 0.075) +
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   expand_limits(y = c(0.9, 4.1)) +
 #'   theme_void()
 #'
 #' # apply alpha via an aesthetic from inside the dataset `df`
@@ -64,6 +65,7 @@
 #' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   expand_limits(y = c(0.9, 4.1)) +
 #'   scale_alpha_identity() +
 #'   theme_void()
 #'
@@ -73,6 +75,7 @@
 #' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.075) +
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   expand_limits(y = c(0.9, 4.1)) +
 #'   scale_alpha_identity() +
 #'   scale_color_identity() +
 #'   theme_void()
@@ -81,6 +84,7 @@
 #' ggplot(df, aes(x = a, y = b)) +
 #'   geom_nfl_logos(aes(team_abbr = teams), width = 0.075, alpha = 0.6) +
 #'   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+#'   expand_limits(y = c(0.9, 4.1)) +
 #'   theme_void()
 #'
 #' # it's also possible to plot NFL and conference logos
