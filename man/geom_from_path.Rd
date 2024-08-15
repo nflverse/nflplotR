@@ -66,21 +66,21 @@ See \code{\link[ggpath:geom_from_path]{ggpath::geom_from_path}} for details.
 \section{Aesthetics}{
 
 
-\code{geom_from_path()} understands the following aesthetics (required aesthetics have no default value):
-\describe{
-\item{\code{x}}{The x-coordinate. Required.}
-\item{\code{y}}{The y-coordinate. Required.}
-\item{\code{path}}{a file path, url, raster object or bitmap array. See \code{\link[magick:editing]{magick::image_read()}} for further information. Required.}
-\item{\code{alpha = NULL}}{The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
-\item{\code{colour = NULL}}{The image will be colorized with this colour. Use the special character \code{"b/w"} to set it to black and white. For more information on valid colour names in ggplot2 see \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}}
-\item{\code{angle = 0}}{The angle of the image as a numerical value between 0° and 360°.}
-\item{\code{hjust = 0.5}}{The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
-\item{\code{vjust = 0.5}}{The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
-\item{\code{width = 1.0}}{The desired width of the image in \code{npc} (Normalised Parent Coordinates).
+\code{geom_from_path()} understands the following aesthetics (required aesthetics are in bold):
+\itemize{
+\item{\strong{x}}{ - The x-coordinate.}
+\item{\strong{y}}{ - The y-coordinate.}
+\item{\strong{path}}{ - a file path, url, raster object or bitmap array. See \code{\link[magick:editing]{magick::image_read()}} for further information.}
+\item{\code{alpha = NULL}}{ - The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
+\item{\code{colour = NULL}}{ - The image will be colorized with this colour. Use the special character \code{"b/w"} to set it to black and white. For more information on valid colour names in ggplot2 see \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}}
+\item{\code{angle = 0}}{ - The angle of the image as a numerical value between 0° and 360°.}
+\item{\code{hjust = 0.5}}{ - The horizontal adjustment relative to the given x coordinate. Must be a numerical value between 0 and 1.}
+\item{\code{vjust = 0.5}}{ - The vertical adjustment relative to the given y coordinate. Must be a numerical value between 0 and 1.}
+\item{\code{width = 1.0}}{ - The desired width of the image in \code{npc} (Normalised Parent Coordinates).
 The default value is set to 1.0 which is \emph{big} but it is necessary
 because all used values are computed relative to the default.
 A typical size is \code{width = 0.1} (see below examples).}
-\item{\code{height = 1.0}}{The desired height of the image in \code{npc} (Normalised Parent Coordinates).
+\item{\code{height = 1.0}}{ - The desired height of the image in \code{npc} (Normalised Parent Coordinates).
 The default value is set to 1.0 which is \emph{big} but it is necessary
 because all used values are computed relative to the default.
 A typical size is \code{height = 0.1} (see below examples).}
