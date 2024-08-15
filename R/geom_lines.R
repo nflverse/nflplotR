@@ -8,7 +8,7 @@
 #' @inheritDotParams ggpath::geom_mean_lines
 #' @inheritDotParams ggpath::geom_median_lines
 #'
-#' @seealso The underlying ggplot2 geoms [`geom_hline()`] and [`geom_vline()`]
+#' @seealso The underlying ggplot2 geoms [`ggplot2::geom_hline`] and [`ggplot2::geom_vline`]
 #' @details These functions have been outsourced to the ggpath package.
 #' See [`ggpath::geom_median_lines`] and [`ggpath::geom_mean_lines`] for details.
 #'

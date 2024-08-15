@@ -13,7 +13,7 @@
 #' @name theme_nfl
 #' @aliases NULL
 #' @keywords internal
-#' @return A ggplot2 theme created with [ggplot2::theme()].
+#' @return A ggplot2 theme created with [`ggplot2::theme`].
 #' @seealso [`theme_x_nfl()`], [`theme_y_nfl()`]
 #' @examples
 #' \donttest{

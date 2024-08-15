@@ -36,15 +36,31 @@ the plot data. The return value must be a \code{data.frame}, and
 will be used as the layer data. A \code{function} can be created
 from a \code{formula} (e.g. \code{~ head(.x, 10)}).}
 
-\item{stat}{The statistical transformation to use on the data for this
-layer, either as a \code{ggproto} \code{Geom} subclass or as a string naming the
-stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
-\code{"stat_count"})}
+\item{stat}{The statistical transformation to use on the data for this layer.
+When using a \verb{geom_*()} function to construct a layer, the \code{stat}
+argument can be used the override the default coupling between geoms and
+stats. The \code{stat} argument accepts the following:
+\itemize{
+\item A \code{Stat} ggproto subclass, for example \code{StatCount}.
+\item A string naming the stat. To give the stat as a string, strip the
+function name of the \code{stat_} prefix. For example, to use \code{stat_count()},
+give the stat as \code{"count"}.
+\item For more information and other ways to specify the stat, see the
+\link[ggplot2:layer_stats]{layer stat} documentation.
+}}
 
-\item{position}{Position adjustment, either as a string naming the adjustment
-(e.g. \code{"jitter"} to use \code{position_jitter}), or the result of a call to a
-position adjustment function. Use the latter if you need to change the
-settings of the adjustment.}
+\item{position}{A position adjustment to use on the data for this layer. This
+can be used in various ways, including to prevent overplotting and
+improving the display. The \code{position} argument accepts the following:
+\itemize{
+\item The result of calling a position function, such as \code{position_jitter()}.
+This method allows for passing extra arguments to the position.
+\item A string naming the position adjustment. To give the position as a
+string, strip the function name of the \code{position_} prefix. For example,
+to use \code{position_jitter()}, give the position as \code{"jitter"}.
+\item For more information and other ways to specify the position, see the
+\link[ggplot2:layer_positions]{layer position} documentation.
+}}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:layer]{ggplot2::layer()}}. These are
 often aesthetics, used to set an aesthetic to a fixed value. See the below
@@ -121,6 +137,7 @@ df$colour <- ifelse(matches, NA, "gray")
 ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  expand_limits(y = c(0.9, 4.1)) +
   theme_void()
 
 # apply alpha via an aesthetic from inside the dataset `df`
@@ -129,6 +146,7 @@ ggplot(df, aes(x = a, y = b)) +
 ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  expand_limits(y = c(0.9, 4.1)) +
   scale_alpha_identity() +
   theme_void()
 
@@ -138,6 +156,7 @@ ggplot(df, aes(x = a, y = b)) +
 ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams, alpha = alpha, colour = colour), width = 0.075) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  expand_limits(y = c(0.9, 4.1)) +
   scale_alpha_identity() +
   scale_color_identity() +
   theme_void()
@@ -146,6 +165,7 @@ ggplot(df, aes(x = a, y = b)) +
 ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams), width = 0.075, alpha = 0.6) +
   geom_label(aes(label = teams), nudge_y = -0.35, alpha = 0.5) +
+  expand_limits(y = c(0.9, 4.1)) +
   theme_void()
 
 # it's also possible to plot NFL and conference logos
