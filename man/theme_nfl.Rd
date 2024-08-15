@@ -10,7 +10,7 @@ theme_x_nfl()
 theme_y_nfl()
 }
 \value{
-A ggplot2 theme created with \code{\link[ggplot2:theme]{ggplot2::theme()}}.
+A ggplot2 theme created with \code{\link[ggplot2:theme]{ggplot2::theme}}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}

@@ -107,8 +107,8 @@ expand the scale by 5\% on each side for continuous variables, and by
 and as width for an y-scale.}
 }
 \value{
-A discrete ggplot2 scale created with \code{\link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete()}} or
-\code{\link[ggplot2:scale_discrete]{ggplot2::scale_y_discrete()}}.
+A discrete ggplot2 scale created with \code{\link[ggplot2:scale_discrete]{ggplot2::scale_x_discrete}} or
+\code{\link[ggplot2:scale_discrete]{ggplot2::scale_y_discrete}}.
 }
 \description{
 \ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
@@ -119,7 +119,7 @@ available as axis labels
 \details{
 The scale translates the NFL team abbreviations into raw image
 html and places the html as axis labels. Because of the way ggplots are
-constructed, it is necessary to adjust the \code{\link[ggplot2:theme]{ggplot2::theme()}} after calling this
+constructed, it is necessary to adjust the \code{\link[ggplot2:theme]{ggplot2::theme}} after calling this
 scale. This can be done by calling \code{\link[=theme_x_nfl]{theme_x_nfl()}} or \code{\link[=theme_y_nfl]{theme_y_nfl()}}
 or alternatively by manually changing the relevant \code{axis.text} to
 \code{\link[ggtext:element_markdown]{ggtext::element_markdown()}}. However, this will only work if an underlying
