@@ -88,10 +88,10 @@ of the behavior of an underlying dependency: chromote. It keeps a process
 running even if the chromote session is closed. Unfortunately, this causes
 R CMD Check errors related to open connections after example runs. The only
 way to avoid this is setting the environment variable <code>_R_CHECK_CONNECTIONS_LEFT_OPEN_</code>
-to <code>"true"</code>. How to do that depends on where and how developers check their
+to <code>"false"</code>. How to do that depends on where and how developers check their
 package. A good way to prevent an example from being executed because the
-environment variable was not set can be taken from the source code of this
-function.</p>
+environment variable was not set to <code>"false"</code> can be taken from the source
+code of this function.</p>
     </div>
 
     <div class="section level2">
