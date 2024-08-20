@@ -1,8 +1,8 @@
 # nflplotR (development version)
 
 * Updated the New York Jets logo to their new design introduced in the 2024 off-season. (#62)
-* Drop dependency to package rappdirs and create an optional user cache with base R's implementation. To support older R versions, nflplotR now imports the backports package. (#63)
-* nflplotR v1.3.0 deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. They are completely removed from the source now. (#63) 
+* Drop dependency to package rappdirs and create an optional user cache with base R's implementation. To support older R versions, nflplotR now imports the backports package. (#64)
+* nflplotR v1.3.0 deprecated the functions `scale_x_nfl`, `scale_y_nfl`, `scale_x_nfl_headshots`, `scale_y_nfl_headshots`, `theme_x_nfl`, `theme_y_nfl`. They are completely removed from the source now. (#64) 
 
 # nflplotR 1.3.1
 
