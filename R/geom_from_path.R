@@ -10,7 +10,9 @@
 #' @details This function has been outsourced to the ggpath package.
 #' See [`ggpath::geom_from_path`] for details.
 #' @export
-#' @examples
+#' @examplesIf requireNamespace("rsvg", quietly = TRUE)
+#' # example code
+#'
 #' \donttest{
 #' library(ggplot2)
 #' library(nflplotR)

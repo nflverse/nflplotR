@@ -105,6 +105,9 @@ A typical size is \code{height = 0.1} (see below examples).}
 }
 
 \examples{
+\dontshow{if (requireNamespace("rsvg", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+# example code
+
 \donttest{
 library(ggplot2)
 library(nflplotR)
@@ -147,4 +150,5 @@ ggplot() +
   ) +
   theme_minimal()
 }
+\dontshow{\}) # examplesIf}
 }
