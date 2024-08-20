@@ -308,13 +308,13 @@ gt_nfl_headshots <- function(gt_object,
 #'  running even if the chromote session is closed. Unfortunately, this causes
 #'  R CMD Check errors related to open connections after example runs. The only
 #'  way to avoid this is setting the environment variable `_R_CHECK_CONNECTIONS_LEFT_OPEN_`
-#'  to `"true"`. How to do that depends on where and how developers check their
+#'  to `"false"`. How to do that depends on where and how developers check their
 #'  package. A good way to prevent an example from being executed because the
-#'  environment variable was not set can be taken from the source code of this
-#'  function.
+#'  environment variable was not set to `"false"` can be taken from the source
+#'  code of this function.
 #' @return Returns `NULL` invisibly.
 #' @export
-#' @examplesIf identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false")
+#' @examplesIf identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
 gt_render_image <- function(gt_tbl, ...){

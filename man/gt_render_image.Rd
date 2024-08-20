@@ -25,13 +25,13 @@ of the behavior of an underlying dependency: chromote. It keeps a process
 running even if the chromote session is closed. Unfortunately, this causes
 R CMD Check errors related to open connections after example runs. The only
 way to avoid this is setting the environment variable \verb{_R_CHECK_CONNECTIONS_LEFT_OPEN_}
-to \code{"true"}. How to do that depends on where and how developers check their
+to \code{"false"}. How to do that depends on where and how developers check their
 package. A good way to prevent an example from being executed because the
-environment variable was not set can be taken from the source code of this
-function.
+environment variable was not set to \code{"false"} can be taken from the source
+code of this function.
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
 \dontshow{\}) # examplesIf}
