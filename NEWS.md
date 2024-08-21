@@ -1,4 +1,4 @@
-# nflplotR (development version)
+# nflplotR 1.4.0
 
 * Updated the New York Jets logo to their new design introduced in the 2024 off-season. (#62)
 * Drop dependency to package rappdirs and create an optional user cache with base R's implementation. To support older R versions, nflplotR now imports the backports package. (#64)

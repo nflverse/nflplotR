@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release that updates internal functionality requested by CRAN.
+This is a minor release that fixes check NOTEs and (hopefully) problems with reverse dependency checks of the package ggpath.
 
 ## R CMD check results
 
