@@ -15,11 +15,12 @@ navbar:
   bg: dark
   structure:
     left:  [home, intro, reference, news, articles]
-    right: [discord, github, more]
+    right: [lightswitch, discord, github, more]
   components:
     discord:
       icon: "fab fa-discord fa-lg"
       href: https://discord.com/invite/5Er2FBnnQa
+      aria-label: Discord
     reference:
       text: "Functions"
       href: reference/index.html
@@ -48,8 +49,7 @@ navbar:
 
 template:
   bootstrap: 5
-  bootswatch: cosmo
-  # theme: arrow-light
+  light-switch: true
   bslib:
     font_scale: 1.2
     base_font: {google: "IBM Plex Sans"}
