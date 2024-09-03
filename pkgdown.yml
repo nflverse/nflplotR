@@ -1,10 +1,10 @@
 pandoc: 3.1.11
 pkgdown: 2.1.0.9000
-pkgdown_sha: 020dc44c138193ad0a63a9778bb832ac7afed1f1
+pkgdown_sha: ee72108bc3a9827dcf313817525652dbd9d4284d
 articles:
   articles/gt: gt.html
   articles/nflplotR: nflplotR.html
-last_built: 2024-08-22T10:28Z
+last_built: 2024-09-03T13:23Z
 urls:
   reference: https://nflplotr.nflverse.com/reference
   article: https://nflplotr.nflverse.com/articles
