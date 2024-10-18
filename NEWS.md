@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Updated the New York Jets logo (again) to their new secondary logo introduced in the 2024 off-season. This aligns with the logo used across nfl dot com and it has been voted for in a poll. (#68)
+
 # nflplotR 1.4.0
 
 * Updated the New York Jets logo to their new design introduced in the 2024 off-season. (#62)

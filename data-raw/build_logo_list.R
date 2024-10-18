@@ -13,6 +13,9 @@ logo_list <- lapply(teams_colors_logos$team_abbr, function(x){
   url <- teams_colors_logos$team_logo_espn[teams_colors_logos$team_abbr == x]
   # Use the following URL to load logos from nfl dot com. Sometimes ESPN and
   # NFL do not use identical logos, e.g. the new Jets logo in 2024
+  # if (x == "NYJ"){
+  #   url <- paste0("https://static.www.nfl.com/t_q-best/league/api/clubs/logos/", x, ".png")
+  # }
   # url <- paste0("https://static.www.nfl.com/t_q-best/league/api/clubs/logos/", x)
   curl::curl_fetch_memory(url)$content
 })
