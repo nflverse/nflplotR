@@ -71,32 +71,32 @@ options(nflreadr.verbose = FALSE)
 We will load the data and compute each team's offensive and defensive EPA per play for the 2020 regular season. We will also compute the top 10 Quarterbacks in EPA per play.
 
 ```{r}
-pbp <- nflreadr::load_pbp(2020) %>% 
-  dplyr::filter(season_type == "REG") %>%
+pbp <- nflreadr::load_pbp(2020) |> 
+  dplyr::filter(season_type == "REG") |>
   dplyr::filter(!is.na(posteam) & (rush == 1 | pass == 1))
 
-offense <- pbp %>%
-  dplyr::group_by(team = posteam) %>%
+offense <- pbp |>
+  dplyr::group_by(team = posteam) |>
   dplyr::summarise(off_epa = mean(epa, na.rm = TRUE))
 
-defense <- pbp %>%
-  dplyr::group_by(team = defteam) %>%
+defense <- pbp |>
+  dplyr::group_by(team = defteam) |>
   dplyr::summarise(def_epa = mean(epa, na.rm = TRUE))
 
-combined <- offense %>%
+combined <- offense |>
   dplyr::inner_join(defense, by = "team")
 
-qbs <- pbp %>%
-  dplyr::filter(pass == 1 | rush == 1) %>%
-  dplyr::filter(down %in% 1:4) %>%
-  dplyr::group_by(id) %>%
+qbs <- pbp |>
+  dplyr::filter(pass == 1 | rush == 1) |>
+  dplyr::filter(down %in% 1:4) |>
+  dplyr::group_by(id) |>
   dplyr::summarise(
     name = dplyr::first(name),
     team = dplyr::last(posteam),
     plays = dplyr::n(),
     qb_epa = mean(qb_epa, na.ram = TRUE)
-  ) %>%
-  dplyr::filter(plays > 200) %>%
+  ) |>
+  dplyr::filter(plays > 200) |>
   dplyr::slice_max(qb_epa, n = 10)
 ```
 
@@ -118,7 +118,8 @@ ggplot2::ggplot(combined, aes(x = off_epa, y = def_epa)) +
   ggplot2::theme_minimal() +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
-    plot.title.position = "plot"
+    plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0")
   ) +
   ggplot2::scale_y_reverse()
 ```
@@ -134,11 +135,11 @@ What if we would like to highlight just a few teams? Well, there are multiple wa
 ```{r}
 nfc_east <- c("DAL", "NYG", "PHI", "WAS")
 
-combined %>%
+combined |>
   dplyr::mutate(
     colour = ifelse(team %in% nfc_east, NA, "b/w"),
     alpha = ifelse(team %in% nfc_east, 0.9, 0.2)
-  ) %>%
+  ) |>
   ggplot2::ggplot(aes(x = off_epa, y = def_epa)) +
   ggplot2::geom_abline(slope = -1.5, intercept = seq(0.4, -0.3, -0.1), alpha = .2) +
   nflplotR::geom_mean_lines(aes(x0 = off_epa , y0 = def_epa)) +
@@ -154,7 +155,8 @@ combined %>%
   ggplot2::theme_minimal() +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
-    plot.title.position = "plot"
+    plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0")
   ) +
   ggplot2::scale_y_reverse()
 ```
@@ -180,6 +182,7 @@ ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
@@ -207,6 +210,7 @@ ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # it's obvious what the y-axis is so we remove the title
     axis.title.y = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
@@ -231,6 +235,7 @@ ggplot2::ggplot(qbs, aes(x = reorder(id, -qb_epa), y = qb_epa)) +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of gsis ids with player headshots
@@ -257,6 +262,7 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
   ggplot2::theme(
     plot.title = ggplot2::element_text(face = "bold"),
     plot.title.position = "plot",
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
@@ -294,6 +300,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
   theme(
     plot.title.position = "plot",
     plot.title = ggplot2::element_text(face = "bold"),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     axis.title = element_blank()
   )
 ```
@@ -314,6 +321,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
     plot.title.position = "plot",
     plot.title = ggplot2::element_text(face = "bold"),
     axis.title = element_blank(),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # make wordmarks of team abbreviations
     strip.text = nflplotR::element_nfl_wordmark(size = 1),
     # load image from url in caption
@@ -337,6 +345,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
     plot.title.position = "plot",
     plot.title = ggplot2::element_text(face = "bold"),
     axis.title = element_blank(),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # make wordmarks of team abbreviations
     strip.text = nflplotR::element_nfl_logo(size = 1),
     # load image from url in caption
@@ -366,6 +375,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
     plot.title.position = "plot",
     plot.title = ggplot2::element_text(face = "bold"),
     axis.title = element_blank(),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0"),
     # make wordmarks of team abbreviations
     strip.text = nflplotR::element_nfl_headshot(size = 1),
     # load image from url in caption
@@ -392,7 +402,8 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   theme_minimal() +
   theme(
     plot.tag = nflplotR::element_nfl_logo(size = 2),
-    plot.tag.position = c(0.5, 0.85)
+    plot.tag.position = c(0.5, 0.85),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0")
   )
 ```
 
@@ -409,7 +420,8 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   theme_minimal() +
   theme(
     plot.tag = nflplotR::element_nfl_wordmark(size = 5, hjust = 1, vjust = 1),
-    plot.tag.position = c(1, 1)
+    plot.tag.position = c(1, 1),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0")
   )
 ```
 
@@ -426,7 +438,8 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
   theme_minimal() +
   theme(
     plot.tag = nflplotR::element_nfl_headshot(size = 5, hjust = 1, vjust = 1),
-    plot.tag.position = c(1, 1)
+    plot.tag.position = c(1, 1),
+    plot.background = ggplot2::element_rect(fill = "#F0F0F0")
   )
 ```
 
