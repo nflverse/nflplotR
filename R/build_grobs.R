@@ -18,7 +18,7 @@ build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
     if(length(image_to_read) == 0) image_to_read <- na_headshot()
   }
-  if (is.na(make_null)){
+  if (isTRUE(make_null)){
     grid <- grid::nullGrob()
   } else if (is.null(alpha)) {
     img <- reader_function(image_to_read)

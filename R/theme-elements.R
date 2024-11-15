@@ -310,7 +310,7 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
     if(length(image_to_read) == 0) image_to_read <- na_headshot()
   }
-  if (is.na(make_null)){
+  if (isTRUE(make_null)){
     return(grid::nullGrob())
   } else if (is.null(alpha[i])) {
     img <- reader_function(image_to_read)
