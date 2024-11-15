@@ -186,7 +186,9 @@ element_grob.element_nfl_logo <- function(element, label = "", x = NULL, y = NUL
   alpha <- alpha %||% element$alpha
   colour <- colour %||% rep(element$colour, n)
   size <- size %||% element$size
-  label <- nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = FALSE)
+  label <- suppressWarnings(
+    nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = TRUE)
+  )
 
   grobs <- lapply(
     seq_along(label),
@@ -226,7 +228,9 @@ element_grob.element_nfl_wordmark <- function(element, label = "", x = NULL, y =
   alpha <- alpha %||% element$alpha
   colour <- colour %||% rep(element$colour, n)
   size <- size %||% element$size
-  label <- nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = FALSE)
+  label <- suppressWarnings(
+    nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = TRUE)
+  )
 
   grobs <- lapply(
     seq_along(label),
@@ -267,6 +271,7 @@ element_grob.element_nfl_headshot <- function(element, label = "", x = NULL, y =
   alpha <- alpha %||% element$alpha
   colour <- colour %||% rep(element$colour, n)
   size <- size %||% element$size
+  headshots <- load_headshots()
 
   grobs <- lapply(
     seq_along(label),
@@ -278,7 +283,8 @@ element_grob.element_nfl_headshot <- function(element, label = "", x = NULL, y =
     y = y,
     hjust = hj,
     vjust = vj,
-    type = "headshots"
+    type = "headshots",
+    headshot_map = headshots
   )
 
   class(grobs) <- "gList"
@@ -293,7 +299,8 @@ element_grob.element_nfl_headshot <- function(element, label = "", x = NULL, y =
 
 axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
                           width = 1, height = 1,
-                          type = c("teams", "headshots", "wordmarks")) {
+                          type = c("teams", "headshots", "wordmarks"),
+                          headshot_map = NULL) {
   make_null <- FALSE
   type <- rlang::arg_match(type)
   if(type == "teams") {
@@ -306,11 +313,18 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
     if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else {
     gsis <- label[i]
-    headshot_map <- load_headshots()
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
-    if(length(image_to_read) == 0) image_to_read <- na_headshot()
+    if(length(image_to_read) == 0 | all(is.na(image_to_read))){
+      cli::cli_alert_warning(
+        "No headshot available for gsis ID {.val {label[i]}}. Will insert placeholder."
+      )
+      image_to_read <- na_headshot()
+    }
   }
   if (isTRUE(make_null)){
+    cli::cli_alert_warning(
+      "Can't find team abbreviation {.val {label[i]}}. Will insert empty grob."
+    )
     return(grid::nullGrob())
   } else if (is.null(alpha[i])) {
     img <- reader_function(image_to_read)

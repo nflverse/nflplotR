@@ -1,6 +1,6 @@
 # INTERNAL HELPER THAT BUILDS THE GROBS FOR
 # GEOM LOGOS, WORDMARKS AND HEADSHOTS
-build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "wordmarks")) {
+build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "wordmarks"), headshot_map = NULL) {
   make_null <- FALSE
   type <- rlang::arg_match(type)
   if(type == "teams") {
@@ -13,12 +13,18 @@ build_grobs <- function(i, alpha, colour, data, type = c("teams", "headshots", "
     if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else {
     gsis <- data$player_gsis[i]
-    if (is.na(gsis)) make_null <- TRUE
-    headshot_map <- load_headshots()
     image_to_read <- headshot_map$headshot_nfl[headshot_map$gsis_id == gsis]
-    if(length(image_to_read) == 0) image_to_read <- na_headshot()
+    if(length(image_to_read) == 0 | all(is.na(image_to_read))){
+      cli::cli_alert_warning(
+        "No headshot available for gsis ID {.val {data$player_gsis[i]}}. Will insert placeholder."
+      )
+      image_to_read <- na_headshot()
+    }
   }
   if (isTRUE(make_null)){
+    cli::cli_alert_warning(
+      "Can't find team abbreviation {.val {data$team_abbr[i]}}. Will insert empty grob."
+    )
     grid <- grid::nullGrob()
   } else if (is.null(alpha)) {
     img <- reader_function(image_to_read)

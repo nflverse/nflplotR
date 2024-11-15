@@ -123,8 +123,17 @@ GeomNFLheads <- ggplot2::ggproto(
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
+    headshots <- load_headshots()
 
-    grobs <- lapply(seq_along(data$player_gsis), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "headshots")
+    grobs <- lapply(
+      seq_along(data$player_gsis),
+      build_grobs,
+      alpha = data$alpha,
+      colour = data$colour,
+      data = data,
+      type = "headshots",
+      headshot_map = headshots
+      )
 
     class(grobs) <- "gList"
 
