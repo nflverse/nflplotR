@@ -48,4 +48,11 @@ test_that("wordmark geom works", {
 
   vdiffr::expect_doppelganger("p1", p1)
   vdiffr::expect_doppelganger("p2", p2)
+
+  # Team name mismatch
+  p3 <- data.frame(a = c("LAC", "LARRR"), b = 1:2, c = 10:11) |>
+    ggplot(aes(x = b, y = c)) +
+    geom_nfl_wordmarks(aes(team_abbr = a), width = 0.4, hjust = 0)
+
+  expect_snapshot(out <- ggplotGrob(p3))
 })

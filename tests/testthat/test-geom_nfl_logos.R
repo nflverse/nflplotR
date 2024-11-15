@@ -55,4 +55,11 @@ test_that("logo geom works", {
   vdiffr::expect_doppelganger("p1", p1)
   vdiffr::expect_doppelganger("p2", p2)
   vdiffr::expect_doppelganger("p3", p3)
+
+  # Team name mismatch
+  p4 <- data.frame(a = c("LAC", "LARRR"), b = 1:2, c = 10:11) |>
+    ggplot(aes(x = b, y = c)) +
+    geom_nfl_logos(aes(team_abbr = a), width = 0.4, hjust = 0)
+
+  expect_snapshot(out <- ggplotGrob(p4))
 })

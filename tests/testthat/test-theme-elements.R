@@ -26,4 +26,24 @@ test_that("logo element works", {
 
   vdiffr::expect_doppelganger("p1", p1)
   vdiffr::expect_doppelganger("p2", p2)
+
+  # Team name mismatch
+  p3 <- data.frame(a = c("LAC", "LARRR"), b = 1:2, c = 10:11) |>
+    ggplot(aes(x = b, y = c)) +
+    geom_point() +
+    facet_wrap(vars(a)) +
+    theme(
+      strip.text = element_nfl_wordmark()
+    )
+  expect_snapshot(out <- ggplotGrob(p3))
+
+  # GSIS ID mismatch
+  p4 <- data.frame(a = c("00-0033077", "00-0012345"), b = 1:2, c = 10:11) |>
+    ggplot(aes(x = b, y = c)) +
+    geom_point() +
+    facet_wrap(vars(a)) +
+    theme(
+      strip.text = element_nfl_headshot()
+    )
+  expect_snapshot(out <- ggplotGrob(p4))
 })
