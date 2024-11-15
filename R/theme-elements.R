@@ -186,6 +186,7 @@ element_grob.element_nfl_logo <- function(element, label = "", x = NULL, y = NUL
   alpha <- alpha %||% element$alpha
   colour <- colour %||% rep(element$colour, n)
   size <- size %||% element$size
+  label <- nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = FALSE)
 
   grobs <- lapply(
     seq_along(label),
@@ -225,6 +226,7 @@ element_grob.element_nfl_wordmark <- function(element, label = "", x = NULL, y =
   alpha <- alpha %||% element$alpha
   colour <- colour %||% rep(element$colour, n)
   size <- size %||% element$size
+  label <- nflreadr::clean_team_abbrs(as.character(label), keep_non_matches = FALSE)
 
   grobs <- lapply(
     seq_along(label),
@@ -297,11 +299,11 @@ axisImageGrob <- function(i, label, alpha, colour, x, y, hjust, vjust,
   if(type == "teams") {
     team_abbr <- label[i]
     image_to_read <- logo_list[[team_abbr]]
-    if (is.na(team_abbr)) make_null <- TRUE
+    if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else if(type == "wordmarks") {
     team_abbr <- label[i]
     image_to_read <- wordmark_list[[team_abbr]]
-    if (is.na(team_abbr)) make_null <- TRUE
+    if (is.na(team_abbr) | is.null(image_to_read)) make_null <- TRUE
   } else {
     gsis <- label[i]
     headshot_map <- load_headshots()

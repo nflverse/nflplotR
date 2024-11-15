@@ -1,6 +1,7 @@
 # nflplotR (development version)
 
 * Updated the New York Jets logo (again) to their new secondary logo introduced in the 2024 off-season. This aligns with the logo used across nfl dot com and it has been voted for in a poll. (#68)
+* The theme elements `element_nfl_logo()` and `element_nfl_wordmark()` now clean team abbreviations by calling `nflreadr::clean_team_abbrs()` and insert empty grobs for mismatches. 
 
 # nflplotR 1.4.0
 
