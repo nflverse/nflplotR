@@ -105,6 +105,35 @@ example_table |>
   nflplotR::gt_nfl_wordmarks(locations = gt::cells_stub())
 ```
 
+### Column Spanners
+
+We use another table to demonstrate how to convert team names to logos and wordmarks in column spanners.
+
+Here only logos
+
+```{r}
+df <- data.frame(a = 3, b = 4, c = 5, d = 6)
+
+df |> 
+  gt::gt() |> 
+  gt::tab_spanner("KC", c(a, b)) |> 
+  gt::tab_spanner("LAC", c(c, d)) |> 
+  nflplotR::gt_nfl_logos(locations = gt::cells_column_spanners())
+```
+
+And now mix logo and wordmark
+
+```{r}
+df <- data.frame(a = 3, b = 4, c = 5, d = 6)
+
+df |> 
+  gt::gt() |> 
+  gt::tab_spanner("KC", c(a, b)) |> 
+  gt::tab_spanner("LAC", c(c, d)) |> 
+  nflplotR::gt_nfl_logos(locations = gt::cells_column_spanners("KC")) |> 
+  nflplotR::gt_nfl_wordmarks(locations = gt::cells_column_spanners("LAC"))
+```
+
 ### Combine all together
 
 The `locations` argument allows multiple locations in one call by wrapping them in a list.
