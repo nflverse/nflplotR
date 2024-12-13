@@ -111,7 +111,7 @@ We use another table to demonstrate how to convert team names to logos and wordm
 
 Here only logos
 
-```{r}
+```{r, fig.align='left'}
 df <- data.frame(a = 3, b = 4, c = 5, d = 6)
 
 df |> 
@@ -123,7 +123,7 @@ df |>
 
 And now mix logo and wordmark
 
-```{r}
+```{r, fig.align='left'}
 df <- data.frame(a = 3, b = 4, c = 5, d = 6)
 
 df |> 
