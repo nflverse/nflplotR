@@ -15,7 +15,7 @@ navbar:
   bg: dark
   structure:
     left:  [home, intro, reference, news, articles]
-    right: [lightswitch, discord, github, more]
+    right: [search, lightswitch, discord, github, more]
   components:
     discord:
       icon: "fab fa-discord fa-lg"
