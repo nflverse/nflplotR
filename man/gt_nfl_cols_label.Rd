@@ -51,12 +51,12 @@ label_df <- data.frame(
 
 # create gt table and translate player IDs and team abbreviations
 # into headshots, logos, and wordmarks
-table <- gt::gt(label_df) \%>\%
+table <- gt::gt(label_df) |>
   nflplotR::gt_nfl_cols_label(
     columns = gt::starts_with("00"),
     type = "headshot"
-  ) \%>\%
-  nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") \%>\%
+  ) |>
+  nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") |>
   nflplotR::gt_nfl_cols_label("KC", type = "logo")
 }
 }

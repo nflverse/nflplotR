@@ -62,7 +62,7 @@ df <- data.frame(
 )
 
 # Replace player IDs with headshot images
-table <- gt(df) \%>\%
+table <- gt(df) |>
   gt_nfl_headshots("player_gsis")
 
 # Restore old options

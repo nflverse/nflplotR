@@ -38,9 +38,9 @@
 #'   wordmark_b = tail(teams, 16)
 #' )
 #' # create gt table and translate team names to logo/wordmark images
-#' table <- df %>%
-#'   gt() %>%
-#'   gt_nfl_logos(columns = gt::starts_with("logo")) %>%
+#' table <- df |>
+#'   gt() |>
+#'   gt_nfl_logos(columns = gt::starts_with("logo")) |>
 #'   gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
 #' }
 gt_nfl_logos <- function(gt_object,
@@ -104,12 +104,12 @@ gt_nfl_wordmarks <- function(gt_object,
 #'
 #' # create gt table and translate player IDs and team abbreviations
 #' # into headshots, logos, and wordmarks
-#' table <- gt::gt(label_df) %>%
+#' table <- gt::gt(label_df) |>
 #'   nflplotR::gt_nfl_cols_label(
 #'     columns = gt::starts_with("00"),
 #'     type = "headshot"
-#'   ) %>%
-#'   nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") %>%
+#'   ) |>
+#'   nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") |>
 #'   nflplotR::gt_nfl_cols_label("KC", type = "logo")
 #' }
 gt_nfl_cols_label <- function(gt_object,
@@ -269,7 +269,7 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
 #' )
 #'
 #' # Replace player IDs with headshot images
-#' table <- gt(df) %>%
+#' table <- gt(df) |>
 #'   gt_nfl_headshots("player_gsis")
 #'
 #' # Restore old options
@@ -341,8 +341,8 @@ gt_render_image <- function(gt_tbl, ...){
   temp_file <- tempfile(fileext = ".png")
   # webshot2 sends a message that can't be suppressed with suppressMessages()
   # so we capture the output and return it invisibly
-  output <- gt::gtsave(gt_tbl, temp_file, ...) %>%
-    utils::capture.output(type = "message") %>%
+  output <- gt::gtsave(gt_tbl, temp_file, ...) |>
+    utils::capture.output(type = "message") |>
     invisible()
   # if the output is something other than the annoying webshot message, print it
   if(!grepl("screenshot completed", output)) print(output)
