@@ -11,6 +11,5 @@
 #' @importFrom lifecycle deprecated
 #' @importFrom rlang .data %||%
 #' @importFrom tools R_user_dir
-#' @importFrom utils capture.output
 ## usethis namespace: end
 NULL
