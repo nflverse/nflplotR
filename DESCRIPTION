@@ -1,6 +1,6 @@
 Package: nflplotR
 Title: NFL Logo Plots in 'ggplot2' and 'gt'
-Version: 1.4.0.9002
+Version: 1.4.0.9003
 Authors@R: 
     person("Sebastian", "Carl", , "mrcaseb@gmail.com", role = c("aut", "cre"))
 Description: A set of functions to visualize National Football League
@@ -9,9 +9,8 @@ License: MIT + file LICENSE
 URL: https://nflplotr.nflverse.com, https://github.com/nflverse/nflplotR
 BugReports: https://github.com/nflverse/nflplotR/issues
 Depends: 
-    R (>= 3.5.0)
+    R (>= 4.1.0)
 Imports: 
-    backports (>= 1.1.6),
     cachem (>= 1.0.0),
     cli (>= 3.0.0),
     data.table (>= 1.14.0),
