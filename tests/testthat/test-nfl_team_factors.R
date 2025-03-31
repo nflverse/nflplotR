@@ -13,7 +13,7 @@ test_that("nfl team factors work", {
   plot_data <- mpg
 
   # add a new column by randomly sampling the above defined teams vector
-  plot_data$team <- sample(teams, nrow(mpg), replace = TRUE) %>%
+  plot_data$team <- sample(teams, nrow(mpg), replace = TRUE) |>
     nfl_team_factor(rev(team_abbr))
 
   # Now we plot the data and facet by team abbreviation. ggplot automatically
@@ -26,7 +26,7 @@ test_that("nfl team factors work", {
   # We'll change the order of facets by making another team name column and
   # converting it to an ordered factor. Again, this defaults to sort by division
   # and nick name in ascending order.
-  plot_data$ordered_team <- sample(teams, nrow(mpg), replace = TRUE) %>%
+  plot_data$ordered_team <- sample(teams, nrow(mpg), replace = TRUE) |>
     nfl_team_factor()
 
   # Let's check how the facets are ordered now.
