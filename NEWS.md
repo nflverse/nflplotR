@@ -4,6 +4,7 @@
 * The theme elements `element_nfl_logo()` and `element_nfl_wordmark()` now clean team abbreviations by calling `nflreadr::clean_team_abbrs()` and insert empty grobs for mismatches. 
 * All geoms and theme elements will print more informative warnings about team abbreviation, or player ID mismatches.
 * The gt logo rendering functions now add alt text for accessibility and to silence an annoying pkgdown warning. (#69)
+* nflplotR now requires R 4.1 because magick needs this R version. This also follows the [Tidyverse R version support rules](https://www.tidyverse.org/blog/2019/04/r-version-support/). (#71)
 
 # nflplotR 1.4.0
 
