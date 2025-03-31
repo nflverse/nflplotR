@@ -54,9 +54,9 @@ df <- data.frame(
   wordmark_b = tail(teams, 16)
 )
 # create gt table and translate team names to logo/wordmark images
-table <- df \%>\%
-  gt() \%>\%
-  gt_nfl_logos(columns = gt::starts_with("logo")) \%>\%
+table <- df |>
+  gt() |>
+  gt_nfl_logos(columns = gt::starts_with("logo")) |>
   gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
 }
 }
