@@ -4,56 +4,61 @@
 \alias{element_nfl_logo}
 \alias{element_nfl_wordmark}
 \alias{element_nfl_headshot}
-\alias{element_path}
 \title{Theme Elements for Image Grobs}
 \usage{
 element_nfl_logo(
-  alpha = NULL,
-  colour = NA,
-  hjust = NULL,
-  vjust = NULL,
+  alpha = 1L,
+  colour = NA_character_,
+  hjust = 0.5,
+  vjust = 0.5,
   color = NULL,
-  size = 0.5
+  angle = 0,
+  size = grid::unit(0.5, "cm")
 )
 
 element_nfl_wordmark(
-  alpha = NULL,
-  colour = NA,
-  hjust = NULL,
-  vjust = NULL,
+  alpha = 1L,
+  colour = NA_character_,
+  hjust = 0.5,
+  vjust = 0.5,
   color = NULL,
-  size = 0.5
+  angle = 0,
+  size = grid::unit(0.5, "cm")
 )
 
 element_nfl_headshot(
-  alpha = NULL,
-  colour = NA,
-  hjust = NULL,
-  vjust = NULL,
+  alpha = 1L,
+  colour = NA_character_,
+  hjust = 0.5,
+  vjust = 0.5,
   color = NULL,
-  size = 0.5
+  angle = 0,
+  size = grid::unit(0.5, "cm")
 )
-
-element_path(...)
 }
 \arguments{
 \item{alpha}{The alpha channel, i.e. transparency level, as a numerical value
-between 0 and 1.}
+between 0 and 1. \code{1L} skips alpha channel modification for more speed.}
 
-\item{colour, color}{The image will be colorized with this color. Use the
+\item{colour, color}{The image will be colorized with this color. Defaults to
+\code{NA_character_} which means no change of color at all. Use the
 special character \code{"b/w"} to set it to black and white. For more information
 on valid color names in ggplot2 see
 \url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.}
 
-\item{hjust, vjust}{The horizontal and vertical adjustment respectively.
-Must be a numerical value between 0 and 1.}
+\item{hjust}{A numeric vector specifying horizontal justification.
+    If specified, overrides the \code{just} setting.}
 
-\item{size}{The output grob size in \code{cm} (!).}
+\item{vjust}{A numeric vector specifying vertical justification.
+    If specified, overrides the \code{just} setting.}
 
-\item{...}{Arguments passed on to \link[ggpath:element_path]{ggpath::element_path}}
+\item{angle}{The angle of the element as a numerical value between 0° and 360°.}
+
+\item{size}{The output grob size as a \link[grid:unit]{grid::unit}. If given a numeric,
+\code{cm} will be applied as unit.}
 }
 \value{
-An S3 object of class \code{element}.
+An S7 object of class \code{element}.
 }
 \description{
 In conjunction with the \link[ggplot2:theme]{ggplot2::theme} system, the following \code{element_}
@@ -62,7 +67,7 @@ functions enable images in non-data components of the plot, e.g. axis text.
 \item \code{element_nfl_logo()}: draws NFL team logos instead of their abbreviations.
 \item \code{element_nfl_wordmark()}: draws NFL team wordmarks instead of their abbreviations.
 \item \code{element_nfl_headshot()}: draws NFL player headshots instead of their GSIS IDs.
-\item \code{element_path()}: draws images from valid image URLs instead of the URL.
+\item \code{\link[ggpath:element_path]{ggpath::element_path()}}:  draws images from valid image URLs instead of the URL.
 }
 }
 \details{

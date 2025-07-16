@@ -35,7 +35,9 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \code{NA}, the default, includes if any aesthetics are mapped.
 \code{FALSE} never includes, and \code{TRUE} always includes.
 It can also be a named logical vector to finely select the aesthetics to
-display.}
+display. To include legend keys for all levels, even
+when no data exists, use \code{TRUE}.  If \code{NA}, all levels are shown in legend,
+but unobserved levels are omitted.}
     \item{\code{inherit.aes}}{If \code{FALSE}, overrides the default aesthetics,
 rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behavior from
@@ -66,8 +68,7 @@ aesthetics (at least one of the \code{x0} or \code{y0} aesthetics is required):
 \item{\code{alpha = NA}}{The alpha channel, i.e. transparency level, as a numerical value between 0 and 1.}
 \item{\code{color = "red"}}{The color of the drawn lines.}
 \item{\code{linetype = 2}}{The linetype of the drawn lines.}
-\item{\code{size = 0.5}}{The size of the drawn lines. Deprecated as of ggplot2 v3.4.0, use \code{linewidth} instead.}
-\item{\code{linewidth = 0.5}}{The width of the drawn lines. Starting at ggplot2 v3.4.0.}
+\item{\code{linewidth = 0.5}}{The width of the drawn lines.}
 }
 
 }

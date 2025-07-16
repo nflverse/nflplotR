@@ -82,12 +82,16 @@ na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_pro
 #' @return Situation report of R and package/dependencies.
 NULL
 
+# No code coverage here ---------------------------------------------------
+
+# nocov start
 release_bullets <- function() {
   c(
     '`devtools::check_mac_release()`',
-    '`rhub::rhub_check(platforms = rhub::rhub_platforms()$name[rhub::rhub_platforms()$name != "rchk"])`',
+    '`nflfastR:::my_rhub_check()`',
     '`pkgdown::check_pkgdown()`',
-    '`usethis::use_tidy_thanks()`',
+    '`nflfastR:::nflverse_thanks()`',
     NULL
   )
 }
+# nocov end

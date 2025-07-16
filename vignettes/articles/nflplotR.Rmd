@@ -186,14 +186,14 @@ ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.x = nflplotR::element_nfl_logo(size = 1)
+    axis.text.x.bottom = nflplotR::element_nfl_logo(size = 1)
   )
 ```
 
 Some notes:
 
 * color and fill allow primary or secondary team colors
-* the axis labels are replaced with the logos by setting `axis.text.x = nflplotR::element_nfl_logo()` in the ggplot2 theme call. 
+* the axis labels are replaced with the logos by setting `axis.text.x.bottom = nflplotR::element_nfl_logo()` in the ggplot2 theme call. 
   
 We can do the same thing for the y-axis (now with defensive EPA per play). Let's make them less intrusive by changing the color to black and white
 
@@ -214,7 +214,7 @@ ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
     # it's obvious what the y-axis is so we remove the title
     axis.title.y = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.y = nflplotR::element_nfl_logo(color = "b/w", size = 1)
+    axis.text.y.left = nflplotR::element_nfl_logo(color = "b/w", size = 1)
   )
 ```
 
@@ -239,7 +239,7 @@ ggplot2::ggplot(qbs, aes(x = reorder(id, -qb_epa), y = qb_epa)) +
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of gsis ids with player headshots
-    axis.text.x = nflplotR::element_nfl_headshot(size = 1)
+    axis.text.x.bottom = nflplotR::element_nfl_headshot(size = 1)
   )
 ```
 
@@ -266,7 +266,7 @@ ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
     # it's obvious what the x-axis is so we remove the title
     axis.title.x = ggplot2::element_blank(),
     # this line triggers the replacement of team abbreviations with logos
-    axis.text.x = nflplotR::element_nfl_logo(size = 1)
+    axis.text.x.bottom = nflplotR::element_nfl_logo(size = 1)
   )
 ```
 
