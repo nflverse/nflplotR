@@ -36,7 +36,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -279,15 +279,15 @@ axis labels and team colors as bar colors.</p>
 <span>    <span class="co"># it's obvious what the x-axis is so we remove the title</span></span>
 <span>    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    <span class="co"># this line triggers the replacement of team abbreviations with logos</span></span>
-<span>    axis.text.x <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    axis.text.x.bottom <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-8-1.png" width="100%"></p>
 <p>Some notes:</p>
 <ul>
 <li>color and fill allow primary or secondary team colors</li>
 <li>the axis labels are replaced with the logos by setting
-<code>axis.text.x = nflplotR::element_nfl_logo()</code> in the ggplot2
-theme call.</li>
+<code>axis.text.x.bottom = nflplotR::element_nfl_logo()</code> in the
+ggplot2 theme call.</li>
 </ul>
 <p>We can do the same thing for the y-axis (now with defensive EPA per
 play). Let’s make them less intrusive by changing the color to black and
@@ -309,7 +309,7 @@ white</p>
 <span>    <span class="co"># it's obvious what the y-axis is so we remove the title</span></span>
 <span>    axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    <span class="co"># this line triggers the replacement of team abbreviations with logos</span></span>
-<span>    axis.text.y <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"b/w"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    axis.text.y.left <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"b/w"</span>, size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-9-1.png" width="100%"></p>
 </div>
@@ -336,7 +336,7 @@ the nflfastR play-by-play data.</p>
 <span>    <span class="co"># it's obvious what the x-axis is so we remove the title</span></span>
 <span>    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    <span class="co"># this line triggers the replacement of gsis ids with player headshots</span></span>
-<span>    axis.text.x <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_headshot</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    axis.text.x.bottom <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_headshot</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-10-1.png" width="100%"></p>
 </div>
@@ -364,7 +364,7 @@ on top of the columns and use team logos as axis labels instead.</p>
 <span>    <span class="co"># it's obvious what the x-axis is so we remove the title</span></span>
 <span>    axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_blank</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>    <span class="co"># this line triggers the replacement of team abbreviations with logos</span></span>
-<span>    axis.text.x <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
+<span>    axis.text.x.bottom <span class="op">=</span> <span class="fu">nflplotR</span><span class="fu">::</span><span class="fu"><a href="../reference/element.html">element_nfl_logo</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="nflplotR_files/figure-html/unnamed-chunk-11-1.png" width="100%"></p>
 </div>

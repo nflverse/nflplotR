@@ -11,7 +11,7 @@ preview in RStudio for ggplots created using nflplotR."><meta property="og:image
 
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -71,7 +71,7 @@ preview in RStudio for ggplots created using nflplotR.</p>
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">ggpreview</span><span class="op">(</span></span>
-<span>  plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  plot <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/get_last_plot.html" class="external-link">last_plot</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  width <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  height <span class="op">=</span> <span class="cn">NA</span>,</span>
 <span>  asp <span class="op">=</span> <span class="cn">NULL</span>,</span>
@@ -106,7 +106,8 @@ recalculated to <code>height = width / asp</code>.</p></dd>
 
 <dt id="arg-dpi">dpi<a class="anchor" aria-label="anchor" href="#arg-dpi"></a></dt>
 <dd><p>Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.</p></dd>
+"print" (300), or "screen" (72). Only applies when converting pixel units,
+as is typical for raster output types.</p></dd>
 
 
 <dt id="arg-device">device<a class="anchor" aria-label="anchor" href="#arg-device"></a></dt>

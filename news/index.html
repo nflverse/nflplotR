@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9003</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9004</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -64,6 +64,7 @@
 <li>All geoms and theme elements will print more informative warnings about team abbreviation, or player ID mismatches.</li>
 <li>The gt logo rendering functions now add alt text for accessibility and to silence an annoying pkgdown warning. (<a href="https://github.com/nflverse/nflplotR/issues/69" class="external-link">#69</a>)</li>
 <li>nflplotR now requires R 4.1 because magick needs this R version. This also follows the <a href="https://www.tidyverse.org/blog/2019/04/r-version-support/" class="external-link">Tidyverse R version support rules</a>. (<a href="https://github.com/nflverse/nflplotR/issues/71" class="external-link">#71</a>)</li>
+<li>Rewrite theme elements in S7 to fully work with ggplot2 v4. This means nflplotR now requires ggplot2 v4! nflplotR is a ggplot2 extension and if ggplot2 version jumps make breaking changes, then it’s best for the extension to not try to be downwards compatible. The theme system is now fully powered by ggpath. (<a href="https://github.com/nflverse/nflplotR/issues/73" class="external-link">#73</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="nflplotr-140">nflplotR 1.4.0<a class="anchor" aria-label="anchor" href="#nflplotr-140"></a></h2><p class="text-muted">CRAN release: 2024-08-21</p>
@@ -108,7 +109,7 @@
 </ul></div>
 <div class="section level3">
 <h3 id="breaking-changes-1-2-0">Breaking Changes<a class="anchor" aria-label="anchor" href="#breaking-changes-1-2-0"></a></h3>
-<ul><li>The functions <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code>, <code><a href="../reference/element.html">element_path()</a></code> as well as the ref line functions <code>geom_mean_line()</code> and <code>geom_median_line()</code> have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics <code>x0</code> and <code>y0</code> instead of <code>v_var</code> and <code>h_var</code> respectively. This means that nflplotR will break code (!) where ref line geoms are called with <code>v_var</code> and <code>h_var</code> aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (<a href="https://github.com/nflverse/nflplotR/issues/43" class="external-link">#43</a>)</li>
+<ul><li>The functions <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code>, <code><a href="https://mrcaseb.github.io/ggpath/reference/element_path.html" class="external-link">element_path()</a></code> as well as the ref line functions <code>geom_mean_line()</code> and <code>geom_median_line()</code> have been outsourced to the ggpath package. nflplotR re-exports them for compatibility reasons. However, the ref line functions needed modification in order to work properly with ggplot2 scale transformations. Those geoms now require the aesthetics <code>x0</code> and <code>y0</code> instead of <code>v_var</code> and <code>h_var</code> respectively. This means that nflplotR will break code (!) where ref line geoms are called with <code>v_var</code> and <code>h_var</code> aesthetics. This is a hard but necessary step to revise an irreparable mistake in the development of the original code. (<a href="https://github.com/nflverse/nflplotR/issues/43" class="external-link">#43</a>)</li>
 </ul></div>
 <div class="section level3">
 <h3 id="minor-changes-1-2-0">Minor Changes<a class="anchor" aria-label="anchor" href="#minor-changes-1-2-0"></a></h3>
@@ -149,7 +150,7 @@
 <li>Updated internal data to use the new team colors in nflfastR. (v.0.0.9013)</li>
 <li>Added the <code><a href="../reference/geom_nfl_wordmarks.html">geom_nfl_wordmarks()</a></code> geom that plots NFL wordmarks using valid team abbreviations. (v.0.0.9014)</li>
 <li>Added the <code><a href="../reference/geom_from_path.html">geom_from_path()</a></code> geom that plots images from urls, local paths and more. (v.0.0.9015)</li>
-<li>Added the ggplot2 theme-elements <code><a href="../reference/element.html">element_nfl_logo()</a></code>, <code><a href="../reference/element.html">element_nfl_wordmark()</a></code>, <code><a href="../reference/element.html">element_nfl_headshot()</a></code>, and <code><a href="../reference/element.html">element_path()</a></code> which translate NFL team abbreviations or player IDs into team logos and player headshots. These elements feature a major speed improvement over the axis scales <code>scale_x_nfl_headshots()</code> and <code>scale_y_nfl_headshots()</code> and make the package less dependent on an underlying package. (v.0.0.0.9016)</li>
+<li>Added the ggplot2 theme-elements <code><a href="../reference/element.html">element_nfl_logo()</a></code>, <code><a href="../reference/element.html">element_nfl_wordmark()</a></code>, <code><a href="../reference/element.html">element_nfl_headshot()</a></code>, and <code><a href="https://mrcaseb.github.io/ggpath/reference/element_path.html" class="external-link">element_path()</a></code> which translate NFL team abbreviations or player IDs into team logos and player headshots. These elements feature a major speed improvement over the axis scales <code>scale_x_nfl_headshots()</code> and <code>scale_y_nfl_headshots()</code> and make the package less dependent on an underlying package. (v.0.0.0.9016)</li>
 </ul></div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside></div>
