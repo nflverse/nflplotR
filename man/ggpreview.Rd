@@ -29,7 +29,8 @@ this is a numeric value (and not \code{NULL}) the \code{height} of the plot will
 recalculated to \code{height = width / asp}.}
 
 \item{dpi}{Plot resolution. Also accepts a string input: "retina" (320),
-"print" (300), or "screen" (72). Applies only to raster output types.}
+"print" (300), or "screen" (72). Only applies when converting pixel units,
+as is typical for raster output types.}
 
 \item{device}{Device to use. Can either be a device function
 (e.g. \link{png}), or one of "eps", "ps", "tex" (pictex),
