@@ -21,54 +21,54 @@
 <rect x='0.00' y='0.00' width='720.00' height='576.00' style='stroke-width: 1.12; stroke: #1E1E1E; fill: #1E1E1E;' />
 </g>
 <defs>
-  <clipPath id='cpNjYuNTh8NzE0LjI3fDM5Ljg1fDU2Ny40MQ=='>
-    <rect x='66.58' y='39.85' width='647.69' height='527.56' />
+  <clipPath id='cpNjYuNTh8NzE0LjI3fDM5Ljg1fDU3MC4yNw=='>
+    <rect x='66.58' y='39.85' width='647.69' height='530.42' />
   </clipPath>
 </defs>
-<g clip-path='url(#cpNjYuNTh8NzE0LjI3fDM5Ljg1fDU2Ny40MQ==)'>
-<rect x='66.58' y='39.85' width='647.69' height='527.56' style='stroke-width: 1.12; stroke: #1E1E1E; fill: #1E1E1E;' />
-<line x1='66.58' y1='49.99' x2='714.27' y2='49.99' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
-<line x1='66.58' y1='151.45' x2='714.27' y2='151.45' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
-<line x1='66.58' y1='354.35' x2='714.27' y2='354.35' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
-<line x1='66.58' y1='557.26' x2='714.27' y2='557.26' style='stroke-width: 1.07; stroke: #E0E0E0; stroke-linecap: butt;' />
-<text x='600.72' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>TEN</text>
-<text x='96.02' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>CHI</text>
-<text x='600.72' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>DET</text>
-<text x='180.14' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.63px' lengthAdjust='spacingAndGlyphs'>MIA</text>
-<text x='516.60' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>DAL</text>
-<text x='684.83' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.10px' lengthAdjust='spacingAndGlyphs'>SEA</text>
-<text x='432.48' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>CLE</text>
-<text x='348.37' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>ARI</text>
-<text x='264.25' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>CIN</text>
-<text x='96.02' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='13.51px' lengthAdjust='spacingAndGlyphs'>LV</text>
-<text x='180.14' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='25.15px' lengthAdjust='spacingAndGlyphs'>WAS</text>
-<text x='96.02' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='13.51px' lengthAdjust='spacingAndGlyphs'>LA</text>
-<text x='600.72' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.96px' lengthAdjust='spacingAndGlyphs'>GB</text>
-<text x='516.60' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.93px' lengthAdjust='spacingAndGlyphs'>NYG</text>
-<text x='516.60' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='21.48px' lengthAdjust='spacingAndGlyphs'>LAC</text>
-<text x='264.25' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='17.18px' lengthAdjust='spacingAndGlyphs'>PIT</text>
-<text x='516.60' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.87px' lengthAdjust='spacingAndGlyphs'>BAL</text>
-<text x='264.25' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.24px' lengthAdjust='spacingAndGlyphs'>MIN</text>
-<text x='348.37' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.26px' lengthAdjust='spacingAndGlyphs'>JAX</text>
-<text x='348.37' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.34px' lengthAdjust='spacingAndGlyphs'>NE</text>
-<text x='180.14' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='14.11px' lengthAdjust='spacingAndGlyphs'>SF</text>
-<text x='264.25' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='24.54px' lengthAdjust='spacingAndGlyphs'>HOU</text>
-<text x='348.37' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.32px' lengthAdjust='spacingAndGlyphs'>CAR</text>
-<text x='180.14' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='15.34px' lengthAdjust='spacingAndGlyphs'>KC</text>
-<text x='264.25' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='18.41px' lengthAdjust='spacingAndGlyphs'>PHI</text>
-<text x='180.14' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='23.32px' lengthAdjust='spacingAndGlyphs'>DEN</text>
-<text x='684.83' y='408.88' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.86px' lengthAdjust='spacingAndGlyphs'>NYJ</text>
-<text x='432.48' y='510.33' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='20.25px' lengthAdjust='spacingAndGlyphs'>ATL</text>
-<text x='96.02' y='307.43' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='19.02px' lengthAdjust='spacingAndGlyphs'>IND</text>
-<text x='96.02' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='16.57px' lengthAdjust='spacingAndGlyphs'>NO</text>
-<text x='432.48' y='104.52' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='14.11px' lengthAdjust='spacingAndGlyphs'>TB</text>
-<text x='432.48' y='205.97' text-anchor='middle' style='font-size: 11.04px; fill: #FFFFFF; font-family: sans;' textLength='22.08px' lengthAdjust='spacingAndGlyphs'>BUF</text>
+<g clip-path='url(#cpNjYuNTh8NzE0LjI3fDM5Ljg1fDU3MC4yNw==)'>
+<rect x='66.58' y='39.85' width='647.69' height='530.42' style='stroke-width: 1.12; stroke: #1E1E1E; fill: #1E1E1E;' />
+<line x1='66.58' y1='50.05' x2='714.27' y2='50.05' style='stroke-width: 1.12; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='66.58' y1='152.05' x2='714.27' y2='152.05' style='stroke-width: 1.12; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='66.58' y1='356.06' x2='714.27' y2='356.06' style='stroke-width: 1.12; stroke: #E0E0E0; stroke-linecap: butt;' />
+<line x1='66.58' y1='560.07' x2='714.27' y2='560.07' style='stroke-width: 1.12; stroke: #E0E0E0; stroke-linecap: butt;' />
+<text x='600.72' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='23.00px' lengthAdjust='spacingAndGlyphs'>TEN</text>
+<text x='96.02' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='19.81px' lengthAdjust='spacingAndGlyphs'>CHI</text>
+<text x='600.72' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='23.00px' lengthAdjust='spacingAndGlyphs'>DET</text>
+<text x='180.14' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='20.45px' lengthAdjust='spacingAndGlyphs'>MIA</text>
+<text x='516.60' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='22.38px' lengthAdjust='spacingAndGlyphs'>DAL</text>
+<text x='684.83' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='23.02px' lengthAdjust='spacingAndGlyphs'>SEA</text>
+<text x='432.48' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='22.38px' lengthAdjust='spacingAndGlyphs'>CLE</text>
+<text x='348.37' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='19.18px' lengthAdjust='spacingAndGlyphs'>ARI</text>
+<text x='264.25' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='19.81px' lengthAdjust='spacingAndGlyphs'>CIN</text>
+<text x='96.02' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='14.07px' lengthAdjust='spacingAndGlyphs'>LV</text>
+<text x='180.14' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='26.20px' lengthAdjust='spacingAndGlyphs'>WAS</text>
+<text x='96.02' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='14.07px' lengthAdjust='spacingAndGlyphs'>LA</text>
+<text x='600.72' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='16.62px' lengthAdjust='spacingAndGlyphs'>GB</text>
+<text x='516.60' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='24.93px' lengthAdjust='spacingAndGlyphs'>NYG</text>
+<text x='516.60' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='22.38px' lengthAdjust='spacingAndGlyphs'>LAC</text>
+<text x='264.25' y='309.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='17.89px' lengthAdjust='spacingAndGlyphs'>PIT</text>
+<text x='516.60' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='21.74px' lengthAdjust='spacingAndGlyphs'>BAL</text>
+<text x='264.25' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='21.09px' lengthAdjust='spacingAndGlyphs'>MIN</text>
+<text x='348.37' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='21.10px' lengthAdjust='spacingAndGlyphs'>JAX</text>
+<text x='348.37' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>NE</text>
+<text x='180.14' y='309.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='14.70px' lengthAdjust='spacingAndGlyphs'>SF</text>
+<text x='264.25' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='25.56px' lengthAdjust='spacingAndGlyphs'>HOU</text>
+<text x='348.37' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='24.29px' lengthAdjust='spacingAndGlyphs'>CAR</text>
+<text x='180.14' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='15.98px' lengthAdjust='spacingAndGlyphs'>KC</text>
+<text x='264.25' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='19.18px' lengthAdjust='spacingAndGlyphs'>PHI</text>
+<text x='180.14' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='24.29px' lengthAdjust='spacingAndGlyphs'>DEN</text>
+<text x='684.83' y='411.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='21.73px' lengthAdjust='spacingAndGlyphs'>NYJ</text>
+<text x='432.48' y='513.03' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='21.09px' lengthAdjust='spacingAndGlyphs'>ATL</text>
+<text x='96.02' y='309.02' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='19.81px' lengthAdjust='spacingAndGlyphs'>IND</text>
+<text x='96.02' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='17.26px' lengthAdjust='spacingAndGlyphs'>NO</text>
+<text x='432.48' y='105.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='14.70px' lengthAdjust='spacingAndGlyphs'>TB</text>
+<text x='432.48' y='207.01' text-anchor='middle' style='font-size: 11.50px; fill: #FFFFFF; font-family: sans;' textLength='23.00px' lengthAdjust='spacingAndGlyphs'>BUF</text>
 </g>
 <g clip-path='url(#cpMC4wMHw3MjAuMDB8MC4wMHw1NzYuMDA=)'>
-<text x='61.43' y='403.10' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>A Combined</text>
-<text x='61.43' y='414.03' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='17.43px' lengthAdjust='spacingAndGlyphs'>Tier</text>
-<text x='61.43' y='205.66' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='48.39px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
-<text x='61.43' y='104.20' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='51.76px' lengthAdjust='spacingAndGlyphs'>Super Bowl</text>
+<text x='61.43' y='405.08' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='55.70px' lengthAdjust='spacingAndGlyphs'>A Combined</text>
+<text x='61.43' y='416.01' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='17.43px' lengthAdjust='spacingAndGlyphs'>Tier</text>
+<text x='61.43' y='206.54' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='48.39px' lengthAdjust='spacingAndGlyphs'>Very Good</text>
+<text x='61.43' y='104.53' text-anchor='end' style='font-size: 10.12px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='51.76px' lengthAdjust='spacingAndGlyphs'>Super Bowl</text>
 <text x='5.73' y='31.73' style='font-size: 11.50px; fill: #8E8E93; font-family: sans;' textLength='184.73px' lengthAdjust='spacingAndGlyphs'>created with the #nflplotR Tiermaker</text>
 <text x='5.73' y='15.23' style='font-size: 13.80px; font-weight: bold; fill: #FFFFFF; font-family: sans;' textLength='222.44px' lengthAdjust='spacingAndGlyphs'>NFL Team Tiers, 2021 as of Week 4</text>
 </g>
