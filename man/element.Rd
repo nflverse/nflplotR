@@ -94,7 +94,7 @@ ggplot(df, aes(x = teams, y = random_value)) +
   scale_color_nfl(type = "secondary") +
   scale_fill_nfl(alpha = 0.4) +
   theme_minimal() +
-  theme(axis.text.x = element_nfl_logo())
+  theme(axis.text.x.bottom = element_nfl_logo())
 
 # use logos for y-axis
 ggplot(df, aes(y = teams, x = random_value)) +
@@ -102,7 +102,7 @@ ggplot(df, aes(y = teams, x = random_value)) +
   scale_color_nfl(type = "secondary") +
   scale_fill_nfl(alpha = 0.4) +
   theme_minimal() +
-  theme(axis.text.y = element_nfl_logo())
+  theme(axis.text.y.left = element_nfl_logo())
 
 #############################################################################
 # Headshot Examples
@@ -130,13 +130,13 @@ dfh <- data.frame(
 ggplot(dfh, aes(x = player_gsis, y = random_value)) +
   geom_col(width = 0.5) +
   theme_minimal() +
-  theme(axis.text.x = element_nfl_headshot(size = 1))
+  theme(axis.text.x.bottom = element_nfl_headshot(size = 1))
 
 # use headshots for y-axis
 ggplot(dfh, aes(y = player_gsis, x = random_value)) +
   geom_col(width = 0.5) +
   theme_minimal() +
-  theme(axis.text.y = element_nfl_headshot(size = 1))
+  theme(axis.text.y.left = element_nfl_headshot(size = 1))
 
 # Restore old options
 options(old)
