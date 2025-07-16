@@ -5,6 +5,7 @@
 * All geoms and theme elements will print more informative warnings about team abbreviation, or player ID mismatches.
 * The gt logo rendering functions now add alt text for accessibility and to silence an annoying pkgdown warning. (#69)
 * nflplotR now requires R 4.1 because magick needs this R version. This also follows the [Tidyverse R version support rules](https://www.tidyverse.org/blog/2019/04/r-version-support/). (#71)
+* Rewrite theme elements in S7 to fully work with ggplot2 v4. This means nflplotR now requires ggplot2 v4! nflplotR is a ggplot2 extension and if ggplot2 version jumps make breaking changes, then it's best for the extension to not try to be downwards compatible. The theme system is now fully powered by ggpath. (#73)
 
 # nflplotR 1.4.0
 
