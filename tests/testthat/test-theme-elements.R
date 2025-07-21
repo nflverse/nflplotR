@@ -35,7 +35,7 @@ test_that("logo element works", {
     theme(
       strip.text = element_nfl_wordmark()
     )
-  expect_snapshot(out <- ggplotGrob(p3))
+  expect_snapshot(out <- ggplot2::ggplot_build(p3))
 
   # GSIS ID mismatch
   p4 <- data.frame(a = c("00-0033077", "00-0012345"), b = 1:2, c = 10:11) |>

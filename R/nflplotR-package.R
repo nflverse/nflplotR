@@ -6,7 +6,7 @@
 ## usethis namespace: start
 #' @import data.table
 #' @import grid
-#' @importFrom ggplot2 draw_element element
+#' @importFrom ggplot2 element_grob element
 #' @importFrom graphics par
 #' @importFrom lifecycle deprecated
 #' @importFrom rlang .data %||%

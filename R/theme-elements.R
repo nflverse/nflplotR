@@ -147,7 +147,7 @@ element_nfl_headshot <- S7::new_class(
 #' @importFrom ggpath element_path
 ggpath::element_path
 
-S7::method(draw_element, element_nfl_logo) <- function(
+S7::method(element_grob, element_nfl_logo) <- function(
   element,
   label = "",
   x = NULL,
@@ -171,7 +171,21 @@ S7::method(draw_element, element_nfl_logo) <- function(
     )
   }
 
-  S7::method(draw_element, ggpath::element_path)(
+  # This will likely break in a future ggplot2 release as they
+  # currently work with a weird mix of S3 and S7. element_grob is a S3 generic
+  # but the methods are S7. However, I can't call the method from ggpath with
+  # S7::method(element_grob, ggpath::element_path)(...)
+  # I think this should work and probably will work at some point in the future
+  # in the meantime I change the class of element to dispatch to the ggpath
+  # method for further processing.
+  class(element) <- c(
+    "ggpath::element_path",
+    "ggplot2::element_text",
+    "ggplot2::element",
+    "S7_object"
+  )
+
+  ggplot2::element_grob(
     element = element,
     label = image_list,
     x = x,
@@ -179,14 +193,25 @@ S7::method(draw_element, element_nfl_logo) <- function(
   )
 }
 
-S7::method(draw_element, element_nfl_wordmark) <- function(
+S7::method(element_grob, element_nfl_wordmark) <- function(
   element,
   label = "",
   x = NULL,
   y = NULL,
   ...
 ) {
-  S7::method(draw_element, element_nfl_logo)(
+  # see comment on weird S3/S7 mix in the above method
+  # Note that I dispatch to the nflplotR method here before we move on
+  # to ggpath
+  class(element) <- c(
+    "nflplotR::element_nfl_logo",
+    "ggpath::element_path",
+    "ggplot2::element_text",
+    "ggplot2::element",
+    "S7_object"
+  )
+
+  ggplot2::element_grob(
     element = element,
     label = label,
     x = x,
@@ -196,7 +221,7 @@ S7::method(draw_element, element_nfl_wordmark) <- function(
   )
 }
 
-S7::method(draw_element, element_nfl_headshot) <- function(
+S7::method(element_grob, element_nfl_headshot) <- function(
   element,
   label = "",
   x = NULL,
@@ -217,7 +242,15 @@ S7::method(draw_element, element_nfl_headshot) <- function(
     image_urls[is.na(image_urls)] <- na_headshot()
   }
 
-  S7::method(draw_element, ggpath::element_path)(
+  # see comment on weird S3/S7 mix in the above method
+  class(element) <- c(
+    "ggpath::element_path",
+    "ggplot2::element_text",
+    "ggplot2::element",
+    "S7_object"
+  )
+
+  ggplot2::element_grob(
     element = element,
     label = image_urls,
     x = x,
