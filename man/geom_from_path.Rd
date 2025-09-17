@@ -107,7 +107,7 @@ A typical size is \code{height = 0.1} (see below examples).}
 }
 
 \examples{
-\dontshow{if (requireNamespace("rsvg", quietly = TRUE)) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (requireNamespace("rsvg", quietly = TRUE)) withAutoprint(\{ # examplesIf}
 # example code
 
 \donttest{

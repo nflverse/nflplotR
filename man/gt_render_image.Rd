@@ -31,7 +31,7 @@ environment variable was not set to \code{"false"} can be taken from the source
 code of this function.
 }
 \examples{
-\dontshow{if (identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")) withAutoprint(\{ # examplesIf}
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
 \dontshow{\}) # examplesIf}
