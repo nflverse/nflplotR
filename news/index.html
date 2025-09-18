@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">nflplotR</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.4.0.9004</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.5.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,13 +58,13 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="development version" id="nflplotr-development-version">nflplotR (development version)<a class="anchor" aria-label="anchor" href="#nflplotr-development-version"></a></h2>
-<ul><li>Updated the New York Jets logo (again) to their new secondary logo introduced in the 2024 off-season. This aligns with the logo used across nfl dot com and it has been voted for in a poll. (<a href="https://github.com/nflverse/nflplotR/issues/68" class="external-link">#68</a>)</li>
+<h2 class="pkg-version" data-toc-text="1.5.0" id="nflplotr-150">nflplotR 1.5.0<a class="anchor" aria-label="anchor" href="#nflplotr-150"></a></h2><p class="text-muted">CRAN release: 2025-09-18</p>
+<ul><li>Rewrite theme elements in S7 to fully work with ggplot2 v4. This means nflplotR now requires ggplot2 v4! nflplotR is a ggplot2 extension and if ggplot2 version jumps make breaking changes, then it’s best for the extension to not try to be downwards compatible. The theme system is now fully powered by ggpath. (<a href="https://github.com/nflverse/nflplotR/issues/73" class="external-link">#73</a>)</li>
+<li>Updated the New York Jets logo (again) to their new secondary logo introduced in the 2024 off-season. This aligns with the logo used across nfl dot com and it has been voted for in a poll. (<a href="https://github.com/nflverse/nflplotR/issues/68" class="external-link">#68</a>)</li>
 <li>The theme elements <code><a href="../reference/element.html">element_nfl_logo()</a></code> and <code><a href="../reference/element.html">element_nfl_wordmark()</a></code> now clean team abbreviations by calling <code><a href="https://nflreadr.nflverse.com/reference/clean_team_abbrs.html" class="external-link">nflreadr::clean_team_abbrs()</a></code> and insert empty grobs for mismatches.</li>
 <li>All geoms and theme elements will print more informative warnings about team abbreviation, or player ID mismatches.</li>
 <li>The gt logo rendering functions now add alt text for accessibility and to silence an annoying pkgdown warning. (<a href="https://github.com/nflverse/nflplotR/issues/69" class="external-link">#69</a>)</li>
 <li>nflplotR now requires R 4.1 because magick needs this R version. This also follows the <a href="https://www.tidyverse.org/blog/2019/04/r-version-support/" class="external-link">Tidyverse R version support rules</a>. (<a href="https://github.com/nflverse/nflplotR/issues/71" class="external-link">#71</a>)</li>
-<li>Rewrite theme elements in S7 to fully work with ggplot2 v4. This means nflplotR now requires ggplot2 v4! nflplotR is a ggplot2 extension and if ggplot2 version jumps make breaking changes, then it’s best for the extension to not try to be downwards compatible. The theme system is now fully powered by ggpath. (<a href="https://github.com/nflverse/nflplotR/issues/73" class="external-link">#73</a>)</li>
 </ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="1.4.0" id="nflplotr-140">nflplotR 1.4.0<a class="anchor" aria-label="anchor" href="#nflplotr-140"></a></h2><p class="text-muted">CRAN release: 2024-08-21</p>
