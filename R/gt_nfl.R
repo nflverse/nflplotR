@@ -351,3 +351,303 @@ gt_render_image <- function(gt_tbl, ...){
   graphics::par(old)
   invisible(NULL)
 }
+
+#' Format Columns of 'gt' Tables as Percentage Bars
+#'
+#' Add context to your data by placing the actual values on a percentile bar.
+#' The percentile bar is additionally colored with a colorscale based on a user
+#' supplied color palette.
+#'
+#' @param gt_tbl A table object that is created using the [gt::gt()] function.
+#' @param col_value Column name of the value to be printed.
+#' @param col_pct Column name of 0 - 100 values controlling the fill width.
+#' @inheritParams gt::extract_cells
+#' @param hide_col_pct If `TRUE`, the column in `col_pct` will be hidden in the
+#'   resulting table.
+#' @param value_padding_left Left padding of the printed text.
+#' @param value_padding_right Right padding of the printed text.
+#' @param value_dark_color The color of the dark text option.
+#'  The function will calculate color contrast ratios with
+#'  [colorspace::contrast_ratio] and, based on this, decide whether the dark or
+#'  light option is more readable. NOTE: this uses colors from `fill_palette`
+#'  and not the color from `background_fill.color` as background because it is
+#'  not trivial to figure out the actual background of the text.
+#' @param value_light_color The color of the light text option.
+#'  The function will calculate color contrast ratios with
+#'  [colorspace::contrast_ratio] and, based on this, decide whether the dark or
+#'  light option is more readable. NOTE: this uses colors from `fill_palette`
+#'  and not the color from `background_fill.color` as background because it is
+#'  not trivial to figure out the actual background of the text.
+#' @param fill_palette The colors that values will be mapped to. This can also
+#'  be one of `"hulk"`, `"hulk_teal"`, or `"blue_orange"` which will trigger
+#'  internal color palettes. Argument passed on to [scales::col_numeric].
+#' @param fill_palette.reverse Whether the vector of colors in `fill_palette`
+#'  should be reversed. Argument passed on to [scales::col_numeric].
+#' @param fill_na.color Fill color in case of `NA` values. Argument passed on to
+#'  [scales::col_numeric].
+#' @param fill_pct.domain The possible values that colors in `fill_palette` can
+#'  be mapped to.
+#' @param fill_border.color Border color of color filled area.
+#' @param fill_border.radius Border radius of color filled area.
+#' @param background_border.color Border color of background.
+#' @param background_border.radius Border radius of background.
+#' @param background_fill.color Fill color of background.
+#' @param background_fill.width Width of background.
+#'
+#' @details
+#' The function allows extensive styling of the bars and text. All styling
+#' parameters are interpreted as style properties of a html span tag. For more
+#' info on CSS properties, see <https://www.w3schools.com/cssref/index.php>.
+#'
+#' ## Some notes about styling
+#'
+#' Since this is meant to be an extension of an already existing 'gt' table,
+#' you'll have to do some styling outside of this function, esp. the horizontal
+#' alignment and direction will be controlled by `gt::cols_align` (see example).
+#'
+#' Make sure to play around with `fill_border.radius` and
+#' `background_border.radius`. Results will depend on final column width and
+#' percentiles. Very short percentile bars, i.e. small values in `col_pct`,
+#' might result in bars crossing the border because when combined with a
+#' big border radius.
+#'
+#' Text alignment depending on the colored bar isn't as easy as one might think.
+#' Try percent values in `value_padding_left` or `value_padding_right` to avoid
+#' overlapping of text values and the outline of the colored bars.
+#'
+#' For more information and examples, see the article that describes how
+#' nflplotR works with the 'gt' package
+#' <https://nflplotr.nflverse.com/articles/gt.html>.
+#'
+#' @seealso The article that describes how nflplotR works with the 'gt' package
+#'    <https://nflplotr.nflverse.com/articles/gt.html>
+#' @returns An object of class `gt_tbl`.
+#' @export
+#' @section Output of below example:
+#' \if{html}{\figure{pct_tbl.png}{options: width=66\%}}
+#' @examples
+#' # Make a data.table of mtcars and select only disp and hp
+#' data <- data.table::as.data.table(mtcars)[, list(disp, hp)]
+#'
+#' # Add the percentile of hp in the distribution of hp values
+#' data[, pct := round(stats::ecdf(hp)(hp) * 100, 1)]
+#'
+#' # set seed to keep it reproducible
+#' set.seed(20)
+#'
+#' # take random sample (to avoid a big table) and add the percent bars for hp
+#' # using the percentiles in the pct variable
+#' table <- data[sample(.N, 10)] |>
+#'   gt::gt() |>
+#'   nflplotR::gt_pct_bar(
+#'     "hp",
+#'     "pct",
+#'     hide_col_pct = FALSE,
+#'     value_padding_left = "10px",
+#'   ) |>
+#'   gt::cols_align("left", hp) |>
+#'   gt::cols_width(hp ~ gt::px(250))
+gt_pct_bar <- function(
+  gt_tbl,
+  col_value,
+  col_pct,
+  rows = gt::everything(),
+  hide_col_pct = FALSE,
+  # control style of value
+  value_padding_left = "0px",
+  value_padding_right = "0px",
+  value_dark_color = "black",
+  value_light_color = "white",
+  # control style of fill bar
+  fill_palette = "hulk",
+  fill_palette.reverse = FALSE,
+  fill_na.color = "#808080",
+  fill_pct.domain = 0:100,
+  fill_border.color = "transparent",
+  fill_border.radius = "10px",
+  # control style of background
+  background_border.color = "thin solid black",
+  background_border.radius = "12px",
+  background_fill.color = "#b1b1b1",
+  background_fill.width = "100%"
+) {
+  rlang::check_installed("colorspace (>= 2.0)", "to calculate color contrast ratios.")
+  # Extract percent values from table data
+  # rows allows us to apply a filter
+  pct <- as.numeric(gt::extract_cells(
+    data = gt_tbl,
+    columns = {{ col_pct }},
+    rows = {{ rows }}
+  ))
+
+  # Catch percent values outside c(0, 100)
+  if (!all(data.table::inrange(pct, 0, 100))) {
+    outside <- pct[!data.table::inrange(pct, 0, 100)]
+    cli::cli_abort(
+      "The following {cli::qty(length(outside))} value{?s} of column \\
+      {.val {col_pct}} {cli::qty(length(outside))} {?is/are} outside of the \\
+      valid range 0 - 100: {.val {outside}}"
+    )
+  }
+
+  # If all percent values are in range c(0, 1),
+  # the user likely forgot to multiply by 100
+  if (all(data.table::inrange(pct, 0, 1))) {
+    cli::cli_warn(
+      "All values in column {.val {col_pct}} are in range 0 - 1. \\
+      Did you forget to multiply by 100?"
+    )
+  }
+
+  # Use one of 3 internal color palettes for special literals
+  if (
+    length(fill_palette) == 1 &&
+    fill_palette %in% c("hulk", "hulk_teal", "blue_orange")
+  ) {
+    fill_palette <- color_palettes[[fill_palette]]
+  }
+
+  # Calculate the actual color palette based on the supplied colors and domain
+  fill_color <- scales::col_numeric(
+    palette = fill_palette,
+    domain = fill_pct.domain,
+    na.color = fill_na.color,
+    reverse = fill_palette.reverse
+  )(pct)
+
+  out <- gt::text_transform(
+    data = gt_tbl,
+    locations = gt::cells_body(columns = {{ col_value }}, rows = {{ rows }}),
+    fn = function(x) {
+      paste0(
+        # Draw the background box.
+        # Defaults to full width, black outline and grayish fill
+        # vectorized over all args (length 1 is recycled)
+        .pct_bar_background(
+          border = background_border.color,
+          border_radius = background_border.radius,
+          background_color = background_fill.color,
+          width = background_fill.width
+        ),
+        # Draw a colored box with dynamic width and fill color
+        # vectorized over all args (length 1 is recycled)
+        .pct_bar_foreground(
+          width = pct,
+          border = fill_border.color,
+          border_radius = fill_border.radius,
+          background_color = fill_color
+        ),
+        # Add text
+        # vectorized over all args (length 1 is recycled)
+        .pct_bar_text(
+          text = x,
+          padding_left = value_padding_left,
+          padding_right = value_padding_right,
+          text_color = .better_contrast(
+            background_colors = fill_color,
+            light_text = value_light_color,
+            dark_text = value_dark_color
+          )
+        )
+      )
+    }
+  )
+
+  # Hide percentage column if user wants to
+  if (isTRUE(hide_col_pct)) {
+    out <- gt::cols_hide(out, col_pct)
+  }
+
+  out
+}
+
+.pct_bar_background <- function(
+  border = "thin solid black",
+  border_radius = "12px",
+  background_color = "#b1b1b1",
+  width = "100%"
+) {
+  paste0(
+    "<span style=\"",
+    "display:inline-block;",
+    "border:", border, ";",
+    "border-radius:", border_radius, ";",
+    "background-color:", background_color, ";",
+    "width:", width,
+    "\"/span>"
+  )
+}
+
+.pct_bar_foreground <- function(
+    width,
+    border = "transparent",
+    border_radius = "10px",
+    background_color = "#b1b1b1"
+) {
+  paste0(
+    "<span style=\"",
+    "display:inline-block;",
+    "border:", border, ";",
+    "border-radius:", border_radius, ";",
+    "background-color:", background_color, ";",
+    "width:", width, "%",
+    "\"/span>"
+  )
+}
+
+.pct_bar_text <- function(
+    text,
+    padding_left = "0%",
+    padding_right = "0%",
+    text_color = "white"
+) {
+  paste0(
+    "<span style=\"",
+    # "display:inline-block;",
+    # "unicode-bidi:bidi-override;",
+    "color:", text_color, ";",
+    "padding-left:", padding_left, ";",
+    "padding-right:", padding_right, ";",
+    "width:100%",
+    "\">",
+    text,
+    "</span>"
+  )
+}
+
+# Calculate color contrast ratios and return the color that yields the better
+# contrast
+.better_contrast <- function(background_colors, light_text, dark_text){
+  cr_light <- abs(colorspace::contrast_ratio(background_colors, light_text))
+  cr_dark <- abs(colorspace::contrast_ratio(background_colors, dark_text))
+
+  data.table::fifelse(
+    cr_light > cr_dark, light_text, dark_text
+  )
+}
+
+# The following functions are not used because I couldn't figure out an easy way
+# to make the property collapsing vectorized
+
+.concat_properties <- function(...){
+  props <- list(...)
+  paste(names(props), props, sep = ":", collapse = ";")
+}
+
+.span_tag <- function(..., value = NULL){
+  out <- paste0(
+    "<span style=\"",
+    concat_properties(...)
+  )
+  out <- if (is.null(value)){
+    paste0(out, "\"/span>")
+  } else {
+    paste0(
+      out,
+      "\">",
+      value,
+      "</span>"
+    )
+  }
+  out
+}
