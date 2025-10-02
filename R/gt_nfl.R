@@ -360,10 +360,15 @@ gt_render_image <- function(gt_tbl, ...){
 #'
 #' @param gt_tbl A table object that is created using the [gt::gt()] function.
 #' @param col_value Column name of the value to be printed.
-#' @param col_pct Column name of 0 - 100 values controlling the fill width.
+#' @param col_pct Column name of percentage values controlling the fill width.
+#'  If this is not in a 0 - 100 range, use `value_scale` to scale it up.
 #' @inheritParams gt::extract_cells
+#' @param ... Currently not used.
 #' @param hide_col_pct If `TRUE`, the column in `col_pct` will be hidden in the
 #'   resulting table.
+#' @param value_scale A scaling factor: values from column `col_pct` will be
+#'  multiplied by `value_scale` before proceeding. This is useful if the
+#'  underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.
 #' @param value_padding_left Left padding of the printed text.
 #' @param value_padding_right Right padding of the printed text.
 #' @param value_dark_color The color of the dark text option.
@@ -408,7 +413,7 @@ gt_render_image <- function(gt_tbl, ...){
 #' Make sure to play around with `fill_border.radius` and
 #' `background_border.radius`. Results will depend on final column width and
 #' percentiles. Very short percentile bars, i.e. small values in `col_pct`,
-#' might result in bars crossing the border because when combined with a
+#' might result in bars crossing the border when combined with a
 #' big border radius.
 #'
 #' Text alignment depending on the colored bar isn't as easy as one might think.
@@ -451,9 +456,11 @@ gt_pct_bar <- function(
   gt_tbl,
   col_value,
   col_pct,
+  ...,
   rows = gt::everything(),
   hide_col_pct = FALSE,
   # control style of value
+  value_scale = 1L,
   value_padding_left = "0px",
   value_padding_right = "0px",
   value_dark_color = "black",
@@ -479,6 +486,7 @@ gt_pct_bar <- function(
     columns = {{ col_pct }},
     rows = {{ rows }}
   ))
+  pct <- pct * as.numeric(value_scale)
 
   # Catch percent values outside c(0, 100)
   if (!all(data.table::inrange(pct, 0, 100))) {
