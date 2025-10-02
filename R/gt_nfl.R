@@ -431,6 +431,8 @@ gt_render_image <- function(gt_tbl, ...){
 #' @section Output of below example:
 #' \if{html}{\figure{pct_tbl.png}{options: width=66\%}}
 #' @examples
+#' library(data.table)
+#'
 #' # Make a data.table of mtcars and select only disp and hp
 #' data <- data.table::as.data.table(mtcars)[, list(disp, hp)]
 #'

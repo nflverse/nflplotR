@@ -139,6 +139,8 @@ nflplotR works with the 'gt' package
 }
 
 \examples{
+library(data.table)
+
 # Make a data.table of mtcars and select only disp and hp
 data <- data.table::as.data.table(mtcars)[, list(disp, hp)]
 
