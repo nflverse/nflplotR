@@ -8,8 +8,10 @@ gt_pct_bar(
   gt_tbl,
   col_value,
   col_pct,
+  ...,
   rows = gt::everything(),
   hide_col_pct = FALSE,
+  value_scale = 1L,
   value_padding_left = "0px",
   value_padding_right = "0px",
   value_dark_color = "black",
@@ -31,7 +33,10 @@ gt_pct_bar(
 
 \item{col_value}{Column name of the value to be printed.}
 
-\item{col_pct}{Column name of 0 - 100 values controlling the fill width.}
+\item{col_pct}{Column name of percentage values controlling the fill width.
+If this is not in a 0 - 100 range, use \code{value_scale} to scale it up.}
+
+\item{...}{Currently not used.}
 
 \item{rows}{\emph{Rows to target}
 
@@ -47,6 +52,10 @@ down to the rows we need (e.g., \verb{[colname_1] > 100 & [colname_2] < 50}).}
 
 \item{hide_col_pct}{If \code{TRUE}, the column in \code{col_pct} will be hidden in the
 resulting table.}
+
+\item{value_scale}{A scaling factor: values from column \code{col_pct} will be
+multiplied by \code{value_scale} before proceeding. This is useful if the
+underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.}
 
 \item{value_padding_left}{Left padding of the printed text.}
 
@@ -112,7 +121,7 @@ alignment and direction will be controlled by \code{gt::cols_align} (see example
 Make sure to play around with \code{fill_border.radius} and
 \code{background_border.radius}. Results will depend on final column width and
 percentiles. Very short percentile bars, i.e. small values in \code{col_pct},
-might result in bars crossing the border because when combined with a
+might result in bars crossing the border when combined with a
 big border radius.
 
 Text alignment depending on the colored bar isn't as easy as one might think.
@@ -121,7 +130,7 @@ overlapping of text values and the outline of the colored bars.
 
 For more information and examples, see the article that describes how
 nflplotR works with the 'gt' package
-\url{https://nflplotr.nflverse.com/articles/gt.html}
+\url{https://nflplotr.nflverse.com/articles/gt.html}.
 }
 }
 \section{Output of below example}{
