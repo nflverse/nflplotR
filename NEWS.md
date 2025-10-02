@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Added new experimental function `gt_pct_bar()`. A helper that adds filled percentage bars to 'gt' table to add context to values. (#76)
+
 # nflplotR 1.5.0
 
 * Rewrite theme elements in S7 to fully work with ggplot2 v4. This means nflplotR now requires ggplot2 v4! nflplotR is a ggplot2 extension and if ggplot2 version jumps make breaking changes, then it's best for the extension to not try to be downwards compatible. The theme system is now fully powered by ggpath. (#73)
