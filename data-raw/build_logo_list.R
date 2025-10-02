@@ -3,13 +3,15 @@ teams_colors_logos <- nflreadr::load_teams(current = FALSE) |>
   dplyr::bind_rows(
     tibble::tibble(
       team_abbr = c("AFC", "NFC", "NFL"),
-      team_logo_espn = c("https://github.com/nflverse/nflplotR/raw/main/data-raw/AFC.png",
-                         "https://github.com/nflverse/nflplotR/raw/main/data-raw/NFC.png",
-                         "https://raw.githubusercontent.com/nflverse/nflfastR-data/master/NFL.png")
+      team_logo_espn = c(
+        "https://github.com/nflverse/nflplotR/raw/main/data-raw/AFC.png",
+        "https://github.com/nflverse/nflplotR/raw/main/data-raw/NFC.png",
+        "https://raw.githubusercontent.com/nflverse/nflfastR-data/master/NFL.png"
+      )
     )
   )
 
-logo_list <- lapply(teams_colors_logos$team_abbr, function(x){
+logo_list <- lapply(teams_colors_logos$team_abbr, function(x) {
   url <- teams_colors_logos$team_logo_espn[teams_colors_logos$team_abbr == x]
   # Use the following URL to load logos from nfl dot com. Sometimes ESPN and
   # NFL do not use identical logos, e.g. the new Jets logo in 2024
@@ -40,10 +42,38 @@ wordmark_urls <- wordmark_urls[!is.na(wordmark_urls)]
 
 # Save raw logos in internal data for more speed
 wordmarks <- nflreadr::load_teams() |> dplyr::select(team_abbr, team_wordmark)
-wordmark_list <- lapply(wordmarks$team_wordmark, function(url){
+wordmark_list <- lapply(wordmarks$team_wordmark, function(url) {
   curl::curl_fetch_memory(url)$content
 })
 
 wordmark_list <- rlang::set_names(wordmark_list, wordmarks$team_abbr)
 
-usethis::use_data(logo_list, primary_colors, secondary_colors, logo_urls, wordmark_urls, wordmark_list, internal = TRUE, overwrite = TRUE)
+color_palettes <- list(
+  "hulk" = c(
+    ggsci::rgb_material("deep-purple", reverse = TRUE),
+    "white",
+    ggsci::rgb_material("green", reverse = FALSE)
+  ),
+  "hulk_teal" = c(
+    ggsci::rgb_material("deep-purple", reverse = TRUE),
+    "white",
+    ggsci::rgb_material("teal", reverse = FALSE)
+  ),
+  "blue_orange" = c(
+    ggsci::rgb_material("orange", reverse = TRUE),
+    "white",
+    ggsci::rgb_material("light-blue", reverse = FALSE)
+  )
+)
+
+usethis::use_data(
+  logo_list,
+  primary_colors,
+  secondary_colors,
+  logo_urls,
+  wordmark_urls,
+  wordmark_list,
+  color_palettes,
+  internal = TRUE,
+  overwrite = TRUE
+)
