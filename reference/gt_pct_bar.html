@@ -74,8 +74,10 @@ supplied color palette.</p>
 <span>  <span class="va">gt_tbl</span>,</span>
 <span>  <span class="va">col_value</span>,</span>
 <span>  <span class="va">col_pct</span>,</span>
+<span>  <span class="va">...</span>,</span>
 <span>  rows <span class="op">=</span> <span class="fu">gt</span><span class="fu">::</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/everything.html" class="external-link">everything</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  hide_col_pct <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  value_scale <span class="op">=</span> <span class="fl">1L</span>,</span>
 <span>  value_padding_left <span class="op">=</span> <span class="st">"0px"</span>,</span>
 <span>  value_padding_right <span class="op">=</span> <span class="st">"0px"</span>,</span>
 <span>  value_dark_color <span class="op">=</span> <span class="st">"black"</span>,</span>
@@ -106,7 +108,12 @@ supplied color palette.</p>
 
 
 <dt id="arg-col-pct">col_pct<a class="anchor" aria-label="anchor" href="#arg-col-pct"></a></dt>
-<dd><p>Column name of 0 - 100 values controlling the fill width.</p></dd>
+<dd><p>Column name of percentage values controlling the fill width.
+If this is not in a 0 - 100 range, use <code>value_scale</code> to scale it up.</p></dd>
+
+
+<dt id="arg--">...<a class="anchor" aria-label="anchor" href="#arg--"></a></dt>
+<dd><p>Currently not used.</p></dd>
 
 
 <dt id="arg-rows">rows<a class="anchor" aria-label="anchor" href="#arg-rows"></a></dt>
@@ -124,6 +131,12 @@ down to the rows we need (e.g., <code>[colname_1] &gt; 100 &amp; [colname_2] &lt
 <dt id="arg-hide-col-pct">hide_col_pct<a class="anchor" aria-label="anchor" href="#arg-hide-col-pct"></a></dt>
 <dd><p>If <code>TRUE</code>, the column in <code>col_pct</code> will be hidden in the
 resulting table.</p></dd>
+
+
+<dt id="arg-value-scale">value_scale<a class="anchor" aria-label="anchor" href="#arg-value-scale"></a></dt>
+<dd><p>A scaling factor: values from column <code>col_pct</code> will be
+multiplied by <code>value_scale</code> before proceeding. This is useful if the
+underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.</p></dd>
 
 
 <dt id="arg-value-padding-left">value_padding_left<a class="anchor" aria-label="anchor" href="#arg-value-padding-left"></a></dt>
@@ -215,14 +228,14 @@ alignment and direction will be controlled by <code><a href="https://gt.rstudio.
 <p>Make sure to play around with <code>fill_border.radius</code> and
 <code>background_border.radius</code>. Results will depend on final column width and
 percentiles. Very short percentile bars, i.e. small values in <code>col_pct</code>,
-might result in bars crossing the border because when combined with a
+might result in bars crossing the border when combined with a
 big border radius.</p>
 <p>Text alignment depending on the colored bar isn't as easy as one might think.
 Try percent values in <code>value_padding_left</code> or <code>value_padding_right</code> to avoid
 overlapping of text values and the outline of the colored bars.</p>
 <p>For more information and examples, see the article that describes how
 nflplotR works with the 'gt' package
-<a href="https://nflplotr.nflverse.com/articles/gt.html">https://nflplotr.nflverse.com/articles/gt.html</a></p>
+<a href="https://nflplotr.nflverse.com/articles/gt.html">https://nflplotr.nflverse.com/articles/gt.html</a>.</p>
 </div>
 
     </div>
