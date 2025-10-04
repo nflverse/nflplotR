@@ -1,6 +1,6 @@
 # nflplotR (development version)
 
-* Added new experimental function `gt_pct_bar()`. A helper that adds filled percentage bars to 'gt' table to add context to values. (#76)
+* Added new experimental function `gt_pct_bar()`. A helper that adds filled percentage bars to 'gt' table to add context to values. (#76, #77)
 
 # nflplotR 1.5.0
 
