@@ -598,6 +598,7 @@ gt_pct_bar <- function(
 
   ## SET TEXT STYLE PROPERTIES
   default_text_style <- list(
+    "display" = "inline-block",
     "padding-left" = value_padding_left,
     "padding-right" = value_padding_right
   )
