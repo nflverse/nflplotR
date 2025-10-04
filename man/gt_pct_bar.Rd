@@ -11,21 +11,26 @@ gt_pct_bar(
   ...,
   rows = gt::everything(),
   hide_col_pct = FALSE,
+  value_position = c("inline", "above"),
   value_scale = 1L,
   value_padding_left = "0px",
   value_padding_right = "0px",
-  value_dark_color = "black",
-  value_light_color = "white",
+  value_colors = c("black", "white"),
+  value_style.props = list(),
   fill_palette = "hulk",
   fill_palette.reverse = FALSE,
   fill_na.color = "#808080",
   fill_pct.domain = 0:100,
   fill_border.color = "transparent",
   fill_border.radius = "10px",
+  fill_height = "100\%",
+  fill_style.props = list(),
   background_border.color = "thin solid black",
   background_border.radius = "12px",
   background_fill.color = "#b1b1b1",
-  background_fill.width = "100\%"
+  background_fill.width = "100\%",
+  background_fill.height = "100\%",
+  background_style.props = list()
 )
 }
 \arguments{
@@ -53,6 +58,12 @@ down to the rows we need (e.g., \verb{[colname_1] > 100 & [colname_2] < 50}).}
 \item{hide_col_pct}{If \code{TRUE}, the column in \code{col_pct} will be hidden in the
 resulting table.}
 
+\item{value_position}{One of the following:
+\itemize{
+\item \code{"inline"} : prints the value inside of the bars
+\item \code{"above"} : prints the value above the bars
+}}
+
 \item{value_scale}{A scaling factor: values from column \code{col_pct} will be
 multiplied by \code{value_scale} before proceeding. This is useful if the
 underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.}
@@ -61,19 +72,18 @@ underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.}
 
 \item{value_padding_right}{Right padding of the printed text.}
 
-\item{value_dark_color}{The color of the dark text option.
-The function will calculate color contrast ratios with
-\link[colorspace:contrast_ratio]{colorspace::contrast_ratio} and, based on this, decide whether the dark or
-light option is more readable. NOTE: this uses colors from \code{fill_palette}
-and not the color from \code{background_fill.color} as background because it is
-not trivial to figure out the actual background of the text.}
+\item{value_colors}{One or more colors of the printed text. If this is a
+vector of colors and \code{value_position = "inline"}, the function will calculate
+color contrast ratios with \link[colorspace:contrast_ratio]{colorspace::contrast_ratio} and, based on this,
+decide which of the colors to chose to maximize readability. You can
+overwrite the resulting colos with \code{value_style.props}.
+NOTE: this uses colors from \code{fill_palette} for contrast ratio calculations
+and not from \code{background_fill.color} because it is not trivial to figure
+out the actual background of the text (it could overlap with both).}
 
-\item{value_light_color}{The color of the light text option.
-The function will calculate color contrast ratios with
-\link[colorspace:contrast_ratio]{colorspace::contrast_ratio} and, based on this, decide whether the dark or
-light option is more readable. NOTE: this uses colors from \code{fill_palette}
-and not the color from \code{background_fill.color} as background because it is
-not trivial to figure out the actual background of the text.}
+\item{value_style.props}{A named list of the form \code{list(property = value)}
+for enhanced control of the html style property. This can overwrite the
+default properties set with the above \code{value_} arguments.}
 
 \item{fill_palette}{The colors that values will be mapped to. This can also
 be one of \code{"hulk"}, \code{"hulk_teal"}, or \code{"blue_orange"} which will trigger
@@ -92,6 +102,17 @@ be mapped to.}
 
 \item{fill_border.radius}{Border radius of color filled area.}
 
+\item{fill_height}{The height of the colored fill bar. Should correspond with
+\code{background_fill.height}. This defaults to 100\% which will make sure the bar
+height matches text size of the printed value (when
+\code{value_position = "inline"}). Please note that \code{value_position = "inline"}
+requires an absolute value of \code{fill_height}, (e.g. \verb{5px}), otherwise it will
+render as line.}
+
+\item{fill_style.props}{A named list of the form \code{list(property = value)}
+for enhanced control of the html style property. This can overwrite the
+default properties set with the above \code{fill_} arguments.}
+
 \item{background_border.color}{Border color of background.}
 
 \item{background_border.radius}{Border radius of background.}
@@ -99,19 +120,33 @@ be mapped to.}
 \item{background_fill.color}{Fill color of background.}
 
 \item{background_fill.width}{Width of background.}
+
+\item{background_fill.height}{The height of the colored background bar.
+Should correspond with \code{fill_height}. This defaults to 100\% which will make
+sure the bar height matches text size of the printed value (when
+\code{value_position = "inline"}). Please note that \code{value_position = "inline"}
+requires an absolute value of \code{background_fill.height}, (e.g. \verb{5px}),
+otherwise it will render as line.}
+
+\item{background_style.props}{A named list of the form \code{list(property = value)}
+for enhanced control of the html style property. This can overwrite the
+default properties set with the above \code{background_} arguments.}
 }
 \value{
 An object of class \code{gt_tbl}.
 }
 \description{
-Add context to your data by placing the actual values on a percentile bar.
-The percentile bar is additionally colored with a colorscale based on a user
-supplied color palette.
+Add context to your data by adding a percentile bar to the actual values.
+The percentile bar is colored with a color scale based on a user supplied
+color palette and the relative width of the bars will be rendered as tooltip.
 }
 \details{
-The function allows extensive styling of the bars and text. All styling
-parameters are interpreted as style properties of a html span tag. For more
-info on CSS properties, see \url{https://www.w3schools.com/cssref/index.php}.
+The function allows extensive styling of the bars and text, either by using
+some of the default arguments or, if you want full control, by using the
+\verb{*_style.props} lists which give you full control over all style properties.
+All styling parameters are interpreted as style properties of a html span tag.
+For more information on CSS properties, see
+\url{https://www.w3schools.com/cssref/index.php}.
 \subsection{Some notes about styling}{
 
 Since this is meant to be an extension of an already existing 'gt' table,
@@ -155,8 +190,7 @@ set.seed(20)
 table <- data[sample(.N, 10)] |>
   gt::gt() |>
   nflplotR::gt_pct_bar(
-    "hp",
-    "pct",
+    "hp", "pct",
     hide_col_pct = FALSE,
     value_padding_left = "10px",
   ) |>
