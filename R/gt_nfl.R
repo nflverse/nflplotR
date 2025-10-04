@@ -354,9 +354,9 @@ gt_render_image <- function(gt_tbl, ...){
 
 #' Format Columns of 'gt' Tables as Percentage Bars
 #'
-#' Add context to your data by placing the actual values on a percentile bar.
-#' The percentile bar is additionally colored with a colorscale based on a user
-#' supplied color palette.
+#' Add context to your data by adding a percentile bar to the actual values.
+#' The percentile bar is colored with a color scale based on a user supplied
+#' color palette and the relative width of the bars will be rendered as tooltip.
 #'
 #' @param gt_tbl A table object that is created using the [gt::gt()] function.
 #' @param col_value Column name of the value to be printed.
@@ -366,23 +366,25 @@ gt_render_image <- function(gt_tbl, ...){
 #' @param ... Currently not used.
 #' @param hide_col_pct If `TRUE`, the column in `col_pct` will be hidden in the
 #'   resulting table.
+#' @param value_position One of the following:
+#'  - `"inline"` : prints the value inside of the bars
+#'  - `"above"` : prints the value above the bars
 #' @param value_scale A scaling factor: values from column `col_pct` will be
 #'  multiplied by `value_scale` before proceeding. This is useful if the
 #'  underlying data is in a 0 - 1 range, instead of the required 0 - 100 range.
 #' @param value_padding_left Left padding of the printed text.
 #' @param value_padding_right Right padding of the printed text.
-#' @param value_dark_color The color of the dark text option.
-#'  The function will calculate color contrast ratios with
-#'  [colorspace::contrast_ratio] and, based on this, decide whether the dark or
-#'  light option is more readable. NOTE: this uses colors from `fill_palette`
-#'  and not the color from `background_fill.color` as background because it is
-#'  not trivial to figure out the actual background of the text.
-#' @param value_light_color The color of the light text option.
-#'  The function will calculate color contrast ratios with
-#'  [colorspace::contrast_ratio] and, based on this, decide whether the dark or
-#'  light option is more readable. NOTE: this uses colors from `fill_palette`
-#'  and not the color from `background_fill.color` as background because it is
-#'  not trivial to figure out the actual background of the text.
+#' @param value_colors One or more colors of the printed text. If this is a
+#'  vector of colors and `value_position = "inline"`, the function will calculate
+#'  color contrast ratios with [colorspace::contrast_ratio] and, based on this,
+#'  decide which of the colors to chose to maximize readability. You can
+#'  overwrite the resulting colos with `value_style.props`.
+#'  NOTE: this uses colors from `fill_palette` for contrast ratio calculations
+#'  and not from `background_fill.color` because it is not trivial to figure
+#'  out the actual background of the text (it could overlap with both).
+#' @param value_style.props A named list of the form `list(property = value)`
+#'  for enhanced control of the html style property. This can overwrite the
+#'  default properties set with the above `value_` arguments.
 #' @param fill_palette The colors that values will be mapped to. This can also
 #'  be one of `"hulk"`, `"hulk_teal"`, or `"blue_orange"` which will trigger
 #'  internal color palettes. Argument passed on to [scales::col_numeric].
@@ -394,15 +396,36 @@ gt_render_image <- function(gt_tbl, ...){
 #'  be mapped to.
 #' @param fill_border.color Border color of color filled area.
 #' @param fill_border.radius Border radius of color filled area.
+#' @param fill_height The height of the colored fill bar. Should correspond with
+#'  `background_fill.height`. This defaults to 100% which will make sure the bar
+#'  height matches text size of the printed value (when
+#'  `value_position = "inline"`). Please note that `value_position = "inline"`
+#'  requires an absolute value of `fill_height`, (e.g. `5px`), otherwise it will
+#'  render as line.
+#' @param fill_style.props A named list of the form `list(property = value)`
+#'  for enhanced control of the html style property. This can overwrite the
+#'  default properties set with the above `fill_` arguments.
 #' @param background_border.color Border color of background.
 #' @param background_border.radius Border radius of background.
 #' @param background_fill.color Fill color of background.
 #' @param background_fill.width Width of background.
+#' @param background_fill.height The height of the colored background bar.
+#'  Should correspond with `fill_height`. This defaults to 100% which will make
+#'  sure the bar height matches text size of the printed value (when
+#'  `value_position = "inline"`). Please note that `value_position = "inline"`
+#'  requires an absolute value of `background_fill.height`, (e.g. `5px`),
+#'  otherwise it will render as line.
+#' @param background_style.props A named list of the form `list(property = value)`
+#'  for enhanced control of the html style property. This can overwrite the
+#'  default properties set with the above `background_` arguments.
 #'
 #' @details
-#' The function allows extensive styling of the bars and text. All styling
-#' parameters are interpreted as style properties of a html span tag. For more
-#' info on CSS properties, see <https://www.w3schools.com/cssref/index.php>.
+#' The function allows extensive styling of the bars and text, either by using
+#' some of the default arguments or, if you want full control, by using the
+#' `*_style.props` lists which give you full control over all style properties.
+#' All styling parameters are interpreted as style properties of a html span tag.
+#' For more information on CSS properties, see
+#' <https://www.w3schools.com/cssref/index.php>.
 #'
 #' ## Some notes about styling
 #'
@@ -447,8 +470,7 @@ gt_render_image <- function(gt_tbl, ...){
 #' table <- data[sample(.N, 10)] |>
 #'   gt::gt() |>
 #'   nflplotR::gt_pct_bar(
-#'     "hp",
-#'     "pct",
+#'     "hp", "pct",
 #'     hide_col_pct = FALSE,
 #'     value_padding_left = "10px",
 #'   ) |>
@@ -462,11 +484,12 @@ gt_pct_bar <- function(
   rows = gt::everything(),
   hide_col_pct = FALSE,
   # control style of value
+  value_position = c("inline", "above"),
   value_scale = 1L,
   value_padding_left = "0px",
   value_padding_right = "0px",
-  value_dark_color = "black",
-  value_light_color = "white",
+  value_colors = c("black", "white"),
+  value_style.props = list(),
   # control style of fill bar
   fill_palette = "hulk",
   fill_palette.reverse = FALSE,
@@ -474,13 +497,30 @@ gt_pct_bar <- function(
   fill_pct.domain = 0:100,
   fill_border.color = "transparent",
   fill_border.radius = "10px",
+  fill_height = "100%",
+  fill_style.props = list(),
   # control style of background
   background_border.color = "thin solid black",
   background_border.radius = "12px",
   background_fill.color = "#b1b1b1",
-  background_fill.width = "100%"
+  background_fill.width = "100%",
+  background_fill.height = "100%",
+  background_style.props = list()
 ) {
-  rlang::check_installed("colorspace (>= 2.0)", "to calculate color contrast ratios.")
+  rlang::check_dots_empty()
+
+  # make sure that all style properties are named lists
+  user_style_props <- names(c(
+    value_style.props,
+    fill_style.props,
+    background_style.props
+  ))
+  if (!is.null(user_style_props) && "" %in% user_style_props) {
+    cli::cli_abort(
+      "All elements of {.arg *_style.props} arguments must be named!"
+    )
+  }
+
   # Extract percent values from table data
   # rows allows us to apply a filter
   pct <- as.numeric(gt::extract_cells(
@@ -509,6 +549,9 @@ gt_pct_bar <- function(
     )
   }
 
+  # Match value position. Controls where value is printed relative to bars
+  value_position <- rlang::arg_match(value_position)
+
   # Use one of 3 internal color palettes for special literals
   if (
     length(fill_palette) == 1 &&
@@ -517,49 +560,87 @@ gt_pct_bar <- function(
     fill_palette <- color_palettes[[fill_palette]]
   }
 
-  # Calculate the actual color palette based on the supplied colors and domain
+  ## SET BACKGROUND STYLE PROPERTIES
+  default_background_style <- list(
+    "display" = "block",
+    "border" = background_border.color,
+    "border-radius" = background_border.radius,
+    "background-color" = background_fill.color,
+    "width" = background_fill.width,
+    "height" = background_fill.height
+  )
+  background_style <- utils::modifyList(
+    default_background_style,
+    background_style.props
+  )
+
+  ## SET FILL BAR STYLE PROPERTIES
+  # Calculate the actual color palette based on
+  # the supplied colors and domain
   fill_color <- scales::col_numeric(
     palette = fill_palette,
     domain = fill_pct.domain,
     na.color = fill_na.color,
     reverse = fill_palette.reverse
   )(pct)
+  default_fill_style <- list(
+    "display" = "block",
+    "border" = fill_border.color,
+    "border-radius" = fill_border.radius,
+    "background-color" = fill_color,
+    "width" = paste0(pct, "%"),
+    "height" = fill_height
+  )
+  fill_style <- utils::modifyList(
+    default_fill_style,
+    fill_style.props
+  )
+
+  ## SET TEXT STYLE PROPERTIES
+  default_text_style <- list(
+    "padding-left" = value_padding_left,
+    "padding-right" = value_padding_right
+  )
+  text_style <- utils::modifyList(
+    default_text_style,
+    value_style.props
+  )
+  # if the value is printed inline and the user did not set a color property,
+  # we add a color property using the best contrast of background colors and
+  # value_colors
+  if (value_position == "inline" && !"color" %in% names(text_style)) {
+    text_style <- utils::modifyList(
+      text_style,
+      list(
+        "color" = best_contrast(
+          background_colors = fill_color,
+          text_colors = value_colors
+        )
+      )
+    )
+  }
 
   out <- gt::text_transform(
     data = gt_tbl,
     locations = gt::cells_body(columns = {{ col_value }}, rows = {{ rows }}),
     fn = function(x) {
-      paste0(
-        # Draw the background box.
-        # Defaults to full width, black outline and grayish fill
-        # vectorized over all args (length 1 is recycled)
-        .pct_bar_background(
-          border = background_border.color,
-          border_radius = background_border.radius,
-          background_color = background_fill.color,
-          width = background_fill.width
-        ),
-        # Draw a colored box with dynamic width and fill color
-        # vectorized over all args (length 1 is recycled)
-        .pct_bar_foreground(
-          width = pct,
-          border = fill_border.color,
-          border_radius = fill_border.radius,
-          background_color = fill_color
-        ),
-        # Add text
-        # vectorized over all args (length 1 is recycled)
-        .pct_bar_text(
-          text = x,
-          padding_left = value_padding_left,
-          padding_right = value_padding_right,
-          text_color = .better_contrast(
-            background_colors = fill_color,
-            light_text = value_light_color,
-            dark_text = value_dark_color
-          )
+      if (value_position == "inline"){
+        paste0(
+          span_tag(background_style),
+          # attr adds a title attribute which triggers a tooltip
+          # showing the fill percentage of the bar
+          span_tag(fill_style, attr = paste0(" title = ", pct, "%")),
+          span_tag(text_style, value = x)
         )
-      )
+      } else if (value_position == "above") {
+        paste0(
+          span_tag(text_style, value = x),
+          span_tag(background_style),
+          # attr adds a title attribute which triggers a tooltip
+          # showing the fill percentage of the bar
+          span_tag(fill_style, attr = paste0(" title = ", pct, "%"))
+        )
+      }
     }
   )
 
@@ -571,93 +652,50 @@ gt_pct_bar <- function(
   out
 }
 
-.pct_bar_background <- function(
-  border = "thin solid black",
-  border_radius = "12px",
-  background_color = "#b1b1b1",
-  width = "100%"
-) {
-  paste0(
-    "<span style=\"",
-    "display:inline-block;",
-    "border:", border, ";",
-    "border-radius:", border_radius, ";",
-    "background-color:", background_color, ";",
-    "width:", width,
-    "\"/span>"
-  )
-}
-
-.pct_bar_foreground <- function(
-    width,
-    border = "transparent",
-    border_radius = "10px",
-    background_color = "#b1b1b1"
-) {
-  paste0(
-    "<span style=\"",
-    "display:inline-block;",
-    "border:", border, ";",
-    "border-radius:", border_radius, ";",
-    "background-color:", background_color, ";",
-    "width:", width, "%",
-    "\"/span>"
-  )
-}
-
-.pct_bar_text <- function(
-    text,
-    padding_left = "0%",
-    padding_right = "0%",
-    text_color = "white"
-) {
-  paste0(
-    "<span style=\"",
-    # "display:inline-block;",
-    # "unicode-bidi:bidi-override;",
-    "color:", text_color, ";",
-    "padding-left:", padding_left, ";",
-    "padding-right:", padding_right, ";",
-    "width:100%",
-    "\">",
-    text,
-    "</span>"
-  )
-}
-
-# Calculate color contrast ratios and return the color that yields the better
+# Calculate color contrast ratios and return the color that yields the best
 # contrast
-.better_contrast <- function(background_colors, light_text, dark_text){
-  cr_light <- abs(colorspace::contrast_ratio(background_colors, light_text))
-  cr_dark <- abs(colorspace::contrast_ratio(background_colors, dark_text))
-
-  data.table::fifelse(
-    cr_light > cr_dark, light_text, dark_text
+best_contrast <- function(background_colors, text_colors){
+  rlang::check_installed(
+    "colorspace (>= 2.0)", "to calculate color contrast ratios."
   )
+  vapply(background_colors, function(x, text_cols){
+    cr <- colorspace::contrast_ratio(x, text_cols)
+    text_cols[which.max(cr)]
+  }, FUN.VALUE = character(1L), text_cols = text_colors, USE.NAMES = FALSE)
 }
 
-# The following functions are not used because I couldn't figure out an easy way
-# to make the property collapsing vectorized
-
-.concat_properties <- function(...){
-  props <- list(...)
-  paste(names(props), props, sep = ":", collapse = ";")
+style_build <- function(style_props) {
+  # style_props is a list of elements of different lengths
+  # making it a data.table will recycle the single values to match max length
+  recycled <- data.table::as.data.table(style_props)
+  # we need to loop over the rows of the above table
+  # instead of doing so, we transpose the table summaries columns and extract
+  # the resulting row as vector. Feels like a hack but should be performant
+  out <- data.table::transpose(recycled)
+  out[,lapply(.SD, function(x){
+    paste(names(recycled), x, sep = ":", collapse = ";")
+  })] |>
+    as.matrix() |>
+    as.vector()
 }
 
-.span_tag <- function(..., value = NULL){
-  out <- paste0(
-    "<span style=\"",
-    concat_properties(...)
-  )
-  out <- if (is.null(value)){
-    paste0(out, "\"/span>")
+html_tag <- function(name, style_props = list(), value = NULL, attr = NULL) {
+  style <- if(rlang::is_empty(style_props)) "" else style_build(style_props)
+  if (is.null(value)) {
+    paste0("<", name, attr, " style=\"", style, "\">")
   } else {
-    paste0(
-      out,
-      "\">",
-      value,
-      "</span>"
-    )
+    paste0("<", name, attr, " style=\"", style, "\">", value, "</", name, ">")
   }
-  out
+}
+
+span_tag <- function(style_props = list(), value = NULL, attr = NULL){
+  html_tag(name = "span", style_props = style_props, value = value, attr = attr)
+}
+
+div_tag <- function(style_props = list(), value = NULL, attr = NULL){
+  html_tag(name = "div", style_props = style_props, value = value, attr = attr)
+}
+
+p_tag <- function(style_props = list(), value = NULL, attr = NULL){
+  html_tag(name = "p", style_props = style_props, value = value, attr = attr)
 }
