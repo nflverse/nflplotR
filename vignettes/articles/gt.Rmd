@@ -245,3 +245,150 @@ df |>
     table.align = "left"
   )
 ```
+
+## Add Context to Data Values
+
+When presenting data, whether in tables or other forms, context matters. For example, if you explain to a layperson that an NFL quarterback has a completion rate of 80%, they will not be able to interpret this value without context. Is it average, below average, or an incredible record? 
+
+There are various ways to add this context to tables. Statistically, a particular value can be classified very well by specifying its empirical quantile (usually given as a percentile). Once the percentiles have been determined, one can use `gt::cols_merge_n_pct`, for example, to add the context (the percentile) to the value. More complex styles can be implemented using the `pattern` argument in `gt::cols_merge`.
+
+This chapter introduces another method of graphically representing quantiles in tables. The basic idea is that a "progress bar" is rendered which is filled between 0% and 100%, depending on the empirical quantile. Let's take a look at some examples below.
+
+### Example Data
+
+```{r}
+df <- data.frame(
+  letters = sample(LETTERS, 10, TRUE),
+  value = sample(100:500, 10, FALSE),
+  pctl = rev(c(0, 1, 5, 10, 20, 45, 50, 75, 98, 100))
+)
+```
+
+### The Inline Percentage Bar
+
+By default, a bar is inserted and the value is printed inside the bar. We set `hide_col_pct` (which is not the default) to make it easier to understand how the filling corresponds to the values in `pctl`. 
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE
+  )
+```
+
+This doesn't really look good because values aren't aligned and bars are short. So let's change the column width and look again.
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE
+  ) |> 
+  gt::cols_width(value ~ gt::px(200))
+```
+
+The bars look better but notice how values are aligned right **inside the filled bars**. This is an important information that we can use to improve the style.
+
+Now let's align left and apply a left side padding:
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_padding_left = "10px"
+  ) |> 
+  gt::cols_width(value ~ gt::px(200)) |> 
+  gt::cols_align("left", "value")
+```
+
+Two annoying things remain. Some values corresponding to small percentiles overlap with the bars and very small percentiles (see `pctl` <= 5) overlap the outline. We can fix overlapping values and bars by applying separate padding values for every percentile (**all function arguments of `gt_pct_bar` are vectorized**). Rendering of very short percentile bars can be messed up by the border radius of the bar, which is why we see bars overlapping the outline. So let's try and fix this
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_padding_left = ifelse(df$pctl < 25, "110%", "10px"),
+    fill_border.radius = "3px",
+    background_border.radius = "5px"
+  ) |> 
+  gt::cols_width(value ~ gt::px(200)) |> 
+  gt::cols_align("left", "value")
+```
+
+### The Extra Percentage Bar
+
+As an alternative to the inline percentage bar, you can also place the bar below the text. `gt_pct_bar` controls this via the `value_position` argument. This approach allows for a significantly flatter design of the bars, because the text is printed outside the bar.
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_position = "above",
+    # with value_position = "above", we need an absolute value of bar heights!
+    background_fill.height = "5px",
+    background_fill.color = "LightGray"
+  ) |> 
+  gt::cols_width(value ~ gt::px(100)) |> 
+  gt::cols_align("center", "value")
+```
+
+### Integrated Color Scales
+
+`gt_pct_bar` can work with any color palette (= vector of color names allowed in html). It also comes with 3 integrated palettes named "hulk", "hulk_teal", and "blue_orange". The default "hulk" palette is used in the above examples. Below we'll look at the other color scales.
+
+Here is an example with the integrated "hulk_teal" color scale.
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_padding_left = ifelse(df$pctl < 25, "110%", "10px"),
+    fill_border.radius = "3px",
+    background_border.radius = "5px",
+    fill_palette = "hulk_teal"
+  ) |> 
+  gt::cols_width(value ~ gt::px(200)) |> 
+  gt::cols_align("left", "value")
+```
+
+And another example with the integrated "blue_orange" color scale.
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_padding_left = ifelse(df$pctl < 25, "110%", "10px"),
+    fill_border.radius = "3px",
+    background_border.radius = "5px",
+    fill_palette = "blue_orange"
+  ) |> 
+  gt::cols_width(value ~ gt::px(200)) |> 
+  gt::cols_align("left", "value")
+```
+
+### Advanced Styling
+
+`gt_pct_bar` supports advanced styling of the background bar (through `background_style.props`), the fill bar (through `fill_style.props`), and the text (through `text_style.props`) via named lists of the form `list(property = value)`. It is possible to pass every style property to these lists that is [supported in html](https://www.w3schools.com/cssref/index.php).
+
+Here is an example where we overwrite the text color to be red and change the font weight to a bold font. Values in the property lists will overwrite default values.
+
+```{r}
+gt::gt(df) |> 
+  nflplotR::gt_pct_bar(
+    "value", "pctl",
+    hide_col_pct = FALSE,
+    value_position = "above",
+    background_fill.height = "5px",
+    background_fill.color = "LightGray",
+    value_style.props = list(
+      color = "red", "font-weight" = 900
+    )
+  ) |> 
+  gt::cols_width(value ~ gt::px(100)) |> 
+  gt::cols_align("center", "value")
+```
