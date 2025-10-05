@@ -392,3 +392,47 @@ gt::gt(df) |>
   gt::cols_width(value ~ gt::px(100)) |> 
   gt::cols_align("center", "value")
 ```
+
+### Isn't this Already Available in gtExtras?
+
+The great Thomas Mock has implemented the function [`gt_plt_bar_pct`](https://jthomasmock.github.io/gtExtras/reference/gt_plt_bar_pct.html) in his {gtExtras} package. 
+
+While at first glance it appears that this function does exactly the same thing as `nflplotR::gt_pct_bar`, there are significant differences. The main differences include:
+
+- nflplotR supports full control over styling of all 3 components (background, fill, text). It does not hard code any property.
+- nflplotR prints the **value of another column** on top of the bar to provide context.
+- nflplotR supports vectors of colors in both fill and text to implement color scales.
+- nflplotR does not manipulate other gt options like alignment or column width.
+- gtExtras does not support the `value_position = "above"` functionality as described in previous sections.
+
+Basically, `gtExtras::gt_plt_bar_pct` is a special case of `nflplotR::gt_pct_bar`, which can be reproduced with the correct styling. See how [Tom's example](https://jthomasmock.github.io/gtExtras/reference/gt_plt_bar_pct.html#figures) is reproduced with nflplotR below. 
+
+```{r}
+data <- data.table::data.table(x = seq(1, 100, length.out = 6)) 
+data <- data[, `:=`(x_unscaled = x, x_scaled = paste0(x / max(x) * 100, "%"))]
+gt::gt(data) |> 
+  nflplotR::gt_pct_bar(
+    "x_unscaled", "x_unscaled",
+    background_fill.color = "#e1e1e1",
+    background_border.radius = "0px",
+    background_border.color = "transparent",
+    fill_palette = "forestgreen",
+    fill_border.radius = "0px",
+    value_colors = "transparent"
+  ) |> 
+  nflplotR::gt_pct_bar(
+    "x_scaled", "x",
+    background_fill.color = "#e1e1e1",
+    background_border.radius = "0px",
+    background_border.color = "transparent",
+    fill_palette = "Purple",
+    fill_border.radius = "0px",
+    value_style.props = list(
+      "color" = c(rep("black", 2), rep("white", 4)),
+      "font-weight" = "bold"
+    ),
+    value_padding_left = ifelse(data$x <= 21, "110%", "10px")
+  ) |> 
+  gt::cols_width(gt::ends_with("scaled") ~ gt::px(100)) |> 
+  gt::cols_align("left", gt::ends_with("scaled"))
+```
