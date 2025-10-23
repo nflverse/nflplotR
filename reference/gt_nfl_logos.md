@@ -1,0 +1,84 @@
+# Render Logos and Wordmarks in 'gt' Tables
+
+Translate NFL team abbreviations into logos and wordmarks and render
+these images in html tables with the 'gt' package.
+
+## Usage
+
+``` r
+gt_nfl_logos(gt_object, columns, height = 30, locations = NULL)
+
+gt_nfl_wordmarks(gt_object, columns, height = 30, locations = NULL)
+```
+
+## Arguments
+
+- gt_object:
+
+  A table object that is created using the
+  [`gt::gt()`](https://gt.rstudio.com/reference/gt.html) function.
+
+- columns:
+
+  The columns for which the image translation should be applied.
+  Argument has no effect if `locations` is not `NULL`.
+
+- height:
+
+  The absolute height (px) of the image in the table cell.
+
+- locations:
+
+  If `NULL` (the default), the function will render logos/wordmarks in
+  argument `columns`. Otherwise, the cell or set of cells to be
+  associated with the team name transformation. Only the
+  [`gt::cells_body()`](https://gt.rstudio.com/reference/cells_body.html),
+  [`gt::cells_stub()`](https://gt.rstudio.com/reference/cells_stub.html),
+  [`gt::cells_column_labels()`](https://gt.rstudio.com/reference/cells_column_labels.html),
+  and
+  [`gt::cells_row_groups()`](https://gt.rstudio.com/reference/cells_row_groups.html)
+  helper functions can be used here. We can enclose several of these
+  calls within a [`list()`](https://rdrr.io/r/base/list.html) if we wish
+  to make the transformation happen at different locations.
+
+## Value
+
+An object of class `gt_tbl`.
+
+## Output of below example
+
+![](figures/logo_tbl.png)
+
+## See also
+
+The player headshot rendering function
+[`gt_nfl_headshots()`](https://nflplotr.nflverse.com/reference/gt_nfl_headshots.md).
+
+The article that describes how nflplotR works with the 'gt' package
+<https://nflplotr.nflverse.com/articles/gt.html>
+
+## Examples
+
+``` r
+# \donttest{
+library(gt)
+library(nflplotR)
+teams <- valid_team_names()
+# remove conference logos from this example
+teams <- teams[!teams %in% c("AFC", "NFC", "NFL")]
+# create dataframe with all 32 team names
+df <- data.frame(
+  team_a = head(teams, 16),
+  logo_a = head(teams, 16),
+  wordmark_a = head(teams, 16),
+  team_b = tail(teams, 16),
+  logo_b = tail(teams, 16),
+  wordmark_b = tail(teams, 16)
+)
+# create gt table and translate team names to logo/wordmark images
+table <- df |>
+  gt() |>
+  gt_nfl_logos(columns = gt::starts_with("logo")) |>
+  gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
+# }
+```
