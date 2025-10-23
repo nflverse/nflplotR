@@ -3,11 +3,43 @@ test_that("wordmark geom works", {
   skip_on_cran()
   library(ggplot2)
 
-  teams_a <- c("KC", "MIA", "TB", "ARI", "LAC", "IND", "TEN", "PIT",
-               "NO", "CLE", "CIN", "MIN", "DAL", "JAX", "ATL", "BAL")
+  teams_a <- c(
+    "KC",
+    "MIA",
+    "TB",
+    "ARI",
+    "LAC",
+    "IND",
+    "TEN",
+    "PIT",
+    "NO",
+    "CLE",
+    "CIN",
+    "MIN",
+    "DAL",
+    "JAX",
+    "ATL",
+    "BAL"
+  )
 
-  teams_b <- c("BUF", "CAR", "CHI", "DEN", "DET", "GB", "HOU", "LA",
-               "LV", "NE", "NYG", "NYJ", "PHI", "SEA", "SF", "WAS")
+  teams_b <- c(
+    "BUF",
+    "CAR",
+    "CHI",
+    "DEN",
+    "DET",
+    "GB",
+    "HOU",
+    "LA",
+    "LV",
+    "NE",
+    "NYG",
+    "NYJ",
+    "PHI",
+    "SEA",
+    "SF",
+    "WAS"
+  )
 
   df_a <- data.frame(
     a = rep(1:4, 2),
@@ -32,7 +64,12 @@ test_that("wordmark geom works", {
   # apply alpha via an aesthetic from inside the dataset `df_a`
   p1 <- ggplot(df_a, aes(x = a, y = b)) +
     geom_nfl_wordmarks(aes(team_abbr = teams, alpha = alpha), width = 0.12) +
-    geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5, fill = "transparent") +
+    geom_label(
+      aes(label = teams),
+      nudge_y = -0.20,
+      alpha = 0.5,
+      fill = "transparent"
+    ) +
     scale_x_continuous(expand = expansion(add = 0.5)) +
     scale_alpha_identity() +
     theme_void()
@@ -40,7 +77,12 @@ test_that("wordmark geom works", {
   # apply colour via an aesthetic from inside the dataset `df_b`
   p2 <- ggplot(df_b, aes(x = a, y = b)) +
     geom_nfl_wordmarks(aes(team_abbr = teams, colour = colour), width = 0.12) +
-    geom_label(aes(label = teams), nudge_y = -0.20, alpha = 0.5, fill = "transparent") +
+    geom_label(
+      aes(label = teams),
+      nudge_y = -0.20,
+      alpha = 0.5,
+      fill = "transparent"
+    ) +
     scale_x_continuous(expand = expansion(add = 0.5)) +
     scale_alpha_identity() +
     scale_color_identity() +

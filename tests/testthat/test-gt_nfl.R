@@ -8,7 +8,8 @@ test_that("gt_pct_bar works", {
 
   tbl <- gt::gt(df, id = "test1") |>
     nflplotR::gt_pct_bar(
-      "value", "pctl",
+      "value",
+      "pctl",
       hide_col_pct = FALSE,
       value_padding_left = ifelse(df$pctl < 25, "110%", "10px"),
       fill_border.radius = "3px",
@@ -21,7 +22,8 @@ test_that("gt_pct_bar works", {
 
   tbl <- gt::gt(df, id = "test2") |>
     nflplotR::gt_pct_bar(
-      "value", "pctl",
+      "value",
+      "pctl",
       hide_col_pct = FALSE,
       value_position = "above",
       # with value_position = "above", we need an absolute value of bar heights!

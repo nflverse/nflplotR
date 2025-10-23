@@ -89,13 +89,16 @@
 #' # Restore old options
 #' options(old)
 #' }
-geom_nfl_headshots <- function(mapping = NULL, data = NULL,
-                               stat = "identity", position = "identity",
-                               ...,
-                               na.rm = FALSE,
-                               show.legend = FALSE,
-                               inherit.aes = TRUE) {
-
+geom_nfl_headshots <- function(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = FALSE,
+  inherit.aes = TRUE
+) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -114,12 +117,18 @@ geom_nfl_headshots <- function(mapping = NULL, data = NULL,
 #' @rdname nflplotR-package
 #' @export
 GeomNFLheads <- ggplot2::ggproto(
-  "GeomNFLheads", ggplot2::Geom,
+  "GeomNFLheads",
+  ggplot2::Geom,
   required_aes = c("x", "y", "player_gsis"),
   # non_missing_aes = c(""),
   default_aes = ggplot2::aes(
-    alpha = NULL, colour = NULL, angle = 0, hjust = 0.5,
-    vjust = 0.5, width = 1.0, height = 1.0
+    alpha = NULL,
+    colour = NULL,
+    angle = 0,
+    hjust = 0.5,
+    vjust = 0.5,
+    width = 1.0,
+    height = 1.0
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
@@ -133,7 +142,7 @@ GeomNFLheads <- ggplot2::ggproto(
       data = data,
       type = "headshots",
       headshot_map = headshots
-      )
+    )
 
     class(grobs) <- "gList"
 

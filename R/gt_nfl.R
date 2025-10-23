@@ -43,10 +43,7 @@
 #'   gt_nfl_logos(columns = gt::starts_with("logo")) |>
 #'   gt_nfl_wordmarks(columns = gt::starts_with("wordmark"))
 #' }
-gt_nfl_logos <- function(gt_object,
-                         columns,
-                         height = 30,
-                         locations = NULL){
+gt_nfl_logos <- function(gt_object, columns, height = 30, locations = NULL) {
   gt_nflplotR_image(
     gt_object = gt_object,
     columns = {{ columns }},
@@ -58,10 +55,12 @@ gt_nfl_logos <- function(gt_object,
 
 #' @rdname gt_nfl_logos
 #' @export
-gt_nfl_wordmarks <- function(gt_object,
-                             columns,
-                             height = 30,
-                             locations = NULL){
+gt_nfl_wordmarks <- function(
+  gt_object,
+  columns,
+  height = 30,
+  locations = NULL
+) {
   gt_nflplotR_image(
     gt_object = gt_object,
     columns = {{ columns }},
@@ -112,12 +111,13 @@ gt_nfl_wordmarks <- function(gt_object,
 #'   nflplotR::gt_nfl_cols_label("LAC", type = "wordmark") |>
 #'   nflplotR::gt_nfl_cols_label("KC", type = "logo")
 #' }
-gt_nfl_cols_label <- function(gt_object,
-                              columns = gt::everything(),
-                              ...,
-                              height = 30,
-                              type = c("logo", "wordmark", "headshot")){
-
+gt_nfl_cols_label <- function(
+  gt_object,
+  columns = gt::everything(),
+  ...,
+  height = 30,
+  type = c("logo", "wordmark", "headshot")
+) {
   type <- rlang::arg_match(type)
 
   if (is.numeric(height)) {
@@ -127,8 +127,8 @@ gt_nfl_cols_label <- function(gt_object,
   gt::cols_label_with(
     data = gt_object,
     columns = {{ columns }},
-    fn = function(x){
-      if (type == "headshot"){
+    fn = function(x) {
+      if (type == "headshot") {
         headshots <- load_headshots()
         lookup <- headshots$headshot_nfl
         names(lookup) <- headshots$gsis_id
@@ -136,7 +136,10 @@ gt_nfl_cols_label <- function(gt_object,
         out <- gt::web_image(image_url, height = height)
         out[is.na(image_url)] <- x[is.na(image_url)]
       } else {
-        team_abbr <- nflreadr::clean_team_abbrs(as.character(x), keep_non_matches = FALSE)
+        team_abbr <- nflreadr::clean_team_abbrs(
+          as.character(x),
+          keep_non_matches = FALSE
+        )
         # Create the image URI
         uri <- get_image_uri(team_abbr = team_abbr, type = type)
         # Generate the Base64-encoded image and place it within <img> tags
@@ -158,17 +161,18 @@ gt_nfl_cols_label <- function(gt_object,
   )
 }
 
-gt_nflplotR_image <- function(gt_object,
-                              columns,
-                              height = 30,
-                              locations = NULL,
-                              type = c("logo", "wordmark")){
-
+gt_nflplotR_image <- function(
+  gt_object,
+  columns,
+  height = 30,
+  locations = NULL,
+  type = c("logo", "wordmark")
+) {
   rlang::check_installed("gt (>= 0.8.0)", "to render images in gt tables.")
 
   type <- match.arg(type)
 
-  if(is.null(locations)){
+  if (is.null(locations)) {
     locations <- gt::cells_body({{ columns }})
   }
 
@@ -179,8 +183,11 @@ gt_nflplotR_image <- function(gt_object,
   gt::text_transform(
     data = gt_object,
     locations = locations,
-    fn = function(x){
-      team_abbr <- nflreadr::clean_team_abbrs(as.character(x), keep_non_matches = FALSE)
+    fn = function(x) {
+      team_abbr <- nflreadr::clean_team_abbrs(
+        as.character(x),
+        keep_non_matches = FALSE
+      )
       # Create the image URI
       uri <- get_image_uri(team_abbr = team_abbr, type = type)
       # Generate the Base64-encoded image and place it within <img> tags
@@ -200,17 +207,12 @@ gt_nflplotR_image <- function(gt_object,
       out
     }
   )
-
 }
 
 # Taken from gt package and modified for nflplotR purposes
 # Get image URIs from image lists as a vector Base64-encoded image strings
 get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
-
-  lookup_list <- switch (type,
-    "logo" = logo_list,
-    "wordmark" = wordmark_list
-  )
+  lookup_list <- switch(type, "logo" = logo_list, "wordmark" = wordmark_list)
 
   vapply(
     team_abbr,
@@ -220,8 +222,10 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
       # every non match will return NULL which is when we want NA
       if (is.null(lookup_list[[team]])) return(NA_character_)
       paste0(
-        "data:", "image/png",
-        ";base64,", base64enc::base64encode(lookup_list[[team]])
+        "data:",
+        "image/png",
+        ";base64,",
+        base64enc::base64encode(lookup_list[[team]])
       )
     }
   )
@@ -275,29 +279,31 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
 #' # Restore old options
 #' options(old)
 #' }
-gt_nfl_headshots <- function(gt_object,
-                             columns,
-                             height = 30,
-                             locations = NULL){
+gt_nfl_headshots <- function(
+  gt_object,
+  columns,
+  height = 30,
+  locations = NULL
+) {
   rlang::check_installed("gt (>= 0.8.0)", "to render images in gt tables.")
 
-  if(is.null(locations)){
+  if (is.null(locations)) {
     locations <- gt::cells_body({{ columns }})
   }
 
   gt::text_transform(
     data = gt_object,
     locations = locations,
-    fn = function(gsis){
+    fn = function(gsis) {
       headshot_map <- load_headshots()
       image_urls <- vapply(
         gsis,
         FUN.VALUE = character(1),
         USE.NAMES = FALSE,
         FUN = function(id) {
-          if(is.na(id) | !is_gsis(id)) return(NA_character_)
+          if (is.na(id) | !is_gsis(id)) return(NA_character_)
           ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
-          if(length(ret) == 0) ret <- na_headshot()
+          if (length(ret) == 0) ret <- na_headshot()
           ret
         }
       )
@@ -333,9 +339,11 @@ gt_nfl_headshots <- function(gt_object,
 #' @examplesIf identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")
 #' tbl <- gt::gt_preview(mtcars)
 #' gt_render_image(tbl)
-gt_render_image <- function(gt_tbl, ...){
-  if(!inherits(gt_tbl, "gt_tbl")){
-    cli::cli_abort("The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}")
+gt_render_image <- function(gt_tbl, ...) {
+  if (!inherits(gt_tbl, "gt_tbl")) {
+    cli::cli_abort(
+      "The argument {.arg gt_tbl} is not an object of class {.cls gt_tbl}"
+    )
   }
   rlang::check_installed("gt", "to render images in gt tables.")
   temp_file <- tempfile(fileext = ".png")
@@ -345,7 +353,7 @@ gt_render_image <- function(gt_tbl, ...){
   # get rid of the file when function exits
   on.exit(unlink(temp_file))
   # remove margin from plots so we render the table only
-  old <- graphics::par(ask = FALSE, mai = c(0,0,0,0), ...)
+  old <- graphics::par(ask = FALSE, mai = c(0, 0, 0, 0), ...)
   plot(magick::image_read(temp_file))
   # restore old margins
   graphics::par(old)
@@ -555,7 +563,7 @@ gt_pct_bar <- function(
   # Use one of 3 internal color palettes for special literals
   if (
     length(fill_palette) == 1 &&
-    fill_palette %in% c("hulk", "hulk_teal", "blue_orange")
+      fill_palette %in% c("hulk", "hulk_teal", "blue_orange")
   ) {
     fill_palette <- color_palettes[[fill_palette]]
   }
@@ -625,7 +633,7 @@ gt_pct_bar <- function(
     data = gt_tbl,
     locations = gt::cells_body(columns = {{ col_value }}, rows = {{ rows }}),
     fn = function(x) {
-      if (value_position == "inline"){
+      if (value_position == "inline") {
         paste0(
           span_tag(background_style),
           # attr adds a title attribute which triggers a tooltip
@@ -655,14 +663,21 @@ gt_pct_bar <- function(
 
 # Calculate color contrast ratios and return the color that yields the best
 # contrast
-best_contrast <- function(background_colors, text_colors){
+best_contrast <- function(background_colors, text_colors) {
   rlang::check_installed(
-    "colorspace (>= 2.0)", "to calculate color contrast ratios."
+    "colorspace (>= 2.0)",
+    "to calculate color contrast ratios."
   )
-  vapply(background_colors, function(x, text_cols){
-    cr <- colorspace::contrast_ratio(x, text_cols)
-    text_cols[which.max(cr)]
-  }, FUN.VALUE = character(1L), text_cols = text_colors, USE.NAMES = FALSE)
+  vapply(
+    background_colors,
+    function(x, text_cols) {
+      cr <- colorspace::contrast_ratio(x, text_cols)
+      text_cols[which.max(cr)]
+    },
+    FUN.VALUE = character(1L),
+    text_cols = text_colors,
+    USE.NAMES = FALSE
+  )
 }
 
 style_build <- function(style_props) {
@@ -673,7 +688,7 @@ style_build <- function(style_props) {
   # instead of doing so, we transpose the table summaries columns and extract
   # the resulting row as vector. Feels like a hack but should be performant
   out <- data.table::transpose(recycled)
-  out[,lapply(.SD, function(x){
+  out[, lapply(.SD, function(x) {
     paste(names(recycled), x, sep = ":", collapse = ";")
   })] |>
     as.matrix() |>
@@ -681,7 +696,7 @@ style_build <- function(style_props) {
 }
 
 html_tag <- function(name, style_props = list(), value = NULL, attr = NULL) {
-  style <- if(rlang::is_empty(style_props)) "" else style_build(style_props)
+  style <- if (rlang::is_empty(style_props)) "" else style_build(style_props)
   if (is.null(value)) {
     paste0("<", name, attr, " style=\"", style, "\">")
   } else {
@@ -689,14 +704,14 @@ html_tag <- function(name, style_props = list(), value = NULL, attr = NULL) {
   }
 }
 
-span_tag <- function(style_props = list(), value = NULL, attr = NULL){
+span_tag <- function(style_props = list(), value = NULL, attr = NULL) {
   html_tag(name = "span", style_props = style_props, value = value, attr = attr)
 }
 
-div_tag <- function(style_props = list(), value = NULL, attr = NULL){
+div_tag <- function(style_props = list(), value = NULL, attr = NULL) {
   html_tag(name = "div", style_props = style_props, value = value, attr = attr)
 }
 
-p_tag <- function(style_props = list(), value = NULL, attr = NULL){
+p_tag <- function(style_props = list(), value = NULL, attr = NULL) {
   html_tag(name = "p", style_props = style_props, value = value, attr = attr)
 }

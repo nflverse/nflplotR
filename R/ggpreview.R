@@ -36,17 +36,19 @@
 #' if (rstudioapi::isAvailable()){
 #'   ggpreview(p, width = 5, asp = 16/9)
 #' }
-ggpreview <- function(plot = ggplot2::last_plot(),
-                      width = NA,
-                      height = NA,
-                      asp = NULL,
-                      dpi = 300,
-                      device = "png",
-                      units = c("in", "cm", "mm", "px"),
-                      scale = 1,
-                      limitsize = TRUE,
-                      bg = NULL,
-                      ...){
+ggpreview <- function(
+  plot = ggplot2::last_plot(),
+  width = NA,
+  height = NA,
+  asp = NULL,
+  dpi = 300,
+  device = "png",
+  units = c("in", "cm", "mm", "px"),
+  scale = 1,
+  limitsize = TRUE,
+  bg = NULL,
+  ...
+) {
   rlang::check_installed("rstudioapi", reason = "to preview a ggplot file")
   file <- tempfile()
   if (is.numeric(asp)) height <- width / asp

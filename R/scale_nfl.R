@@ -43,25 +43,27 @@ NULL
 
 #' @rdname scale_nfl
 #' @export
-scale_color_nfl <- function(type = c("primary", "secondary"),
-                            values = NULL,
-                            ...,
-                            aesthetics = "colour",
-                            breaks = ggplot2::waiver(),
-                            na.value = "grey50",
-                            guide = NULL,
-                            alpha = NA) {
-
+scale_color_nfl <- function(
+  type = c("primary", "secondary"),
+  values = NULL,
+  ...,
+  aesthetics = "colour",
+  breaks = ggplot2::waiver(),
+  na.value = "grey50",
+  guide = NULL,
+  alpha = NA
+) {
   type <- rlang::arg_match(type)
 
-  if(is.null(values)){
-    values <- switch(type,
+  if (is.null(values)) {
+    values <- switch(
+      type,
       "primary" = primary_colors,
       "secondary" = secondary_colors
     )
   }
 
-  if(!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
+  if (!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
 
   ggplot2::scale_color_manual(
     ...,
@@ -80,25 +82,27 @@ scale_colour_nfl <- scale_color_nfl
 
 #' @rdname scale_nfl
 #' @export
-scale_fill_nfl <- function(type = c("primary", "secondary"),
-                           values = NULL,
-                           ...,
-                           aesthetics = "fill",
-                           breaks = ggplot2::waiver(),
-                           na.value = "grey50",
-                           guide = NULL,
-                           alpha = NA) {
-
+scale_fill_nfl <- function(
+  type = c("primary", "secondary"),
+  values = NULL,
+  ...,
+  aesthetics = "fill",
+  breaks = ggplot2::waiver(),
+  na.value = "grey50",
+  guide = NULL,
+  alpha = NA
+) {
   type <- rlang::arg_match(type)
 
-  if(is.null(values)){
-    values <- switch(type,
+  if (is.null(values)) {
+    values <- switch(
+      type,
       "primary" = primary_colors,
       "secondary" = secondary_colors
     )
   }
 
-  if(!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
+  if (!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
 
   ggplot2::scale_fill_manual(
     ...,
