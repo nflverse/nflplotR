@@ -41,7 +41,7 @@ gt_pct_bar(
 \item{col_pct}{Column name of percentage values controlling the fill width.
 If this is not in a 0 - 100 range, use \code{value_scale} to scale it up.}
 
-\item{...}{Currently not used.}
+\item{...}{These dots are for future extensions and must be empty.}
 
 \item{rows}{\emph{Rows to target}
 

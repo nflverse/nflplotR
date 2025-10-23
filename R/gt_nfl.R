@@ -363,7 +363,7 @@ gt_render_image <- function(gt_tbl, ...){
 #' @param col_pct Column name of percentage values controlling the fill width.
 #'  If this is not in a 0 - 100 range, use `value_scale` to scale it up.
 #' @inheritParams gt::extract_cells
-#' @param ... Currently not used.
+#' @inheritParams rlang::args_dots_empty
 #' @param hide_col_pct If `TRUE`, the column in `col_pct` will be hidden in the
 #'   resulting table.
 #' @param value_position One of the following:
