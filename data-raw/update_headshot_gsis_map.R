@@ -23,7 +23,7 @@ if (FALSE) {
 # LOAD ROSTER AND RELEASE RELEVANT DATA BY SEASON
 purrr::walk(
   seasons_to_update,
-  function (s) {
+  function(s) {
     r <- nflapi::nflapi_roster(s) |>
       nflapi::nflapi_roster_parse() |>
       dplyr::select(
@@ -32,13 +32,17 @@ purrr::walk(
       ) |>
       dplyr::filter(!is.na(gsis_id), !is.na(headshot_nfl)) |>
       dplyr::mutate(
-        headshot_nfl = stringr::str_replace(headshot_nfl, "\\{formatInstructions\\}", "f_auto,q_auto")
+        headshot_nfl = stringr::str_replace(
+          headshot_nfl,
+          "\\{formatInstructions\\}",
+          "f_auto,q_auto"
+        )
       )
 
     # Going into the 2024 season, the headshot of Jayden Daniels is missing
     # We use his combine headshot instead
-    if (s == 2024){
-      if (!"00-0039910" %in% r$gsis_id){
+    if (s == 2024) {
+      if (!"00-0039910" %in% r$gsis_id) {
         r <- r |>
           dplyr::bind_rows(
             tibble::tibble(
@@ -65,8 +69,10 @@ purrr::walk(
 
 combined_map <- purrr::map(
   1999:nflreadr::most_recent_season(roster = TRUE),
-  function(s){
-    load_from <- glue::glue("https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map_{s}.rds")
+  function(s) {
+    load_from <- glue::glue(
+      "https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map_{s}.rds"
+    )
     nflreadr::rds_from_url(load_from) |>
       dplyr::mutate(season = s)
   },

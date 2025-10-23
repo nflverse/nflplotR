@@ -21,7 +21,7 @@ df <- data.frame(
 
 p <- ggplot(df, aes(x = a, y = b)) +
   geom_nfl_logos(aes(team_abbr = teams), width = 0.09, alpha = 0.2) +
-  coord_cartesian(xlim = c(0.5,8.5), ylim = c(0.5,4.5)) +
+  coord_cartesian(xlim = c(0.5, 8.5), ylim = c(0.5, 4.5)) +
   theme_void() +
   theme_transparent()
 

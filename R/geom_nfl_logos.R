@@ -94,13 +94,16 @@
 #'   coord_cartesian(xlim = c(0.5,2.5), ylim = c(-0.75, 1.75)) +
 #'   theme_void()
 #' }
-geom_nfl_logos <- function(mapping = NULL, data = NULL,
-                           stat = "identity", position = "identity",
-                           ...,
-                           na.rm = FALSE,
-                           show.legend = FALSE,
-                           inherit.aes = TRUE) {
-
+geom_nfl_logos <- function(
+  mapping = NULL,
+  data = NULL,
+  stat = "identity",
+  position = "identity",
+  ...,
+  na.rm = FALSE,
+  show.legend = FALSE,
+  inherit.aes = TRUE
+) {
   ggplot2::layer(
     data = data,
     mapping = mapping,
@@ -119,21 +122,37 @@ geom_nfl_logos <- function(mapping = NULL, data = NULL,
 #' @rdname nflplotR-package
 #' @export
 GeomNFLlogo <- ggplot2::ggproto(
-  "GeomNFLlogo", ggplot2::Geom,
+  "GeomNFLlogo",
+  ggplot2::Geom,
   required_aes = c("x", "y", "team_abbr"),
   # non_missing_aes = c(""),
   default_aes = ggplot2::aes(
-    alpha = NULL, colour = NULL, angle = 0, hjust = 0.5,
-    vjust = 0.5, width = 1.0, height = 1.0
+    alpha = NULL,
+    colour = NULL,
+    angle = 0,
+    hjust = 0.5,
+    vjust = 0.5,
+    width = 1.0,
+    height = 1.0
   ),
   draw_panel = function(data, panel_params, coord, na.rm = FALSE) {
     data <- coord$transform(data, panel_params)
 
     data$team_abbr <- suppressWarnings(
-      nflreadr::clean_team_abbrs(as.character(data$team_abbr), keep_non_matches = TRUE)
+      nflreadr::clean_team_abbrs(
+        as.character(data$team_abbr),
+        keep_non_matches = TRUE
+      )
     )
 
-    grobs <- lapply(seq_along(data$team_abbr), build_grobs, alpha = data$alpha, colour = data$colour, data = data, type = "teams")
+    grobs <- lapply(
+      seq_along(data$team_abbr),
+      build_grobs,
+      alpha = data$alpha,
+      colour = data$colour,
+      data = data,
+      type = "teams"
+    )
 
     class(grobs) <- "gList"
 

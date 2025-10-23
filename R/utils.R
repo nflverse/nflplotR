@@ -11,22 +11,26 @@
 #'
 #' # List valid team abbreviations excluding duplicates
 #' valid_team_names(exclude_duplicates = FALSE)
-valid_team_names <- function(exclude_duplicates = TRUE){
- n <- sort(names(logo_list))
- if(isTRUE(exclude_duplicates)) n <- n[!n %in% c("LAR", "OAK", "SD", "STL")]
- n
+valid_team_names <- function(exclude_duplicates = TRUE) {
+  n <- sort(names(logo_list))
+  if (isTRUE(exclude_duplicates)) n <- n[!n %in% c("LAR", "OAK", "SD", "STL")]
+  n
 }
 
-logo_html <- function(team_abbr, type = c("height", "width"), size = 15){
+logo_html <- function(team_abbr, type = c("height", "width"), size = 15) {
   type <- rlang::arg_match(type)
   url <- logo_urls[team_abbr]
   sprintf("<img src='%s' %s = '%s'>", url, type, size)
 }
 
-headshot_html <- function(player_gsis, type = c("height", "width"), size = 25){
+headshot_html <- function(player_gsis, type = c("height", "width"), size = 25) {
   type <- rlang::arg_match(type)
   headshot_map <- load_headshots()
-  player_gsis <- ifelse(player_gsis %in% headshot_map$gsis_id, player_gsis, "NA_ID")
+  player_gsis <- ifelse(
+    player_gsis %in% headshot_map$gsis_id,
+    player_gsis,
+    "NA_ID"
+  )
   headshot_map <- rbind(
     headshot_map,
     list(gsis_id = "NA_ID", headshot_nfl = na_headshot())
@@ -47,9 +51,13 @@ is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
 is_gsis <- function(id) grepl("00-00[0-9]{5}", id, perl = TRUE)
 
-load_headshots <- function() nflreadr::rds_from_url("https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map.rds")
+load_headshots <- function()
+  nflreadr::rds_from_url(
+    "https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map.rds"
+  )
 
-na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
+na_headshot <- function()
+  "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
 
 #' Clear nflplotR Cache
 #'
@@ -59,8 +67,7 @@ na_headshot <- function() "https://static.www.nfl.com/image/private/t_player_pro
 #' @return Invisibly `NULL`
 #' @examples
 #' .nflplotR_clear_cache()
-.nflplotR_clear_cache <- function(){
-
+.nflplotR_clear_cache <- function() {
   functions <- list(
     reader_function
   )
