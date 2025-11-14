@@ -7,6 +7,8 @@
   A helper that adds filled percentage bars to ‘gt’ table to add context
   to values. ([\#76](https://github.com/nflverse/nflplotR/issues/76),
   [\#77](https://github.com/nflverse/nflplotR/issues/77))
+- Changed css styling of images in package documentation by CRAN
+  request. ([\#90](https://github.com/nflverse/nflplotR/issues/90))
 
 ## nflplotR 1.5.0
 
