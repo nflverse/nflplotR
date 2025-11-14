@@ -34,7 +34,7 @@ render these images in html tables with the 'gt' package.
 }
 \section{Output of below example}{
 
-\if{html}{\figure{logo_tbl.png}{options: width=75\%}}
+\if{html}{\figure{logo_tbl.png}{options: style="width: 75\%;"}}
 }
 
 \examples{

@@ -31,7 +31,7 @@ render these images in html tables with the 'gt' package.
 }
 \section{Output of below example}{
 
-\if{html}{\figure{headshot_tbl.png}{options: width=50\%}}
+\if{html}{\figure{headshot_tbl.png}{options: style="width: 50\%;"}}
 }
 
 \examples{

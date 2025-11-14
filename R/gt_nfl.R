@@ -20,7 +20,7 @@
 #'    <https://nflplotr.nflverse.com/articles/gt.html>
 #' @export
 #' @section Output of below example:
-#' \if{html}{\figure{logo_tbl.png}{options: width=75\%}}
+#' \if{html}{\figure{logo_tbl.png}{options: style="width: 75\%;"}}
 #' @examples
 #' \donttest{
 #' library(gt)
@@ -89,7 +89,7 @@ gt_nfl_wordmarks <- function(
 #' @seealso The player headshot rendering function [gt_nfl_headshots()].
 #' @export
 #' @section Output of below example:
-#' \if{html}{\figure{cols_label.png}{options: width=75\%}}
+#' \if{html}{\figure{cols_label.png}{options: style="width: 75\%;"}}
 #' @examples
 #' \donttest{
 #' library(gt)
@@ -244,7 +244,7 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
 #'   [gt_nfl_wordmarks()].
 #' @export
 #' @section Output of below example:
-#' \if{html}{\figure{headshot_tbl.png}{options: width=50\%}}
+#' \if{html}{\figure{headshot_tbl.png}{options: style="width: 50\%;"}}
 #' @examples
 #' \donttest{
 #' library(nflplotR)
@@ -460,7 +460,7 @@ gt_render_image <- function(gt_tbl, ...) {
 #' @returns An object of class `gt_tbl`.
 #' @export
 #' @section Output of below example:
-#' \if{html}{\figure{pct_tbl.png}{options: width=66\%}}
+#' \if{html}{\figure{pct_tbl.png}{options: style="width: 66\%;"}}
 #' @examples
 #' library(data.table)
 #'

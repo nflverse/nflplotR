@@ -170,7 +170,7 @@ nflplotR works with the 'gt' package
 }
 \section{Output of below example}{
 
-\if{html}{\figure{pct_tbl.png}{options: width=66\%}}
+\if{html}{\figure{pct_tbl.png}{options: style="width: 66\%;"}}
 }
 
 \examples{
