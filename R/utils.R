@@ -94,7 +94,6 @@ NULL
 # nocov start
 release_bullets <- function() {
   c(
-    '`devtools::check_mac_release()`',
     '`nflfastR:::my_rhub_check()`',
     '`pkgdown::check_pkgdown()`',
     '`nflfastR:::nflverse_thanks()`',
