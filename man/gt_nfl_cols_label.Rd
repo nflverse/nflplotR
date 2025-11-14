@@ -35,7 +35,7 @@ column labels of 'gt' tables.
 }
 \section{Output of below example}{
 
-\if{html}{\figure{cols_label.png}{options: width=75\%}}
+\if{html}{\figure{cols_label.png}{options: style="width: 75\%;"}}
 }
 
 \examples{
