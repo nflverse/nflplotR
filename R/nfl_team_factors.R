@@ -68,7 +68,9 @@ nfl_team_factor <- function(teams, ...) {
   # load nflreadr teams and make it a data.table
   nfl_teams <- try(data.table::setDT(nflreadr::load_teams()), silent = TRUE)
   if (nrow(nfl_teams) == 0L) {
-    cli::cli_alert_warning("Failed to download team info. Will return teams data.")
+    cli::cli_alert_warning(
+      "Failed to download team info. Will return teams data."
+    )
     return(teams)
   }
   div_split <- data.table::tstrsplit(nfl_teams$team_division, " ")
