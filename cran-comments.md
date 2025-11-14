@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release that makes nflplotR compatible with ggplot2 v4 and now fully transitioned its internals to ggpath v1.1.0
+This is a minor release that fixes an issue with images in Rd files (requested by CRAN) and introduces a new experimental feature.
 
 ## R CMD check results
 
