@@ -1,6 +1,8 @@
 # Changelog
 
-## nflplotR (development version)
+## nflplotR 1.6.0
+
+CRAN release: 2025-11-14
 
 - Added new experimental function
   [`gt_pct_bar()`](https://nflplotr.nflverse.com/reference/gt_pct_bar.md).
@@ -38,7 +40,7 @@ CRAN release: 2025-09-18
   ([\#69](https://github.com/nflverse/nflplotR/issues/69))
 - nflplotR now requires R 4.1 because magick needs this R version. This
   also follows the [Tidyverse R version support
-  rules](https://www.tidyverse.org/blog/2019/04/r-version-support/).
+  rules](https://tidyverse.org/blog/2019/04/r-version-support/).
   ([\#71](https://github.com/nflverse/nflplotR/issues/71))
 
 ## nflplotR 1.4.0
