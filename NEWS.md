@@ -1,4 +1,4 @@
-# nflplotR (development version)
+# nflplotR 1.6.0
 
 * Added new experimental function `gt_pct_bar()`. A helper that adds filled percentage bars to 'gt' table to add context to values. (#76, #77)
 * Changed css styling of images in package documentation by CRAN request. (#90)
@@ -10,7 +10,7 @@
 * The theme elements `element_nfl_logo()` and `element_nfl_wordmark()` now clean team abbreviations by calling `nflreadr::clean_team_abbrs()` and insert empty grobs for mismatches. 
 * All geoms and theme elements will print more informative warnings about team abbreviation, or player ID mismatches.
 * The gt logo rendering functions now add alt text for accessibility and to silence an annoying pkgdown warning. (#69)
-* nflplotR now requires R 4.1 because magick needs this R version. This also follows the [Tidyverse R version support rules](https://www.tidyverse.org/blog/2019/04/r-version-support/). (#71)
+* nflplotR now requires R 4.1 because magick needs this R version. This also follows the [Tidyverse R version support rules](https://tidyverse.org/blog/2019/04/r-version-support/). (#71)
 
 # nflplotR 1.4.0
 
