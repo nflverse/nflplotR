@@ -295,6 +295,7 @@ data[, pct := round(stats::ecdf(hp)(hp) * 100, 1)]
 #> 31: 301.0   335 100.0
 #> 32: 121.0   109  34.4
 #>      disp    hp   pct
+#>     <num> <num> <num>
 
 # set seed to keep it reproducible
 set.seed(20)

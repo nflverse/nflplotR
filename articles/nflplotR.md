@@ -491,7 +491,8 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 
 ## nflplotR and the gt package
 
-See `vignette("gt")`.
+Please see the [separate “gt”
+article](https://nflplotr.nflverse.com/articles/gt.html).
 
 ## How about speed in the RStudio preview pane?
 
