@@ -13,17 +13,6 @@ GeomNFLlogo
 GeomNFLwordmark
 ```
 
-## Format
-
-An object of class `GeomNFLheads` (inherits from `Geom`, `ggproto`,
-`gg`) of length 5.
-
-An object of class `GeomNFLlogo` (inherits from `Geom`, `ggproto`, `gg`)
-of length 5.
-
-An object of class `GeomNFLwordmark` (inherits from `Geom`, `ggproto`,
-`gg`) of length 5.
-
 ## See also
 
 Useful links:
@@ -37,3 +26,7 @@ Useful links:
 ## Author
 
 **Maintainer**: Sebastian Carl <mrcaseb@gmail.com>
+
+Authors:
+
+- Sebastian Carl <mrcaseb@gmail.com>

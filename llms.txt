@@ -11,6 +11,7 @@ The easiest way to get nflplotR is to install it from
 [CRAN](https://cran.r-project.org/package=nflplotR) with:
 
 ``` r
+
 install.packages("nflplotR")
 ```
 
@@ -19,6 +20,7 @@ can install the development version of nflplotR either from
 [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ``` r
+
 if (!require("pak")) install.packages("pak")
 pak::pak("nflverse/nflplotR")
 ```
@@ -27,6 +29,7 @@ or prebuilt from the [development repo](https://nflverse.r-universe.dev)
 with:
 
 ``` r
+
 install.packages("nflplotR", repos = c("https://nflverse.r-universe.dev", getOption("repos")))
 ```
 

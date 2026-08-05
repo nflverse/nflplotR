@@ -23,6 +23,7 @@ The easiest way to get nflplotR is to install it from
 [CRAN](https://cran.r-project.org/package=nflplotR) with:
 
 ``` r
+
 install.packages("nflplotR")
 ```
 
@@ -31,6 +32,7 @@ can install the development version of nflplotR either from
 [GitHub](https://github.com/nflverse/nflplotR/) with:
 
 ``` r
+
 if (!require("pak")) install.packages("pak")
 pak::pak("nflverse/nflplotR")
 ```
@@ -39,6 +41,7 @@ or prebuilt from the [development repo](https://nflverse.r-universe.dev)
 with:
 
 ``` r
+
 install.packages("nflplotR", repos = "https://nflverse.r-universe.dev")
 ```
 
@@ -48,6 +51,7 @@ Let’s look at some typical use cases for nflplotR using NFL play-by-play
 data. In a first step we load all necessary packages.
 
 ``` r
+
 library(nflplotR)
 library(ggplot2)
 library(gt)
@@ -61,6 +65,7 @@ EPA per play for the 2020 regular season. We will also compute the top
 10 Quarterbacks in EPA per play.
 
 ``` r
+
 pbp <- nflreadr::load_pbp(2020) |> 
   dplyr::filter(season_type == "REG") |>
   dplyr::filter(!is.na(posteam) & (rush == 1 | pass == 1))
@@ -97,6 +102,7 @@ tiers. Let’s create this scatter plot and play around with the
 capabilities of the logo geom.
 
 ``` r
+
 ggplot2::ggplot(combined, aes(x = off_epa, y = def_epa)) +
   ggplot2::geom_abline(slope = -1.5, intercept = seq(0.4, -0.3, -0.1), alpha = .2) +
   nflplotR::geom_mean_lines(aes(x0 = off_epa , y0 = def_epa)) +
@@ -134,6 +140,7 @@ shape! Let’s do this in the next example. We would like to highlight the
 NFC East Teams for no specific reason…
 
 ``` r
+
 nfc_east <- c("DAL", "NYG", "PHI", "WAS")
 
 combined |>
@@ -182,6 +189,7 @@ Let’s start with the offense and build a bar chart using logos as axis
 labels and team colors as bar colors.
 
 ``` r
+
 ggplot2::ggplot(offense, aes(x = team, y = off_epa)) +
   ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
   nflplotR::scale_color_nfl(type = "secondary") +
@@ -216,6 +224,7 @@ play). Let’s make them less intrusive by changing the color to black and
 white
 
 ``` r
+
 ggplot2::ggplot(defense, aes(y = team, x = def_epa)) +
   ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
   nflplotR::scale_color_nfl(type = "secondary") +
@@ -245,6 +254,7 @@ player headshots. The only requirement is a valid NFL gsis ID as used in
 the nflfastR play-by-play data.
 
 ``` r
+
 ggplot2::ggplot(qbs, aes(x = reorder(id, -qb_epa), y = qb_epa)) +
   ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
   nflplotR::scale_color_nfl(type = "secondary") +
@@ -273,6 +283,7 @@ We can do the above example alternatively by putting the player image on
 top of the columns and use team logos as axis labels instead.
 
 ``` r
+
 ggplot2::ggplot(qbs, aes(x = reorder(team, -qb_epa), y = qb_epa)) +
   ggplot2::geom_col(aes(color = team, fill = team), width = 0.5) +
   nflplotR::geom_nfl_headshots(aes(player_gsis = id), width = 0.075, vjust = 0.45) +
@@ -308,6 +319,7 @@ To show this, we create a dataframe of example data and add some nfl
 team abbreviations and player gsis ids.
 
 ``` r
+
 df <- mtcars |> 
   dplyr::mutate(
     team = sample(c("LAC", "BUF", "DAL", "ARI"), nrow(mtcars), TRUE),
@@ -318,6 +330,7 @@ df <- mtcars |>
 Now we plot some of the data and facet by the team abbreviations.
 
 ``` r
+
 ggplot(df, aes(x = mpg, y = disp)) +
   geom_point() +
   facet_wrap(vars(team)) +
@@ -343,6 +356,7 @@ in the [`theme()`](https://ggplot2.tidyverse.org/reference/theme.html)
 call.
 
 ``` r
+
 ggplot(df, aes(x = mpg, y = disp)) +
   geom_point() +
   facet_wrap(vars(team)) +
@@ -369,6 +383,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
 If you want logos instead of wordmarks…
 
 ``` r
+
 ggplot(df, aes(x = mpg, y = disp)) +
   geom_point() +
   facet_wrap(vars(team)) +
@@ -395,6 +410,7 @@ ggplot(df, aes(x = mpg, y = disp)) +
 Or maybe facet by player and use headshots…
 
 ``` r
+
 ggplot(df, aes(x = mpg, y = disp)) +
   geom_point() +
   facet_wrap(vars(player)) +
@@ -432,6 +448,7 @@ corresponding image and position it anywhere with `plot.tag.position`.
 Let’s try a logo first:
 
 ``` r
+
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point() +
   labs(
@@ -452,6 +469,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 Looks even better with wordmarks:
 
 ``` r
+
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point() +
   labs(
@@ -472,6 +490,7 @@ ggplot(mtcars, aes(x = mpg, y = disp)) +
 And we can do player headshots:
 
 ``` r
+
 ggplot(mtcars, aes(x = mpg, y = disp)) +
   geom_point() +
   labs(

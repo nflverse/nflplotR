@@ -254,6 +254,11 @@ The article that describes how nflplotR works with the 'gt' package
 
 ``` r
 library(data.table)
+#> 
+#> Attaching package: ‘data.table’
+#> The following object is masked from ‘package:base’:
+#> 
+#>     %notin%
 
 # Make a data.table of mtcars and select only disp and hp
 data <- data.table::as.data.table(mtcars)[, list(disp, hp)]
