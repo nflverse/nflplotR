@@ -35,7 +35,7 @@ jobs:
       _R_CHECK_TEST_TIMING_CPU_TO_ELAPSED_THRESHOLD_: "NA"
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: r-lib/actions/setup-pandoc@v2
 

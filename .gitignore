@@ -41,3 +41,4 @@ vignettes/*.pdf
 docs
 .DS_Store
 inst/doc
+.positai
