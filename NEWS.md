@@ -1,3 +1,8 @@
+# nflplotR (development version)
+
+* Updated Rams logo and wordmark after 2026 minor rebranding
+* Updated Titans logo, wordmark, and colors after 2026 rebranding
+
 # nflplotR 1.6.0
 
 * Added new experimental function `gt_pct_bar()`. A helper that adds filled percentage bars to 'gt' table to add context to values. (#76, #77)

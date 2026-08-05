@@ -7,5 +7,5 @@
 Situation report of R and package/dependencies.
 }
 \description{
-See \code{\link[nflreadr:sitrep]{nflreadr::nflverse_sitrep}} for details.
+See \code{\link[nflreadr:nflverse_sitrep]{nflreadr::nflverse_sitrep}} for details.
 }

@@ -11,6 +11,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{ggpath}{\code{\link[ggpath]{element_path}}}
+  \item{ggpath}{\code{\link[ggpath:element_path]{element_path()}}}
 }}
 

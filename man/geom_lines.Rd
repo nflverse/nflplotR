@@ -12,7 +12,7 @@ geom_mean_lines(...)
 }
 \arguments{
 \item{...}{
-  Arguments passed on to \code{\link[ggpath:geom_lines]{ggpath::geom_mean_lines}}, \code{\link[ggpath:geom_lines]{ggpath::geom_median_lines}}
+  Arguments passed on to \code{\link[ggpath:geom_mean_lines]{ggpath::geom_mean_lines}}, \code{\link[ggpath:geom_median_lines]{ggpath::geom_median_lines}}
   \describe{
     \item{\code{mapping}}{Set of aesthetic mappings created by \code{\link[ggplot2:aes]{aes()}}.}
     \item{\code{data}}{The data to be displayed in this layer. There are three
@@ -55,7 +55,7 @@ to compute their \code{median} or \code{mean} and draw them as a line.
 }
 \details{
 These functions have been outsourced to the ggpath package.
-See \code{\link[ggpath:geom_lines]{ggpath::geom_median_lines}} and \code{\link[ggpath:geom_lines]{ggpath::geom_mean_lines}} for details.
+See \code{\link[ggpath:geom_median_lines]{ggpath::geom_median_lines}} and \code{\link[ggpath:geom_mean_lines]{ggpath::geom_mean_lines}} for details.
 }
 \section{Aesthetics}{
 
@@ -105,5 +105,5 @@ ggplot(mtcars, aes(x = disp, y = mpg)) +
   theme_minimal()
 }
 \seealso{
-The underlying ggplot2 geoms \code{\link[ggplot2:geom_abline]{ggplot2::geom_hline}} and \code{\link[ggplot2:geom_abline]{ggplot2::geom_vline}}
+The underlying ggplot2 geoms \code{\link[ggplot2:geom_hline]{ggplot2::geom_hline}} and \code{\link[ggplot2:geom_vline]{ggplot2::geom_vline}}
 }
