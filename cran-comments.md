@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release that fixes an issue with images in Rd files (requested by CRAN) and introduces a new experimental feature.
+This is a minor release that updates some logos and colors after rebrandings
 
 ## R CMD check results
 
@@ -8,7 +8,8 @@ This is a minor release that fixes an issue with images in Rd files (requested b
 
 ## revdepcheck results
 
-We checked 3 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
+We checked 3 reverse dependencies, comparing R CMD check results across CRAN 
+and dev versions of this package.
 
  * We saw 0 new problems
  * We failed to check 0 packages
