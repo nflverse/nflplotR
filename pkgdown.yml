@@ -4,7 +4,7 @@ pkgdown_sha: f69b62a7e74b58b42170284b6f3f56c674e7a3f8
 articles:
   articles/gt: gt.html
   articles/nflplotR: nflplotR.html
-last_built: 2026-09-18T17:58Z
+last_built: 2026-09-18T18:12Z
 urls:
   reference: https://nflplotr.nflverse.com/reference
   article: https://nflplotr.nflverse.com/articles
