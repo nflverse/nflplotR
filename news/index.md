@@ -1,6 +1,6 @@
 # Changelog
 
-## nflplotR (development version)
+## nflplotR 1.7.0
 
 - Updated Rams logo and wordmark after 2026 minor rebranding
 - Updated Titans logo, wordmark, and colors after 2026 rebranding
