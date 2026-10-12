@@ -6,56 +6,14 @@
 \alias{element_nfl_headshot}
 \title{Theme Elements for Image Grobs}
 \usage{
-element_nfl_logo(
-  alpha = 1L,
-  colour = NA_character_,
-  hjust = 0.5,
-  vjust = 0.5,
-  color = NULL,
-  angle = 0,
-  size = grid::unit(0.5, "cm")
-)
+element_nfl_logo(...)
 
-element_nfl_wordmark(
-  alpha = 1L,
-  colour = NA_character_,
-  hjust = 0.5,
-  vjust = 0.5,
-  color = NULL,
-  angle = 0,
-  size = grid::unit(0.5, "cm")
-)
+element_nfl_wordmark(...)
 
-element_nfl_headshot(
-  alpha = 1L,
-  colour = NA_character_,
-  hjust = 0.5,
-  vjust = 0.5,
-  color = NULL,
-  angle = 0,
-  size = grid::unit(0.5, "cm")
-)
+element_nfl_headshot(...)
 }
 \arguments{
-\item{alpha}{The alpha channel, i.e. transparency level, as a numerical value
-between 0 and 1. \code{1L} skips alpha channel modification for more speed.}
-
-\item{colour, color}{The image will be colorized with this color. Defaults to
-\code{NA_character_} which means no change of color at all. Use the
-special character \code{"b/w"} to set it to black and white. For more information
-on valid color names in ggplot2 see
-\url{https://ggplot2.tidyverse.org/articles/ggplot2-specs.html?q=colour#colour-and-fill}.}
-
-\item{hjust}{A numeric vector specifying horizontal justification.
-    If specified, overrides the \code{just} setting.}
-
-\item{vjust}{A numeric vector specifying vertical justification.
-    If specified, overrides the \code{just} setting.}
-
-\item{angle}{The angle of the element as a numerical value between 0° and 360°.}
-
-\item{size}{The output grob size as a \link[grid:unit]{grid::unit}. If given a numeric,
-\code{cm} will be applied as unit.}
+\item{...}{Arguments forwarded to \code{\link[ggpath:element_path]{ggpath::element_path()}}.}
 }
 \value{
 An S7 object of class \code{element}.
