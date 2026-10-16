@@ -12,7 +12,7 @@
 #' @details The elements translate NFL team abbreviations or NFL player GSIS IDs
 #'   into logo images or player headshots, respectively.
 #'
-#' @param ... Arguments forwarded to [ggpath::element_path()].
+#' @inheritParams ggpath::element_path
 #' @seealso [geom_nfl_logos()], [geom_nfl_headshots()], [geom_nfl_wordmarks()],
 #'   and [geom_from_path()] for more information on valid team abbreviations,
 #'   player IDs, and other parameters.
