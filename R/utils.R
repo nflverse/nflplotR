@@ -56,7 +56,10 @@ is_gsis <- function(id) grepl("00-00[0-9]{5}", id, perl = TRUE)
 load_headshots <- function() {
   players <- nflreadr::load_players()
   data.table::setDT(players)
-  players[is_gsis(gsis_id) & !is.na(headshot), list(gsis_id, headshot_nfl = headshot)]
+  players[
+    is_gsis(gsis_id) & !is.na(headshot),
+    list(gsis_id, headshot_nfl = headshot)
+  ]
 }
 
 na_headshot <- function() {
