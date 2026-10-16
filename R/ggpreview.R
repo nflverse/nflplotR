@@ -51,7 +51,9 @@ ggpreview <- function(
 ) {
   rlang::check_installed("rstudioapi", reason = "to preview a ggplot file")
   file <- tempfile()
-  if (is.numeric(asp)) height <- width / asp
+  if (is.numeric(asp)) {
+    height <- width / asp
+  }
   ggplot2::ggsave(
     file,
     plot = plot,

@@ -13,7 +13,9 @@
 #' valid_team_names(exclude_duplicates = FALSE)
 valid_team_names <- function(exclude_duplicates = TRUE) {
   n <- sort(names(logo_list))
-  if (isTRUE(exclude_duplicates)) n <- n[!n %in% c("LAR", "OAK", "SD", "STL")]
+  if (isTRUE(exclude_duplicates)) {
+    n <- n[!n %in% c("LAR", "OAK", "SD", "STL")]
+  }
   n
 }
 
@@ -51,13 +53,15 @@ is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 
 is_gsis <- function(id) grepl("00-00[0-9]{5}", id, perl = TRUE)
 
-load_headshots <- function()
+load_headshots <- function() {
   nflreadr::rds_from_url(
     "https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map.rds"
   )
+}
 
-na_headshot <- function()
+na_headshot <- function() {
   "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
+}
 
 #' Clear nflplotR Cache
 #'

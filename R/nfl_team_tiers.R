@@ -135,16 +135,18 @@ nfl_team_tiers <- function(
   ) +
     ggplot2::geom_hline(yintercept = tierlines, color = lines)
 
-  if (isFALSE(devel))
+  if (isFALSE(devel)) {
     p <- p +
       nflplotR::geom_nfl_logos(
         ggplot2::aes(team_abbr = .data$team_abbr),
         width = width,
         alpha = alpha
       )
-  if (isTRUE(devel))
+  }
+  if (isTRUE(devel)) {
     p <- p +
       ggplot2::geom_text(ggplot2::aes(label = .data$team_abbr), color = "white")
+  }
 
   p <- p +
     ggplot2::scale_y_continuous(

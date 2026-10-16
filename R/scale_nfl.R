@@ -63,7 +63,9 @@ scale_color_nfl <- function(
     )
   }
 
-  if (!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
+  if (!is.na(alpha)) {
+    values <- scales::alpha(values, alpha = alpha)
+  }
 
   ggplot2::scale_color_manual(
     ...,
@@ -102,7 +104,9 @@ scale_fill_nfl <- function(
     )
   }
 
-  if (!is.na(alpha)) values <- scales::alpha(values, alpha = alpha)
+  if (!is.na(alpha)) {
+    values <- scales::alpha(values, alpha = alpha)
+  }
 
   ggplot2::scale_fill_manual(
     ...,

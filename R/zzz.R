@@ -8,17 +8,21 @@
 
   memoise_option <- getOption("nflplotR.cache", default = "memory")
 
-  if (!memoise_option %in% c("memory", "filesystem", "off"))
+  if (!memoise_option %in% c("memory", "filesystem", "off")) {
     memoise_option <- "memory"
+  }
 
   if (memoise_option == "filesystem") {
     cache_dir <- R_user_dir("nflplotR", "cache")
-    if (!dir.exists(cache_dir))
+    if (!dir.exists(cache_dir)) {
       dir.create(cache_dir, recursive = TRUE, showWarnings = FALSE)
+    }
     cache <- cachem::cache_disk(dir = cache_dir)
   }
 
-  if (memoise_option == "memory") cache <- cachem::cache_mem()
+  if (memoise_option == "memory") {
+    cache <- cachem::cache_mem()
+  }
 
   if (memoise_option != "off") {
     assign(
@@ -79,8 +83,9 @@
     )
     memoise_option <- "memory"
   }
-  if (memoise_option == "off")
+  if (memoise_option == "off") {
     packageStartupMessage('Note: nflplotR.cache is set to "off"')
+  }
 }
 
 # nocov end

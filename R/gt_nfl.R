@@ -220,7 +220,9 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
     USE.NAMES = FALSE,
     FUN = function(team) {
       # every non match will return NULL which is when we want NA
-      if (is.null(lookup_list[[team]])) return(NA_character_)
+      if (is.null(lookup_list[[team]])) {
+        return(NA_character_)
+      }
       paste0(
         "data:",
         "image/png",
@@ -301,9 +303,13 @@ gt_nfl_headshots <- function(
         FUN.VALUE = character(1),
         USE.NAMES = FALSE,
         FUN = function(id) {
-          if (is.na(id) | !is_gsis(id)) return(NA_character_)
+          if (is.na(id) | !is_gsis(id)) {
+            return(NA_character_)
+          }
           ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
-          if (length(ret) == 0) ret <- na_headshot()
+          if (length(ret) == 0) {
+            ret <- na_headshot()
+          }
           ret
         }
       )
