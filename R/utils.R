@@ -54,9 +54,9 @@ is_installed <- function(pkg) requireNamespace(pkg, quietly = TRUE)
 is_gsis <- function(id) grepl("00-00[0-9]{5}", id, perl = TRUE)
 
 load_headshots <- function() {
-  nflreadr::rds_from_url(
-    "https://github.com/nflverse/nflplotR/releases/download/nflplotr_infrastructure/headshot_gsis_map.rds"
-  )
+  players <- nflreadr::load_players()
+  data.table::setDT(players)
+  players[is_gsis(gsis_id) & !is.na(headshot), list(gsis_id, headshot_nfl = headshot)]
 }
 
 na_headshot <- function() {
