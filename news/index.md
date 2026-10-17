@@ -1,5 +1,10 @@
 # Changelog
 
+## nflplotR (development version)
+
+- Updates for compatibility with S7 \> 0.2.2 and ggpath \> 1.1.1
+  ([\#98](https://github.com/nflverse/nflplotR/issues/98))
+
 ## nflplotR 1.7.0
 
 CRAN release: 2026-09-18

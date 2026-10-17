@@ -298,7 +298,7 @@ gt::gt(headshot_df) |>
   )
 ```
 
-| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7) |
+| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jnkspnntgebegzp4ghve) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wdckwtob1lybvkmxnf7p) |
 |----|----|
 | 1 | 2 |
 
@@ -377,8 +377,8 @@ df |>
 
 | A | B |
 |----|----|
-| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/s1oelyaroiaalgilbeqk) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/blixemm3s9sa4gmqk5yn) |
-| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/iireqbn32cpg9fn4sfy7) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/flezsremqighwuiyu77f) |
+| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/jnkspnntgebegzp4ghve) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/yvscmqq1qki8zfsemmcd) |
+| ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/wdckwtob1lybvkmxnf7p) | ![](https://static.www.nfl.com/image/upload/f_auto,q_auto/league/qzoa3bglbgxpxcvjqzo1) |
 
 ## Add Context to Data Values
 

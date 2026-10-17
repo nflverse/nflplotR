@@ -114,7 +114,7 @@ gt_pct_bar(
   One or more colors of the printed text. If this is a vector of colors
   and `value_position = "inline"`, the function will calculate color
   contrast ratios with
-  [colorspace::contrast_ratio](https://colorspace.R-Forge.R-project.org/reference/contrast_ratio.html)
+  [colorspace::contrast_ratio](https://zeileis.codeberg.page/colorspace/reference/contrast_ratio.html)
   and, based on this, decide which of the colors to chose to maximize
   readability. You can overwrite the resulting colos with
   `value_style.props`. NOTE: this uses colors from `fill_palette` for
