@@ -14,7 +14,7 @@ Imports:
     cachem (>= 1.0.0),
     cli (>= 3.0.0),
     data.table (>= 1.14.0),
-    ggpath (>= 1.1.0),
+    ggpath (>= 1.1.2),
     ggplot2 (>= 4.0.0),
     grid,
     gt (>= 0.8.0),
