@@ -62,6 +62,8 @@ load_headshots <- function() {
   ]
 }
 
+utils::globalVariables(c("gsis_id", "headshot"), "nflplotR")
+
 na_headshot <- function() {
   "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"
 }
