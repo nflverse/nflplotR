@@ -1,4 +1,4 @@
-# nflplotR (development version)
+# nflplotR 1.7.1
 
 * Updates for compatibility with S7 > 0.2.2 and ggpath > 1.1.1 (#98)
 
