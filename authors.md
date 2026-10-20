@@ -7,7 +7,7 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/nflverse/nflplotR/blob/main/DESCRIPTION)
+[`DESCRIPTION`](https://github.com/nflverse/nflplotR/blob/v1.7.1/DESCRIPTION)
 
 Carl S (2026). *nflplotR: NFL Logo Plots in 'ggplot2' and 'gt'*. R
 package version 1.7.1, <https://nflplotr.nflverse.com>.
