@@ -42,6 +42,8 @@ set to `"false"` can be taken from the source code of this function.
 ## Examples
 
 ``` r
+if (FALSE) { # identical(Sys.getenv("_R_CHECK_CONNECTIONS_LEFT_OPEN_"), "false") && identical(Sys.getenv("IN_PKGDOWN"), "true")
 tbl <- gt::gt_preview(mtcars)
 gt_render_image(tbl)
+}
 ```

@@ -1,9 +1,12 @@
 # Changelog
 
-## nflplotR (development version)
+## nflplotR 1.7.1
 
-- Updates for compatibility with S7 \> 0.2.2 and ggpath \> 1.1.1
+- Updates for compatibility with S7 \> 0.2.2 and ggpath \>= 1.1.2
   ([\#98](https://github.com/nflverse/nflplotR/issues/98))
+
+Thank you to [@t-kalinowski](https://github.com/t-kalinowski) for their
+contributions towards this release.
 
 ## nflplotR 1.7.0
 
