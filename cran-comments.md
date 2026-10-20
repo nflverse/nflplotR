@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release that updates some logos and colors after rebrandings
+This is a minor release for compatibility with ggpath v1.1.2
 
 ## R CMD check results
 
