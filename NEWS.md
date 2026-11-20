@@ -1,6 +1,6 @@
 # nflplotR (development version)
 
-* Team logos and wordmarks in gt tables are now embedded in a smaller size, which makes rendered tables much lighter and faster to build.
+* Team logos and wordmarks in gt tables are now embedded in a smaller size, which makes rendered tables much lighter and faster to build. (#105)
 
 # nflplotR 1.7.2
 
