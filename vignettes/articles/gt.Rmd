@@ -19,8 +19,7 @@ vignette: >
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  out.width = "100%",
-  dpi = 600
+  out.width = "100%"
 )
 options(nflreadr.cache_warning = FALSE)
 options(warn = -1)
