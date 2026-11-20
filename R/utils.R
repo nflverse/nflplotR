@@ -58,8 +58,16 @@ load_headshots <- function() {
   data.table::setDT(players)
   players[
     is_gsis(gsis_id) & !is.na(headshot),
-    list(gsis_id, headshot_nfl = headshot)
+    list(gsis_id, headshot_nfl = resize_headshot_url(headshot))
   ]
+}
+
+# Some headshot urls point to full resolution originals (e.g. 3400x2450 px).
+# These are unnecessarily large for plots and tables and can exhaust
+# ImageMagick's pixel cache resource limits. Ask the NFL CDN for images that
+# are at most 600 px wide instead. c_limit never upscales smaller images.
+resize_headshot_url <- function(url) {
+  sub("/f_auto,q_auto/", "/f_auto,q_auto,c_limit,w_600/", url, fixed = TRUE)
 }
 
 utils::globalVariables(c("gsis_id", "headshot"), "nflplotR")

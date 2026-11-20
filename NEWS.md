@@ -1,6 +1,7 @@
 # nflplotR 1.7.2
 
 * More compatibility updates with S7 1.0. (#102)
+* Player headshots are now requested at a maximum width of 600 px instead of the full resolution originals (up to 3400x2450 px). This reduces memory usage and fixes "cache resources exhausted" errors on systems with restrictive ImageMagick resource limits.
 
 # nflplotR 1.7.1
 
