@@ -1,6 +1,6 @@
 ## Submission
 
-This is a minor release for compatibility with ggpath v1.1.2
+This is a minor release for compatibility with S7 v1.0
 
 ## R CMD check results
 
