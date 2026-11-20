@@ -42,8 +42,12 @@ test_that("logo element works", {
     ggplot(aes(x = b, y = c)) +
     geom_point() +
     facet_wrap(vars(a)) +
+    # Only set the top strip. With S7 >= 1.0, a subclass set on `strip.text`
+    # propagates to `strip.text.y.*` as well. facet_wrap() renders (and then
+    # drops) vertical strips too, which would make the number of messages
+    # depend on the installed S7 version.
     theme(
-      strip.text = element_nfl_headshot()
+      strip.text.x.top = element_nfl_headshot()
     )
   expect_snapshot(out <- ggplotGrob(p4))
 })
