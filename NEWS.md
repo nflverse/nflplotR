@@ -1,7 +1,7 @@
 # nflplotR 1.7.2
 
 * More compatibility updates with S7 1.0. (#102)
-* Player headshots are now loaded in a smaller size that still provides good quality.
+* Player headshots are now loaded in a smaller size that still provides good quality. (#104)
 
 # nflplotR 1.7.1
 
