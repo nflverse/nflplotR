@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* Team logos and wordmarks in gt tables are now embedded in a smaller size, which makes rendered tables much lighter and faster to build.
+
 # nflplotR 1.7.2
 
 * More compatibility updates with S7 1.0. (#102)

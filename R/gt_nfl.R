@@ -220,17 +220,37 @@ get_image_uri <- function(team_abbr, type = c("logo", "wordmark")) {
     USE.NAMES = FALSE,
     FUN = function(team) {
       # every non match will return NULL which is when we want NA
-      if (is.null(lookup_list[[team]])) {
+      if (is.na(team) || is.null(lookup_list[[team]])) {
         return(NA_character_)
       }
-      paste0(
-        "data:",
-        "image/png",
-        ";base64,",
-        base64enc::base64encode(lookup_list[[team]])
-      )
+      key <- paste(type, team, sep = "_")
+      if (is.null(gt_uri_cache[[key]])) {
+        gt_uri_cache[[key]] <- paste0(
+          "data:",
+          "image/png",
+          ";base64,",
+          base64enc::base64encode(shrink_gt_image(lookup_list[[team]]))
+        )
+      }
+      gt_uri_cache[[key]]
     }
   )
+}
+
+# The raw logos and wordmarks are up to ~900px wide but gt tables display them
+# at ~30px height. Embedding full size images bloats html output and makes
+# rmarkdown's post processing of non self contained html (e.g. pkgdown)
+# extremely slow because it runs utils::URLdecode() on every image src, which
+# scales quadratically with the string length. So we embed images scaled down
+# to 120px height (4x the default height, sharp on high density displays) and
+# cache the encoded strings for the session.
+gt_uri_cache <- new.env(parent = emptyenv())
+
+shrink_gt_image <- function(raw, height = 120) {
+  img <- magick::image_read(raw)
+  # the ">" flag makes sure we never upscale
+  img <- magick::image_resize(img, paste0("x", height, ">"))
+  magick::image_write(img, format = "png")
 }
 
 
