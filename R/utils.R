@@ -58,7 +58,11 @@ load_headshots <- function() {
   data.table::setDT(players)
   players[
     is_gsis(gsis_id) & !is.na(headshot),
-    list(gsis_id, headshot_nfl = resize_headshot_url(headshot))
+    list(
+      gsis_id,
+      headshot_nfl = resize_headshot_url(headshot),
+      headshot_name = display_name
+    )
   ]
 }
 
@@ -70,7 +74,7 @@ resize_headshot_url <- function(url) {
   sub("/f_auto,q_auto/", "/f_auto,q_auto,c_limit,w_600/", url, fixed = TRUE)
 }
 
-utils::globalVariables(c("gsis_id", "headshot"), "nflplotR")
+utils::globalVariables(c("gsis_id", "headshot", "display_name"), "nflplotR")
 
 na_headshot <- function() {
   "https://static.www.nfl.com/image/private/t_player_profile_landscape_2x/f_auto/league/rfuw3dh4aah4l4eeuubp.png"

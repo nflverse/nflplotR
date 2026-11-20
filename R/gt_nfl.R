@@ -130,10 +130,9 @@ gt_nfl_cols_label <- function(
     fn = function(x) {
       if (type == "headshot") {
         headshots <- load_headshots()
-        lookup <- headshots$headshot_nfl
-        names(lookup) <- headshots$gsis_id
-        image_url <- lookup[x]
-        out <- gt::web_image(image_url, height = height)
+        idx <- match(x, headshots$gsis_id)
+        image_url <- headshots$headshot_nfl[idx]
+        out <- headshot_img_tag(image_url, headshots$headshot_name[idx], height)
         out[is.na(image_url)] <- x[is.na(image_url)]
       } else {
         team_abbr <- nflreadr::clean_team_abbrs(
@@ -318,29 +317,50 @@ gt_nfl_headshots <- function(
     locations = locations,
     fn = function(gsis) {
       headshot_map <- load_headshots()
-      image_urls <- vapply(
-        gsis,
-        FUN.VALUE = character(1),
-        USE.NAMES = FALSE,
-        FUN = function(id) {
-          if (is.na(id) | !is_gsis(id)) {
-            return(NA_character_)
-          }
-          ret <- headshot_map$headshot_nfl[headshot_map$gsis_id == id]
-          if (length(ret) == 0) {
-            ret <- na_headshot()
-          }
-          ret
-        }
-      )
-      img_tags <- gt::web_image(image_urls, height = height)
-      # gt::web_image inserts a placeholder for NAs
-      # We want the actual input instead because users might call
+      valid <- !is.na(gsis) & is_gsis(gsis)
+      idx <- match(gsis, headshot_map$gsis_id)
+      image_urls <- headshot_map$headshot_nfl[idx]
+      player_names <- headshot_map$headshot_name[idx]
+      # valid IDs without a headshot get a placeholder image
+      image_urls[valid & is.na(image_urls)] <- na_headshot()
+      # invalid IDs get NA and will be replaced with the input below
+      image_urls[!valid] <- NA_character_
+      img_tags <- headshot_img_tag(image_urls, player_names, height)
+      # We want the actual input for invalid IDs because users might call
       # gt::sub_missing which defaults to "---"
       img_tags[is.na(image_urls)] <- gsis[is.na(image_urls)]
       img_tags
     }
   )
+}
+
+# Build <img> tags for player headshots including alt text. gt::web_image()
+# doesn't support alt text which is bad for accessibility.
+headshot_img_tag <- function(url, name, height) {
+  if (is.numeric(height)) {
+    height <- paste0(height, "px")
+  }
+  alt <- ifelse(
+    is.na(name),
+    "Headshot of an NFL player",
+    paste("Headshot of", html_escape(name))
+  )
+  paste0(
+    "<img src=\"",
+    url,
+    "\" style=\"height:",
+    height,
+    ";\" alt=\"",
+    alt,
+    "\">"
+  )
+}
+
+html_escape <- function(x) {
+  x <- gsub("&", "&amp;", x, fixed = TRUE)
+  x <- gsub("\"", "&quot;", x, fixed = TRUE)
+  x <- gsub("<", "&lt;", x, fixed = TRUE)
+  gsub(">", "&gt;", x, fixed = TRUE)
 }
 
 #' Render 'gt' Table to Temporary png File
