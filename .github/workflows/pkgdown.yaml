@@ -32,7 +32,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: r-lib/pkgdown, local::., any::dplyr
+          extra-packages: r-lib/pkgdown, local::.
           needs: website
 
       - name: Build site
@@ -46,3 +46,4 @@ jobs:
           clean: false
           branch: gh-pages
           folder: docs
+          single-commit: true
