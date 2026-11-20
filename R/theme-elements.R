@@ -125,22 +125,54 @@
 #' @aliases NULL
 NULL
 
+# An explicit constructor keeps the formals (and therefore the Rd usage)
+# stable across S7 versions. S7 >= 1.0 otherwise generates `function(...)`
+# for subclasses without new properties while S7 0.2.2 copies the parent's
+# formals, which causes codoc mismatches depending on the installed S7.
+element_nfl_constructor <- function(
+  alpha = 1L,
+  colour = NA_character_,
+  hjust = 0.5,
+  vjust = 0.5,
+  color = NULL,
+  angle = 0,
+  size = grid::unit(0.5, "cm")
+) {
+  S7::new_object(
+    ggpath::element_path(
+      alpha = alpha,
+      colour = colour,
+      hjust = hjust,
+      vjust = vjust,
+      color = color,
+      angle = angle,
+      size = size
+    )
+  )
+}
+
 #' @export
 #' @rdname element
-element_nfl_logo <- S7::new_class("element_nfl_logo", ggpath::element_path)
+element_nfl_logo <- S7::new_class(
+  "element_nfl_logo",
+  parent = ggpath::element_path,
+  constructor = element_nfl_constructor
+)
 
 #' @export
 #' @rdname element
 element_nfl_wordmark <- S7::new_class(
   "element_nfl_wordmark",
-  ggpath::element_path
+  parent = ggpath::element_path,
+  constructor = element_nfl_constructor
 )
 
 #' @export
 #' @rdname element
 element_nfl_headshot <- S7::new_class(
   "element_nfl_headshot",
-  ggpath::element_path
+  parent = ggpath::element_path,
+  constructor = element_nfl_constructor
 )
 
 #' @export

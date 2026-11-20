@@ -1,3 +1,7 @@
+# nflplotR (development version)
+
+* `element_nfl_logo()`, `element_nfl_wordmark()`, and `element_nfl_headshot()` now have explicit constructors so their arguments no longer depend on the installed S7 version. This fixes codoc mismatches on CRAN machines running S7 1.0.
+
 # nflplotR 1.7.1
 
 * Updates for compatibility with S7 > 0.2.2 and ggpath >= 1.1.2 (#98)
